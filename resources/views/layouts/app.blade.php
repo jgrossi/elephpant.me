@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -33,11 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('elephpants.index') }}">{{ __('ElePHPants') }}</a>
+                        <li class="nav-item {{ request()->routeIs('herds.edit') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
+                            <a class="nav-link" href="#">{{ __('Matches') }} <span class="badge badge-warning">9</span></a>
                         </li>
                     </ul>
 
@@ -80,6 +80,13 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="mt-4 text-center py-4 bg-white border-top">
+            <p class="mb-2">
+                Made with ❤️ by <a href="http://twitter.com/junior_grossi" target="_blank">Junior Grossi</a>.
+                Contribute to this project on <a href="http://github.com/jgrossi/elephpantme">GitHub</a>.
+            </p>
+        </footer>
     </div>
 </body>
 </html>

@@ -8,9 +8,19 @@ class HerdController extends Controller
 {
     public function edit()
     {
-        $elephpants = Elephpant::query()->orderBy('year')->get()->groupBy('year');
-        $myElephpants = auth()->user()->elephpants;
+        $elephpants = Elephpant::query()
+            ->orderBy('year')
+            ->orderBy('name')
+            ->get()
+            ->groupBy('year');
 
-        return view('herd.edit', compact('myElephpants', 'elephpants'));
+        $userElephpants = auth()->user()
+            ->elephpants
+            ->mapWithKeys(function (Elephpant $elephpant) {
+                return [$elephpant->id => $elephpant->herd->quantity];
+            })
+            ->toArray();
+
+        return view('herd.edit', compact('elephpants', 'userElephpants'));
     }
 }

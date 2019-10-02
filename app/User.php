@@ -26,6 +26,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Elephpant::class)
             ->as('herd')
+            ->withPivot('quantity')
             ->withTimestamps();
     }
 }

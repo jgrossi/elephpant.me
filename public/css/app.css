@@ -10644,3 +10644,11 @@ a.text-dark:focus {
   }
 }
 
+.herd-card .list-group-item {
+  border-left: 3px solid transparent;
+}
+
+.herd-card .list-group-item.has-elephpants {
+  border-color: #38c172;
+}
+

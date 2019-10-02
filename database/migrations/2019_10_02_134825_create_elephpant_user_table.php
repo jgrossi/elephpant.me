@@ -11,6 +11,7 @@ class CreateElephpantUserTable extends Migration
         Schema::create('elephpant_user', function (Blueprint $table) {
             $table->bigInteger('elephpant_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->integer('quantity')->default(0)->unsigned();
             $table->timestamps();
 
             $table->foreign('elephpant_id')->references('id')->on('elephpants');

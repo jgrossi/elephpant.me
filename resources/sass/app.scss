@@ -6,3 +6,12 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.herd-card {
+    .list-group-item {
+        border-left: 3px solid transparent;
+        &.has-elephpants {
+            border-color: $green;
+        }
+    }
+}

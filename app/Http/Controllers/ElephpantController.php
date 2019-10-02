@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Elephpant;
+use Illuminate\Http\Request;
+
+class ElephpantController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Elephpant  $elephpant
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Elephpant $elephpant)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Elephpant  $elephpant
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Elephpant $elephpant)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Elephpant  $elephpant
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Elephpant $elephpant)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Elephpant  $elephpant
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Elephpant $elephpant)
+    {
+        //
+    }
+}

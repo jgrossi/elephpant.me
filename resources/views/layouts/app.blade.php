@@ -23,8 +23,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand text-light" href="{{ url('/') }}">
+                    <img src="{{ asset('img/elephpant.svg') }}" class="logo" alt="Elephant logo by Freepik"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,11 +33,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {{ request()->routeIs('rankings.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('rankings.index') }}">{{ __('Ranking') }}</a>
+                        </li>
                         <li class="nav-item {{ request()->routeIs('herds.edit') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
                         </li>
-                        <li class="nav-item {{ request()->routeIs('matches.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('matches.index') }}">{{ __('Matches') }} <span class="badge badge-warning">9</span></a>
+                        <li class="nav-item {{ request()->routeIs('trades.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('trades.index') }}">{{ __('Trade Area') }}</a>
                         </li>
                     </ul>
 
@@ -77,7 +80,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="pt-5 pb-3">
             @yield('content')
         </main>
 

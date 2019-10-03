@@ -7,11 +7,24 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body {
+    background-color: #fcfcfc;
+}
+
 .herd-card {
     .list-group-item {
-        border-left: 3px solid transparent;
+        border: 3px solid transparent;
+        border-width: 0 0 0 3px;
         &.has-elephpants {
             border-color: $green;
         }
+    }
+}
+
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+    .logo {
+        width: 30px;
     }
 }

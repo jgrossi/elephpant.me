@@ -10,12 +10,14 @@ class HerdController extends Controller
     public function edit()
     {
         $elephpants = Elephpant::query()->orderBy('year')->orderBy('name')->get()->groupBy('year');
+        $userElephpants = Auth::user()->elephpantsWithQuantity()->toArray();
 
-        $userElephpants = Auth::user()->elephpants
-            ->mapWithKeys(function (Elephpant $elephpant) {
-                return [$elephpant->id => $elephpant->pivot->quantity];
-            })->toArray();
+        $stats = [
+            'unique' => $unique = count($userElephpants),
+            'total' => $total = array_sum($userElephpants),
+            'double' => $total - $unique,
+        ];
 
-        return view('herd.edit', compact('elephpants', 'userElephpants'));
+        return view('herd.edit', compact('elephpants', 'userElephpants', 'stats'));
     }
 }

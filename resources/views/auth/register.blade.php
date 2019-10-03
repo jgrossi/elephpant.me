@@ -40,6 +40,39 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+                            <div class="col-md-6">
+                                <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country">
+
+                                @error('twitter')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="twitter" class="col-md-4 col-form-label text-md-right">{{ __('Twitter') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group @error('twitter') is-invalid @enderror">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input id="twitter" type="text" class="form-control" name="twitter" value="{{ old('twitter') }}" autocomplete="twitter">
+                                </div>
+
+                                @error('twitter')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

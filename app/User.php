@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -38,5 +39,15 @@ class User extends Authenticatable
     {
         return $this->elephpants()
             ->wherePivot('quantity', '>', 1);
+    }
+
+    public function elephpantsWithQuantity(): Collection
+    {
+        return $this->elephpants
+            ->mapWithKeys(function (Elephpant $elephpant) {
+                return [
+                    $elephpant->id => $elephpant->pivot->quantity,
+                ];
+            });
     }
 }

@@ -7,15 +7,35 @@
                 <div class="text-center mb-4">
                     <h1>My Herd</h1>
                     <p class="lead">Which (and how many) elePHPants do you have?</p>
-                    <div class="alert alert-info">
-                        You have <strong>{{ count($userElephpants) }} unique</strong> elePHPants, but a <strong>total of {{ $count = array_sum($userElephpants) }}</strong> ones.<br>
-                        @if($count > 0)
-                            You are ranking <strong>#3 in Brazil</strong> and <strong>#24 worldwide</strong>.
-                        @endif
+                    <div class="row mt-4">
+                        <div class="col">
+                            <div class="jumbotron py-2 mb-0">
+                                <div class="container">
+                                    <p class="lead mb-1">Unique</p>
+                                    <h1 class="display-5 mb-0">{{ $stats['unique'] }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="jumbotron py-2 mb-0">
+                                <div class="container">
+                                    <p class="lead mb-1">Double</p>
+                                    <h1 class="display-5 mb-0">{{ $stats['double'] }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="jumbotron py-2 mb-0">
+                                <div class="container">
+                                    <p class="lead mb-1">Total</p>
+                                    <h1 class="display-5 mb-0">{{ $stats['total'] }}</h1>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @foreach($elephpants as $year => $group)
-                    <div class="card mb-4 herd-card">
+                    <div class="card mb-3 herd-card">
                         <div class="card-header"><strong>{{ $year }}</strong></div>
                         <ul class="list-group list-group-flush">
                             @foreach($group as $key => $elephpant)

@@ -6,7 +6,7 @@
             <div class="col-md-10">
                 <div class="text-center mb-4">
                     <h1>Matches</h1>
-                    <p class="lead">Looking for new elePHPants? Here's yours you can trade.</p>
+                    <p class="lead">Looking for new elePHPants? Take a look on these matches.</p>
                 </div>
 {{--                @foreach($trades as $trade)--}}
                     <div class="card mb-4">
@@ -18,11 +18,11 @@
                             <p class="mb-0">Country: CountryName</p>
                         </div>
                         <div class="card-body">
-                            <div class="row align-items-start">
+                            <div class="row align-items-start mb-3">
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-header">
-                                            What user has:
+                                            User's double elePHPants for you:
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">
@@ -52,7 +52,7 @@
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-header">
-                                            What you have:
+                                            User's looking these ones you have double:
                                         </div>
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">
@@ -72,6 +72,12 @@
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <textarea name="message" id="" class="form-control" rows="2" placeholder="Hey, just saw you're looking for an elePHPant I have double. Let's trade?"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send message to user</button>
                             </div>
                         </div>
                     </div>

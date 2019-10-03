@@ -1,0 +1,308 @@
+{
+	"elephpants": [
+		{
+            "id": 1,
+			"name": "Original Blue",
+			"description": "First Blue",
+			"sponsor": "Nexen / Alter Way",
+			"year": 2007,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-original-2-400x300.jpg"
+		},
+		{
+            "id": 2,
+			"name": "Original Pink",
+			"description": "First Pink",
+			"sponsor": "Alter Way",
+			"year": 2011,
+			"image": "https://afieldguidetoelephpants.net/photos/pink-original-0-400x300.jpg"
+		},
+		{
+            "id": 3,
+			"name": "OpenGoodies Blue",
+			"description": "",
+			"sponsor": "OpenGoodies",
+			"year": 2015,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-opengoodies-0-400x300.jpg"
+		},
+		{
+            "id": 4,
+			"name": "OpenGoodies Pink",
+			"description": "",
+			"sponsor": "OpenGoodies",
+			"year": 2015,
+			"image": "https://afieldguidetoelephpants.net/photos/pink-open-goodies-0-400x300.png"
+		},
+		{
+            "id": 5,
+			"name": "Oracle",
+			"description": "Oracle Blue",
+			"sponsor": "Oracle Corporation",
+			"year": 2008,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-oracle-0-400x300.jpg"
+		},
+		{
+            "id": 6,
+			"name": "Zend Blue",
+			"description": "ZendCon 2010",
+			"sponsor": "Zend Technologies",
+			"year": 2010,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-zend-1-400x300.jpg"
+		},
+		{
+            "id": 7,
+			"name": "Chili",
+			"description": "Zend Red, ZendCon 2013",
+			"sponsor": "Zend Technologies",
+			"year": 2013,
+			"image": "https://afieldguidetoelephpants.net/photos/red-chile-1-400x300.jpg"
+		},
+		{
+            "id": 8,
+			"name": "Z-Ray",
+			"description": "ZendCon 2014",
+			"sponsor": "Zend Technologies",
+			"year": 2014,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-zray-0-400x300.jpg"
+		},
+		{
+            "id": 9,
+			"name": "Zend PHP7",
+			"description": "ZendCon 2015",
+			"sponsor": "Zend Technologies",
+			"year": 2015,
+			"image": "https://afieldguidetoelephpants.net/photos/teal-zend-1-400x300.jpg"
+		},
+		{
+            "id": 10,
+			"name": "ElPHPis",
+			"description": "ZendCon 2016",
+			"sponsor": "Zend Technologies",
+			"year": 2016,
+			"image": "https://afieldguidetoelephpants.net/photos/white-zend-1-400x300.jpg"
+		},
+		{
+            "id": 11,
+			"name": "Denim",
+			"description": "ZendCon 2017",
+			"sponsor": "Rogue Wave Software",
+			"year": 2017,
+			"image": "https://afieldguidetoelephpants.net/photos/denim-zend-1-400x400.jpg"
+		},
+		{
+            "id": 12,
+			"name": "Zoe",
+			"description": "ZendCon 2018",
+			"sponsor": "Rogue Wave Software",
+			"year": 2018,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-zendcon-0-400x300.jpg"
+		},
+		{
+            "id": 13,
+			"name": "Zend Framework",
+			"description": "Zend Green",
+			"sponsor": "Zend Technologies",
+			"year": 2012,
+			"image": "https://afieldguidetoelephpants.net/photos/green-zf2-0-400x300.jpg"
+		},
+		{
+            "id": 14,
+			"name": "Archie",
+			"description": "php[architect]",
+			"sponsor": "php[architect]",
+			"year": 2014,
+			"image": "https://afieldguidetoelephpants.net/photos/orange-phparch-1-400x300.jpg"
+		},
+		{
+            "id": 15,
+			"name": "Umoja",
+			"description": "PHP Women",
+			"sponsor": "PHP Women",
+			"year": 2014,
+			"image": "https://afieldguidetoelephpants.net/photos/purple-phpwomen-1-400x300.jpg"
+		},
+		{
+            "id": 16,
+			"name": "Sonny",
+			"description": "Sunshine PHP Conference",
+			"sponsor": "Sunshine PHP Conference, Zend Technologies",
+			"year": 2014,
+			"image": "https://afieldguidetoelephpants.net/photos/yellow-sunshinephp-1-400x300.jpg"
+		},
+		{
+            "id": 17,
+			"name": "Sonny Nexmo",
+			"description": "Sunshine PHP Conference",
+			"sponsor": "Sunshine PHP Conference, Nexmo",
+			"year": 2019,
+			"image": "https://afieldguidetoelephpants.net/photos/yellow-sunshinephp-nexmo-1-400x300.jpg"
+		},
+		{
+            "id": 18,
+			"name": "Liona",
+			"description": "Laravel",
+			"sponsor": "Laravel Community",
+			"year": 2014,
+			"image": "https://afieldguidetoelephpants.net/photos/red-laravel-0-400x300.jpg"
+		},
+		{
+            "id": 19,
+			"name": "MurPHPy",
+			"description": "AmsterdamPHP",
+			"sponsor": "AmsterdamPHP",
+			"year": 2014,
+			"image": "https://afieldguidetoelephpants.net/photos/black-amsterdamphp-1-400x300.png"
+		},
+		{
+            "id": 20,
+			"name": "Phil Snow",
+			"description": "ConFoo",
+			"sponsor": "ConFoo",
+			"year": 2015,
+			"image": "https://afieldguidetoelephpants.net/photos/white-confoo-0-400x300.jpg"
+		},
+		{
+            "id": 21,
+			"name": "Symfony 10 Years",
+			"description": "Symfony Framework",
+			"sponsor": "Sensio Labs",
+			"year": 2015,
+			"image": "https://afieldguidetoelephpants.net/photos/black-symfony-10-years-0-400x300.jpg"
+		},
+		{
+            "id": 22,
+			"name": "Symfony",
+			"description": "Symfony Framework",
+			"sponsor": "Sensio Labs",
+			"year": 2016,
+			"image": "https://afieldguidetoelephpants.net/photos/black-symfony-0-400x300.jpg"
+		},
+		{
+            "id": 23,
+			"name": "Cody Blou",
+			"description": "Shopware",
+			"sponsor": "shopware AG",
+			"year": 2016,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-shopware-0-400x300.jpg"
+		},
+		{
+            "id": 24,
+			"name": "Echo",
+			"description": "Globalis",
+			"sponsor": "Globalis",
+			"year": 2016,
+			"image": "https://afieldguidetoelephpants.net/photos/white-globalis-0-400x300.jpg"
+		},
+		{
+            "id": 25,
+			"name": "Dutch PHP",
+			"description": "Dutch PHP Conference",
+			"sponsor": "ibuildings",
+			"year": 2016,
+			"image": "https://afieldguidetoelephpants.net/photos/white-dpc-0-400x300.jpg"
+		},
+		{
+            "id": 26,
+			"name": "Enfys",
+			"description": "Rainbow",
+			"sponsor": "PHPDiversity",
+			"year": 2016,
+			"image": "https://afieldguidetoelephpants.net/photos/multicolored-enfys-0-400x300.jpg"
+		},
+		{
+            "id": 27,
+			"name": "Chloe",
+			"description": "Roave",
+			"sponsor": "Roave",
+			"year": 2017,
+			"image": "https://afieldguidetoelephpants.net/photos/gray-roave-1-400x300.jpg"
+		},
+		{
+            "id": 28,
+			"name": "AFUP",
+			"description": "AFUP",
+			"sponsor": "Association Française des Utilisateurs de PHP (AFUP)",
+			"year": 2017,
+			"image": "https://afieldguidetoelephpants.net/photos/blue-afup-1-400x300.jpg"
+		},
+		{
+            "id": 29,
+			"name": "CakePHP",
+			"description": "Red CakePHP",
+			"sponsor": "CakePHP",
+			"year": 2017,
+			"image": "https://afieldguidetoelephpants.net/photos/red-cakephp-1-400x300.jpg"
+		},
+		{
+            "id": 30,
+			"name": "Cake Foundation",
+			"description": "CakeSF",
+			"sponsor": "CakePHP",
+			"year": 2017,
+			"image": "https://afieldguidetoelephpants.net/photos/yellow-cakesf-1-400x300.jpg"
+		},
+		{
+            "id": 31,
+			"name": "Hero",
+			"description": "Heroku",
+			"sponsor": "Heroku",
+			"year": 2017,
+			"image": "https://afieldguidetoelephpants.net/photos/purple-heroku-0-400x300.jpg"
+		},
+		{
+            "id": 32,
+			"name": "Magento",
+			"description": "Magento",
+			"sponsor": "Magento",
+			"year": 2017,
+			"image": "https://afieldguidetoelephpants.net/photos/gray-magento-1-400x300.jpg"
+		},
+		{
+            "id": 33,
+			"name": "Jorvik",
+			"description": "PHP Yorkshire",
+			"sponsor": "PHP Yorkshire Conference",
+			"year": 2018,
+			"image": "https://afieldguidetoelephpants.net/photos/phpyorkshire-400-300.png"
+		},
+		{
+            "id": 34,
+			"name": "Pollita",
+			"description": "PHP Roundtable",
+			"sponsor": "PHP Roundtable Podcast",
+			"year": 2018,
+			"image": "https://afieldguidetoelephpants.net/photos/purple-php-roundtable-1-400x300.jpg"
+		},
+		{
+            "id": 35,
+			"name": "Luxy",
+			"description": "PHPBenelux",
+			"sponsor": "PHPBenelux Conference",
+			"year": 2019,
+			"image": "https://afieldguidetoelephpants.net/photos/white-phpbenelux-0-400x300.jpg"
+		},
+		{
+            "id": 36,
+			"name": "Unity",
+			"description": "Darkmira Tour PHP 2019",
+			"sponsor": "Darkmira Tour PHP",
+			"year": 2019,
+			"image": "https://i.imgur.com/h0bMonH.jpg"
+		},
+		{
+            "id": 37,
+			"name": "Molly",
+			"description": "PHP Woolly Mammoth",
+			"sponsor": "Peter Meth / Softer Software",
+			"year": 2015,
+			"image": "https://afieldguidetoelephpants.net/photos/brown-truenorthphp-0-400x300.jpg"
+		},
+		{
+            "id": 38,
+			"name": "pHackyderm",
+			"description": "HHVM",
+			"sponsor": "Facebook",
+			"year": 2015,
+			"image": "https://afieldguidetoelephpants.net/photos/gray-hack-0-400x300.jpg"
+		}
+	]
+}

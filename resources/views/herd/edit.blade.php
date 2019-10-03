@@ -7,6 +7,12 @@
                 <div class="text-center mb-4">
                     <h1>My Herd</h1>
                     <p class="lead">Which (and how many) elePHPants do you have?</p>
+                    <div class="alert alert-info">
+                        You have <strong>{{ count($userElephpants) }} unique</strong> elePHPants, but a <strong>total of {{ $count = array_sum($userElephpants) }}</strong> ones.<br>
+                        @if($count > 0)
+                            You are ranking <strong>#3 in Brazil</strong> and <strong>#24 worldwide</strong>.
+                        @endif
+                    </div>
                 </div>
                 @foreach($elephpants as $year => $group)
                     <div class="card mb-4 herd-card">
@@ -19,12 +25,12 @@
                                     ">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col-lg-1 pr-3">
-                                            <img src="http://placehold.it/100" alt="{{ $elephpant->name }}" class="img-thumbnail img-fluid float-left">
+                                            <img src="{{ asset('elephpants/' . $elephpant->image) }}" alt="{{ $elephpant->name }}" class="img-thumbnail img-fluid float-left">
                                         </div>
                                         <div class="col-xl-9 col-lg-8">
-                                            <p class="mb-1"><strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->popular_name }})</em></p>
+                                            <p class="mb-1"><strong>{{ $elephpant->name }}</strong> - {{ $elephpant->description }}</p>
                                             <p class="mb-0 text-black-50">
-                                                Sponsor: {{ $elephpant->sponsor }} <em>(by {{ $elephpant->manufacturer }})</em>
+                                                Sponsor: {{ $elephpant->sponsor }}
                                             </p>
                                         </div>
                                         <div class="col-xl-2 col-lg-3">

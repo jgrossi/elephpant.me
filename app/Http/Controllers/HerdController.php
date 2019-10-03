@@ -3,23 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Elephpant;
+use Illuminate\Support\Facades\Auth;
 
 class HerdController extends Controller
 {
     public function edit()
     {
-        $elephpants = Elephpant::query()
-            ->orderBy('year')
-            ->orderBy('name')
-            ->get()
-            ->groupBy('year');
+        $elephpants = Elephpant::query()->orderBy('year')->orderBy('name')->get()->groupBy('year');
 
-        $userElephpants = auth()->user()
-            ->elephpants
+        $userElephpants = Auth::user()->elephpants
             ->mapWithKeys(function (Elephpant $elephpant) {
                 return [$elephpant->id => $elephpant->pivot->quantity];
-            })
-            ->toArray();
+            })->toArray();
 
         return view('herd.edit', compact('elephpants', 'userElephpants'));
     }

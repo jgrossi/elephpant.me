@@ -11,12 +11,10 @@ class CreateElephpantsTable extends Migration
         Schema::create('elephpants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('popular_name');
-            $table->text('description')->nullable();
+            $table->string('description');
             $table->integer('year')->unsigned();
-            $table->string('manufacturer');
             $table->string('sponsor');
-            $table->integer('quantity')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

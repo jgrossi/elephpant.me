@@ -36,8 +36,8 @@
                         <li class="nav-item {{ request()->routeIs('herds.edit') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Matches') }} <span class="badge badge-warning">9</span></a>
+                        <li class="nav-item {{ request()->routeIs('matches.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('matches.index') }}">{{ __('Matches') }} <span class="badge badge-warning">9</span></a>
                         </li>
                     </ul>
 

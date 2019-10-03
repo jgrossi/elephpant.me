@@ -17,7 +17,7 @@ class HerdController extends Controller
         $userElephpants = auth()->user()
             ->elephpants
             ->mapWithKeys(function (Elephpant $elephpant) {
-                return [$elephpant->id => $elephpant->herd->quantity];
+                return [$elephpant->id => $elephpant->pivot->quantity];
             })
             ->toArray();
 

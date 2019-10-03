@@ -23,4 +23,5 @@ Route::get('/herd/{username}', 'HerdController@show')->name('herds.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/my-herd', 'HerdController@edit')->name('herds.edit');
+    Route::get('/matches', 'MatchController@index')->name('matches.index');
 });

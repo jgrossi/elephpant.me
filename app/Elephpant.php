@@ -10,7 +10,7 @@ class Elephpant extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
-            ->as('heard')
+            ->withPivot('quantity')
             ->withTimestamps();
     }
 }

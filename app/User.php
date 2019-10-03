@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -22,11 +22,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function elephpants(): BelongsToMany
+    public function scopeNotLoggedIn(Builder $query)
+    {
+        return $query->where('id', '<>', auth()->id());
+    }
+
+    public function elephpants()
     {
         return $this->belongsToMany(Elephpant::class)
-            ->as('herd')
             ->withPivot('quantity')
             ->withTimestamps();
+    }
+
+    public function elephpantsToTrade()
+    {
+        return $this->elephpants()
+            ->wherePivot('quantity', '>', 1);
     }
 }

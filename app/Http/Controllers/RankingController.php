@@ -7,12 +7,11 @@ use App\Queries\RankedUsersQuery;
 
 class RankingController extends Controller
 {
-    public function index(RankedUsersQuery $usersQuery, CountriesQuery $countriesQuery)
+    public function index(RankedUsersQuery $usersQuery)
     {
         $country = request('country');
         $users = $usersQuery->fetchAll($country);
-        $countries = $countriesQuery->fetchAllPlucked();
 
-        return view('ranking.index', compact('users', 'countries', 'country'));
+        return view('ranking.index', compact('users', 'country'));
     }
 }

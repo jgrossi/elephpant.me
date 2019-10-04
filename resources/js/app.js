@@ -7,7 +7,9 @@
 require('./bootstrap');
 
 $(function () {
-    $('[data-toggle="popover"]').popover()
+    $('[data-toggle="popover"]').popover({
+        html: true
+    })
 })
 
 // window.Vue = require('vue');

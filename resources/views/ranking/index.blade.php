@@ -52,7 +52,12 @@
                                             <a href="#">{{ $user->name }}</a>
                                         </td>
                                         <td>
-                                            <a href="?{{ http_build_query(['country' => $user->country_code]) }}">{{ $countries[$user->country_code] }}</a>
+                                            <a href="?{{ http_build_query(['country' => $user->country_code]) }}">
+                                                @if($flag = $flags[$user->country_code] ?? null)
+                                                    <span class="mr-1">{!! $flag !!}</span>
+                                                @endif
+                                                {{ $countries[$user->country_code] }}
+                                            </a>
                                         </td>
                                         <td class="text-center">{{ $user->elephpants_unique }}</td>
                                         <td class="text-center">{{ $user->elephpants_total }}</td>

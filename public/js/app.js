@@ -39150,7 +39150,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $(function () {
-  $('[data-toggle="popover"]').popover();
+  $('[data-toggle="popover"]').popover({
+    html: true
+  });
 }); // window.Vue = require('vue');
 
 /**

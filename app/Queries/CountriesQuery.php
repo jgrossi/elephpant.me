@@ -20,6 +20,12 @@ final class CountriesQuery
             ->pluck('name.common', 'cca3');
     }
 
+    public function flags(): Collection
+    {
+        return $this->collection()
+            ->pluck('flag.flag-icon', 'cca3');
+    }
+
     private function collection(): Collection
     {
         return (new Countries())->all()

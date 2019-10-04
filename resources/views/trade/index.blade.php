@@ -15,14 +15,7 @@
                     @foreach($users as $user)
                         <div class="card mb-4">
                             <div class="card-header">
-                                <div class="float-left mr-3">
-                                    <img src="{{ $user->avatar() }}" width="50" alt="" class="img-thumbnail rounded-circle img-fluid">
-                                </div>
-                                <p class="mb-0">
-                                    <strong>{{ $user->name }}</strong>
-                                    <span class="ml-2 text-muted"><a href="#">{{ '@' . $user->twitter }}</a> on Twitter</span>
-                                </p>
-                                <p class="mb-0">Country: {{ $user->country_code }}</p>
+                                @include('trade._user')
                             </div>
                             <div class="card-body">
                                 <div class="card mb-3">
@@ -31,18 +24,7 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         @foreach($user->elephpantsToTrade as $elephpant)
-                                            <li class="list-group-item align-items-center">
-                                                <div class="float-right">
-                                                    <span class="badge badge-pill badge-secondary">{{ $elephpant->pivot->quantity - 1 }}</span>
-                                                </div>
-                                                <div>
-                                                    <div class="float-left mr-3">
-                                                        @include('elephpant._image')
-                                                    </div>
-                                                    <p class="mb-0"><strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->description }})</em></p>
-                                                    <p class="mb-0">By {{ $elephpant->sponsor }}</p>
-                                                </div>
-                                            </li>
+                                            @include('trade._elephpant')
                                         @endforeach
                                     </ul>
                                 </div>
@@ -52,18 +34,7 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         @foreach($user->elephpantsInterested as $elephpant)
-                                            <li class="list-group-item">
-                                                <div class="float-right">
-                                                    <span class="badge badge-pill badge-secondary">{{ $elephpant->pivot->quantity - 1 }}</span>
-                                                </div>
-                                                <div>
-                                                    <div class="float-left mr-3">
-                                                        @include('elephpant._image')
-                                                    </div>
-                                                    <p class="mb-0"><strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->description }})</em></p>
-                                                    <p class="mb-0">By {{ $elephpant->sponsor }}</p>
-                                                </div>
-                                            </li>
+                                            @include('trade._elephpant')
                                         @endforeach
                                     </ul>
                                 </div>

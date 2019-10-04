@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Photo;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $photos = Photo::inRandomOrder()->limit(50)->get();
+
+        return view('home', compact('photos'));
     }
 }

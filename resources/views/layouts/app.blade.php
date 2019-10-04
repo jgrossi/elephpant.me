@@ -15,7 +15,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ElePHPant.me | The best place for your elePHPant collection</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

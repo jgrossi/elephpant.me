@@ -10,7 +10,7 @@
                 </div>
                 @if($count = count($users))
                     <div class="alert alert-info mb-3">
-                        Found <strong>{{ $count }} users</strong> that can trade with you.
+                        Found <strong>{{ $count }} {{ \Illuminate\Support\Str::plural('user', $count) }}</strong> that can trade with you.
                     </div>
                     @foreach($users as $user)
                         <div class="card mb-4">
@@ -37,7 +37,7 @@
                                                 </div>
                                                 <div>
                                                     <div class="float-left mr-3">
-                                                        <img src="{{ asset('elephpants/' . $elephpant->image) }}" width="50" alt="" class="img-thumbnail rounded img-fluid">
+                                                        @include('elephpant._image')
                                                     </div>
                                                     <p class="mb-0"><strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->description }})</em></p>
                                                     <p class="mb-0">By {{ $elephpant->sponsor }}</p>
@@ -58,7 +58,7 @@
                                                 </div>
                                                 <div>
                                                     <div class="float-left mr-3">
-                                                        <img src="{{ asset('elephpants/' . $elephpant->image) }}" width="50" alt="" class="img-thumbnail rounded img-fluid">
+                                                        @include('elephpant._image')
                                                     </div>
                                                     <p class="mb-0"><strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->description }})</em></p>
                                                     <p class="mb-0">By {{ $elephpant->sponsor }}</p>

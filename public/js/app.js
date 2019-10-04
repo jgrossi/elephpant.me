@@ -39147,7 +39147,11 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+$(function () {
+  $('[data-toggle="popover"]').popover();
+}); // window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -39168,7 +39172,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window
 // const app = new Vue({
 //     el: '#app',
 // });
-
 
 var Turbolinks = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
 

@@ -6,6 +6,10 @@
 
 require('./bootstrap');
 
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
+
 // window.Vue = require('vue');
 
 /**

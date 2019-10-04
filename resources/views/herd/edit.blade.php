@@ -22,7 +22,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col-xl-9 col-lg-8">
                                             <div class="float-left mr-3">
-                                                <img src="{{ asset('elephpants/' . $elephpant->image) }}" width="50" alt="{{ $elephpant->name }}" class="img-thumbnail img-fluid float-left">
+                                                @include('elephpant._image')
                                             </div>
                                             <p class="mb-0"><strong>{{ $elephpant->name }}</strong> - {{ $elephpant->description }}</p>
                                             <p class="mb-0 text-black-50">

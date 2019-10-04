@@ -13,21 +13,21 @@
                         <form action="">
                             <select name="country" id="country" class="custom-select w-50 mr-1">
                                 <option value="">-- Global Ranking --</option>
-                                @foreach($countries as $code => $name)
-                                    <option value="{{ $code }}" {{ $country === $code ? 'selected' : '' }}>{{ $name }}</option>
+                                @foreach($countries as $code => $current)
+                                    <option value="{{ $code }}" {{ $country === $code ? 'selected' : '' }}>{{ $current->get('name') }}</option>
                                 @endforeach
                             </select>
                             <button type="submit" class="btn btn-primary">Change</button>
                         </form>
                     </div>
-                    @if($country && !isset($countries[$country]))
+                    @if($country && !$countries->has($country))
                         <div class="alert alert-danger">Ops! This country is not in our records yet.</div>
                     @endif
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        @if($country && isset($countries[$country]))
-                            <strong>{{ $countries[$country] }}</strong> <a href="{{ route('rankings.index') }}" class="float-right">Back to Global Ranking</a>
+                        @if($country && $countries->get($country))
+                            <strong>{{ $countries->get($country)->get('name') }}</strong> <a href="{{ route('rankings.index') }}" class="float-right">Back to Global Ranking</a>
                         @else
                             <strong>Global</strong>
                         @endif
@@ -53,10 +53,10 @@
                                         </td>
                                         <td>
                                             <a href="?{{ http_build_query(['country' => $user->country_code]) }}">
-                                                @if($flag = $flags[$user->country_code] ?? null)
+                                                @if($flag = $countries->get($user->country_code)->get('flag'))
                                                     <span class="mr-1">{!! $flag !!}</span>
                                                 @endif
-                                                {{ $countries[$user->country_code] }}
+                                                {{ $countries->get($user->country_code)->get('name') }}
                                             </a>
                                         </td>
                                         <td class="text-center">{{ $user->elephpants_unique }}</td>

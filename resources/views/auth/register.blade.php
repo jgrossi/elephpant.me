@@ -30,7 +30,6 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,12 +39,18 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+                            <label for="country_code" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country">
-
-                                @error('twitter')
-                                <span class="invalid-feedback" role="alert">
+                                <select name="country_code" id="country_code" name="country_code" class="form-control @error('country_code') is-invalid @enderror" name="country_code" value="{{ old('country_code') }}" required autocomplete="country_code">
+                                    <option value="">-- Select your country --</option>
+                                    @foreach($countries as $code => $current)
+                                        <option value="{{ $code }}" {{ $code === old('country_code') ? 'selected' : '' }}>
+                                            {{ $current->get('name') }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('country_code')
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -63,7 +68,7 @@
                                 </div>
 
                                 @error('twitter')
-                                <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

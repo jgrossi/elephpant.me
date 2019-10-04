@@ -11,12 +11,21 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         $query = $this->app->make(CountriesQuery::class);
-        $countries = $query->fetchAllPlucked()->toArray();
-        $flags = $query->flags()->toArray();
 
-        View::composer(['ranking.index', 'trade._user'], function ($view) use ($countries, $flags) {
+        $countries = $query->fetchAll()
+            ->mapWithKeys(function ($country) {
+                return [
+                    $country['cca3'] => [
+                        'name' => $country['name']['common'],
+                        'flag' => $country['flag']['flag-icon'],
+                    ]
+                ];
+            });
+
+        View::composer([
+            'ranking.index', 'trade._user', 'auth.register',
+        ], function ($view) use ($countries) {
             $view->with('countries', $countries);
-            $view->with('flags', $flags);
         });
     }
 }

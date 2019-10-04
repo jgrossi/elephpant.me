@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Queries\CountriesQuery;
 use App\Queries\RankedUsersQuery;
 
 class RankingController extends Controller

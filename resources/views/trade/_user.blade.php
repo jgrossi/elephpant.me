@@ -6,8 +6,13 @@
             <span class="ml-2 text-muted"><a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a> on Twitter</span>
         </p>
         <p class="mb-0">
-            Country: {{ $countries[$user->country_code] ?? '-' }}
-            @if($flag = $flags[$user->country_code] ?? null)
+            Country:
+            @if($country = $countries->get($user->country_code))
+                {{ $country->get('name') }}
+            @else
+                N/A
+            @endif
+            @if($flag = $country->get('flag'))
                 <span class="ml-1">{!! $flag !!}</span>
             @endif
         </p>

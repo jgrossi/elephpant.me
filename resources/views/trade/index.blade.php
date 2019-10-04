@@ -38,11 +38,14 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                <div>
-                                    <div class="form-group mb-2">
-                                        <textarea name="message" id="" class="form-control" rows="2" placeholder="Hey, just saw you're looking for an elePHPant I have double. Let's trade?"></textarea>
+                                <div data-controller="ping" data-ping-id="{{ $user->id }}">
+                                    <div class="message-box alert alert-success mb-0" style="display: none;">🎉 The message was sent to the user! 👏👏</div>
+                                    <div class="form-box">
+                                        <div class="form-group mb-2">
+                                            <textarea name="message" id="" class="form-control" rows="2" placeholder="Hey, just saw you're looking for an elePHPant I have double. Let's trade?" data-target="ping.message"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" data-action="ping#send">Send message to user</button>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Send message to user</button>
                                 </div>
                             </div>
                         </div>

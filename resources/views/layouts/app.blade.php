@@ -87,7 +87,7 @@
         <footer class="mt-4 text-center py-4 bg-white border-top">
             <p class="mb-2">
                 Made with ❤️ by <a href="http://twitter.com/junior_grossi" target="_blank">Junior Grossi</a>.
-                Contribute to this project on <a href="http://github.com/jgrossi/elephpantme">GitHub</a>.
+                Contribute to this project on <a href="http://github.com/jgrossi/elephpant.me">GitHub</a>.
             </p>
         </footer>
     </div>

@@ -15,4 +15,5 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/adoption/{elephpant}', 'AdoptionController@update')->name('adoptions.update');
     Route::get('/photo/create', 'PhotoController@create')->name('photos.create');
     Route::post('/photo', 'PhotoController@store')->name('photos.store');
+    Route::post('/message', 'MessageController@store')->name('messages.store');
 });

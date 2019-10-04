@@ -7,6 +7,14 @@
                 <div class="text-center mb-4">
                     <h1>My Herd</h1>
                     <p class="lead">Which (and how many) elePHPants do you have?</p>
+                    <div class="alert alert-secondary border-0 rounded-0 py-2">
+                        Your public herd URL:
+                        <code>
+                            <a href="{{ route('herds.show', auth()->user()->twitter) }}" target="_blank">
+                                {{ route('herds.show', auth()->user()->twitter) }}
+                            </a>
+                        </code>
+                    </div>
                     <div id="stats">
                         @include('herd._stats')
                     </div>

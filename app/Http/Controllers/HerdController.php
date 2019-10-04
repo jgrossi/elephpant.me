@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Elephpant;
+use App\Queries\ElephpantsQuery;
 use Illuminate\Support\Facades\Auth;
 
 class HerdController extends Controller
 {
-    public function edit()
+    public function edit(ElephpantsQuery $elephpantsQuery)
     {
-        $elephpants = Elephpant::query()->orderBy('year')->orderBy('name')->get()->groupBy('year');
+        $elephpants = $elephpantsQuery->fetchAllOrderedAndGrouped();
         $userElephpants = Auth::user()->elephpantsWithQuantity()->toArray();
 
         $stats = [

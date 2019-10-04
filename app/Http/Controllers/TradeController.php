@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Handlers\Commands\TradingUsersCommand;
-use App\Handlers\TradingUsersHandler;
+use App\Queries\TradingUsersQuery;
 use App\User;
 
 class TradeController extends Controller
 {
-    public function index(TradingUsersHandler $handler)
+    public function index(TradingUsersQuery $query)
     {
         /** @var User $loggedUser */
         $loggedUser = auth()->user();
-
-        $users = $handler->handle(
-            new TradingUsersCommand($loggedUser)
-        );
+        $users = $query->fetchAll($loggedUser);
 
         return view('trade.index', compact('users'));
     }

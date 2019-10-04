@@ -50,4 +50,21 @@ class User extends Authenticatable
                 ];
             });
     }
+
+    public function adopt(Elephpant $elephpant, int $quantity)
+    {
+        $exists = $this->elephpants()
+            ->whereElephpantId($elephpant->id)
+            ->exists();
+
+        if ($exists) {
+            $quantity > 0 ?
+                $this->elephpants()->updateExistingPivot($elephpant->id, compact('quantity'), false) :
+                $this->elephpants()->detach($elephpant->id);
+
+                return;
+        }
+
+        $this->elephpants()->attach($elephpant->id, compact('quantity'));
+    }
 }

@@ -11,6 +11,8 @@
     },
     "devDependencies": {
         "axios": "^0.19",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
@@ -22,5 +24,9 @@
         "sass-loader": "7.*",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "stimulus": "^1.1.1",
+        "turbolinks": "^5.2.0"
     }
 }

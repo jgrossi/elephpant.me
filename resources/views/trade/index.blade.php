@@ -16,7 +16,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <div class="float-left mr-3">
-                                    <img src="http://placehold.it/100" width="50" alt="" class="img-thumbnail rounded-circle img-fluid">
+                                    <img src="{{ $user->avatar() }}" width="50" alt="" class="img-thumbnail rounded-circle img-fluid">
                                 </div>
                                 <p class="mb-0">
                                     <strong>{{ $user->name }}</strong>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -66,5 +67,10 @@ class User extends Authenticatable
         }
 
         $this->elephpants()->attach($elephpant->id, compact('quantity'));
+    }
+
+    public function avatar(): string
+    {
+        return Gravatar::get($this->email);
     }
 }

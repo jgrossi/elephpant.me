@@ -23,7 +23,7 @@ class ViewServiceProvider extends ServiceProvider
             });
 
         View::composer([
-            'ranking.index', 'trade._user', 'auth.register',
+            'ranking.index', 'trade._user', 'auth.register', 'herd.show'
         ], function ($view) use ($countries) {
             $view->with('countries', $countries);
         });

@@ -31,3 +31,7 @@ body {
         width: 30px;
     }
 }
+
+.custom-pagination ul {
+    @extend .pagination-lg;
+}

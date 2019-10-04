@@ -8,9 +8,9 @@
                     <h1>Trade Area</h1>
                     <p class="lead">Looking for new elePHPants? Take a look on these possibilities.</p>
                 </div>
-                @if($count = count($users))
+                @if(count($users))
                     <div class="alert alert-info mb-3">
-                        Found <strong>{{ $count }} {{ \Illuminate\Support\Str::plural('user', $count) }}</strong> that can trade with you.
+                        Found <strong>{{ $users->total() }} {{ \Illuminate\Support\Str::plural('user', $users->total()) }}</strong> that can trade with you.
                     </div>
                     @foreach($users as $user)
                         <div class="card mb-4">
@@ -47,6 +47,9 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="d-flex custom-pagination">
+                        <div class="mx-auto">{{ $users->links() }}</div>
+                    </div>
                 @else
                     <div class="alert alert-info">
                         No users found that can trade with you.

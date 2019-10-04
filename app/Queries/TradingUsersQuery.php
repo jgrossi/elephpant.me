@@ -10,18 +10,19 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class TradingUsersQuery
 {
-    public function fetchAll(User $user): Collection
+    public function fetchAll(User $user, int $limit = 5)
     {
         $available = $user->elephpantsToTrade()->get();
+        $users = $this->fetchUsers($available, $limit);
 
-        return $this
-            ->fetchUsers($available)
-            ->each(function (User $user) use ($available) {
-                $this->addInterestedElephpants($user, $available);
-            });
+        foreach ($users as $user) {
+            $this->addInterestedElephpants($user, $available);
+        }
+
+        return $users;
     }
 
-    private function fetchUsers(Collection $available): Collection
+    private function fetchUsers(Collection $available, int $limit)
     {
         $elephpantsQuery = function ($query) use ($available) {
             $query->whereNotIn('id', $available->pluck('id')->toArray());
@@ -34,7 +35,7 @@ final class TradingUsersQuery
             ])
             ->whereHas('elephpantsToTrade', $elephpantsQuery)
             ->has('elephpantsToTrade')
-            ->get();
+            ->paginate($limit);
     }
 
     private function addInterestedElephpants(User $user, Collection $available): void

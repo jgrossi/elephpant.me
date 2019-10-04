@@ -5074,18 +5074,21 @@ input[type=button].btn-block {
   border-color: #dee2e6;
 }
 
-.pagination-lg .page-link {
+.pagination-lg .page-link,
+.custom-pagination ul .page-link {
   padding: 0.75rem 1.5rem;
   font-size: 1.125rem;
   line-height: 1.5;
 }
 
-.pagination-lg .page-item:first-child .page-link {
+.pagination-lg .page-item:first-child .page-link,
+.custom-pagination ul .page-item:first-child .page-link {
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
 }
 
-.pagination-lg .page-item:last-child .page-link {
+.pagination-lg .page-item:last-child .page-link,
+.custom-pagination ul .page-item:last-child .page-link {
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }

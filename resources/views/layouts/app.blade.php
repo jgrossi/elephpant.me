@@ -33,11 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ request()->routeIs('rankings.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('rankings.index') }}">{{ __('Ranking') }}</a>
-                        </li>
                         <li class="nav-item {{ request()->routeIs('herds.edit') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
+                        </li>
+                        <li class="nav-item {{ request()->routeIs('rankings.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('rankings.index') }}">{{ __('Ranking') }}</a>
                         </li>
                         <li class="nav-item {{ request()->routeIs('trades.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('trades.index') }}">{{ __('Trade Area') }}</a>

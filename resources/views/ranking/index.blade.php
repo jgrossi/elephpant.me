@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="text-center mb-4">
-                    <h1>Ranking!</h1>
+                    <h1>Ranking</h1>
                     <p class="lead">Here you can find the biggest collectors in the PHP community.</p>
                 </div>
                 <div class="mb-3">
@@ -49,7 +49,7 @@
                                     <tr>
                                         <th scope="row" class="text-center">{{ $key + 1 }}</th>
                                         <td>
-                                            <a href="#">{{ $user->name }}</a>
+                                            <a href="{{ route('herds.show', $user->twitter) }}">{{ $user->name }}</a>
                                         </td>
                                         <td>
                                             <a href="?{{ http_build_query(['country' => $user->country_code]) }}">

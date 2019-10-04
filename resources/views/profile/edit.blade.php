@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                @include('_status')
                 <div class="card">
                     <div class="card-header">{{ __('Profile') }}</div>
 
                     <div class="card-body">
+                        @include('_status')
                         <form method="POST" action="{{ route('profile.update') }}">
                             @csrf
                             @method('PUT')

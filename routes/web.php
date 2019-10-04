@@ -2,6 +2,7 @@
 
 Auth::routes();
 
+Route::redirect('/home', '/');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/elephpants', 'ElephpantController@index')->name('elephpants.index');
 Route::get('/herd/{username}', 'HerdController@show')->name('herds.show');

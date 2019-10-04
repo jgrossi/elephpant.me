@@ -67,7 +67,7 @@
                             </table>
                         @else
                             <div class="alert alert-info mb-0">
-                                No users registered from {{ $countries[$country] ?? 'this country' }} yet.
+                                No users registered yet.
                             </div>
                         @endif
                     </div>

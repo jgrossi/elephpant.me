@@ -20,7 +20,7 @@
                     </div>
                     <div class="mt-4">
                         @foreach($elephpants as $elephpant)
-                            <img src="{{ asset('elephpants/' . $elephpant->image) }}" alt="{{ $elephpant->name }}" width="100" class="img-thumbnail mb-1">
+                            <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" alt="{{ $elephpant->name }}" width="100" class="img-thumbnail mb-1">
                         @endforeach
                     </div>
                 </div>

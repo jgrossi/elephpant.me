@@ -318,7 +318,7 @@
             "description": "PHPCE 2018",
             "sponsor": "PHPCE",
             "year": 2018,
-            "image": "https://i.imgur.com/l5Xj3hp.jpg"
+            "image": "https://miro.medium.com/max/8064/1*FWmOJeajp7m1rYt6nRX7bg.jpeg"
         },
         {
             "id": 41,
@@ -327,6 +327,39 @@
             "sponsor": "PHPClasses",
             "year": 2018,
             "image": "https://i.imgur.com/p225RCl.jpg"
+        },
+        {
+            "id": 42,
+            "name": "Check24",
+            "description": "Check24",
+            "sponsor": "Check24",
+            "year": 2019,
+            "image": "https://pbs.twimg.com/media/D-tL0JKXsAAAPov?format=jpg&name=small"
+        },
+        {
+            "id": 43,
+            "name": "PhpStorm elephpant",
+            "description": "PhpStorm elephpant",
+            "sponsor": "JetBrains",
+            "year": 2019,
+            "image": "https://d3nmt5vlzunoa1.cloudfront.net/phpstorm/files/2019/05/PHPStorm-Photo-Mock-up-Side.jpg"
+        },
+        {
+            "id": 44,
+            "name": "@linuxforphp",
+            "description": "Linux for PHP",
+            "sponsor": "Linux for PHP",
+            "year": 2019,
+            "image": "https://pbs.twimg.com/media/EA0yRshWkAAuAHc?format=png&name=small"
+        },
+        {
+            "id": 45,
+            "name": "PHPConPoland",
+            "description": "PHPConPoland",
+            "sponsor": "PHP Conference Poland",
+            "year": 2019,
+            "image": "https://pbs.twimg.com/media/EF7786lXkAA0ekb?format=jpg&name=small"
         }
+
 	]
 }

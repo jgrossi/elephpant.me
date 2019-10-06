@@ -303,6 +303,30 @@
 			"sponsor": "Facebook",
 			"year": 2015,
 			"image": "https://afieldguidetoelephpants.net/photos/gray-hack-0-400x300.jpg"
-		}
+		},
+        {
+            "id": 39,
+            "name": "PHPers Poland",
+            "description": "PHPers Summit 2019",
+            "sponsor": "PHPers",
+            "year": 2019,
+            "image": "https://i.imgur.com/FSA2VSy.jpg"
+        },
+        {
+            "id": 40,
+            "name": "PHPCE",
+            "description": "PHPCE 2018",
+            "sponsor": "PHPCE",
+            "year": 2018,
+            "image": "https://i.imgur.com/l5Xj3hp.jpg"
+        },
+        {
+            "id": 41,
+            "name": "PHPClasses 2018",
+            "description": "PHPClasses 2018",
+            "sponsor": "PHPClasses",
+            "year": 2018,
+            "image": "https://i.imgur.com/p225RCl.jpg"
+        }
 	]
 }

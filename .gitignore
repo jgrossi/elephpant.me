@@ -1,12 +1,33 @@
-/node_modules
+# Laravel Directorys
 /public/hot
 /public/storage
 /storage/*.key
 /vendor
+/.vagrant
+/storage/logs
+
+# Laravel Files
 .env
-.env.backup
-.phpunit.result.cache
+package-lock.json
+composer.lock
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+yarn.lock
+.phpunit.result.cache
+
+# Git Files
+.git
+
+# Visual Studio Files
+source/.vs/
+.vs/
+/.vscode
+
+# Dependecies
+/node_modules
+.npm
+npm-debug.log*
+logs
+*.log

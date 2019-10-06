@@ -7,7 +7,7 @@
 - You can add your herd
 - See ranking
     - global / per country
-- Find people to tradecação
+- Find people to trade
 
 ### Stack: 
 
@@ -17,15 +17,16 @@
 - Bootstrap
 - JavaScript
 - JQuery
+- Stimulus.js
 
 #### Backend
-- PHP 7.2
+- PHP 7.2^
 - Laravel 6
 - Composer
 - PHPUnit
 
 #### Database
-- MySQL
+- MySQL 5.8^
 
 ---
 
@@ -43,11 +44,11 @@
 
 #### Database
 - $ php artisan migrate
-- $ php artisan db:seed
+- $ php artisan db:seed (only for generating fake data locally)
 
 ---
 
-### Responsible
+### Maintainers
 Junior Grossi – [@junior_grossi](https://twitter.com/junior_grossi)  
 Igor Santos – [@IgorSantoos17](https://twitter.com/IgorSantoos17)
 

@@ -14,9 +14,6 @@ npm-debug.log
 yarn-error.log
 .phpunit.result.cache
 
-# Git Files
-.git
-
 # Visual Studio Files
 source/.vs/
 .vs/

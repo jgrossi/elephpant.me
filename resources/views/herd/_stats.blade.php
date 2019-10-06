@@ -1,5 +1,5 @@
 <div id="stats-content" class="row mt-4">
-    <div class="col">
+    <div class="col-12 col-md-4 mb-2 mb-md-0">
         <div class="jumbotron py-2 mb-0">
             <div class="container">
                 <p class="lead mb-1">Unique</p>
@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col-12 col-md-4 mb-2 mb-md-0">
         <div class="jumbotron py-2 mb-0">
             <div class="container">
                 <p class="lead mb-1">Double</p>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col-12 col-md-4 mb-2 mb-md-0">
         <div class="jumbotron py-2 mb-0">
             <div class="container">
                 <p class="lead mb-1">Total</p>

@@ -45,7 +45,7 @@
                                         </div>
                                         <div class="col-xl-3 col-lg-3">
                                             <div class="float-right">
-                                                <div class="input-group input-group-lg mb-0">
+                                                <div class="input-group input-group-lg mb-0 mt-2 mt-md-0">
                                                     <div class="input-group-prepend">
                                                         <button class="btn btn-outline-secondary" type="button" data-action="counter#decrement">-</button>
                                                     </div>

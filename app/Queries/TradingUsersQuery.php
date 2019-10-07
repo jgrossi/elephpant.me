@@ -6,17 +6,15 @@ namespace App\Queries;
 
 use App\Elephpant;
 use App\User;
-use Illuminate\Database\Eloquent\Collection;
 
 final class TradingUsersQuery
 {
     public function fetchAll(User $user, int $limit = 5)
     {
-        $available = $user->elephpantsToTrade()->get();
         $users = $this->fetchUsers($user, $limit);
 
         foreach ($users as $user) {
-            $this->addInterestedElephpants($user, $available);
+            $this->addInterestedElephpants($user);
         }
 
         return $users;
@@ -40,8 +38,9 @@ final class TradingUsersQuery
             ->paginate($limit);
     }
 
-    private function addInterestedElephpants(User $user, Collection $available): void
+    private function addInterestedElephpants(User $user): void
     {
+        $available = $user->elephpantsToTrade;
         $userElephpants = $user->elephpants->pluck('id')->toArray();
 
         $interests = $available

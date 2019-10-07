@@ -12,10 +12,11 @@ final class TradingUsersQuery
 {
     public function fetchAll(User $user, int $limit = 5)
     {
+        $available = $user->elephpantsToTrade()->get();
         $users = $this->fetchUsers($user, $limit);
 
         foreach ($users as $user) {
-            $this->addInterestedElephpants($user);
+            $this->addInterestedElephpants($user, $available);
         }
 
         return $users;
@@ -39,9 +40,8 @@ final class TradingUsersQuery
             ->paginate($limit);
     }
 
-    private function addInterestedElephpants(User $user): void
+    private function addInterestedElephpants(User $user, Collection $available): void
     {
-        $available = $user->elephpantsToTrade()->get();
         $userElephpants = $user->elephpants->pluck('id')->toArray();
 
         $interests = $available

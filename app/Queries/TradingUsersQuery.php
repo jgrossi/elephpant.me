@@ -12,19 +12,24 @@ final class TradingUsersQuery
 {
     public function fetchAll(User $user, int $limit = 5)
     {
-        $available = $user->elephpantsToTrade()->get();
-        $users = $this->fetchUsers($user, $limit);
+        $userElephpants = $user->elephpants;
 
-        foreach ($users as $user) {
-            $this->addInterestedElephpants($user, $available);
+        $userAvailable = $userElephpants->filter(function (Elephpant $elephpant) {
+            return $elephpant->pivot->quantity > 1;
+        });
+
+        $traders = $this->fetchTraders($userElephpants, $limit);
+
+        foreach ($traders as $trader) {
+            $this->addInterestedElephpants($trader, $userAvailable);
         }
 
-        return $users;
+        return $traders;
     }
 
-    private function fetchUsers(User $user, int $limit)
+    private function fetchTraders(Collection $userElephpants, int $limit)
     {
-        $userElephpants = $user->elephpants->pluck('id')->toArray();
+        $userElephpants = $userElephpants->pluck('id');
 
         $elephpantsQuery = function ($query) use ($userElephpants) {
             $query->whereNotIn('id', $userElephpants);
@@ -40,15 +45,14 @@ final class TradingUsersQuery
             ->paginate($limit);
     }
 
-    private function addInterestedElephpants(User $user, Collection $available): void
+    private function addInterestedElephpants(User $trader, Collection $userAvailable): void
     {
-        $userElephpants = $user->elephpants->pluck('id')->toArray();
+        $userElephpants = $trader->elephpants->pluck('id')->toArray();
 
-        $interests = $available
-            ->filter(function (Elephpant $elephpant) use ($userElephpants) {
-                return !in_array($elephpant->id, $userElephpants);
-            });
+        $interests = $userAvailable->filter(function (Elephpant $elephpant) use ($userElephpants) {
+            return !in_array($elephpant->id, $userElephpants);
+        });
 
-        $user->elephpantsInterested = $interests;
+        $trader->elephpantsInterested = $interests;
     }
 }

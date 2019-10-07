@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -72,5 +73,18 @@ class User extends Authenticatable
     public function avatar(): string
     {
         return Gravatar::get($this->email);
+    }
+
+    public static function generateUsername(User $user): string
+    {
+        $username = $user->twitter ?: Str::slug($user->name);
+        $count = 1;
+
+        while(User::whereUsername($username)->exists()) {
+            $username = $username . $count;
+            $count++;
+        }
+
+        return $username;
     }
 }

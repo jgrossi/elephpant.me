@@ -13,7 +13,7 @@ final class TradingUsersQuery
     public function fetchAll(User $user, int $limit = 5)
     {
         $available = $user->elephpantsToTrade()->get();
-        $users = $this->fetchUsers($available, $limit);
+        $users = $this->fetchUsers($user, $limit);
 
         foreach ($users as $user) {
             $this->addInterestedElephpants($user, $available);
@@ -22,10 +22,12 @@ final class TradingUsersQuery
         return $users;
     }
 
-    private function fetchUsers(Collection $available, int $limit)
+    private function fetchUsers(User $user, int $limit)
     {
-        $elephpantsQuery = function ($query) use ($available) {
-            $query->whereNotIn('id', $available->pluck('id')->toArray());
+        $userElephpants = $user->elephpants->pluck('id')->toArray();
+
+        $elephpantsQuery = function ($query) use ($userElephpants) {
+            $query->whereNotIn('id', $userElephpants);
         };;
 
         return User::query()

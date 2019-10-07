@@ -13,6 +13,8 @@ Twitter: <a href="https://twitter.com/{{ $sender->twitter }}">Link to Twitter ac
 Sender's collection
 @endcomponent
 
+Reply this email to reply sender's message.
+
 Thanks,<br>
 ElePHPant.me
 @endcomponent

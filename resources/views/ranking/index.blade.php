@@ -35,7 +35,7 @@
                     <div class="card-body">
                         @if(count($users))
                             <table class="table table-striped table-bordered mb-0">
-                                <thead class="thead-dark">
+                                <thead>
                                 <tr>
                                     <th scope="col" width="7%" class="text-center">#</th>
                                     <th scope="col" width="35%">Name</th>

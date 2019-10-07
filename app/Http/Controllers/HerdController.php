@@ -24,7 +24,7 @@ class HerdController extends Controller
 
     public function show(string $username)
     {
-        $user = User::whereTwitter($username)->firstOrFail();
+        $user = User::whereUsername($username)->firstOrFail();
         $elephpants = $user->elephpants()->orderBy('year', 'desc')->get();
         $userElephpants = $user->elephpantsWithQuantity()->toArray();
 

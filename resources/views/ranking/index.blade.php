@@ -49,7 +49,7 @@
                                     <tr>
                                         <th scope="row" class="text-center">{{ $key + 1 }}</th>
                                         <td>
-                                            <a href="{{ route('herds.show', $user->twitter) }}">{{ $user->name }}</a>
+                                            <a href="{{ route('herds.show', $user->username) }}">{{ $user->name }}</a>
                                         </td>
                                         <td>
                                             <a href="?{{ http_build_query(['country' => $user->country_code]) }}">

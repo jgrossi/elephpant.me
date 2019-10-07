@@ -7,7 +7,9 @@
                 <div class="text-center mb-4">
                     <h1><span class="text-muted">{{ $user->name }}</span></h1>
                     <p class="lead">
-                        <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a> -
+                        @if($user->twitter)
+                            <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a> -
+                        @endif
                         {{ ($country = $countries->get($user->country_code))->get('name') }}
                         @if ($flag = $country->get('flag'))
                             <span class="ml-1">{!! $flag !!}</span>

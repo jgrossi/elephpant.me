@@ -10,8 +10,8 @@
                     <div class="alert alert-secondary bg-transparent py-2">
                         Your public herd URL:
                         <code>
-                            <a href="{{ route('herds.show', auth()->user()->twitter) }}" target="_blank">
-                                {{ route('herds.show', auth()->user()->twitter) }}
+                            <a href="{{ route('herds.show', auth()->user()->username) }}" target="_blank">
+                                {{ route('herds.show', auth()->user()->username) }}
                             </a>
                         </code>
                     </div>

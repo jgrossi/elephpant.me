@@ -7,9 +7,11 @@ Message: {{ $message }}
 
 Sent by: {{ $sender->name }}
 
+@if($sender->twitter)
 Twitter: <a href="https://twitter.com/{{ $sender->twitter }}">Link to Twitter account</a>
+@endif
 
-@component('mail::button', ['url' => route('herds.show', $sender->twitter)])
+@component('mail::button', ['url' => route('herds.show', $sender->username)])
 Sender's collection
 @endcomponent
 

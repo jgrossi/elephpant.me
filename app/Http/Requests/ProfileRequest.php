@@ -19,7 +19,7 @@ class ProfileRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'country_code' => ['required', 'string', 'size:3'],
-            'twitter' => ['required', 'string', Rule::unique('users')->ignore($this->user()->id)],
+            'twitter' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
         ];
     }
 }

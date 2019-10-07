@@ -3,9 +3,11 @@
     <div class="media-body">
         <p class="mb-0">
             <strong>
-                <a href="{{ route('herds.show', $user->twitter) }}">{{ $user->name }}</a>
+                <a href="{{ route('herds.show', $user->username) }}">{{ $user->name }}</a>
             </strong>
+            @if($user->twitter)
             <span class="ml-2 text-muted"><a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a> on Twitter</span>
+            @endif
         </p>
         <p class="mb-0">
             Country:

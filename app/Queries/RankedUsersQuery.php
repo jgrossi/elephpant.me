@@ -24,6 +24,7 @@ final class RankedUsersQuery
             ->groupBy('users.id')
             ->orderBy('elephpants_unique', 'desc')
             ->orderBy('elephpants_total', 'desc')
+            ->orderBy('users.name', 'asc')
             ->get();
     }
 }

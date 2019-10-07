@@ -27,6 +27,7 @@ class UserMessage extends Mailable implements ShouldQueue
     {
         return $this->markdown('emails.message')
             ->subject('New trade request')
-            ->to($this->receiver->email);
+            ->to($this->receiver->email)
+            ->replyTo($this->sender->email);
     }
 }

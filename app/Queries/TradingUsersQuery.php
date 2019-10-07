@@ -6,6 +6,7 @@ namespace App\Queries;
 
 use App\Elephpant;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 
 final class TradingUsersQuery
 {
@@ -40,7 +41,7 @@ final class TradingUsersQuery
 
     private function addInterestedElephpants(User $user): void
     {
-        $available = $user->elephpantsToTrade;
+        $available = $user->elephpantsToTrade()->get();
         $userElephpants = $user->elephpants->pluck('id')->toArray();
 
         $interests = $available

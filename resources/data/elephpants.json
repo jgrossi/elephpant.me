@@ -359,7 +359,14 @@
             "sponsor": "PHP Conference Poland",
             "year": 2019,
             "image": "https://i.imgur.com/QIyckVs.jpg"
+        },
+        {
+            "id": 46,
+            "name": "CakeDC Fest",
+            "description": "CakeDC Fest",
+            "sponsor": "PHP Cake PHP",
+            "year": 2017,
+            "image": "https://live.staticflickr.com/65535/48796213323_1efccd304c_n.jpg"
         }
-
 	]
 }

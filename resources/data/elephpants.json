@@ -51,7 +51,7 @@
 		{
             "id": 7,
 			"name": "Chili",
-			"description": "ZendCon 2013",
+			"description": "Zend Red, ZendCon 2013",
 			"sponsor": "Zend Technologies",
 			"year": 2013,
 			"image": "https://i.imgur.com/Llz1mOH.jpg"
@@ -155,7 +155,7 @@
 		{
             "id": 20,
 			"name": "Phil Snow",
-			"description": "ConFoo web techno conference",
+			"description": "ConFoo Web Techno Conference",
 			"sponsor": "ConFoo",
 			"year": 2015,
 			"image": "https://i.imgur.com/ScAUBku.jpg"
@@ -316,7 +316,7 @@
             "id": 40,
             "name": "PHPCE",
             "description": "PHPCE 2018",
-            "sponsor": "PHPCE Community",
+            "sponsor": "PHPCE Conference",
             "year": 2018,
             "image": "https://i.imgur.com/1tWLr4F.jpg"
         },

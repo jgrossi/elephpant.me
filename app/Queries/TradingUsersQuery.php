@@ -18,11 +18,11 @@ final class TradingUsersQuery
             return $elephpant->pivot->quantity > 1;
         });
 
-        if ($userAvailable->count() == 0) {
-            return [];
+        if ($userAvailable->count() === 0) {
+            return false;
         }
 
-        $traders = $this->fetchTraders($userElephpants, $userAvailable, $limit);
+        $traders = $this->fetchTraders($userElephpants, $limit);
 
         foreach ($traders as $trader) {
             $this->addInterestedElephpants($trader, $userAvailable);

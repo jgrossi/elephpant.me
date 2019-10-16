@@ -5,7 +5,6 @@ export default class extends Controller {
 
     connect() {
         this.timeout = null;
-        console.log('connected');
     }
 
     get quantity() {

@@ -3,6 +3,11 @@ import {Controller} from "stimulus"
 export default class extends Controller {
     static targets = ["quantity"];
 
+    connect() {
+        this.timeout = null;
+        console.log('connected');
+    }
+
     get quantity() {
         return parseInt(this.quantityTarget.value);
     }
@@ -28,14 +33,18 @@ export default class extends Controller {
     }
 
     save() {
-        axios.put(`/adoption/${this.data.get('id')}`, {
-            quantity: this.quantity
-        })
-            .then(function (response) {
-                jQuery('#stats').load('/my-herd #stats-content');
+        clearTimeout(this.timeout);
+        let counter = this;
+        this.timeout = setTimeout(function () {
+            axios.put(`/adoption/${counter.data.get('id')}`, {
+                quantity: counter.quantity
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then(function (response) {
+                    jQuery('#stats').load('/my-herd #stats-content');
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }, 500);
     }
 }

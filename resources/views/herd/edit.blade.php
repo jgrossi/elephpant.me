@@ -49,7 +49,7 @@
                                                     <div class="input-group-prepend">
                                                         <button class="btn btn-outline-secondary" type="button" data-action="counter#decrement">-</button>
                                                     </div>
-                                                    <input type="text" class="form-control text-center" placeholder="0" value="{{ $userElephpants[$elephpant->id] ?? 0 }}" data-target="counter.quantity">
+                                                    <input type="text" class="form-control text-center" placeholder="0" value="{{ $userElephpants[$elephpant->id] ?? 0 }}" data-target="counter.quantity" data-action="keyup->counter#save">
                                                     <div class="input-group-append" id="button-addon4">
                                                         <button class="btn btn-outline-secondary" type="button" data-action="counter#increment">+</button>
                                                     </div>

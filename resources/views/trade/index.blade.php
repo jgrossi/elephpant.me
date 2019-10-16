@@ -8,8 +8,10 @@
                     <h1>Trade Area</h1>
                     <p class="lead">Looking for new elePHPants? Take a look on these possibilities.</p>
                 </div>
-                @if($users === false)
-                  @include('trade._message_info', ['message' => 'You don\'t have any double elePHPant to trade yet'])
+                @if(!$users)
+                    <div class="alert alert-info">
+                        You don't have any double elePHPant to trade yet.
+                    </div>
                 @elseif(count($users))
                     <div class="alert alert-info mb-3">
                         Found <strong>{{ $users->total() }} {{ \Illuminate\Support\Str::plural('user', $users->total()) }}</strong> that can trade with you.
@@ -56,7 +58,9 @@
                         <div class="mx-auto">{{ $users->links() }}</div>
                     </div>
                 @else
-                  @include('trade._message_info', ['message' => 'No users found that can trade with you.'])
+                    <div class="alert alert-info">
+                        No users found that can trade with you.
+                    </div>
                 @endif
             </div>
         </div>

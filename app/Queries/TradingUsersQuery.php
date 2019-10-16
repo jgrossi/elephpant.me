@@ -19,7 +19,7 @@ final class TradingUsersQuery
         });
 
         if ($userAvailable->count() === 0) {
-            return false;
+            return null;
         }
 
         $traders = $this->fetchTraders($userElephpants, $limit);

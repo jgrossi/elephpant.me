@@ -18,6 +18,10 @@ final class TradingUsersQuery
             return $elephpant->pivot->quantity > 1;
         });
 
+        if ($userAvailable->count() === 0) {
+            return false;
+        }
+
         $traders = $this->fetchTraders($userElephpants, $limit);
 
         foreach ($traders as $trader) {
@@ -33,7 +37,7 @@ final class TradingUsersQuery
 
         $elephpantsQuery = function ($query) use ($userElephpants) {
             $query->whereNotIn('id', $userElephpants);
-        };;
+        };
 
         return User::query()
             ->with([
@@ -47,10 +51,10 @@ final class TradingUsersQuery
 
     private function addInterestedElephpants(User $trader, Collection $userAvailable): void
     {
-        $userElephpants = $trader->elephpants->pluck('id')->toArray();
+        $traderElephpants = $trader->elephpants->pluck('id')->toArray();
 
-        $interests = $userAvailable->filter(function (Elephpant $elephpant) use ($userElephpants) {
-            return !in_array($elephpant->id, $userElephpants);
+        $interests = $userAvailable->filter(function (Elephpant $elephpant) use ($traderElephpants) {
+            return !in_array($elephpant->id, $traderElephpants);
         });
 
         $trader->elephpantsInterested = $interests;

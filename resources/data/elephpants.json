@@ -362,8 +362,8 @@
         },
         {
             "id": 46,
-            "name": "CakeDC Fest",
-            "description": "CakeDC Fest",
+            "name": "CakeDC",
+            "description": "Cake Development Corporation",
             "sponsor": "CakePHP",
             "year": 2017,
             "image": "https://live.staticflickr.com/65535/48796213323_1efccd304c_n.jpg"

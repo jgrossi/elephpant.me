@@ -25,6 +25,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getNameLettersAttribute()
+    {
+        $name = $this->getAttribute('name');
+        $nameSeparatedBySpace = collect(explode(' ', $name));
+
+        if ($nameSeparatedBySpace->count() === 1) {
+            return $nameSeparatedBySpace->first()[0];
+        }
+
+        return $nameSeparatedBySpace->first()[0] . $nameSeparatedBySpace->last()[0];
+    }
+
     public function scopeNotLoggedIn(Builder $query)
     {
         return $query->where('id', '<>', auth()->id());

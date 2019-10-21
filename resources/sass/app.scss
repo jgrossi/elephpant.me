@@ -35,3 +35,23 @@ body {
 .custom-pagination ul {
     @extend .pagination-lg;
 }
+
+.avatar-circle {
+    width: 128px;
+    height: 128px;
+    background-color: #e9ecef;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+
+    .initials {
+        position: relative;
+        top: 36px;
+        font-size: 62.5px;
+        line-height: 62.5px;
+        color: #212529;
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+    }
+}

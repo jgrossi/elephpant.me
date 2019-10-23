@@ -64,7 +64,7 @@ class User extends Authenticatable
                 $this->elephpants()->updateExistingPivot($elephpant->id, compact('quantity'), false) :
                 $this->elephpants()->detach($elephpant->id);
 
-                return;
+            return;
         }
 
         $this->elephpants()->attach($elephpant->id, compact('quantity'));
@@ -80,7 +80,7 @@ class User extends Authenticatable
         $username = $user->twitter ?: Str::slug($user->name);
         $count = 1;
 
-        while(User::whereUsername($username)->exists()) {
+        while (User::whereUsername($username)->exists()) {
             $username = $username . $count;
             $count++;
         }

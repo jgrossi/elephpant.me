@@ -363,10 +363,10 @@
         {
             "id": 46,
             "name": "Symfony Gray",
-            "description": "Symfony Black",
+            "description": "SymfonyCon 2019",
             "sponsor": "Sensio Labs",
             "year": 2019,
-            "image": null
+            "image": "https://i.imgur.com/i2l6RaL.jpg"
         }
 	]
 }

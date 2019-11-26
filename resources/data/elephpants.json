@@ -170,7 +170,7 @@
 		},
 		{
             "id": 22,
-			"name": "Symfony",
+			"name": "Symfony Black",
 			"description": "Symfony Framework",
 			"sponsor": "Sensio Labs",
 			"year": 2016,
@@ -359,7 +359,14 @@
             "sponsor": "PHP Conference Poland",
             "year": 2019,
             "image": "https://i.imgur.com/QIyckVs.jpg"
+        },
+        {
+            "id": 46,
+            "name": "Symfony Gray",
+            "description": "Symfony Black",
+            "sponsor": "Sensio Labs",
+            "year": 2019,
+            "image": null
         }
-
 	]
 }

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class RankedUsersQuery
 {
+    private const LIMIT = 50;
+
     public function fetchAll(?string $country): Collection
     {
         $userQuery = User::query();
@@ -25,6 +27,7 @@ final class RankedUsersQuery
             ->orderBy('elephpants_unique', 'desc')
             ->orderBy('elephpants_total', 'desc')
             ->orderBy('users.name', 'asc')
+            ->limit(static::LIMIT)
             ->get();
     }
 }

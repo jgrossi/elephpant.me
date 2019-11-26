@@ -18,16 +18,16 @@
 		},
 		{
             "id": 3,
-			"name": "OpenGoodies Blue",
-			"description": "",
+			"name": "Blue",
+			"description": "OpenGoodies Blue",
 			"sponsor": "OpenGoodies",
 			"year": 2015,
 			"image": "https://i.imgur.com/NUvoGdv.jpg"
 		},
 		{
             "id": 4,
-			"name": "OpenGoodies Pink",
-			"description": "",
+			"name": "Pink",
+			"description": "OpenGoodies Pink",
 			"sponsor": "OpenGoodies",
 			"year": 2015,
 			"image": "https://i.imgur.com/fjs54wi.jpg"
@@ -148,14 +148,14 @@
             "id": 19,
 			"name": "MurPHPy",
 			"description": "AmsterdamPHP",
-			"sponsor": "AmsterdamPHP",
+			"sponsor": "AmsterdamPHP Community",
 			"year": 2014,
 			"image": "https://i.imgur.com/GdFxJmk.jpg"
 		},
 		{
             "id": 20,
 			"name": "Phil Snow",
-			"description": "ConFoo",
+			"description": "ConFoo Web Techno Conference",
 			"sponsor": "ConFoo",
 			"year": 2015,
 			"image": "https://i.imgur.com/ScAUBku.jpg"
@@ -227,15 +227,15 @@
 		{
             "id": 29,
 			"name": "CakePHP",
-			"description": "Red CakePHP",
+			"description": "CakePHP Framework",
 			"sponsor": "CakePHP",
 			"year": 2017,
 			"image": "https://i.imgur.com/CKkne1L.jpg"
 		},
 		{
             "id": 30,
-			"name": "Cake Foundation",
-			"description": "CakeSF",
+			"name": "CakeSF",
+			"description": "Cake Software Foundation",
 			"sponsor": "CakePHP",
 			"year": 2017,
 			"image": "https://i.imgur.com/RYFA3OB.jpg"
@@ -316,7 +316,7 @@
             "id": 40,
             "name": "PHPCE",
             "description": "PHPCE 2018",
-            "sponsor": "PHPCE",
+            "sponsor": "PHPCE Conference",
             "year": 2018,
             "image": "https://i.imgur.com/1tWLr4F.jpg"
         },

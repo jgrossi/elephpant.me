@@ -367,6 +367,14 @@
             "sponsor": "Sensio Labs",
             "year": 2019,
             "image": "https://i.imgur.com/i2l6RaL.jpg"
+        },
+        {
+            "id": 47,
+            "name": "PHP Conference Japans",
+            "description": "PHP Conference Japan 2019",
+            "sponsor": "PHP Conference Japan",
+            "year": 2019,
+            "image": "https://i.imgur.com/igXXRjk.jpg"
         }
 	]
 }

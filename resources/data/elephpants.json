@@ -375,6 +375,22 @@
             "sponsor": "PHP Conference Japan",
             "year": 2019,
             "image": "https://i.imgur.com/igXXRjk.jpg"
+        },
+        {
+            "id": 48,
+            "name": "CakeDC",
+            "description": "CakeDC",
+            "sponsor": "CakePHP",
+            "year": 2019,
+            "image": "https://i.imgur.com/qyUrE24.jpg"
+        },
+        {
+            "id": 49,
+            "name": "CakeFest",
+            "description": "CakeFest 2019",
+            "sponsor": "CakePHP",
+            "year": 2019,
+            "image": "https://i.imgur.com/t415Exl.jpg"
         }
 	]
 }

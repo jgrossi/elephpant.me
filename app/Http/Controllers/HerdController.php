@@ -25,10 +25,10 @@ class HerdController extends Controller
     public function show(string $username)
     {
         $user = User::whereUsername($username)->firstOrFail();
-        $idsElephpantsAuthenticaedUser =auth()->user()->elephpants->pluck('id')->toArray();
+        $authenticatedUserElephpantIds = auth()->user()->elephpants->pluck('id')->toArray();
 
         $elephpants = $user->elephpants()->orderBy('year', 'desc')->get();
-        $elephpantsDifferents = $elephpants->whereNotIn('id', $idsElephpantsAuthenticaedUser);
+        $elephpantsDifferents = $elephpants->whereNotIn('id', $authenticatedUserElephpantIds);
         $userElephpants = $user->elephpantsWithQuantity()->toArray();
 
         $stats = [

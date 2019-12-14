@@ -19,7 +19,7 @@
                         @include('herd._stats')
                     </div>
                 </div>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a
                             class="nav-link active"
@@ -53,9 +53,7 @@
                         <div class="card mb-3 herd-card">
                             <ul class="list-group list-group-flush">
                                 @foreach($elephpants as $key => $elephpant)
-                                    <li data-controller="counter"
-                                        data-counter-id="{{ $elephpant->id }}"
-                                        class="list-group-item {{ $key % 2 === 0 ? 'bg-white' : 'bg-light' }} {{ isset($userElephpants[$elephpant->id]) ? 'has-elephpants' : '' }}">
+                                    <li class="list-group-item {{ $key % 2 === 0 ? 'bg-white' : 'bg-light' }} {{ isset($userElephpants[$elephpant->id]) ? 'has-elephpants' : '' }}">
                                         <div class="row align-items-center no-gutters">
                                             <div class="col-xl-9 col-lg-8">
                                                 <div class="float-left mr-3">

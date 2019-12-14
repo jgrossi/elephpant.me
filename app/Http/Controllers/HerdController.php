@@ -25,10 +25,7 @@ class HerdController extends Controller
     public function show(string $username)
     {
         $user = User::whereUsername($username)->firstOrFail();
-        $authenticatedUserElephpantIds = auth()->user()->elephpants->pluck('id')->toArray();
-
         $elephpants = $user->elephpants()->orderBy('year', 'desc')->get();
-        $elephpantsDifferents = $elephpants->whereNotIn('id', $authenticatedUserElephpantIds);
         $userElephpants = $user->elephpantsWithQuantity()->toArray();
 
         $stats = [
@@ -37,11 +34,6 @@ class HerdController extends Controller
             'double' => $total - $unique,
         ];
 
-        return view('herd.show', compact(
-            'user',
-            'elephpants',
-            'elephpantsDifferents',
-            'stats'
-        ));
+        return view('herd.show', compact('user', 'elephpants', 'stats'));
     }
 }

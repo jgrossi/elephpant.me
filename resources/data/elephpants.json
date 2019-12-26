@@ -391,6 +391,14 @@
             "sponsor": "CakePHP",
             "year": 2019,
             "image": "https://i.imgur.com/t415Exl.jpg"
-        }
+        },
+		{
+            "id": 50,
+			"name": "Cody Vuelette",
+			"description": "Shopware",
+			"sponsor": "shopware AG",
+			"year": 2019,
+			"image": null
+		}
 	]
 }

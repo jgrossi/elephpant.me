@@ -15,18 +15,25 @@
     @endguest
 </div>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="text-center mb-4">
-                <div>
-                    <div class="mt-4">
-                        @foreach($elephpants as $elephpant)
-                            <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" alt="{{ $elephpant->name }}" width="100" class="img-thumbnail mb-1">
-                        @endforeach
+    <div class="lead text-center mb-4">
+        <strong>Total of existent species:</strong> {{ count($elephpants) }}
+    </div>
+    <div class="row">
+        @foreach($elephpants as $elephpant)
+            <div class="col-xl-3 col-md-4 col-sm-6 mb-3">
+                <div class="card d-flex">
+                    <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" class="card-img-top" alt="{{ $elephpant->name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">#{{ $elephpant->id }} - {{ $elephpant->name }}</h5>
+                        <p class="card-text">
+                            {{ $elephpant->description }}<br>
+                            <strong>{{ $elephpant->sponsor }}</strong><br>
+                            {{ $elephpant->year }}
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection

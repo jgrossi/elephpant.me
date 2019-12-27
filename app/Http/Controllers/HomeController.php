@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $elephpants = Elephpant::inRandomOrder()->limit(32)->get();
+        $elephpants = Elephpant::query()->orderBy('id', 'desc')->get();
 
         return view('home', compact('elephpants'));
     }

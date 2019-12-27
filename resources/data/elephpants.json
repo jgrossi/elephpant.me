@@ -124,7 +124,7 @@
             "id": 16,
 			"name": "Sonny",
 			"description": "Sunshine PHP Conference",
-			"sponsor": "Sunshine PHP Conference, Zend Technologies",
+			"sponsor": "Sunshine PHP, Zend Technologies",
 			"year": 2014,
 			"image": "https://i.imgur.com/dDLSWE2.jpg"
 		},
@@ -132,7 +132,7 @@
             "id": 17,
 			"name": "Sonny Nexmo",
 			"description": "Sunshine PHP Conference",
-			"sponsor": "Sunshine PHP Conference, Nexmo",
+			"sponsor": "Sunshine PHP, Nexmo",
 			"year": 2019,
 			"image": "https://i.imgur.com/dCfrJsQ.jpg"
 		},
@@ -220,7 +220,7 @@
             "id": 28,
 			"name": "AFUP",
 			"description": "AFUP",
-			"sponsor": "Association Française des Utilisateurs de PHP (AFUP)",
+			"sponsor": "AFUP",
 			"year": 2017,
 			"image": "https://i.imgur.com/vWvVaHG.jpg"
 		},

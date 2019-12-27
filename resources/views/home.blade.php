@@ -19,7 +19,7 @@
         <strong>Total of existent species:</strong> {{ count($elephpants) }}
     </div>
     <div class="row">
-        @foreach($elephpants as $elephpant)
+        @foreach($elephpants as $key => $elephpant)
             @include('elephpant._single_box', compact('elephpant'))
         @endforeach
     </div>

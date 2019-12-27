@@ -9,7 +9,7 @@ class ElephpantController extends Controller
 {
     public function index()
     {
-        $elephpants = Elephpant::query()->orderBy('id', 'desc')->get();
+        $elephpants = Elephpant::query()->orderBy('year', 'desc')->orderBy('id', 'desc')->get();
 
         return view('elephpant.index', compact('elephpants'));
     }

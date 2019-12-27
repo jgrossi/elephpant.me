@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="jumbotron jumbotron-fluid text-center">
+        <h1>Ranking</h1>
+        <p class="lead">Here you can find the top 50 collectors in the PHP community.</p>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <div class="text-center mb-4">
-                    <h1>Ranking</h1>
-                    <p class="lead">Here you can find the top 50 collectors in the PHP community.</p>
-                </div>
                 <div class="mb-3">
                     <div class="mb-3 text-center">
                         <form action="">

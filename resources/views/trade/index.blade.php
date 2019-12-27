@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="jumbotron jumbotron-fluid text-center">
+        <h1>Trade Area</h1>
+        <p class="lead">Looking for new elePHPants? Take a look on these possibilities.</p>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
-                <div class="text-center mb-4">
-                    <h1>Trade Area</h1>
-                    <p class="lead">Looking for new elePHPants? Take a look on these possibilities.</p>
-                </div>
                 @if(!$users)
                     <div class="alert alert-info">
                         You don't have any double elePHPant to trade yet.

@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="jumbotron jumbotron-fluid text-center">
+        <h1>My Herd</h1>
+        <p class="lead">Which (and how many) elePHPants do you have?</p>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="text-center mb-4">
-                    <h1>My Herd</h1>
-                    <p class="lead">Which (and how many) elePHPants do you have?</p>
                     <div class="alert alert-secondary bg-transparent py-2">
                         Your public herd URL:
                         <code>

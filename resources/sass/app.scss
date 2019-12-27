@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+//@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 // Variables
 @import 'variables';
@@ -34,4 +34,11 @@ body {
 
 .custom-pagination ul {
     @extend .pagination-lg;
+}
+
+.jumbotron {
+    //@extend .py-5;
+    .lead {
+        margin-bottom: 0;
+    }
 }

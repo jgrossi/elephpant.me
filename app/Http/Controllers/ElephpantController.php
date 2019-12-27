@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Elephpant;
 use Illuminate\Http\Request;
 
-class ElephpantsController extends Controller
+class ElephpantController extends Controller
 {
     public function index()
     {

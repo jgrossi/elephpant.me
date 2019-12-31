@@ -381,15 +381,15 @@
             "name": "CakeDC",
             "description": "CakeDC",
             "sponsor": "CakePHP",
-            "year": 2019,
+            "year": 2017,
             "image": "https://i.imgur.com/qyUrE24.jpg"
         },
         {
             "id": 49,
             "name": "CakeFest",
-            "description": "CakeFest 2019",
+            "description": "CakeFest",
             "sponsor": "CakePHP",
-            "year": 2019,
+            "year": 2017,
             "image": "https://i.imgur.com/t415Exl.jpg"
         },
 		{

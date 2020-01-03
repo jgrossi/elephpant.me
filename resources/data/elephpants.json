@@ -306,9 +306,9 @@
 		},
         {
             "id": 39,
-            "name": "PHPers Poland",
+            "name": "PHPers",
             "description": "PHPers Summit 2019",
-            "sponsor": "PHPers",
+            "sponsor": "PHPers Poland",
             "year": 2019,
             "image": "https://i.imgur.com/FSA2VSy.jpg"
         },
@@ -354,7 +354,7 @@
         },
         {
             "id": 45,
-            "name": "PHPConPoland",
+            "name": "Janusz",
             "description": "PHPConPoland",
             "sponsor": "PHP Conference Poland",
             "year": 2019,

@@ -399,6 +399,14 @@
 			"sponsor": "Shopware AG",
 			"year": 2019,
 			"image": "https://i.imgur.com/vzTvrOe.jpg"
-		}
+		},
+        {
+            "id": 51,
+            "name": "PHPCon Grandpa",
+            "description": "PHPCon Poland 2015",
+            "sponsor": "PHP Conference Poland",
+            "year": 2015,
+            "image": "https://i.imgur.com/s5KH2MZ.jpg"
+        }
 	]
 }

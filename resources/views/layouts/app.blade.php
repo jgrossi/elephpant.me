@@ -111,7 +111,7 @@
 
         <footer class="mt-4 text-center py-4 bg-white border-top">
             <p class="mb-2">
-                Made with ❤️ by <a href="http://twitter.com/junior_grossi" target="_blank">Junior Grossi</a>.
+                Made with ❤️ by <a href="http://twitter.com/junior_grossi" target="_blank">Junior Grossi</a>, <a href="http://twitter.com/IgorSantoos17" target="_blank">Igor Santos</a> and <a href="https://github.com/jgrossi/elephpant.me/graphs/contributors" target="_blank">contributors</a>.
                 <span class="d-block d-md-inline">Contribute to this project on <a href="http://github.com/jgrossi/elephpant.me">GitHub</a>.</span>
             </p>
         </footer>

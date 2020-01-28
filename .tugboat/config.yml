@@ -1,6 +1,6 @@
 services:
   php:
-    image: tugboatqa/php:7.3.14-fpm
+    image: tugboatqa/php:apache
     default: true
     commands:
       init:

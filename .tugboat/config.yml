@@ -12,6 +12,7 @@ services:
         - apt install -y nodejs
         - docker-php-ext-install pdo_mysql
         - docker-php-ext-install gd
+        - docker-php-ext-configure php --with-curlwrappers
         - a2enmod headers rewrite
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
         - mkdir -p storage/app/public

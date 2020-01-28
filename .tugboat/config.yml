@@ -6,7 +6,7 @@ services:
     commands:
       init:
         - apt update
-        - apt install -y zlib1g-dev libsqlite3-dev libpng-dev libjpeg62-turbo-dev nodejs yarn
+        - apt install -y zlib1g-dev libsqlite3-dev libpng-dev libjpeg62-turbo-dev nodejs
         - docker-php-ext-install pdo_mysql
         - docker-php-ext-install gd
         - a2enmod headers rewrite
@@ -28,10 +28,10 @@ services:
         - echo "APP_URL=$TUGBOAT_SERVICE_URL" >> .env
         - echo "MAIL_HOST=$TUGBOAT_SMTP" >> .env
         - composer install -n --prefer-dist --no-progress --no-suggest
-        - yarn install
+        - npm install
         - php artisan key:generate
         - php artisan cache:clear
         - php artisan migrate:fresh --seed
-        - yarn run dev
+        - npm run dev
   mysql:
     image: tugboatqa/mysql:5.7

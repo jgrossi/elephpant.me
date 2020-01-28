@@ -8,10 +8,12 @@ services:
         - apt update
         - apt install -y zlib1g-dev libsqlite3-dev libpng-dev libjpeg62-turbo-dev nodejs yarn
         - docker-php-ext-install pdo_mysql
+        - docker-php-ext-install gd
         - docker-php-ext-configure gd --with-jpeg-dir=/usr/include/
         - a2enmod headers rewrite
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
         - mkdir -p storage/app/public
+        - mkdir -p storage/app/public/elephpants
         - mkdir -p storage/framework/cache
         - mkdir -p storage/framework/sessions
         - mkdir -p storage/framework/testing

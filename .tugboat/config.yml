@@ -5,9 +5,8 @@ services:
     commands:
       init:
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
-  mysql:
-    image: tugboatqa/mysql:5.7.29
-    commands:
       update:
-        - php artisan migrate
-        - php artisan db:seed
+        - php "${TUGBOAT_ROOT}/artisan" migrate
+        - php "${TUGBOAT_ROOT}/artisan" db:seed
+  mysql:
+    image: tugboatqa/mysql:5.7

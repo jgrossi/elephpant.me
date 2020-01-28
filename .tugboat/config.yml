@@ -6,7 +6,7 @@ services:
       init:
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
       update:
-        - php "${TUGBOAT_ROOT}/artisan" migrate
-        - php "${TUGBOAT_ROOT}/artisan" db:seed
+        - php artisan migrate
+        - php artisan db:seed
   mysql:
     image: tugboatqa/mysql:5.7

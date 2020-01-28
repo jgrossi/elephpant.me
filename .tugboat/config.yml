@@ -10,4 +10,4 @@ services:
     commands:
       update:
         - php artisan migrate
-        - php artisan elephpants:read
+        - php artisan db:seed

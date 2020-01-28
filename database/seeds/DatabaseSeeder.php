@@ -7,10 +7,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(\App\User::class)->create([
-            'name' => 'Junior Grossi',
-            'email' => 'juniorgro@gmail.com',
-            'twitter' => 'junior_grossi',
-            'country_code' => 'BRA',
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+            'twitter' => 'john',
+            'country_code' => 'USA',
             'password' => \Illuminate\Support\Facades\Hash::make('secret'),
         ]);
 

@@ -33,5 +33,5 @@ services:
         - php artisan cache:clear
         - php artisan migrate:fresh --seed
         - yarn run dev
-  mysql:t
+  mysql:
     image: tugboatqa/mysql:5.7

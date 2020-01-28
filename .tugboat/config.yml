@@ -2,12 +2,36 @@ services:
   php:
     image: tugboatqa/php:apache
     default: true
+    depends: mysql
     commands:
       init:
+        - apt update
+        - apt install -y zlib1g-dev libsqlite3-dev libpng-dev libjpeg62-turbo-dev nodejs yarn
+        - docker-php-ext-install zip
+        - docker-php-ext-install pdo_mysql
+        - docker-php-ext-configure gd --with-jpeg-dir=/usr/include/
+        - a2enmod headers rewrite
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
-      update:
-        - composer install
-        - php artisan migrate
-        - php artisan db:seed
+        - mkdir -p storage/app/public
+        - mkdir -p storage/framework/cache
+        - mkdir -p storage/framework/sessions
+        - mkdir -p storage/framework/testing
+        - mkdir -p storage/framework/views
+        - mkdir -p storage/logs
+        - touch storage/logs/laravel.log
+        - chown -R www-data storage bootstrap/cache
+        - chmod -R 744 storage bootstrap/cache
+      build:
+        - rm -f .env
+        - cp .tugboat/.env.staging ./.env
+        - chown www-data .env
+        - echo "APP_URL=$TUGBOAT_SERVICE_URL" >> .env
+        - echo "MAIL_HOST=$TUGBOAT_SMTP" >> .env
+        - composer install -n --prefer-dist --no-progress --no-suggest
+        - yarn install --production=false
+        - php artisan key:generate
+        - php artisan cache:clear
+        - php artisan migrate:fresh --seed
+        - yarn run dev
   mysql:
     image: tugboatqa/mysql:5.7

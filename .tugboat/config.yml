@@ -6,6 +6,7 @@ services:
       init:
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
       update:
+        - composer install
         - php artisan migrate
         - php artisan db:seed
   mysql:

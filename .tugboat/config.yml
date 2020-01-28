@@ -28,10 +28,10 @@ services:
         - echo "APP_URL=$TUGBOAT_SERVICE_URL" >> .env
         - echo "MAIL_HOST=$TUGBOAT_SMTP" >> .env
         - composer install -n --prefer-dist --no-progress --no-suggest
-        - yarn install --production=false
+        - yarn install
         - php artisan key:generate
         - php artisan cache:clear
         - php artisan migrate:fresh --seed
         - yarn run dev
-  mysql:
+  mysql:t
     image: tugboatqa/mysql:5.7

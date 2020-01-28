@@ -1,0 +1,12 @@
+services:
+  php:
+    image: tugboatqa/php:7.3.14-fpm
+    default: true
+    commands:
+      init:
+        - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
+  mysql:
+    image: tugboatqa/mysql:5.7.29
+    commands:
+      update:
+        - php artisan migrate

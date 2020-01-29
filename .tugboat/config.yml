@@ -1,6 +1,6 @@
 services:
   php:
-    image: tugboatqa/php:apache
+    image: tugboatqa/php:7.3-apache
     default: true
     depends: mysql
     commands:

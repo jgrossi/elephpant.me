@@ -63,6 +63,9 @@
                         <li class="nav-item {{ request()->routeIs('trades.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('trades.index') }}">{{ __('Trade Area') }}</a>
                         </li>
+                        <li class="nav-item {{ request()->routeIs('statistics.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('statistics.index') }}">{{ __('Statistics') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

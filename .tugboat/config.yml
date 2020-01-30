@@ -6,14 +6,14 @@ services:
     commands:
       init:
         - apt update
-        - apt install -y software-properties-common curl build-essential imagemagick
+        - apt install -y software-properties-common curl build-essential
         - curl -sL https://deb.nodesource.com/setup_12.x | bash -
         - apt install -y nodejs
         - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         - apt update
         - apt install yarn
-        - docker-php-ext-install pdo pdo_mysql imagick curl openssl mbstring bcmath json xml
+        - docker-php-ext-install bcmath curl mbstring pdo pdo_mysql gd iconv intl json sockets spl tokenizer xml
         - a2enmod headers rewrite
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
         - mkdir -p storage/app/public

@@ -10,8 +10,8 @@ services:
         - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         - apt update
         - apt install -y zlib1g-dev libsqlite3-dev libpng-dev libjpeg62-turbo-dev nodejs yarn
+        - docker-php-ext-configure gd --with-png-dir=/usr/lib/ --with-jpeg-dir=/usr/lib/ --with-gd
         - docker-php-ext-install gd pdo_mysql
-        - php -i | grep allow_url_fopen
         - a2enmod headers rewrite
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
         - mkdir -p storage/app/public

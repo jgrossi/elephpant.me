@@ -5,14 +5,13 @@ services:
     depends: mysql
     commands:
       init:
+        - curl -sL https://deb.nodesource.com/setup_12.x | bash -
+        - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         - apt update
-        - apt install -y zlib1g-dev libcurl4-gnutls-dev libsqlite3-dev libpng-dev libjpeg62-turbo-dev
-        - apt install -y curl software-properties-common
-        - curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
-        - apt install -y nodejs
-        - docker-php-ext-install pdo_mysql
-        - docker-php-ext-install gd
-        - docker-php-ext-install curl
+        - apt install -y zlib1g-dev libsqlite3-dev libpng-dev libjpeg62-turbo-dev nodejs yarn
+        - docker-php-ext-configure gd --with-png-dir=/usr/lib/ --with-jpeg-dir=/usr/lib/ --with-gd
+        - docker-php-ext-install gd pdo_mysql
         - a2enmod headers rewrite
         - ln -snf "${TUGBOAT_ROOT}/public" "${DOCROOT}"
         - mkdir -p storage/app/public
@@ -32,10 +31,11 @@ services:
         - echo "APP_URL=$TUGBOAT_SERVICE_URL" >> .env
         - echo "MAIL_HOST=$TUGBOAT_SMTP" >> .env
         - composer install -n --prefer-dist --no-progress --no-suggest
-        - npm install
+        - yarn install
         - php artisan key:generate
         - php artisan cache:clear
+        - php artisan storage:link
         - php artisan migrate:fresh --seed
-        - npm run dev
+        - yarn run dev
   mysql:
     image: tugboatqa/mysql:5.7

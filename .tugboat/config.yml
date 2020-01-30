@@ -34,6 +34,7 @@ services:
         - yarn install
         - php artisan key:generate
         - php artisan cache:clear
+        - php artisan storage:link
         - php artisan migrate:fresh --seed
         - yarn run dev
   mysql:

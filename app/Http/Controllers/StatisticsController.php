@@ -14,6 +14,7 @@ class StatisticsController extends Controller
             ->leftJoin('elephpant_user', 'elephpants.id', '=', 'elephpant_user.elephpant_id')
             ->orderBy('nbElephpant', 'desc')
             ->orderBy('elephpants.id', 'desc')
+            ->orderBy('totalElephpant', 'desc')
             ->groupBy('elephpants.id')
             ->get();
 

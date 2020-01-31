@@ -12,16 +12,17 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <strong>Ownership of elephpants</strong>
+                        <strong>Ownership of elePHPants</strong>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped table-bordered mb-0">
                             <thead>
                             <tr>
-                                <th scope="col" width="7%" class="text-center">#</th>
-                                <th scope="col" width="35%">Name</th>
-                                <th scope="col" width="12%" class="text-center">Ownership percent</th>
-                                <th scope="col" width="12%" class="text-center">Number</th>
+                                <th scope="col" width="7%" class="text-center align-middle">#</th>
+                                <th scope="col" width="48%" class=" align-middle">Name</th>
+                                <th scope="col" width="15%" class="text-center align-middle">Ownership percent</th>
+                                <th scope="col" width="15%" class="text-center align-middle">Ownership users</th>
+                                <th scope="col" width="15%" class="text-center align-middle">Total</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -29,11 +30,12 @@
                                 <tr>
                                     <td class="text-center align-middle">{{ $key + 1 }}</td>
                                     <td>
-                                        <span class="font-weight-bold">#{{ $elephpant->id }} - {{ $elephpant->name }}</span><br/>
-                                        {{ $elephpant->description }}
+                                        <span class="font-weight-bold">{{ $elephpant->name }}</span>
+                                        <span>- {{ $elephpant->description }}</span>
                                     </td>
                                     <td class="text-center align-middle">{{ round((($elephpant->nbElephpant/$nbUsers) * 100), 2) }}%</td>
                                     <td class="text-center align-middle">{{ $elephpant->nbElephpant }}</td>
+                                    <td class="text-center align-middle">{{ (int)$elephpant->totalElephpant }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

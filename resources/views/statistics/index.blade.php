@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron jumbotron-fluid text-center">
         <h1>Statistics</h1>
-        <p class="lead">Here you can find statistics about elephpants.</p>
+        <p class="lead">Here you can find statistics about elePHPants.</p>
     </div>
     <div class="container">
         <div class="row justify-content-center">

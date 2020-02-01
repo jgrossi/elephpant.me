@@ -8,6 +8,7 @@
 - See ranking
     - global / per country
 - Find people to trade
+- See statistics about elephpants
 
 ### Stack: 
 

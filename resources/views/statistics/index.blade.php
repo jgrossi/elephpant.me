@@ -20,7 +20,7 @@
                             <tr>
                                 <th scope="col" width="7%" class="text-center align-middle">#</th>
                                 <th scope="col" width="48%" class=" align-middle">Name</th>
-                                <th scope="col" width="15%" class="text-center align-middle">Ownership</th>
+                                <th scope="col" width="15%" class="text-center align-middle">Ownership*</th>
                                 <th scope="col" width="15%" class="text-center align-middle">Users</th>
                                 <th scope="col" width="15%" class="text-center align-middle">Total</th>
                             </tr>
@@ -40,6 +40,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="card-footer">
+                        *User with at least 1 elePHPant in herd.
                     </div>
                 </div>
             </div>

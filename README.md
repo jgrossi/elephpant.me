@@ -38,14 +38,20 @@
 - create local database  
 
 #### Backend
-- $ composer install  
-- $ php artisan key:generate
-- $ php artisan elephpants:read
-- $ php artisan storage:link
+
+```bash
+$ composer install  
+$ php artisan key:generate
+$ php artisan elephpants:read
+$ php artisan storage:link
+```
 
 #### Database
-- $ php artisan migrate
-- $ php artisan db:seed (only for generating fake data locally)
+
+```bash
+$ php artisan migrate
+$ php artisan db:seed # only for generating fake data locally
+```
 
 ---
 
@@ -54,4 +60,4 @@ Junior Grossi – [@junior_grossi](https://twitter.com/junior_grossi)
 Igor Santos – [@IgorSantoos17](https://twitter.com/IgorSantoos17)
 
 
-This project is `Open Source` and contains `MIT License`.
+This project is `Open Source` and contains [MIT License](LICENSE).

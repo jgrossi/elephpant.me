@@ -19,7 +19,8 @@ final class RankedUsersQuery
             $userQuery->where('country_code', $country);
         }
 
-        return $userQuery
+        $users = $userQuery
+            ->with('elephpants')
             ->withCount('elephpants as elephpants_unique')
             ->join('elephpant_user', 'users.id', '=', 'elephpant_user.user_id')
             ->selectRaw('users.*, SUM(elephpant_user.quantity) as elephpants_total')
@@ -29,5 +30,17 @@ final class RankedUsersQuery
             ->orderBy('users.name', 'asc')
             ->limit(static::LIMIT)
             ->get();
+
+        foreach ($users as $user) {
+            $user->last_update = $user->elephpants
+                ->sortByDesc(function ($elephpant) {
+                    return $elephpant->pivot->updated_at->getTimestamp();
+                })
+                ->first()
+                ->pivot
+                ->updated_at;
+        }
+
+        return $users;
     }
 }

@@ -38,10 +38,11 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" width="7%" class="text-center">#</th>
-                                    <th scope="col" width="35%">Name</th>
+                                    <th scope="col" width="30%">Name</th>
                                     <th scope="col">Country</th>
-                                    <th scope="col" width="12%" class="text-center">Unique</th>
-                                    <th scope="col" width="12%" class="text-center">Total</th>
+                                    <th scope="col" width="10%" class="text-center">Unique</th>
+                                    <th scope="col" width="10%" class="text-center">Total</th>
+                                    <th scope="col" width="12%" class="text-center">Updated</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -61,6 +62,7 @@
                                         </td>
                                         <td class="text-center">{{ $user->elephpants_unique }}</td>
                                         <td class="text-center">{{ $user->elephpants_total }}</td>
+                                        <td class="text-center">{{ $user->last_update->diffForHumans(null, \Carbon\CarbonInterface::DIFF_ABSOLUTE) }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

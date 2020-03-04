@@ -8,6 +8,7 @@ Route::get('/species', 'ElephpantController@index')->name('elephpants.index');
 Route::get('/herd/{username}', 'HerdController@show')->name('herds.show');
 Route::get('/ranking', 'RankingController@index')->name('rankings.index');
 Route::get('/user/{username}', 'HerdController@show')->name('heard.show');
+Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/my-herd', 'HerdController@edit')->name('herds.edit');

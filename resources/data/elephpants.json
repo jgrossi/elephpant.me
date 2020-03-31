@@ -412,9 +412,17 @@
             "id": 52,
             "name": "Golden elePHPant",
             "description": "Golden 20 year PHP elePHPant",
-            "sponsor": "Unknown",
+            "sponsor": "Opengoodies",
             "year": 2015,
             "image": "https://i.imgur.com/eHle0nW.png"
+        },
+        {
+            "id": 53,
+            "name": "HaPHPy",
+            "description": "Hand-crafted by V. Fanzutti for the Kenya PHP User Group",
+            "sponsor": "AFUP",
+            "year": 2015,
+            "image": "https://afieldguidetoelephpants.net/photos/multicolored-haphpy-0-400x300.jpg"
         }
 	]
 }

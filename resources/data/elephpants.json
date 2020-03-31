@@ -407,6 +407,14 @@
             "sponsor": "PHP Conference Poland",
             "year": 2015,
             "image": "https://i.imgur.com/s5KH2MZ.jpg"
+        },
+        {
+            "id": 52,
+            "name": "Golden elePHPant",
+            "description": "Golden 20 year PHP elePHPant",
+            "sponsor": "Unknown",
+            "year": 2015,
+            "image": "https://imgur.com/a/qb5CyYI"
         }
 	]
 }

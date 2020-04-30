@@ -16,7 +16,7 @@
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "flag-icon-css": "^3.4.2",
-        "jquery": "^3.2",
+        "jquery": "^3.5",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",

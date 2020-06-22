@@ -423,6 +423,14 @@
             "sponsor": "AFUP",
             "year": 2015,
             "image": "https://afieldguidetoelephpants.net/photos/multicolored-haphpy-0-400x300.jpg"
+        },
+        {
+            "id": 54,
+            "name": "Upinside",
+            "description": "Upinside School",
+            "sponsor": "Upinside School",
+            "year": 2020,
+            "image": "https://i.imgur.com/RHtjTMH.png"
         }
 	]
 }

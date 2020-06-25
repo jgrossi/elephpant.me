@@ -431,6 +431,14 @@
             "sponsor": "Upinside School",
             "year": 2020,
             "image": "https://i.imgur.com/RHtjTMH.png"
+        },
+        {
+            "id": 55,
+            "name": "Sylius",
+            "description": "Sylius eCommerce",
+            "sponsor": "Sylius eCommerce",
+            "year": 2020,
+            "image": "https://i.imgur.com/evMrHAZ.jpg"
         }
 	]
 }

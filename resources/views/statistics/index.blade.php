@@ -3,7 +3,10 @@
 @section('content')
     <div class="jumbotron jumbotron-fluid text-center">
         <h1>Statistics</h1>
-        <p class="lead">Here you can find statistics about elePHPants.</p>
+        <p class="lead">
+            Here you can find statistics about elePHPants.<br />
+            <strong>{{ $nbUsersWithElephpant }}</strong> users out of <strong>{{ $nbUsers }}</strong> registered have at least one elePHPant.
+        </p>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -33,7 +36,7 @@
                                         <span class="font-weight-bold">{{ $elephpant->name }}</span>
                                         <span>- {{ $elephpant->description }}</span>
                                     </td>
-                                    <td class="text-center align-middle">{{ round((($elephpant->nbElephpant/$nbUsers) * 100), 2) }}%</td>
+                                    <td class="text-center align-middle">{{ round((($elephpant->nbElephpant/$nbUsersWithElephpant) * 100), 2) }}%</td>
                                     <td class="text-center align-middle">{{ $elephpant->nbElephpant }}</td>
                                     <td class="text-center align-middle">{{ (int)$elephpant->totalElephpant }}</td>
                                 </tr>

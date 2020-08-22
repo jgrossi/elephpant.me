@@ -439,6 +439,14 @@
             "sponsor": "Sylius eCommerce",
             "year": 2020,
             "image": "https://i.imgur.com/evMrHAZ.jpg"
+        },
+        {
+            "id": 56,
+            "name": "PHPClasses 2020",
+            "description": "PHPClasses 2020",
+            "sponsor": "PHPClasses",
+            "year": 2018,
+            "image": "https://i.imgur.com/CAcVz75.jpg"
         }
 	]
 }

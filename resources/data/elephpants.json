@@ -439,6 +439,14 @@
             "sponsor": "Sylius eCommerce",
             "year": 2020,
             "image": "https://i.imgur.com/evMrHAZ.jpg"
-        }
+        },
+		{
+            "id": 56,
+			"name": "Symfony 15 Years",
+			"description": "Symfony Framework 15 Years",
+			"sponsor": "Sensio Labs",
+			"year": 2020,
+			"image": "https://i.imgur.com/26fk9QV.jpg"
+		},
 	]
 }

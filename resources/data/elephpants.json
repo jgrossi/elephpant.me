@@ -439,6 +439,14 @@
             "sponsor": "Sylius eCommerce",
             "year": 2020,
             "image": "https://i.imgur.com/evMrHAZ.jpg"
+        },
+        {
+            "id": 56,
+            "name": "The Joker",
+            "description": "Le foo du roi: \"The Joker\"",
+            "sponsor": "ConFoo.ca",
+            "year": 2020,
+            "image": "https://imgur.com/a/T3KzO2p"
         }
 	]
 }

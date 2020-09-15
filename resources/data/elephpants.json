@@ -447,6 +447,14 @@
             "sponsor": "ConFoo.ca",
             "year": 2020,
             "image": "https://i.imgur.com/hstKesm.jpeg"
+        },
+        {
+            "id": 57,
+            "name": "Symfony 15 Years",
+            "description": "Symfony Framework 15 Years",
+            "sponsor": "Sensio Labs",
+            "year": 2020,
+            "image": "https://i.imgur.com/26fk9QV.jpg"
         }
-	]
+	  ]
 }

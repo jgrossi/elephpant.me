@@ -455,6 +455,14 @@
             "sponsor": "Sensio Labs",
             "year": 2020,
             "image": "https://i.imgur.com/26fk9QV.jpg"
+        },
+        {
+            "id": 58,
+            "name": "PHPDay",
+            "description": "PHPDay",
+            "sponsor": "PHPDay Group",
+            "year": 2020,
+            "image": "https://i.imgur.com/26fk9QV.jpg"
         }
 	  ]
 }

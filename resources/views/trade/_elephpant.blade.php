@@ -9,7 +9,7 @@
                     <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" width="50" alt="" class="img-thumbnail rounded img-fluid mr-3">
                 </a>
                 <div class="media-body">
-                    <p class="mb-0"><strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->description }})</em></p>
+                    <p class="mb-0"><strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->description }})</em>{{ $elephpant->size === "large" ? " - Large" : "" }}</p>
                     <p class="mb-0">By {{ $elephpant->sponsor }}</p>
                 </div>
             </div>

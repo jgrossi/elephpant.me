@@ -7,7 +7,7 @@
                 {{ $elephpant->name }}
             </h5>
             <p class="card-text">
-                {{ $elephpant->description }}<br>
+                {{ $elephpant->description }}{{ $elephpant-size === "large" ? " - Large" : "" }}<br>
                 <strong>{{ $elephpant->sponsor }}</strong><br>
                 {{ $elephpant->year }}
             </p>

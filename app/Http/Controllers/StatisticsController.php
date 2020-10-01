@@ -18,10 +18,12 @@ class StatisticsController extends Controller
             ->groupBy('elephpants.id')
             ->get();
 
-        $nbUsers = DB::table('elephpant_user')
+        $nbUsersWithElephpant = DB::table('elephpant_user')
             ->distinct('user_id')
             ->count();
 
-        return view('statistics.index', compact('elephpants', 'nbUsers'));
+        $nbUsers = DB::table('users')->count();
+
+        return view('statistics.index', compact('elephpants', 'nbUsers', 'nbUsersWithElephpant'));
     }
 }

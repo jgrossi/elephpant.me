@@ -322,11 +322,11 @@
         },
         {
             "id": 41,
-            "name": "PHPClasses 2018",
-            "description": "PHPClasses 2018",
+            "name": "PHPClasses",
+            "description": "PHPClasses",
             "sponsor": "PHPClasses",
             "year": 2018,
-            "image": "https://i.imgur.com/eKznzUY.jpg"
+            "image": "https://i.imgur.com/CAcVz75.jpg"
         },
         {
             "id": 42,
@@ -423,6 +423,46 @@
             "sponsor": "AFUP",
             "year": 2015,
             "image": "https://afieldguidetoelephpants.net/photos/multicolored-haphpy-0-400x300.jpg"
+        },
+        {
+            "id": 54,
+            "name": "Upinside",
+            "description": "Upinside School",
+            "sponsor": "Upinside School",
+            "year": 2020,
+            "image": "https://i.imgur.com/RHtjTMH.png"
+        },
+        {
+            "id": 55,
+            "name": "Sylius",
+            "description": "Sylius eCommerce",
+            "sponsor": "Monsieur Biz",
+            "year": 2020,
+            "image": "https://i.imgur.com/evMrHAZ.jpg"
+        },
+        {
+            "id": 56,
+            "name": "The Joker",
+            "description": "Le foo du roi: \"The Joker\"",
+            "sponsor": "ConFoo.ca",
+            "year": 2020,
+            "image": "https://i.imgur.com/hstKesm.jpeg"
+        },
+        {
+            "id": 57,
+            "name": "Symfony 15 Years",
+            "description": "Symfony Framework 15 Years",
+            "sponsor": "Sensio Labs",
+            "year": 2020,
+            "image": "https://i.imgur.com/26fk9QV.jpg"
+        },
+        {
+            "id": 58,
+            "name": "PHPDay",
+            "description": "PHPDay",
+            "sponsor": "PHPDay Group",
+            "year": 2020,
+            "image": "https://i.imgur.com/Jb0NPxw.jpg"
         }
-	]
+	  ]
 }

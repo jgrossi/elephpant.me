@@ -4,17 +4,34 @@
     <div class="container pt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="text-center mb-4">
-                    <h1><span class="text-muted">{{ $user->name }}</span></h1>
-                    <p class="lead">
-                        @if($user->twitter)
-                            <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a> -
-                        @endif
-                        {{ ($country = $countries->get($user->country_code))->get('name') }}
-                        @if ($flag = $country->get('flag'))
-                            <span class="ml-1">{!! $flag !!}</span>
-                        @endif
-                    </p>
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            @if($user->twitter)
+                                <img src="https://twivatar.glitch.me/{{ $user->twitter }}" class="circle">
+                            @else
+                                <div class="circle">
+                                    <span class="initials">
+                                        {{ $initials}}
+                                    </span>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col">
+                            <h1><span class="text-muted">{{ $user->name }}</span></h1>
+                            <p class="lead">
+                                {{ ($country = $countries->get($user->country_code))->get('name') }}
+                                @if ($flag = $country->get('flag'))
+                                    <span class="ml-1">{!! $flag !!}</span>
+                                @endif
+                            </p>
+                            <p class="lead">
+                                @if($user->twitter)
+                                    <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a>
+                                @endif
+                            </p>
+                        </div>
+                    </div>
                     <div id="stats">
                         @include('herd._stats')
                     </div>

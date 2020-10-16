@@ -42,3 +42,23 @@ body {
         margin-bottom: 0;
     }
 }
+
+:root {
+    --avatar-size: 150px;
+    /* change this value anything, e.g., 100px, 10rem, etc. */
+}
+
+.circle {
+    background-color: #ccc;
+    border-radius: 50%;
+    height: var(--avatar-size);
+    text-align: center;
+    width: var(--avatar-size);
+}
+
+.initials {
+    font-size: calc(var(--avatar-size) / 2); /* 50% of parent */
+    line-height: 1;
+    position: relative;
+    top: calc(var(--avatar-size) / 4); /* 25% of parent */
+}

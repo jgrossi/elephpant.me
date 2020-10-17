@@ -96,7 +96,6 @@ class User extends Authenticatable
             return strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
         }
         return $this->makeInitialsFromSingleWord($fullName);
-
     }
 
     protected function makeInitialsFromSingleWord(string $name) : string

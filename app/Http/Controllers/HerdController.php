@@ -27,13 +27,7 @@ class HerdController extends Controller
         $user = User::whereUsername($username)->firstOrFail();
         $elephpants = $user->elephpants()->orderBy('year', 'desc')->get();
         $userElephpants = $user->elephpantsWithQuantity()->toArray();
-
-        $fullName = explode(' ',$user->name);
-        $initials = substr($fullName[0],0,1);
-        if(isset($fullName[1]))
-        {
-            $initials.=substr($fullName[1],0,1);
-        }
+        $initials = $user->initials();
 
         $stats = [
             'unique' => $unique = count($userElephpants),

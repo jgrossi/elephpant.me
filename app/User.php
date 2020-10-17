@@ -87,4 +87,24 @@ class User extends Authenticatable
 
         return $username;
     }
+
+    public function initials()
+    {
+        $fullName = $this->name;
+        $words = explode(' ', $fullName);
+        if (count($words) >= 2) {
+            return strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
+        }
+        return $this->makeInitialsFromSingleWord($fullName);
+
+    }
+
+    protected function makeInitialsFromSingleWord(string $name) : string
+    {
+        preg_match_all('#([A-Z]+)#', $name, $capitals);
+        if (count($capitals[1]) >= 2) {
+            return substr(implode('', $capitals[1]), 0, 2);
+        }
+        return strtoupper(substr($name, 0, 2));
+    }
 }

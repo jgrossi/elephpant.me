@@ -4,17 +4,31 @@
     <div class="container pt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div class="text-left mb-4">
+                    <div class="media">
+                        <img
+                            class="mr-3 rounded-circle"
+                            src="{{ $user->avatar() }}"
+                            alt="{{ $user->name }} twitter avatar">
+                        <div class="media-body">
+                            <h1>
+                                <span class="text-muted">{{ $user->name }}</span>
+                            </h1>
+                            <div>
+                                {{ ($country = $countries->get($user->country_code))->get('name') }}
+                                @if ($flag = $country->get('flag'))
+                                    <span class="ml-1">{!! $flag !!}</span>
+                                @endif
+                            </div>
+                            <div>
+                                @if($user->twitter)
+                                    <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="text-center mb-4">
-                    <h1><span class="text-muted">{{ $user->name }}</span></h1>
-                    <p class="lead">
-                        @if($user->twitter)
-                            <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a> -
-                        @endif
-                        {{ ($country = $countries->get($user->country_code))->get('name') }}
-                        @if ($flag = $country->get('flag'))
-                            <span class="ml-1">{!! $flag !!}</span>
-                        @endif
-                    </p>
                     <div id="stats">
                         @include('herd._stats')
                     </div>

@@ -70,9 +70,22 @@ class User extends Authenticatable
         $this->elephpants()->attach($elephpant->id, compact('quantity'));
     }
 
+    /**
+     * Get the user avatar URL.
+     *
+     * @return string
+     */
     public function avatar(): string
     {
-        return Gravatar::get($this->email);
+        if ($this->twitter) {
+            return 'https://twitter-avatar.now.sh/' . $this->twitter;
+        }
+
+        if (Gravatar::exists($this->email)) {
+            return Gravatar::get($this->email);
+        }
+
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name);
     }
 
     public static function generateUsername(User $user): string

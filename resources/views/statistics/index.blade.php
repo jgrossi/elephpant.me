@@ -18,7 +18,7 @@
                         <strong>Ownership of elePHPants</strong>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-bordered mb-0">
+                        <table class="table table-striped table-bordered table-responsive-sm mb-0">
                             <thead>
                             <tr>
                                 <th scope="col" width="7%" class="text-center align-middle">#</th>

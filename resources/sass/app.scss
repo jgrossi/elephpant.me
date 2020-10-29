@@ -1,6 +1,3 @@
-// Fonts
-//@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
 // Variables
 @import 'variables';
 
@@ -10,55 +7,23 @@
 // Icons
 @import '~flag-icon-css/sass/flag-icon.scss';
 
+// Components
+@import 'layout.scss';
+@import 'components/button.scss';
+@import 'components/card.scss';
+@import 'components/footer.scss';
+@import 'components/form.scss';
+@import 'components/navbar.scss';
+@import 'components/pagination.scss';
+@import 'components/table.scss';
+
+// Pages
+@import 'pages/herd.scss';
+@import 'pages/ranking.scss';
+@import 'pages/trade.scss';
+
 body {
-    background-color: #fcfcfc;
-}
-
-.herd-card {
-    .list-group-item {
-        border: 3px solid transparent;
-        border-width: 0 0 0 3px;
-        &.has-elephpants {
-            border-color: $green;
-        }
-    }
-}
-
-.navbar-brand {
-    padding-top: 0;
-    padding-bottom: 0;
-    .logo {
-        width: 30px;
-    }
-}
-
-.custom-pagination ul {
-    @extend .pagination-lg;
-}
-
-.jumbotron {
-    //@extend .py-5;
-    .lead {
-        margin-bottom: 0;
-    }
-}
-
-.avatar-circle {
-    width: 128px;
-    height: 128px;
-    background-color: #e9ecef;
-    text-align: center;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-
-    .initials {
-        position: relative;
-        top: 36px;
-        font-size: 62.5px;
-        line-height: 62.5px;
-        color: #212529;
-        font-family: "Courier New", monospace;
-        font-weight: bold;
-    }
+    font-family: 'Quicksand', sans-serif;
+    background-color: $grey-background;
+    margin: 0;
 }

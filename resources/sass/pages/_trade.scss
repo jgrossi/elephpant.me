@@ -1,0 +1,43 @@
+.trade {
+    .card {
+        &-header {
+            background: none;
+            border-bottom: 1px solid $grey-background;
+        }
+
+        &-body {
+            .card {
+                border: 1px solid $grey;
+                background-color: $grey;
+                border-radius: 10px;
+
+                &-header {
+                    font-weight: 600;
+                }
+
+                .list-group-item {
+                    &:not(:last-child) {
+                        border-bottom: 1px solid $grey !important;
+                    }
+
+                    &:last-child {
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+                }
+            }
+
+            .form-box {
+                textarea {
+                    border-radius: 10px;
+                }
+
+                button {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+}

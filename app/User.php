@@ -83,14 +83,14 @@ class User extends Authenticatable
     public function avatar(): string
     {
         if ($this->twitter) {
-            return 'https://twitter-avatar.now.sh/' . $this->twitter;
+            return sprintf('https://twitter-avatar.now.sh/%s', $this->twitter);
         }
 
         if (Gravatar::exists($this->email)) {
             return Gravatar::get($this->email);
         }
 
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name);
+        return sprintf('https://ui-avatars.com/api/?name=%s&size=150', urlencode($this->name));
     }
 
     public static function generateUsername(User $user): string

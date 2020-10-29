@@ -1,0 +1,116 @@
+form {
+    width: 100%;
+
+    .form-group {
+        margin-bottom: 20px;
+
+        label {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        input[type='text'], input[type='email'], input[type='password'] {
+            border: none;
+            background-color: $white;
+            border-radius: 10px;
+            color: $black;
+            padding: 20px 15px;
+            font-size: 15px;
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+
+        &.checkbox-container {
+            label {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+                padding-left: 40px;
+                height: 30px;
+
+
+                input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                    height: 0;
+                    width: 0;
+
+                    &:checked ~ .checkmark {
+                        background-color: $blue;
+                    }
+
+                    &:checked ~ .checkmark:after {
+                        display: block;
+                    }
+                }
+
+                .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 15px;
+                    height: 30px;
+                    width: 30px;
+                    background-color: $white;
+                    border-radius: 10px;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        display: none;
+                        left: 11px;
+                        top: 6px;
+                        width: 8px;
+                        height: 15px;
+                        border: solid $white;
+                        border-width: 0 3px 3px 0;
+                        -webkit-transform: rotate(45deg);
+                        -ms-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+
+        .input-group {
+            &-text {
+                background-color: $grey;
+                border: none;
+                font-weight: 600;
+                color: $black;
+            }
+        }
+
+        select {
+            border: none;
+            border-radius: 10px;
+            height: 40px;
+            color: $black;
+            font-size: 15px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, $black 50%), linear-gradient(135deg, $black 50%, transparent 50%), linear-gradient(to right, transparent, transparent);
+            background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), 100% 0;
+            background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+            background-repeat: no-repeat;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+}

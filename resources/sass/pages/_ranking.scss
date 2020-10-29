@@ -1,0 +1,22 @@
+.ranking {
+    form {
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            select {
+                width: auto;
+            }
+
+            button {
+                padding: 5px 50px;
+                width: 200px;
+
+                @media (max-width: 767px) {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

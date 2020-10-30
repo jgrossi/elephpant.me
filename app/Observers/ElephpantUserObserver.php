@@ -8,7 +8,7 @@ class ElephpantUserObserver
 {
     public function saved(ElephpantUser $elephpantUser)
     {
-        if ($elephpantUser->quantity === 0) {
+        if ($elephpantUser->quantity <= 0) {
             $elephpantUser->delete();
         }
     }

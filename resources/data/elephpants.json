@@ -463,6 +463,14 @@
             "sponsor": "PHPDay Group",
             "year": 2020,
             "image": "https://i.imgur.com/Jb0NPxw.jpg"
+        },
+        {
+            "id": 59,
+            "name": "#Docler",
+            "description": "Docler",
+            "sponsor": "Docler Holding",
+            "year": 2020,
+            "image": "https://i.imgur.com/0lpETXn.jpg"
         }
 	  ]
 }

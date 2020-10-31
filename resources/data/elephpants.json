@@ -471,6 +471,14 @@
             "sponsor": "Docler Holding",
             "year": 2020,
             "image": "https://i.imgur.com/0lpETXn.jpg"
+        },
+        {
+            "id": 60,
+            "name": "4eVer",
+            "description": "4eVer PHP8",
+            "sponsor": "@faguo & @Elroubio",
+            "year": 2020,
+            "image": "https://i.imgur.com/HzEPBYr.jpg"
         }
-	  ]
+    ]
 }

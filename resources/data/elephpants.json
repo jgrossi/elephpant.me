@@ -479,6 +479,14 @@
             "sponsor": "@faguo & @Elroubio",
             "year": 2020,
             "image": "https://i.imgur.com/HzEPBYr.jpg"
+        },
+        {
+            "id": 61,
+            "name": "PHPlashy",
+            "description": "PHPVegas",
+            "sponsor": "PHP Vegas User Group",
+            "year": 2018,
+            "image": "https://i.imgur.com/W7249K3.jpg"
         }
     ]
 }

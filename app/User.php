@@ -30,6 +30,11 @@ class User extends Authenticatable
         return $query->where('id', '<>', auth()->id());
     }
 
+    public function scopePublic(Builder $query)
+    {
+        return $query->where('is_public', true);
+    }
+
     public function elephpants()
     {
         return $this->belongsToMany(Elephpant::class)

@@ -13,7 +13,7 @@ final class RankedUsersQuery
 
     public function fetchAll(?string $country): Collection
     {
-        $userQuery = User::query();
+        $userQuery = User::query()->public();
 
         if ($country) {
             $userQuery->where('country_code', $country);

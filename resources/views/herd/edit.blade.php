@@ -27,7 +27,9 @@
                 </div>
             </div>
 
-            @include('herd._stats')
+            <div id="stats">
+                @include('herd._stats')
+            </div>
 
             <div class="row justify-content-center">
                 <div class="col-md-9">
@@ -36,16 +38,21 @@
                             <div class="card-header"><strong>{{ $year }}</strong></div>
                             <ul class="list-group list-group-flush">
                                 @foreach($group as $key => $elephpant)
-                                    <li data-controller="counter"
+                                    <li
+                                        data-controller="counter"
                                         data-counter-id="{{ $elephpant->id }}"
-                                        class="list-group-item {{ $key % 2 === 0 ? 'bg-white' : 'bg-light' }} {{ isset($userElephpants[$elephpant->id]) ? 'has-elephpants' : '' }}">
+                                        class="list-group-item {{ $key % 2 === 0 ? 'bg-white' : 'bg-light' }} {{ isset($userElephpants[$elephpant->id]) ? 'has-elephpants' : '' }}"
+                                    >
                                         <div class="row align-items-center no-gutters">
                                             <div class="col-xl-9 col-lg-8">
                                                 <div class="float-left mr-3">
                                                     <div class="media">
-                                                        <a href="javascript:void(0)" data-toggle="popover"
-                                                           data-content="<img src='{{ asset('storage/elephpants/' . $elephpant->image) }}' width='150'/>"
-                                                           data-placement="left" data-trigger="hover">
+                                                        <a
+                                                            href="javascript:void(0)"
+                                                            data-toggle="popover"
+                                                            data-content="<img src='{{ asset('storage/elephpants/' . $elephpant->image) }}' width='150'/>"
+                                                            data-placement="left" data-trigger="hover"
+                                                        >
                                                             <img
                                                                 src="{{ asset('storage/elephpants/' . $elephpant->image) }}"
                                                                 width="50" alt=""
@@ -65,18 +72,18 @@
                                                 <div class="float-right">
                                                     <div class="input-group input-group-lg mb-0 mt-2 mt-md-0">
                                                         <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-secondary" type="button"
-                                                                    data-action="counter#decrement">-
-                                                            </button>
+                                                            <button class="btn btn-outline-secondary" type="button" data-action="counter#decrement">-</button>
                                                         </div>
-                                                        <input type="text" class="form-control text-center" placeholder="0"
-                                                               value="{{ $userElephpants[$elephpant->id] ?? 0 }}"
-                                                               data-target="counter.quantity"
-                                                               data-action="keyup->counter#save">
+                                                        <input
+                                                            type="text"
+                                                            class="form-control text-center"
+                                                            placeholder="0"
+                                                            value="{{ $userElephpants[$elephpant->id] ?? 0 }}"
+                                                            data-target="counter.quantity"
+                                                            data-action="keyup->counter#save"
+                                                        />
                                                         <div class="input-group-append" id="button-addon4">
-                                                            <button class="btn btn-outline-secondary" type="button"
-                                                                    data-action="counter#increment">+
-                                                            </button>
+                                                            <button class="btn btn-outline-secondary" type="button" data-action="counter#increment">+</button>
                                                         </div>
                                                     </div>
                                                 </div>

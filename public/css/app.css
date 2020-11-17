@@ -13264,7 +13264,7 @@ form .actions {
 
 @media (max-width: 992px) {
   .navbar-brand .navbar-title {
-    font-size: 25px;
+    font-size: 23px;
   }
 }
 
@@ -13373,6 +13373,10 @@ form .actions {
   font-size: 15px;
 }
 
+.table thead th {
+  border-bottom: none;
+}
+
 .table thead th:first-child {
   border-top-left-radius: 10px;
 }
@@ -13382,7 +13386,11 @@ form .actions {
 }
 
 .table tbody {
-  background-color: #dadada;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table tbody tr td {
+  font-size: 14px;
 }
 
 .table tbody tr td:first-child {

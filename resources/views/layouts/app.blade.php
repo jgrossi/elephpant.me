@@ -42,7 +42,7 @@
         <nav class="navbar navbar-expand-md">
             <a class="navbar-brand text-light" href="{{ url('/') }}">
                 <img src="{{ asset('img/elephpant.svg') }}" class="logo" alt="Elephant logo by Freepik"/>
-                <span class="navbar-title">ElePHPant</span>
+                <span class="navbar-title">ElePHPant.me</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <img src="{{ asset('img/menu.svg') }}" class="btn-menu" alt="Menu"/>

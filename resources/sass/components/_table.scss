@@ -18,6 +18,8 @@
         font-size: 15px;
 
         th {
+            border-bottom: none;
+
             &:first-child {
                 border-top-left-radius: 10px;
             }
@@ -29,10 +31,12 @@
     }
 
     tbody {
-        background-color: $grey;
+        background-color: rgba(0, 0, 0, 0.03);
 
         tr {
             td {
+                font-size: 14px;
+
                 &:first-child {
                     font-weight: 600;
                 }

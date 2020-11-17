@@ -1,4 +1,4 @@
-<div class="row justify-content-center mt-4 mb-4">
+<div id="stats-content" class="row justify-content-center mt-4 mb-4">
     <div class="col-md-3 mb-2">
         <div class="stat">
             <p class="lead mb-1">Unique</p>

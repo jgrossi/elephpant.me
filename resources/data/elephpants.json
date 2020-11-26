@@ -479,6 +479,14 @@
             "sponsor": "@faguo & @Elroubio",
             "year": 2020,
             "image": "https://i.imgur.com/HzEPBYr.jpg"
+        },
+        {
+            "id": 61,
+            "name": "Siteground",
+            "description": "Siteground",
+            "sponsor": "Siteground",
+            "year": 2020,
+            "image": "https://i.imgur.com/m3Llwg6.jpg"
         }
     ]
 }

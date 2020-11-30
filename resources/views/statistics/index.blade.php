@@ -33,7 +33,7 @@
                                 <tr>
                                     <td class="text-center align-middle">{{ $key + 1 }}</td>
                                     <td>
-                                        <span class="font-weight-bold">{{ $elephpant->name }}</span>
+                                        <span class="font-weight-bold">{{ $elephpant->name }}@if ($elephpant->size != 'small') {{ $elephpant->size }}@endif</span>
                                         <span>- {{ $elephpant->description }}</span>
                                     </td>
                                     <td class="text-center align-middle">{{ round((($elephpant->nbElephpant/$nbUsersWithElephpant) * 100), 2) }}%</td>

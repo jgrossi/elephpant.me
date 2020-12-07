@@ -487,6 +487,14 @@
             "sponsor": "SiteGround",
             "year": 2020,
             "image": "https://i.imgur.com/mM9XJQg.jpeg"
+        },
+        {
+            "id": 62,
+            "name": "PHPlashy",
+            "description": "PHPVegas",
+            "sponsor": "PHP Vegas User Group",
+            "year": 2018,
+            "image": "https://i.imgur.com/W7249K3.jpg"
         }
     ]
 }

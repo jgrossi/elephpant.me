@@ -454,7 +454,7 @@
             "description": "Symfony Framework 15 Years",
             "sponsor": "Sensio Labs",
             "year": 2020,
-            "image": "https://i.imgur.com/26fk9QV.jpg"
+            "image": "https://i.imgur.com/Rf83eVv.png"
         },
         {
             "id": 58,
@@ -474,17 +474,17 @@
         },
         {
             "id": 60,
-            "name": "4eVer",
-            "description": "4eVer PHP8",
+            "name": "InPHPinity",
+            "description": "PHP8 ElePHPant",
             "sponsor": "@faguo & @Elroubio",
             "year": 2020,
             "image": "https://i.imgur.com/HzEPBYr.jpg"
         },
         {
             "id": 61,
-            "name": "Siteground",
-            "description": "Siteground",
-            "sponsor": "Siteground",
+            "name": "SiteGround elePHPant",
+            "description": "SiteGround elePHPant",
+            "sponsor": "SiteGround",
             "year": 2020,
             "image": "https://i.imgur.com/f0y8qVk.jpg"
         },

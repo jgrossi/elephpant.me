@@ -1,0 +1,97 @@
+.navbar {
+    padding: 20px 1rem;
+    background-color: $white;
+
+    &-brand {
+        display: flex;
+        align-items: center;
+        padding: 0;
+
+        .logo {
+            width: 70px;
+            margin-right: 20px;
+
+            @media (max-width: 992px) {
+                width: 60px;
+                margin-right: 10px;
+            }
+        }
+
+        .navbar-title {
+            font-size: 30px;
+            font-weight: 600;
+            color: $black;
+
+            @media (max-width: 992px) {
+                font-size: 23px;
+            }
+        }
+    }
+
+    &-toggler {
+        .btn-menu {
+            width: 25px;
+        }
+    }
+
+    li {
+        padding: 10px 0;
+
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        &.active {
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        &.dropdown {
+            .nav-link:hover {
+                text-decoration: none;
+            }
+        }
+
+        .nav-link {
+            color: $black;
+            font-size: 20px;
+            padding: 0 !important;
+
+            @media (max-width: 992px) {
+                font-size: 15px;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .dropdown {
+            &-menu {
+                border: none;
+                min-width: auto;
+
+                @media (min-width: 768px) {
+                    padding: 0;
+                }
+            }
+
+            &-item {
+                font-size: 18px;
+
+                @media (min-width: 768px) {
+                    text-align: right;
+                }
+
+                @media (max-width: 992px) {
+                    font-size: 15px;
+                }
+
+                &:hover, &:focus {
+                    background-color: transparent;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+.herd {
+    .alert {
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    .stat {
+        background-color: $grey;
+        border-radius: 10px;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    &-card {
+        .card-header {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .list-group-item {
+            border: 3px solid transparent;
+            border-width: 0 0 0 3px;
+
+            &.has-elephpants {
+                border-color: $green;
+            }
+        }
+    }
+
+    &-list {
+        .list-group-item {
+            border-bottom: 1px solid $grey-background !important;
+
+            &:first-child {
+                border-radius: 10px 10px 0 0;
+            }
+
+            &:last-child {
+                border-radius: 0 0 10px 10px;
+            }
+        }
+    }
+}

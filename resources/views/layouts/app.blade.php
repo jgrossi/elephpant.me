@@ -32,87 +32,85 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:400,600" rel="stylesheet' rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand text-light" href="{{ url('/') }}">
-                    <img src="{{ asset('img/elephpant.svg') }}" class="logo" alt="Elephant logo by Freepik"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <nav class="navbar navbar-expand-md">
+            <a class="navbar-brand text-light" href="{{ url('/') }}">
+                <img src="{{ asset('img/elephpant.svg') }}" class="logo" alt="Elephant logo by Freepik"/>
+                <span class="navbar-title">ElePHPant.me</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <img src="{{ asset('img/menu.svg') }}" class="btn-menu" alt="Menu"/>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ request()->routeIs('elephpants.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('elephpants.index') }}">{{ __('Species') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('herds.edit') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('rankings.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('rankings.index') }}">{{ __('Ranking') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('trades.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('trades.index') }}">{{ __('Trade Area') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('statistics.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('statistics.index') }}">{{ __('Statistics') }}</a>
-                        </li>
-                    </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav ml-auto mr-auto">
+                    <li class="nav-item {{ request()->routeIs('elephpants.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('elephpants.index') }}">{{ __('Species') }}</a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('herds.edit') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('rankings.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('rankings.index') }}">{{ __('Ranking') }}</a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('trades.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('trades.index') }}">{{ __('Trade Area') }}</a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('statistics.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('statistics.index') }}">{{ __('Statistics') }}</a>
+                    </li>
+                </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    {{ __('Profile') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                        {{ __('Profile') }}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
 
-        <main class="pb-3">
-            @yield('content')
+        <main>
+            <section class="layout">
+                @yield('content')
+            </section>
         </main>
 
-        <footer class="mt-4 text-center py-4 bg-white border-top">
+        <footer class="text-center py-4 border-top">
             <p class="mb-2">
                 Made with ❤️ by <a href="http://twitter.com/junior_grossi" target="_blank">Junior Grossi</a>, <a href="http://twitter.com/IgorSantoos17" target="_blank">Igor Santos</a> and <a href="https://github.com/jgrossi/elephpant.me/graphs/contributors" target="_blank">contributors</a>.
                 <span class="d-block d-md-inline">Contribute to this project on <a href="http://github.com/jgrossi/elephpant.me">GitHub</a>.</span>

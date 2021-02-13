@@ -12,7 +12,6 @@ Route::get('/statistics', 'StatisticsController@index')->name('statistics.index'
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/my-herd', 'HerdController@edit')->name('herds.edit');
-    Route::get('/my-herd/stats', 'HerdController@stats')->name('herds.stats');
     Route::get('/trade', 'TradeController@index')->name('trades.index');
     Route::put('/adoption/{elephpant}', 'AdoptionController@update')->name('adoptions.update');
     Route::get('/photo/create', 'PhotoController@create')->name('photos.create');

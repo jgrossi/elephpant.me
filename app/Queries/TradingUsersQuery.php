@@ -10,19 +10,21 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class TradingUsersQuery
 {
-    public function fetchAll(User $user, int $limit = 5)
+    public function fetchAll(User $user, int $limit = 5, User $targetUser = null)
     {
         $userElephpants = $user->elephpants;
 
-        $userAvailable = $userElephpants->filter(function (Elephpant $elephpant) {
-            return $elephpant->pivot->quantity > 1;
-        });
+        $userAvailable = $this->keepTradableElephpants($userElephpants);
 
         if ($userAvailable->count() === 0) {
             return null;
         }
 
-        $traders = $this->fetchTraders($userElephpants, $limit);
+        if ($targetUser) {
+            $traders = $this->fetchTraders($userElephpants, $limit, $targetUser->id);
+        } else {
+            $traders = $this->fetchTraders($userElephpants, $limit);
+        }
 
         foreach ($traders as $trader) {
             $this->addInterestedElephpants($trader, $userAvailable);
@@ -31,12 +33,15 @@ final class TradingUsersQuery
         return $traders;
     }
 
-    private function fetchTraders(Collection $userElephpants, int $limit)
+    private function fetchTraders(Collection $userElephpants, int $limit, int $targetUserId = null)
     {
         $userElephpants = $userElephpants->pluck('id');
 
-        $elephpantsQuery = function ($query) use ($userElephpants) {
+        $elephpantsQuery = function ($query) use ($userElephpants, $targetUserId) {
             $query->whereNotIn('id', $userElephpants);
+            if ($targetUserId) {
+                $query->where('user_id', $targetUserId);
+            }
         };
 
         return User::query()
@@ -47,6 +52,13 @@ final class TradingUsersQuery
             ->whereHas('elephpantsToTrade', $elephpantsQuery)
             ->has('elephpantsToTrade')
             ->paginate($limit);
+    }
+
+    private function keepTradableElephpants(Collection $userElephpants)
+    {
+        return $userElephpants->filter(function (Elephpant $elephpant) {
+            return $elephpant->pivot->quantity > 1;
+        });
     }
 
     private function addInterestedElephpants(User $trader, Collection $userAvailable): void

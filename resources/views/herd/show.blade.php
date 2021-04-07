@@ -70,25 +70,24 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6">
-            @if(!$users)
-                <div class="alert alert-info">
-                    You don't have any double elePHPant to trade yet.
+    @if(!is_null($possibleTrades))
+        <div class="container pt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @if(count($possibleTrades))
+                        @foreach($possibleTrades as $user)
+                            <h2>
+                                <span class="text-muted">Possible trades with {{ $user->name }}</span>
+                            </h2>
+                            @include('trade._possible_deal')
+                        @endforeach
+                    @else
+                        <div class="alert alert-info">
+                            We didn't found any possible trade.
+                        </div>
+                    @endif
                 </div>
-            @elseif(count($users))
-                @foreach($users as $user)
-                    <h2>Possible trades with {{ $user->name }} </h2>
-                    @include('trade._possible_deal')
-                @endforeach
-                <div class="d-flex custom-pagination">
-                    <div class="mx-auto">{{ $users->links() }}</div>
-                </div>
-            @else
-                <div class="alert alert-info">
-                    No users found that can trade with you.
-                </div>
-            @endif
+            </div>
         </div>
-    </div>
+    @endif
 @endsection

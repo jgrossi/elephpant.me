@@ -15,4 +15,22 @@ class TradeController extends Controller
 
         return view('trade.index', compact('users'));
     }
+
+    public function senders(int $elephpantId, TradingUsersQuery $query)
+    {
+        /** @var User $loggedUser */
+        $loggedUser = auth()->user();
+        $users = $query->fetchAllOnlyIfHeHasElephpant($loggedUser, $elephpantId);
+
+        return view('trade.index', compact('users'));
+    }
+
+    public function receivers(int $elephpantId, TradingUsersQuery $query)
+    {
+        /** @var User $loggedUser */
+        $loggedUser = auth()->user();
+        $users = $query->fetchAllWhoLackElephpant($loggedUser, $elephpantId);
+
+        return view('trade.index', compact('users'));
+    }
 }

@@ -41,6 +41,18 @@
                                                         <p class="mb-0 text-black-50">
                                                             Sponsor: {{ $elephpant->sponsor }}
                                                         </p>
+                                                        <p class="mb-0 text-black-50">
+                                                        @if (isset($tradePossibilites[$elephpant->id]))
+                                                            @php ($trade = $tradePossibilites[$elephpant->id])
+                                                            @if ($trade['type'] == 'senders')
+                                                                <a href="{{ route('trades.senders', $elephpant->id) }}">{{ $trade['count'] }} available in the trade area</a><br/>
+                                                            @endif
+                                                            @if ($trade['type'] == 'receivers')
+                                                                <a href="{{ route('trades.receivers', $elephpant->id) }}">{{ $trade['count'] }} possible traders</a><br/>
+                                                            @endif
+
+                                                        @endif
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>

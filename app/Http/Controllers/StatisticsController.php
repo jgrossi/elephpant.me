@@ -16,6 +16,8 @@ class StatisticsController extends Controller
             ->orderBy('elephpants.id', 'desc')
             ->orderBy('totalElephpant', 'desc')
             ->groupBy('elephpants.id')
+            ->groupBy('elephpants.name')
+            ->groupBy('elephpants.description')
             ->get();
 
         $nbUsersWithElephpant = DB::table('elephpant_user')

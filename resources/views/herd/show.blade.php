@@ -70,4 +70,24 @@
             </div>
         </div>
     </div>
+    @if(!is_null($possibleTrades))
+        <div class="container pt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @if(count($possibleTrades))
+                        @foreach($possibleTrades as $user)
+                            <h2>
+                                <span class="text-muted">Possible trades with {{ $user->name }}</span>
+                            </h2>
+                            @include('trade._possible_deal')
+                        @endforeach
+                    @else
+                        <div class="alert alert-info">
+                            We didn't found any possible trade.
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

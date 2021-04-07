@@ -19,12 +19,14 @@ final class RankedUsersQuery
             $userQuery->where('country_code', $country);
         }
 
+        $visibleFields = ['users.id', 'users.name', 'users.username', 'users.twitter', 'users.country_code'];
+
         $users = $userQuery
-            ->with('elephpants')
-            ->withCount('elephpants as elephpants_unique')
             ->join('elephpant_user', 'users.id', '=', 'elephpant_user.user_id')
-            ->selectRaw('users.*, SUM(elephpant_user.quantity) as elephpants_total')
-            ->groupBy('users.id')
+            ->select($visibleFields)
+            ->selectRaw('SUM(elephpant_user.quantity) AS elephpants_total')
+            ->selectRaw('COUNT(DISTINCT elephpant_user.elephpant_id) AS elephpants_unique')
+            ->groupBy($visibleFields)
             ->orderBy('elephpants_unique', 'desc')
             ->orderBy('elephpants_total', 'desc')
             ->orderBy('users.name', 'asc')

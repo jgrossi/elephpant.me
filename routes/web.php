@@ -14,8 +14,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-herd', 'HerdController@edit')->name('herds.edit');
     Route::get('/my-herd/stats', 'HerdController@stats')->name('herds.stats');
     Route::get('/trade', 'TradeController@index')->name('trades.index');
-    Route::get('/senders/{elephpantId}', 'TradeController@senders')->name('trades.senders');
-    Route::get('/receivers/{elephpantId}', 'TradeController@receivers')->name('trades.receivers');
+    Route::get('/trade/senders/{elephpantId}', 'TradeController@senders')->name('trades.senders');
+    Route::get('/trade/receivers/{elephpantId}', 'TradeController@receivers')->name('trades.receivers');
     Route::put('/adoption/{elephpant}', 'AdoptionController@update')->name('adoptions.update');
     Route::get('/photo/create', 'PhotoController@create')->name('photos.create');
     Route::post('/photo', 'PhotoController@store')->name('photos.store');

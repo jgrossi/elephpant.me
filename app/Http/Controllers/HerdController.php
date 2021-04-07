@@ -35,7 +35,7 @@ class HerdController extends Controller
                         'type' => 'senders',
                         'count' => count(explode(',', $elephpant->possible_senders)),
                     ];
-                } else if (($userElephpants[$elephpant->id] ?? 0) && $userElephpants[$elephpant->id] > 1 && strlen($elephpant->possible_receivers) > 0) {
+                } elseif (($userElephpants[$elephpant->id] ?? 0) && $userElephpants[$elephpant->id] > 1 && strlen($elephpant->possible_receivers) > 0) {
                     $tradePossibilites[$elephpant->id] = [
                         'type' => 'receivers',
                         'count' => count(explode(',', $elephpant->possible_receivers)),

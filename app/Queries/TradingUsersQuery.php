@@ -62,16 +62,15 @@ final class TradingUsersQuery
     {
         // the loggedin user has a spare elephpant
         $query
-            ->from('elephpant_user','eu4')
+            ->from('elephpant_user', 'eu4')
             ->where('eu4.user_id', $authUserId)
             ->where('eu4.quantity', '>', 1)
             ->whereNotExists(function ($query5) use ($authUserId) {
                 // that the listed user doesn't have
                 $query5
-                    ->from('elephpant_user','eu5')
+                    ->from('elephpant_user', 'eu5')
                     ->whereRaw(Elephpant::raw('eu5.elephpant_id = eu4.elephpant_id'))
                     ->whereRaw(Elephpant::raw('eu5.user_id = users.id'));
-
             });
     }
 
@@ -132,27 +131,24 @@ final class TradingUsersQuery
 
     public function getQueryUserWithSpareElephpantId($query, $spareElephpantId)
     {
-        $query->whereExists(function($query2) use ($spareElephpantId) {
+        $query->whereExists(function ($query2) use ($spareElephpantId) {
             // That user has a spare wanted Elephpant
             $query2->select('elephpant_id')
                 ->from('elephpant_user as eu2')
                 ->whereRaw(User::raw('eu2.user_id = elephpant_user.user_id'))
                 ->where('eu2.elephpant_id', $spareElephpantId)
                 ->where('eu2.quantity', '>', 1);
-            }
-        );
+        });
     }
 
     public function getQueryUserWhoLackElephpantId($query, $lackElephpantId)
     {
-        $query->whereNotExists(function($query2) use ($lackElephpantId) {
+        $query->whereNotExists(function ($query2) use ($lackElephpantId) {
             // That user doesn't have the lack ElephpantId
             $query2->select('elephpant_id')
                 ->from('elephpant_user as eu2')
                 ->whereRaw(User::raw('eu2.user_id = elephpant_user.user_id'))
                 ->where('eu2.elephpant_id', $lackElephpantId);
-
-            }
-        );
+        });
     }
 }

@@ -4,9 +4,9 @@ namespace App;
 
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class User extends Authenticatable

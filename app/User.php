@@ -83,7 +83,7 @@ class User extends Authenticatable
     public function avatar(): string
     {
         if ($this->twitter) {
-            return 'https://twitter-avatar.now.sh/' . $this->twitter;
+            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->twitter);
         }
 
         if (Gravatar::exists($this->email)) {

@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/photo/create', 'PhotoController@create')->name('photos.create');
     Route::post('/photo', 'PhotoController@store')->name('photos.store');
     Route::post('/message', 'MessageController@store')->name('messages.store');
+    Route::get('/messages-history', 'MessageController@history')->name('messages.history');
     Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
 });

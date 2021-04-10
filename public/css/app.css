@@ -13038,3 +13038,26 @@ body {
   font-weight: bold;
 }
 
+.user-message-container .user-message-text {
+  background-color: #3e86f9;
+  color: white;
+  padding: 10px;
+  border-radius: 1em;
+  max-width: 16em;
+}
+
+.user-message-container .user-message-timestamp {
+  background-color: #ccc;
+  padding: 0.1em 0.5em;
+  border-radius: 0.5em;
+  display: inline-block;
+}
+
+.messages-exchanges-container .messages-exchanges-list {
+  display: none;
+}
+
+.messages-exchanges-container .messages-exchanges-infotext {
+  line-height: 3em;
+}
+

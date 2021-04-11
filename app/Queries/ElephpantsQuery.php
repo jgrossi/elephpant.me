@@ -11,13 +11,6 @@ final class ElephpantsQuery
 {
     public function fetchAllOrderedAndGrouped(): Collection
     {
-        $query = Elephpant::query()
-            ->orderBy('year')
-            ->orderBy('name')
-            ->get()
-            ->groupBy('year');
-
-
         $loggedUserId = auth()->id();
         return Elephpant::query()
             ->select()

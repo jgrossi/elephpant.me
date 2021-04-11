@@ -13,7 +13,7 @@
                         <form action="">
                             <select name="country" id="country" class="custom-select w-50 mr-1">
                                 <option value="">-- Global Ranking --</option>
-                                @foreach($countries as $code => $current)
+                                @foreach($usedCountries as $code => $current)
                                     <option value="{{ $code }}" {{ $country === $code ? 'selected' : '' }}>{{ $current->get('name') }}</option>
                                 @endforeach
                             </select>

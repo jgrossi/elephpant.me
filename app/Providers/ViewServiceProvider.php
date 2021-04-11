@@ -22,10 +22,13 @@ class ViewServiceProvider extends ServiceProvider
                 ];
             });
 
+        $usedCountries = $query->filterOnlyUsedCountries($countries);
+
         View::composer([
             'ranking.index', 'trade._user', 'auth.register', 'herd.show', 'profile.edit'
-        ], function ($view) use ($countries) {
+        ], function ($view) use ($countries, $usedCountries) {
             $view->with('countries', $countries);
+            $view->with('usedCountries', $usedCountries);
         });
     }
 }

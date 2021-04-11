@@ -22,10 +22,14 @@
                             <thead>
                             <tr>
                                 <th scope="col" width="7%" class="text-center align-middle">#</th>
+                                <th scope="col" width="7%" class="text-center align-middle">Photo</th>
                                 <th scope="col" width="48%" class=" align-middle">Name</th>
-                                <th scope="col" width="15%" class="text-center align-middle">Ownership*</th>
+                                <th scope="col" width="10%" class="text-center align-middle">Ownership*</th>
                                 <th scope="col" width="15%" class="text-center align-middle">Users</th>
                                 <th scope="col" width="15%" class="text-center align-middle">Total</th>
+                                @auth
+                                <th scope="col" width="7%" class="text-center align-middle">Your herd</th>
+                                @endauth
                             </tr>
                             </thead>
                             <tbody>
@@ -33,12 +37,24 @@
                                 <tr>
                                     <td class="text-center align-middle">{{ $key + 1 }}</td>
                                     <td>
+                                        <a href="javascript:void(0)" data-toggle="popover" data-content="<img src='{{ asset('storage/elephpants/' . $elephpant->image) }}' width='150'/>" data-placement="left" data-trigger="hover">
+                                            <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" width="50" alt="" class="img-thumbnail rounded img-fluid mr-3">
+                                        </a>
+                                    </td>
+                                    <td>
                                         <span class="font-weight-bold">{{ $elephpant->name }}</span>
                                         <span>- {{ $elephpant->description }}</span>
                                     </td>
                                     <td class="text-center align-middle">{{ round((($elephpant->nbElephpant/$nbUsersWithElephpant) * 100), 2) }}%</td>
                                     <td class="text-center align-middle">{{ $elephpant->nbElephpant }}</td>
                                     <td class="text-center align-middle">{{ (int)$elephpant->totalElephpant }}</td>
+                                    @auth
+                                    <td class="text-center align-middle">
+                                        @if ($userElephpants[$elephpant->id] ?? 0)
+                                        &#x2714;
+                                        @endif
+                                    </td>
+                                    @endauth
                                 </tr>
                             @endforeach
                             </tbody>

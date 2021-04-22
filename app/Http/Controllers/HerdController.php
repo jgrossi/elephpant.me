@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Queries\TradingUsersQuery;
+use App\Queries\MessagesQuery;
 use App\Queries\ElephpantsQuery;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -47,19 +48,13 @@ class HerdController extends Controller
     }
 
 
-    public function show(string $username, TradingUsersQuery $query)
+    public function show(string $username, TradingUsersQuery $query, MessagesQuery $mQuery)
     {
         $user = User::whereUsername($username)->firstOrFail();
         $elephpants = $user->elephpants()->orderBy('year', 'desc')->orderBy('name', 'desc')->get();
         $userElephpants = $user->elephpantsWithQuantity()->toArray();
 
-        $loggedUser = auth()->user();
-
-        if ($loggedUser) {
-            $possibleTrades = $query->fetchAllForUser($loggedUser, $user->id);
-        } else {
-            $possibleTrades = null;
-        }
+        $possibleTrades = $this->getPossibleTrades($user, $query, $mQuery);
 
         $stats = [
             'unique' => $unique = count($userElephpants),
@@ -68,5 +63,20 @@ class HerdController extends Controller
         ];
 
         return view('herd.show', compact('user', 'elephpants', 'stats', 'possibleTrades'));
+    }
+
+    private function getPossibleTrades(User $user, TradingUsersQuery $query, MessagesQuery $mQuery)
+    {
+        $loggedUser = auth()->user();
+        $possibleTrades = null;
+
+        if ($loggedUser) {
+            $possibleTrades = $query->fetchAllForUser($loggedUser, $user->id);
+            foreach ($possibleTrades as $tradeUser) {
+                $tradeUser->messages = $mQuery->getMessagesWithLoggedInUserAndSomeoneElse($tradeUser->id);
+            }
+        }
+
+        return $possibleTrades;
     }
 }

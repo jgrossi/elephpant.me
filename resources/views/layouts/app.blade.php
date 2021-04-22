@@ -90,6 +90,9 @@
                                     <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                         {{ __('Profile') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('messages.history') }}">
+                                        {{ __('Messages') }}
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

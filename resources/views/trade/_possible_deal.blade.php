@@ -19,6 +19,23 @@
                                         @endforeach
                                     </ul>
                                 </div>
+                                @if (isset($user->messages) && count($user->messages))
+                                <div class="messages-exchanges-container" data-controller="messages">
+                                    <div class="alert alert-info md-12 mb-3" data-target="messages.buttonbox">
+                                        <div class="float-right">
+                                            <button type="submit" class="btn btn-primary" data-action="messages#showExchanges">Show history</button>
+                                        </div>
+                                        <div class="messages-exchanges-infotext">
+                                            You have a message history with {{ $user->name }}
+                                        </div>
+                                    </div>
+                                    <div class="messages-exchanges-list md-12 mb-3" data-target="messages.exchanges" style="display: none">
+                                        @php ($messages = $user->messages)
+                                        @php ($showInterlocutor = false)
+                                        @include('messages/_messagesList')
+                                    </div>
+                                </div>
+                                @endif
                                 <div data-controller="ping" data-ping-id="{{ $user->id }}">
                                     <div class="message-box alert alert-success mb-0" style="display: none;">🎉 The message was sent to the user! 👏👏</div>
                                     <div class="form-box">

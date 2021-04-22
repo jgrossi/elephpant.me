@@ -28,9 +28,9 @@ class MessageController extends Controller
 
     public function history(MessagesQuery $query)
     {
-        $messages = $query->getMessagesWithLoggedInUser();
+        $interlocutorMessages = $query->getMessagesWithLoggedInUser();
         $loggedInUser = Auth::user();
 
-        return view('messages.history', compact('messages', 'loggedInUser'));
+        return view('messages.history', compact('interlocutorMessages', 'loggedInUser'));
     }
 }

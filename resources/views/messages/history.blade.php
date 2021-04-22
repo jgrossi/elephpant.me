@@ -8,12 +8,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
-                @if(!$messages)
+                @if(!$interlocutorMessages)
                     <div class="alert alert-info">
                         You don't have any messages yet.
                     </div>
-                @else
-                        @include('messages/_messagesList')
+                    @else
+                        @foreach ($interlocutorMessages as $messages)
+                            @php ($showInterlocutor = true)
+                            @include('messages/_messagesList')
+                        @endforeach
                 @endif
             </div>
         </div>

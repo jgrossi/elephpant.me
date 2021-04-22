@@ -19,7 +19,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                @if(count($user->messages))
+                                @if (isset($user->messages) && count($user->messages))
                                 <div class="messages-exchanges-container" data-controller="messages">
                                     <div class="alert alert-info md-12 mb-3" data-target="messages.buttonbox">
                                         <div class="float-right">
@@ -31,6 +31,7 @@
                                     </div>
                                     <div class="messages-exchanges-list md-12 mb-3" data-target="messages.exchanges" style="display: none">
                                         @php ($messages = $user->messages)
+                                        @php ($showInterlocutor = false)
                                         @include('messages/_messagesList')
                                     </div>
                                 </div>

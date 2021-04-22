@@ -64,19 +64,23 @@ body {
 }
 
 .user-message-container {
-    .user-message-text {
+    .user-message-username {
         background-color: #3e86f9;
         color: white;
-        padding: 10px;
-        border-radius: 1em;
+        padding: 0.1em 0.5em;
+        border-radius: 0.5em;
         max-width: 16em;
+        margin: 0 0.1em;
     }
 
     .user-message-timestamp {
         background-color: #ccc;
         padding: 0.1em 0.5em;
         border-radius: 0.5em;
-        display: inline-block;
+    }
+
+    .user-message-text {
+        padding: 0.1em 0.5em;
     }
 }
 

@@ -83,7 +83,7 @@
                         @endforeach
                     @else
                         <div class="alert alert-info">
-                            We didn't found any possible trade.
+                            We didn't find any possible trade.
                         </div>
                     @endif
                 </div>

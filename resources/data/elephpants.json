@@ -503,6 +503,14 @@
             "sponsor": "Die Kellerkinder",
             "year": 2021,
             "image": "https://i.imgur.com/TS0sGD6.jpg"
+        },
+        {
+            "id": 64,
+            "name": "Thelia",
+            "description": "Thelia",
+            "sponsor": "OpenStudio",
+            "year": 2021,
+            "image": "https://i.imgur.com/3FMfQgI.jpg"
         }
     ]
 }

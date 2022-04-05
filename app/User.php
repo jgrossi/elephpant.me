@@ -72,7 +72,9 @@ class User extends Authenticatable
             return;
         }
 
-        $this->elephpants()->attach($elephpant->id, compact('quantity'));
+        if ($quantity > 0) {
+            $this->elephpants()->attach($elephpant->id, compact('quantity'));
+        }
     }
 
     /**

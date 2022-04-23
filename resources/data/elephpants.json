@@ -503,6 +503,14 @@
             "sponsor": "Die Kellerkinder",
             "year": 2021,
             "image": "https://i.imgur.com/TS0sGD6.jpg"
+        },
+        {
+            "id": 64,
+            "name": "PHPartner",
+            "description": "Office Partner Elephpant",
+            "sponsor": "Office Partner",
+            "year": 2022,
+            "image": "https://i.imgur.com/iFuNqIN.jpeg"
         }
     ]
 }

@@ -511,6 +511,14 @@
             "sponsor": "Office Partner",
             "year": 2022,
             "image": "https://i.imgur.com/iFuNqIN.jpeg"
+        },
+        {
+            "id": 65,
+            "name": "Mollie",
+            "description": "Mollie",
+            "sponsor": "Mollie",
+            "year": 2021,
+            "image": "https://i.imgur.com/NScLVf1.jpg"
         }
     ]
 }

@@ -519,6 +519,14 @@
             "sponsor": "Mollie",
             "year": 2021,
             "image": "https://i.imgur.com/NScLVf1.jpg"
+        },
+        {
+            "id": 66,
+            "name": "KaraFun",
+            "description": "KaraFun",
+            "sponsor": "KaraFun",
+            "year": 2022,
+            "image": "https://i.imgur.com/0TuGGoj.jpg"
         }
     ]
 }

@@ -521,7 +521,15 @@
             "image": "https://i.imgur.com/NScLVf1.jpg"
         },
         {
-            "id":66
+            "id": 66,
+            "name": "KaraFun",
+            "description": "KaraFun",
+            "sponsor": "KaraFun",
+            "year": 2022,
+            "image": "https://i.imgur.com/0TuGGoj.jpg"
+        },
+        {
+            "id":67
             "name": "Thelia",
             "description": "Thelia",
             "sponsor": "OpenStudio",

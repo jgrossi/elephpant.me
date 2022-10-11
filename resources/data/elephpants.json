@@ -535,6 +535,14 @@
             "sponsor": "OpenStudio",
             "year": 2021,
             "image": "https://i.imgur.com/3FMfQgI.jpg"
+        },
+        {
+            "id":68,
+            "name": "Dutchie",
+            "description": "DLF ElePHPant",
+            "sponsor": "Dutch Laravel Foundation",
+            "year": 2022,
+            "image": "https://i.imgur.com/A6LkosP.jpeg"
         }
     ]
 }

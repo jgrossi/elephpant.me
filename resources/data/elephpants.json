@@ -551,6 +551,14 @@
             "sponsor": "Dutch Laravel Foundation",
             "year": 2022,
             "image": "https://i.imgur.com/A6LkosP.jpeg"
+        },
+        {
+            "id": 70,
+            "name": "Alex",
+            "description": "Vonage",
+            "sponsor": "Vonage",
+            "year": 2022,
+            "image": "https://i.imgur.com/wpTzpD6.jpg"
         }
     ]
 }

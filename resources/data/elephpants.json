@@ -559,6 +559,14 @@
             "sponsor": "Vonage",
             "year": 2022,
             "image": "https://i.imgur.com/wpTzpD6.jpg"
+        },
+        {
+            "id": 71,
+            "name": "Notive",
+            "description": "Notive",
+            "sponsor": "Notive",
+            "year": 2023,
+            "image": "https://i.imgur.com/1v3fTUc.jpg"
         }
     ]
 }

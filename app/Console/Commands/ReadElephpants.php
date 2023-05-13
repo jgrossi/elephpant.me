@@ -29,6 +29,7 @@ class ReadElephpants extends Command
                         'image' => $this->processImage($elephpant),
                     ]
                 );
+            sleep(1);
         }
     }
 

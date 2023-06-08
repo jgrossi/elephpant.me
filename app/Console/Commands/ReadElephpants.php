@@ -29,7 +29,6 @@ class ReadElephpants extends Command
                         'image' => $this->processImage($elephpant),
                     ]
                 );
-            sleep(1);
         }
     }
 
@@ -41,6 +40,7 @@ class ReadElephpants extends Command
             $image->fit(300);
             $imageName = sprintf('%d-%s.jpg', $elephpant->id, Str::slug($elephpant->name));
             $image->save(storage_path(sprintf('app/public/elephpants/%s', $imageName)));
+            $this->output->write('.', false);
 
             return $imageName;
         }

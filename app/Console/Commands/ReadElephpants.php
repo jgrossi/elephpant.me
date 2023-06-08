@@ -36,7 +36,8 @@ class ReadElephpants extends Command
     private function processImage(object $elephpant): ?string
     {
         if (isset($elephpant->image) && $elephpant->image) {
-            $image = Image::make($elephpant->image);
+            $localImagePath = public_path(sprintf('/images/elephpants/%s', $elephpant->image));
+            $image = Image::make($localImagePath);
             $image->fit(300);
             $imageName = sprintf('%d-%s.jpg', $elephpant->id, Str::slug($elephpant->name));
             $image->save(storage_path(sprintf('app/public/elephpants/%s', $imageName)));

@@ -1,316 +1,316 @@
 {
-	"elephpants": [
-		{
+    "elephpants": [
+        {
             "id": 1,
-			"name": "Original Blue",
-			"description": "First Blue",
-			"sponsor": "Nexen / Alter Way",
-			"year": 2007,
-			"image": "https://i.imgur.com/yXINaCT.jpg"
-		},
-		{
+            "name": "Original Blue",
+            "description": "First Blue",
+            "sponsor": "Nexen \/ Alter Way",
+            "year": 2007,
+            "image": "1-original-blue.jpg"
+        },
+        {
             "id": 2,
-			"name": "Original Pink",
-			"description": "First Pink",
-			"sponsor": "Alter Way",
-			"year": 2011,
-			"image": "https://afieldguidetoelephpants.net/photos/pink-original-0-400x300.jpg"
-		},
-		{
+            "name": "Original Pink",
+            "description": "First Pink",
+            "sponsor": "Alter Way",
+            "year": 2011,
+            "image": "2-original-pink.jpg"
+        },
+        {
             "id": 3,
-			"name": "Blue",
-			"description": "OpenGoodies Blue",
-			"sponsor": "OpenGoodies",
-			"year": 2015,
-			"image": "https://i.imgur.com/NUvoGdv.jpg"
-		},
-		{
+            "name": "Blue",
+            "description": "OpenGoodies Blue",
+            "sponsor": "OpenGoodies",
+            "year": 2015,
+            "image": "3-blue.jpg"
+        },
+        {
             "id": 4,
-			"name": "Pink",
-			"description": "OpenGoodies Pink",
-			"sponsor": "OpenGoodies",
-			"year": 2015,
-			"image": "https://i.imgur.com/fjs54wi.jpg"
-		},
-		{
+            "name": "Pink",
+            "description": "OpenGoodies Pink",
+            "sponsor": "OpenGoodies",
+            "year": 2015,
+            "image": "4-pink.jpg"
+        },
+        {
             "id": 5,
-			"name": "Oracle",
-			"description": "Oracle Blue",
-			"sponsor": "Oracle Corporation",
-			"year": 2008,
-			"image": "https://afieldguidetoelephpants.net/photos/blue-oracle-0-400x300.jpg"
-		},
-		{
+            "name": "Oracle",
+            "description": "Oracle Blue",
+            "sponsor": "Oracle Corporation",
+            "year": 2008,
+            "image": "5-oracle.jpg"
+        },
+        {
             "id": 6,
-			"name": "Zend Blue",
-			"description": "ZendCon 2010",
-			"sponsor": "Zend Technologies",
-			"year": 2010,
-			"image": "https://afieldguidetoelephpants.net/photos/blue-zend-1-400x300.jpg"
-		},
-		{
+            "name": "Zend Blue",
+            "description": "ZendCon 2010",
+            "sponsor": "Zend Technologies",
+            "year": 2010,
+            "image": "6-zend-blue.jpg"
+        },
+        {
             "id": 7,
-			"name": "Chili",
-			"description": "Zend Red, ZendCon 2013",
-			"sponsor": "Zend Technologies",
-			"year": 2013,
-			"image": "https://i.imgur.com/Llz1mOH.jpg"
-		},
-		{
+            "name": "Chili",
+            "description": "Zend Red, ZendCon 2013",
+            "sponsor": "Zend Technologies",
+            "year": 2013,
+            "image": "7-chili.jpg"
+        },
+        {
             "id": 8,
-			"name": "Z-Ray",
-			"description": "ZendCon 2014",
-			"sponsor": "Zend Technologies",
-			"year": 2014,
-			"image": "https://afieldguidetoelephpants.net/photos/blue-zray-0-400x300.jpg"
-		},
-		{
+            "name": "Z-Ray",
+            "description": "ZendCon 2014",
+            "sponsor": "Zend Technologies",
+            "year": 2014,
+            "image": "8-z-ray.jpg"
+        },
+        {
             "id": 9,
-			"name": "Zend PHP7",
-			"description": "ZendCon 2015",
-			"sponsor": "Zend Technologies",
-			"year": 2015,
-			"image": "https://i.imgur.com/wRbezoM.jpg"
-		},
-		{
+            "name": "Zend PHP7",
+            "description": "ZendCon 2015",
+            "sponsor": "Zend Technologies",
+            "year": 2015,
+            "image": "9-zend-php7.jpg"
+        },
+        {
             "id": 10,
-			"name": "ElPHPis",
-			"description": "ZendCon 2016",
-			"sponsor": "Zend Technologies",
-			"year": 2016,
-			"image": "https://i.imgur.com/v6YXwWp.jpg"
-		},
-		{
+            "name": "ElPHPis",
+            "description": "ZendCon 2016",
+            "sponsor": "Zend Technologies",
+            "year": 2016,
+            "image": "10-elphpis.jpg"
+        },
+        {
             "id": 11,
-			"name": "Denim",
-			"description": "ZendCon 2017",
-			"sponsor": "Rogue Wave Software",
-			"year": 2017,
-			"image": "https://i.imgur.com/0Sztb0S.jpg"
-		},
-		{
+            "name": "Denim",
+            "description": "ZendCon 2017",
+            "sponsor": "Rogue Wave Software",
+            "year": 2017,
+            "image": "11-denim.jpg"
+        },
+        {
             "id": 12,
-			"name": "Zoe",
-			"description": "ZendCon 2018",
-			"sponsor": "Rogue Wave Software",
-			"year": 2018,
-			"image": "https://i.imgur.com/sIbasd1.jpg"
-		},
-		{
+            "name": "Zoe",
+            "description": "ZendCon 2018",
+            "sponsor": "Rogue Wave Software",
+            "year": 2018,
+            "image": "12-zoe.jpg"
+        },
+        {
             "id": 13,
-			"name": "Zend Framework",
-			"description": "Zend Green",
-			"sponsor": "Zend Technologies",
-			"year": 2012,
-			"image": "https://i.imgur.com/SE83HLz.jpg"
-		},
-		{
+            "name": "Zend Framework",
+            "description": "Zend Green",
+            "sponsor": "Zend Technologies",
+            "year": 2012,
+            "image": "13-zend-framework.jpg"
+        },
+        {
             "id": 14,
-			"name": "Archie",
-			"description": "php[architect]",
-			"sponsor": "php[architect]",
-			"year": 2014,
-			"image": "https://i.imgur.com/Qvih5lO.jpg"
-		},
-		{
+            "name": "Archie",
+            "description": "php[architect]",
+            "sponsor": "php[architect]",
+            "year": 2014,
+            "image": "14-archie.jpg"
+        },
+        {
             "id": 15,
-			"name": "Umoja",
-			"description": "PHP Women",
-			"sponsor": "PHP Women",
-			"year": 2014,
-			"image": "https://i.imgur.com/Nl8dQBr.jpg"
-		},
-		{
+            "name": "Umoja",
+            "description": "PHP Women",
+            "sponsor": "PHP Women",
+            "year": 2014,
+            "image": "15-umoja.jpg"
+        },
+        {
             "id": 16,
-			"name": "Sonny",
-			"description": "Sunshine PHP Conference",
-			"sponsor": "Sunshine PHP, Zend Technologies",
-			"year": 2014,
-			"image": "https://i.imgur.com/dDLSWE2.jpg"
-		},
-		{
+            "name": "Sonny",
+            "description": "Sunshine PHP Conference",
+            "sponsor": "Sunshine PHP, Zend Technologies",
+            "year": 2014,
+            "image": "16-sonny.jpg"
+        },
+        {
             "id": 17,
-			"name": "Sonny Nexmo",
-			"description": "Sunshine PHP Conference",
-			"sponsor": "Sunshine PHP, Nexmo",
-			"year": 2019,
-			"image": "https://i.imgur.com/dCfrJsQ.jpg"
-		},
-		{
+            "name": "Sonny Nexmo",
+            "description": "Sunshine PHP Conference",
+            "sponsor": "Sunshine PHP, Nexmo",
+            "year": 2019,
+            "image": "17-sonny-nexmo.jpg"
+        },
+        {
             "id": 18,
-			"name": "Liona",
-			"description": "Laravel",
-			"sponsor": "Laravel Community",
-			"year": 2014,
-			"image": "https://i.imgur.com/sisip7v.jpg"
-		},
-		{
+            "name": "Liona",
+            "description": "Laravel",
+            "sponsor": "Laravel Community",
+            "year": 2014,
+            "image": "18-liona.jpg"
+        },
+        {
             "id": 19,
-			"name": "MurPHPy",
-			"description": "AmsterdamPHP",
-			"sponsor": "AmsterdamPHP Community",
-			"year": 2014,
-			"image": "https://i.imgur.com/GdFxJmk.jpg"
-		},
-		{
+            "name": "MurPHPy",
+            "description": "AmsterdamPHP",
+            "sponsor": "AmsterdamPHP Community",
+            "year": 2014,
+            "image": "19-murphpy.jpg"
+        },
+        {
             "id": 20,
-			"name": "Phil Snow",
-			"description": "ConFoo Web Techno Conference",
-			"sponsor": "ConFoo",
-			"year": 2015,
-			"image": "https://i.imgur.com/ScAUBku.jpg"
-		},
-		{
+            "name": "Phil Snow",
+            "description": "ConFoo Web Techno Conference",
+            "sponsor": "ConFoo",
+            "year": 2015,
+            "image": "20-phil-snow.jpg"
+        },
+        {
             "id": 21,
-			"name": "Symfony 10 Years",
-			"description": "Symfony Framework",
-			"sponsor": "Sensio Labs",
-			"year": 2015,
-			"image": "https://i.imgur.com/QGEJuKi.jpg"
-		},
-		{
+            "name": "Symfony 10 Years",
+            "description": "Symfony Framework",
+            "sponsor": "Sensio Labs",
+            "year": 2015,
+            "image": "21-symfony-10-years.jpg"
+        },
+        {
             "id": 22,
-			"name": "Symfony Black",
-			"description": "Symfony Framework",
-			"sponsor": "Sensio Labs",
-			"year": 2016,
-			"image": "https://i.imgur.com/2OyDp0x.jpg"
-		},
-		{
+            "name": "Symfony Black",
+            "description": "Symfony Framework",
+            "sponsor": "Sensio Labs",
+            "year": 2016,
+            "image": "22-symfony-black.jpg"
+        },
+        {
             "id": 23,
-			"name": "Cody Blou",
-			"description": "Shopware",
-			"sponsor": "shopware AG",
-			"year": 2016,
-			"image": "https://i.imgur.com/hnA7mQj.jpg"
-		},
-		{
+            "name": "Cody Blou",
+            "description": "Shopware",
+            "sponsor": "shopware AG",
+            "year": 2016,
+            "image": "23-cody-blou.jpg"
+        },
+        {
             "id": 24,
-			"name": "Echo",
-			"description": "Globalis",
-			"sponsor": "Globalis",
-			"year": 2016,
-			"image": "https://i.imgur.com/neaYNal.jpg"
-		},
-		{
+            "name": "Echo",
+            "description": "Globalis",
+            "sponsor": "Globalis",
+            "year": 2016,
+            "image": "24-echo.jpg"
+        },
+        {
             "id": 25,
-			"name": "Dutch PHP",
-			"description": "Dutch PHP Conference",
-			"sponsor": "ibuildings",
-			"year": 2016,
-			"image": "https://i.imgur.com/76e8OrY.jpg"
-		},
-		{
+            "name": "Dutch PHP",
+            "description": "Dutch PHP Conference",
+            "sponsor": "ibuildings",
+            "year": 2016,
+            "image": "25-dutch-php.jpg"
+        },
+        {
             "id": 26,
-			"name": "Enfys",
-			"description": "Rainbow",
-			"sponsor": "PHPDiversity",
-			"year": 2016,
-			"image": "https://i.imgur.com/Obhl3Pc.jpg"
-		},
-		{
+            "name": "Enfys",
+            "description": "Rainbow",
+            "sponsor": "PHPDiversity",
+            "year": 2016,
+            "image": "26-enfys.jpg"
+        },
+        {
             "id": 27,
-			"name": "Chloe",
-			"description": "Roave",
-			"sponsor": "Roave",
-			"year": 2017,
-			"image": "https://i.imgur.com/hONZLkE.jpg"
-		},
-		{
+            "name": "Chloe",
+            "description": "Roave",
+            "sponsor": "Roave",
+            "year": 2017,
+            "image": "27-chloe.jpg"
+        },
+        {
             "id": 28,
-			"name": "AFUP",
-			"description": "AFUP",
-			"sponsor": "AFUP",
-			"year": 2017,
-			"image": "https://i.imgur.com/vWvVaHG.jpg"
-		},
-		{
+            "name": "AFUP",
+            "description": "AFUP",
+            "sponsor": "AFUP",
+            "year": 2017,
+            "image": "28-afup.jpg"
+        },
+        {
             "id": 29,
-			"name": "CakePHP",
-			"description": "CakePHP Framework",
-			"sponsor": "CakePHP",
-			"year": 2017,
-			"image": "https://i.imgur.com/CKkne1L.jpg"
-		},
-		{
+            "name": "CakePHP",
+            "description": "CakePHP Framework",
+            "sponsor": "CakePHP",
+            "year": 2017,
+            "image": "29-cakephp.jpg"
+        },
+        {
             "id": 30,
-			"name": "CakeSF",
-			"description": "Cake Software Foundation",
-			"sponsor": "CakePHP",
-			"year": 2017,
-			"image": "https://i.imgur.com/RYFA3OB.jpg"
-		},
-		{
+            "name": "CakeSF",
+            "description": "Cake Software Foundation",
+            "sponsor": "CakePHP",
+            "year": 2017,
+            "image": "30-cakesf.jpg"
+        },
+        {
             "id": 31,
-			"name": "Hero",
-			"description": "Heroku",
-			"sponsor": "Heroku",
-			"year": 2017,
-			"image": "https://afieldguidetoelephpants.net/photos/purple-heroku-0-400x300.jpg"
-		},
-		{
+            "name": "Hero",
+            "description": "Heroku",
+            "sponsor": "Heroku",
+            "year": 2017,
+            "image": "31-hero.jpg"
+        },
+        {
             "id": 32,
-			"name": "Magento",
-			"description": "Magento",
-			"sponsor": "Magento",
-			"year": 2017,
-			"image": "https://i.imgur.com/dKPuWqf.jpg"
-		},
-		{
+            "name": "Magento",
+            "description": "Magento",
+            "sponsor": "Magento",
+            "year": 2017,
+            "image": "32-magento.jpg"
+        },
+        {
             "id": 33,
-			"name": "Jorvik",
-			"description": "PHP Yorkshire",
-			"sponsor": "PHP Yorkshire Conference",
-			"year": 2018,
-			"image": "https://i.imgur.com/qeGMb4X.jpg"
-		},
-		{
+            "name": "Jorvik",
+            "description": "PHP Yorkshire",
+            "sponsor": "PHP Yorkshire Conference",
+            "year": 2018,
+            "image": "33-jorvik.jpg"
+        },
+        {
             "id": 34,
-			"name": "Pollita",
-			"description": "PHP Roundtable",
-			"sponsor": "PHP Roundtable Podcast",
-			"year": 2018,
-			"image": "https://i.imgur.com/PEaN8ji.jpg"
-		},
-		{
+            "name": "Pollita",
+            "description": "PHP Roundtable",
+            "sponsor": "PHP Roundtable Podcast",
+            "year": 2018,
+            "image": "34-pollita.jpg"
+        },
+        {
             "id": 35,
-			"name": "Luxy",
-			"description": "PHPBenelux",
-			"sponsor": "PHPBenelux Conference",
-			"year": 2019,
-			"image": "https://i.imgur.com/lKgc9oQ.jpg"
-		},
-		{
+            "name": "Luxy",
+            "description": "PHPBenelux",
+            "sponsor": "PHPBenelux Conference",
+            "year": 2019,
+            "image": "35-luxy.jpg"
+        },
+        {
             "id": 36,
-			"name": "Unity",
-			"description": "Darkmira Tour PHP 2019",
-			"sponsor": "Darkmira Tour PHP",
-			"year": 2019,
-			"image": "https://i.imgur.com/SE5cbND.jpg"
-		},
-		{
+            "name": "Unity",
+            "description": "Darkmira Tour PHP 2019",
+            "sponsor": "Darkmira Tour PHP",
+            "year": 2019,
+            "image": "36-unity.jpg"
+        },
+        {
             "id": 37,
-			"name": "Molly",
-			"description": "PHP Woolly Mammoth",
-			"sponsor": "Peter Meth / Softer Software",
-			"year": 2015,
-			"image": "https://i.imgur.com/gUP8PY9.jpg"
-		},
-		{
+            "name": "Molly",
+            "description": "PHP Woolly Mammoth",
+            "sponsor": "Peter Meth \/ Softer Software",
+            "year": 2015,
+            "image": "37-molly.jpg"
+        },
+        {
             "id": 38,
-			"name": "pHackyderm",
-			"description": "HHVM",
-			"sponsor": "Facebook",
-			"year": 2015,
-			"image": "https://afieldguidetoelephpants.net/photos/gray-hack-0-400x300.jpg"
-		},
+            "name": "pHackyderm",
+            "description": "HHVM",
+            "sponsor": "Facebook",
+            "year": 2015,
+            "image": "38-phackyderm.jpg"
+        },
         {
             "id": 39,
             "name": "PHPers",
             "description": "PHPers Summit 2019",
             "sponsor": "PHPers Poland",
             "year": 2019,
-            "image": "https://i.imgur.com/FSA2VSy.jpg"
+            "image": "39-phpers.jpg"
         },
         {
             "id": 40,
@@ -318,7 +318,7 @@
             "description": "PHPCE 2018",
             "sponsor": "PHPCE Conference",
             "year": 2018,
-            "image": "https://i.imgur.com/1tWLr4F.jpg"
+            "image": "40-phpce.jpg"
         },
         {
             "id": 41,
@@ -326,7 +326,7 @@
             "description": "PHPClasses",
             "sponsor": "PHPClasses",
             "year": 2018,
-            "image": "https://i.imgur.com/CAcVz75.jpg"
+            "image": "41-phpclasses.jpg"
         },
         {
             "id": 42,
@@ -334,7 +334,7 @@
             "description": "Check24",
             "sponsor": "Check24",
             "year": 2019,
-            "image": "https://i.imgur.com/oBDJr8A.jpg"
+            "image": "42-jephpry.jpg"
         },
         {
             "id": 43,
@@ -342,7 +342,7 @@
             "description": "PhpStorm elephpant",
             "sponsor": "JetBrains",
             "year": 2019,
-            "image": "https://i.imgur.com/4mpyw1R.jpg"
+            "image": "43-phpstorm-elephpant.jpg"
         },
         {
             "id": 44,
@@ -350,7 +350,7 @@
             "description": "Linux for PHP",
             "sponsor": "Linux for PHP",
             "year": 2019,
-            "image": "https://i.imgur.com/4sBDRku.png"
+            "image": "44-cloudy.png"
         },
         {
             "id": 45,
@@ -358,7 +358,7 @@
             "description": "PHPConPoland",
             "sponsor": "PHP Conference Poland",
             "year": 2019,
-            "image": "https://i.imgur.com/QIyckVs.jpg"
+            "image": "45-janusz.jpg"
         },
         {
             "id": 46,
@@ -366,7 +366,7 @@
             "description": "SymfonyCon 2019",
             "sponsor": "Sensio Labs",
             "year": 2019,
-            "image": "https://i.imgur.com/i2l6RaL.jpg"
+            "image": "46-symfony-gray.jpg"
         },
         {
             "id": 47,
@@ -374,7 +374,7 @@
             "description": "PHP Conference Japan 2019",
             "sponsor": "PHP Conference Japan",
             "year": 2019,
-            "image": "https://i.imgur.com/igXXRjk.jpg"
+            "image": "47-phpcon.jpg"
         },
         {
             "id": 48,
@@ -382,7 +382,7 @@
             "description": "CakeDC",
             "sponsor": "CakePHP",
             "year": 2019,
-            "image": "https://i.imgur.com/qyUrE24.jpg"
+            "image": "48-cakedc.jpg"
         },
         {
             "id": 49,
@@ -390,23 +390,23 @@
             "description": "CakeFest 2019",
             "sponsor": "CakePHP",
             "year": 2019,
-            "image": "https://i.imgur.com/t415Exl.jpg"
+            "image": "49-cakefest.jpg"
         },
-		{
+        {
             "id": 50,
-			"name": "Cody Vuelette",
-			"description": "Shopware",
-			"sponsor": "Shopware AG",
-			"year": 2019,
-			"image": "https://i.imgur.com/vzTvrOe.jpg"
-		},
+            "name": "Cody Vuelette",
+            "description": "Shopware",
+            "sponsor": "Shopware AG",
+            "year": 2019,
+            "image": "50-cody-vuelette.jpg"
+        },
         {
             "id": 51,
             "name": "PHPCon Grandpa",
             "description": "PHPCon Poland 2015",
             "sponsor": "PHP Conference Poland",
             "year": 2015,
-            "image": "https://i.imgur.com/s5KH2MZ.jpg"
+            "image": "51-phpcon-grandpa.jpg"
         },
         {
             "id": 52,
@@ -414,7 +414,7 @@
             "description": "Golden 20 year PHP elePHPant",
             "sponsor": "Opengoodies",
             "year": 2015,
-            "image": "https://i.imgur.com/eHle0nW.png"
+            "image": "52-golden-elephpant.png"
         },
         {
             "id": 53,
@@ -422,7 +422,7 @@
             "description": "Hand-crafted by V. Fanzutti for the Kenya PHP User Group",
             "sponsor": "AFUP",
             "year": 2015,
-            "image": "https://afieldguidetoelephpants.net/photos/multicolored-haphpy-0-400x300.jpg"
+            "image": "53-haphpy.jpg"
         },
         {
             "id": 54,
@@ -430,7 +430,7 @@
             "description": "Upinside School",
             "sponsor": "Upinside School",
             "year": 2020,
-            "image": "https://i.imgur.com/RHtjTMH.png"
+            "image": "54-upinside.png"
         },
         {
             "id": 55,
@@ -438,7 +438,7 @@
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
             "year": 2020,
-            "image": "https://i.imgur.com/evMrHAZ.jpg"
+            "image": "55-sylius.jpg"
         },
         {
             "id": 56,
@@ -446,7 +446,7 @@
             "description": "Le foo du roi: \"The Joker\"",
             "sponsor": "ConFoo.ca",
             "year": 2020,
-            "image": "https://i.imgur.com/hstKesm.jpeg"
+            "image": "56-the-joker.jpg"
         },
         {
             "id": 57,
@@ -454,7 +454,7 @@
             "description": "Symfony Framework 15 Years",
             "sponsor": "Sensio Labs",
             "year": 2020,
-            "image": "https://i.imgur.com/Rf83eVv.png"
+            "image": "57-symfony-15-years.png"
         },
         {
             "id": 58,
@@ -462,7 +462,7 @@
             "description": "phpday conference mascotte",
             "sponsor": "GrUSP",
             "year": 2020,
-            "image": "https://i.imgur.com/Jb0NPxw.jpg"
+            "image": "58-aida.jpg"
         },
         {
             "id": 59,
@@ -470,7 +470,7 @@
             "description": "Docler",
             "sponsor": "Docler Holding",
             "year": 2020,
-            "image": "https://i.imgur.com/0lpETXn.jpg"
+            "image": "59-docler.jpg"
         },
         {
             "id": 60,
@@ -478,7 +478,7 @@
             "description": "PHP8 ElePHPant",
             "sponsor": "@faguo & @Elroubio",
             "year": 2020,
-            "image": "https://i.imgur.com/HzEPBYr.jpg"
+            "image": "60-inphpinity.jpg"
         },
         {
             "id": 61,
@@ -486,7 +486,7 @@
             "description": "SiteGround elePHPant",
             "sponsor": "SiteGround",
             "year": 2020,
-            "image": "https://i.imgur.com/mM9XJQg.jpeg"
+            "image": "61-groundy.jpg"
         },
         {
             "id": 62,
@@ -494,7 +494,7 @@
             "description": "PHPVegas",
             "sponsor": "PHP Vegas User Group",
             "year": 2018,
-            "image": "https://i.imgur.com/W7249K3.jpg"
+            "image": "62-phplashy.jpg"
         },
         {
             "id": 63,
@@ -502,7 +502,7 @@
             "description": "Kellerkinder",
             "sponsor": "Die Kellerkinder",
             "year": 2021,
-            "image": "https://i.imgur.com/TS0sGD6.jpg"
+            "image": "63-kellerkinder.jpg"
         },
         {
             "id": 64,
@@ -510,7 +510,7 @@
             "description": "Office Partner Elephpant",
             "sponsor": "Office Partner",
             "year": 2022,
-            "image": "https://i.imgur.com/iFuNqIN.jpeg"
+            "image": "64-phpartner.jpg"
         },
         {
             "id": 65,
@@ -518,7 +518,7 @@
             "description": "Mollie",
             "sponsor": "Mollie",
             "year": 2021,
-            "image": "https://i.imgur.com/NScLVf1.jpg"
+            "image": "65-mollie.jpg"
         },
         {
             "id": 66,
@@ -526,15 +526,15 @@
             "description": "KaraFun",
             "sponsor": "KaraFun",
             "year": 2022,
-            "image": "https://i.imgur.com/0TuGGoj.jpg"
+            "image": "66-karafun.jpg"
         },
         {
-            "id":67,
+            "id": 67,
             "name": "Thelia",
             "description": "Thelia",
             "sponsor": "OpenStudio",
             "year": 2021,
-            "image": "https://i.imgur.com/3FMfQgI.jpg"
+            "image": "67-thelia.jpg"
         },
         {
             "id": 68,
@@ -542,15 +542,15 @@
             "description": "I'm a php[architect]",
             "sponsor": "php[architect]",
             "year": 2022,
-            "image": "https://i.imgur.com/Qvih5lO.jpg"
+            "image": "68-archie.jpg"
         },
         {
-            "id":69,
+            "id": 69,
             "name": "Dutchie",
             "description": "DLF ElePHPant",
             "sponsor": "Dutch Laravel Foundation",
             "year": 2022,
-            "image": "https://i.imgur.com/A6LkosP.jpeg"
+            "image": "69-dutchie.jpg"
         },
         {
             "id": 70,
@@ -558,7 +558,7 @@
             "description": "Vonage",
             "sponsor": "Vonage",
             "year": 2022,
-            "image": "https://i.imgur.com/wpTzpD6.jpg"
+            "image": "70-alex.jpg"
         },
         {
             "id": 71,
@@ -566,7 +566,7 @@
             "description": "Notive",
             "sponsor": "Notive",
             "year": 2023,
-            "image": "https://i.imgur.com/1v3fTUc.jpg"
+            "image": "71-notive.jpg"
         }
     ]
 }

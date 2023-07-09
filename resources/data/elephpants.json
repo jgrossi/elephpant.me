@@ -567,6 +567,14 @@
             "sponsor": "Notive",
             "year": 2023,
             "image": "71-notive.jpg"
+        },
+        {
+            "id": 72,
+            "name": "Yomeva",
+            "description": "Yomeva 10th Anniversary",
+            "sponsor": "Yomeva",
+            "year": 2023,
+            "image": "72-yomeva.png"
         }
     ]
 }

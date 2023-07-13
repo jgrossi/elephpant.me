@@ -575,6 +575,14 @@
             "sponsor": "Yomeva",
             "year": 2023,
             "image": "72-yomeva.png"
+        },
+        {
+            "id": 73,
+            "name": "CMGT",
+            "description": "ElePHPant for Alumni",
+            "sponsor": "CMGT",
+            "year": 2022,
+            "image": "72-cmgt.jpeg"
         }
     ]
 }

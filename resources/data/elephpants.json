@@ -567,6 +567,14 @@
             "sponsor": "Notive",
             "year": 2023,
             "image": "71-notive.jpg"
+        },
+        {
+            "id": 74,
+            "name": "Aubrey",
+            "description": "LaraconUS 2023",
+            "sponsor": "Laravel Community",
+            "year": 2023,
+            "image": "74-aubrey.jpg"
         }
     ]
 }

@@ -14,8 +14,6 @@ class ReadElephpants extends Command
 
     public function handle(): void
     {
-        ini_set('memory_limit', '512M');
-
         $jsonFile = resource_path('data/elephpants.json');
         $elephpants = json_decode(file_get_contents($jsonFile))->elephpants;
 

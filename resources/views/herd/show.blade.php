@@ -20,11 +20,16 @@
                                     <span class="ml-1">{!! $flag !!}</span>
                                 @endif
                             </div>
-                            <div>
-                                @if($user->twitter)
-                                    <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a>
-                                @endif
-                            </div>
+                            @if($user->twitter)
+                                <div>
+                                    Twitter: <a href="https://twitter.com/{{ $user->twitter }}" target="_blank">{{ '@' . $user->twitter }}</a>
+                                </div>
+                            @endif
+                            @if($user->mastodon)
+                                <div>
+                                    Mastodon: <a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ $user->mastodon }}</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

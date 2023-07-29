@@ -10,6 +10,9 @@
                 {{ $elephpant->description }}<br>
                 <strong>{{ $elephpant->sponsor }}</strong><br>
                 {{ $elephpant->year }}
+                @if ($elephpant->prototype)
+                    <strong>&bull; Prototype Only</strong>
+                @endif
             </p>
         </div>
     </div>

@@ -27,7 +27,7 @@ class ReadElephpants extends Command
                         'sponsor' => $elephpant->sponsor,
                         'year' => (int)$elephpant->year,
                         'image' => $this->processImage($elephpant),
-                        'prototype' => $elephpant->prototype ?: 0
+                        'prototype' => $elephpant->prototype
                     ]
                 );
         }

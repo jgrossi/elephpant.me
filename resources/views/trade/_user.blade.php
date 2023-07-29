@@ -7,12 +7,12 @@
             </strong>
             @if($user->twitter)
                 <div>
-                    <span class="text-muted"><a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a> on Twitter</span>
+                    <span class="text-muted"><a href="https://twitter.com/{{ $user->twitter }}" target="_blank">{{ '@' . $user->twitter }}</a> on Twitter</span>
                 </div>
             @endif
             @if($user->mastodon)
             <div>
-                <span class="text-muted"><a href="https://mastodon.social/{{ $user->mastodon }}">{{ '@' . $user->twitter }}</a> on Mastodon</span>
+                <span class="text-muted"><a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ '@' . $user->twitter }}</a> on Mastodon</span>
             </div>
             @endif
         </p>

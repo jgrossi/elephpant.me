@@ -12,7 +12,7 @@
             @endif
             @if($user->mastodon)
             <div>
-                <span class="text-muted"><a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ '@' . $user->twitter }}</a> on Mastodon</span>
+                <span class="text-muted"><a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ '@' . $user->mastodon }}</a> on Mastodon</span>
             </div>
             @endif
         </p>

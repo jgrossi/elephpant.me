@@ -21,6 +21,7 @@ class ProfileRequest extends FormRequest
             'country_code' => ['required', 'string', 'size:3'],
             'twitter' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
             'username' => ['required', 'string', Rule::unique('users')->ignore($this->user()->id)],
+            'mastodon' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
         ];
     }
 }

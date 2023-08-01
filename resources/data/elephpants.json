@@ -569,6 +569,22 @@
             "image": "71-notive.jpg"
         },
         {
+            "id": 72,
+            "name": "Yomeva",
+            "description": "Yomeva 10th Anniversary",
+            "sponsor": "Yomeva",
+            "year": 2023,
+            "image": "72-yomeva.png"
+        },
+        {
+            "id": 73,
+            "name": "CMGT",
+            "description": "ElePHPant for Alumni",
+            "sponsor": "CMGT",
+            "year": 2022,
+            "image": "73-cmgt.jpeg"
+        },
+        {
             "id": 74,
             "name": "Aubrey",
             "description": "Laracon US 2023",

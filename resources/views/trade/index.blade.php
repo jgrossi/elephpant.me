@@ -18,7 +18,7 @@
                                 @endforeach
                             </select>
                             <button type="submit" class="btn btn-primary">Change</button>
-                            <a href="?country={{ auth()->user()->country_code }}" class="btn btn-success">My Country</a>
+                            <a href="?country={{ auth()->user()->country_code }}" class="btn btn-secondary">Filter by My Country</a>
                         </form>
                     </div>
                     @if($country && !$countries->has($country))

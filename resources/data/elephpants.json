@@ -609,7 +609,7 @@
             "description": "I'm a php[architect]",
             "sponsor": "php[architect]",
             "year": 2022,
-            "image": "68-archie.jpg",
+            "image": "68-archie.png",
             "prototype": false
         },
         {
@@ -647,6 +647,22 @@
             "year": 2023,
             "image": "72-yomeva.png",
             "prototype": false
+        },
+        {
+            "id": 73,
+            "name": "CMGT",
+            "description": "ElePHPant for Alumni",
+            "sponsor": "CMGT",
+            "year": 2022,
+            "image": "73-cmgt.jpeg"
+        },
+        {
+            "id": 74,
+            "name": "Aubrey",
+            "description": "Laracon US 2023",
+            "sponsor": "Laravel Community",
+            "year": 2023,
+            "image": "74-aubrey.jpg"
         }
     ]
 }

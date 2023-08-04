@@ -18,11 +18,7 @@
                 @include('elephpant._single_box', compact('elephpant'))
             @endforeach
         @else
-            <div class="col">
-                <div class="alert alert-danger">
-                    Sorry, no Elephpants could be found that are relevant to your search term.
-                </div>
-            </div>
+            @include('partials._no_elephpants_found')
         @endif
     </div>
 </div>

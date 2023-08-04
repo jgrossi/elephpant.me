@@ -654,7 +654,8 @@
             "description": "ElePHPant for Alumni",
             "sponsor": "CMGT",
             "year": 2022,
-            "image": "73-cmgt.jpeg"
+            "image": "73-cmgt.jpeg",
+            "prototype": false
         },
         {
             "id": 74,
@@ -662,7 +663,8 @@
             "description": "Laracon US 2023",
             "sponsor": "Laravel Community",
             "year": 2023,
-            "image": "74-aubrey.jpg"
+            "image": "74-aubrey.jpg",
+            "prototype": false
         }
     ]
 }

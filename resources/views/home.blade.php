@@ -15,13 +15,19 @@
     @endguest
 </div>
 <div class="container">
-    <div class="lead text-center mb-4">
-        <strong>Total of existent species:</strong> {{ count($elephpants) }}
-    </div>
+    @include('partials._search')
     <div class="row">
-        @foreach($elephpants as $key => $elephpant)
-            @include('elephpant._single_box', compact('elephpant'))
-        @endforeach
+        @if($elephpants->count())
+            @foreach($elephpants as $key => $elephpant)
+                @include('elephpant._single_box', compact('elephpant'))
+            @endforeach
+        @else
+            <div class="col">
+                <div class="alert alert-danger">
+                    Sorry, no Elephpants could be found that are relevant to your search term.
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 @endsection

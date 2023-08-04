@@ -3,7 +3,6 @@
         <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" class="card-img-top" alt="{{ $elephpant->name }}">
         <div class="card-body">
             <h5 class="card-title">
-                #{{ isset($key) ? count($elephpants) - $key : $elephpant->id }} -
                 {{ $elephpant->name }}
             </h5>
             <p class="card-text">

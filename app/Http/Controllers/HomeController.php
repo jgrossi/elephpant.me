@@ -8,8 +8,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $elephpants = Elephpant::query()->withoutGlobalScope('nonPrototype')->orderBy('year', 'desc')->orderBy('id', 'desc')->get();
-
+        $elephpants = Elephpant::query()
+            ->withCount('users')
+            ->withoutGlobalScope('nonPrototype')
+            ->orderBy('year', 'desc')
+            ->orderBy('id', 'desc')
+            ->get();
+        
         return view('home', compact('elephpants'));
     }
 }

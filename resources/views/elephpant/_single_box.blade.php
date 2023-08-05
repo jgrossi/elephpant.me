@@ -9,9 +9,11 @@
             <p class="card-text">
                 {{ $elephpant->description }}<br>
                 <strong>{{ $elephpant->sponsor }}</strong><br>
-                {{ $elephpant->year }}
+                {{ $elephpant->year }}<br>
                 @if ($elephpant->prototype)
-                    <strong>&bull; Prototype Only</strong>
+                    <strong>Prototype Only</strong>
+                @else
+                    <strong>{{ $elephpant->users_count }} {{ Str::plural('owner', $elephpant->users_count) }}</strong>
                 @endif
             </p>
         </div>

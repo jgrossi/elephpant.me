@@ -37,7 +37,7 @@
                             <table class="table table-striped table-bordered table-responsive-sm mb-0">
                                 <thead>
                                 <tr>
-                                    <th scope="col" width="7%" class="text-center">#</th>
+                                    <th scope="col" width="7%" class="text-center">Rank</th>
                                     <th scope="col" width="30%">Name</th>
                                     <th scope="col">Country</th>
                                     <th scope="col" width="10%" class="text-center">Unique</th>

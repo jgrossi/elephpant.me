@@ -21,6 +21,7 @@
                         <table class="table table-striped table-bordered table-responsive-sm mb-0">
                             <thead>
                             <tr>
+                                <th scope="col" width="7%" class="text-center align-middle">#</th>
                                 <th scope="col" width="48%" class=" align-middle">Name</th>
                                 <th scope="col" width="15%" class="text-center align-middle">Ownership*</th>
                                 <th scope="col" width="15%" class="text-center align-middle">Users</th>
@@ -30,6 +31,7 @@
                             <tbody>
                             @foreach($elephpants as $key => $elephpant)
                                 <tr>
+                                    <td class="text-center align-middle">{{ $key + 1 }}</td>
                                     <td>
                                         <span class="font-weight-bold">{{ $elephpant->name }}</span>
                                         <span>- {{ $elephpant->description }}</span>

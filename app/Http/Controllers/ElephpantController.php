@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class ElephpantController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $elephpants = Elephpant::query()
+            ->filter($request)
             ->withCount('users')
             ->withoutGlobalScope('nonPrototype')
             ->orderBy('year', 'desc')

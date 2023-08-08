@@ -15,16 +15,18 @@
     @endguest
 </div>
 <div class="container">
-    <div class="lead">
-        <strong>Total of existent species:</strong> {{ count($elephpants) }}
-    </div>
+    @include('partials._search')
     <p class="mb-4">
         ElePHPants marked as <strong>Prototype Only</strong> are for reference and cannot be added to your herd or traded with other users as they were never mass produced.
     </p>
     <div class="row">
-        @foreach($elephpants as $key => $elephpant)
-            @include('elephpant._single_box', compact('elephpant'))
-        @endforeach
+        @if($elephpants->count())
+            @foreach($elephpants as $key => $elephpant)
+                @include('elephpant._single_box', compact('elephpant'))
+            @endforeach
+        @else
+            @include('partials._no_elephpants_found')
+        @endif
     </div>
 </div>
 @endsection

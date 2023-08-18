@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Queries\CountriesQuery;
+use App\Queries\RankedUsersQuery;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -10,10 +11,8 @@ class ViewServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $query = $this->app->make(CountriesQuery::class);
-
-        $countries = $query->fetchAll()
-            ->mapWithKeys(function ($country) {
+        View::composer(['auth.register', 'profile.edit'], function ($view) {
+            $countries = (new CountriesQuery())->fetchAll()->mapWithKeys(function ($country) {
                 return [
                     $country['cca3'] => [
                         'name' => $country['name']['common'],
@@ -22,9 +21,21 @@ class ViewServiceProvider extends ServiceProvider
                 ];
             });
 
-        View::composer([
-            'ranking.index', 'trade._user', 'auth.register', 'herd.show', 'profile.edit'
-        ], function ($view) use ($countries) {
+            $view->with('countries', $countries);
+        });
+
+        View::composer(['ranking.index', 'trade._user', 'herd.show'], function ($view) {
+            $usersQuery = (new RankedUsersQuery)->fetchAll(null);
+            $countries = (new CountriesQuery())->fetchAll()->filter(function ($country) use ($usersQuery) {
+                return in_array($country['cca3'], $usersQuery->unique('country_code')->pluck('country_code')->toArray());
+            })->mapWithKeys(function ($country) {
+                return [
+                    $country['cca3'] => [
+                        'name' => $country['name']['common'],
+                        'flag' => $country['flag']['flag-icon'],
+                    ]
+                ];
+            });
             $view->with('countries', $countries);
         });
     }

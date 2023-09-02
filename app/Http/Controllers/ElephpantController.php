@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ElephpantController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $elephpants = Elephpant::query()->orderBy('year', 'desc')->orderBy('id', 'desc')->get();
+        $elephpants = Elephpant::query()->filter($request)->orderBy('year', 'desc')->orderBy('id', 'desc')->get();
 
         return view('elephpant.index', compact('elephpants'));
     }

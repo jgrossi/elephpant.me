@@ -38,9 +38,9 @@
                                         </span>
                                         @if (auth()->check())
                                             @if ($currentUserElephpants->contains($elephpant->id))
-                                            <i class="fa-solid fa-check mr-2 text-success"></i>
+                                            <span class="mr-2 text-success lead">✓</span>
                                             @else
-                                            <i class="fa-solid fa-x mr-2 text-danger"></i>
+                                            <span class="mr-2 text-danger lead">x</span>
                                             @endif
                                         @endif
                                         <span class="font-weight-bold">{{ $elephpant->name }}</span>
@@ -62,10 +62,10 @@
                         </p>
                         @if (auth()->check())
                         <p class="mb-0">
-                            <i class="fa-solid fa-check mr-2 text-success"></i> = Elephpant exists in your collection
+                            <span class="mr-2 text-success">✓</span> = ElePHPant exists in your collection
                         </p>
                         <p class="mb-0">
-                            <i class="fa-solid fa-x mr-2 text-danger"></i> = Elephpant does not exist in your collection
+                            <span class="mr-2 text-danger">x</span> = ElePHPant does not exist in your collection
                         </p>
                         @endif
                     </div>

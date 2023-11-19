@@ -591,6 +591,14 @@
             "sponsor": "Laravel Community",
             "year": 2023,
             "image": "74-aubrey.jpg"
+        },
+        {
+            "id": 75,
+            "name": "Dyflexis",
+            "description": "Dyflexis",
+            "sponsor": "Dyflexis",
+            "year": 2023,
+            "image": "75-dyflexis.jpg"
         }
     ]
 }

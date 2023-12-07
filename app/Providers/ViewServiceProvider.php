@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Queries\CountriesQuery;
-use App\Queries\RankedUsersQuery;
+use App\Queries\UsersCountryQuery;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,8 +24,8 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('countries', $countries);
         });
 
-        View::composer(['ranking.index', 'trade._user', 'herd.show', 'trade.index'], function ($view) {
-            $usersQuery = (new RankedUsersQuery)->fetchAll(null);
+        View::composer(['ranking.index', 'trade._user', 'herd.show'], function ($view) {
+            $usersQuery = (new UsersCountryQuery)->fetchAll();
             $countries = (new CountriesQuery())->fetchAll()->filter(function ($country) use ($usersQuery) {
                 return in_array($country['cca3'], $usersQuery->unique('country_code')->pluck('country_code')->toArray());
             })->mapWithKeys(function ($country) {

@@ -594,6 +594,14 @@
         },
         {
             "id": 75,
+            "name": "PHPClasses Pink",
+            "description": "PHPClasses",
+            "sponsor": "PHPClasses",
+            "year": 2020,
+            "image": "75-phpclasses-pink.png"
+        },
+        {
+            "id": 75,
             "name": "Flexy",
             "description": "Dyflexis",
             "sponsor": "Dyflexis",

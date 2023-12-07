@@ -32,11 +32,23 @@
                             @foreach($elephpants as $key => $elephpant)
                                 <tr>
                                     <td class="text-center align-middle">{{ $key + 1 }}</td>
-                                    <td>
+                                    <td class="align-middle">
+                                        <span href="javascript:void(0)" data-toggle="popover" data-content="<img src='{{ asset('storage/elephpants/' . $elephpant->image) }}' width='150'/>" data-placement="left" data-trigger="hover">
+                                            <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" width="50" alt="" class="img-thumbnail rounded img-fluid mr-3">
+                                        </span>
+                                        @if (auth()->check())
+                                            @if ($currentUserElephpants->contains($elephpant->id))
+                                            <span class="mr-2 text-success lead">✓</span>
+                                            @else
+                                            <span class="mr-2 text-danger lead">x</span>
+                                            @endif
+                                        @endif
                                         <span class="font-weight-bold">{{ $elephpant->name }}</span>
                                         <span>- {{ $elephpant->description }}</span>
                                     </td>
-                                    <td class="text-center align-middle">{{ round((($elephpant->nbElephpant/$nbUsersWithElephpant) * 100), 2) }}%</td>
+                                    <td class="text-center align-middle">
+                                        {{ round((($elephpant->nbElephpant/$nbUsersWithElephpant) * 100), 2) }}%
+                                    </td>
                                     <td class="text-center align-middle">{{ $elephpant->nbElephpant }}</td>
                                     <td class="text-center align-middle">{{ (int)$elephpant->totalElephpant }}</td>
                                 </tr>
@@ -45,7 +57,17 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        *User with at least 1 elePHPant in herd.
+                        <p class="mb-0">
+                            *User with at least 1 elePHPant in herd.
+                        </p>
+                        @if (auth()->check())
+                        <p class="mb-0">
+                            <span class="mr-2 text-success">✓</span> = ElePHPant exists in your collection
+                        </p>
+                        <p class="mb-0">
+                            <span class="mr-2 text-danger">x</span> = ElePHPant does not exist in your collection
+                        </p>
+                        @endif
                     </div>
                 </div>
             </div>

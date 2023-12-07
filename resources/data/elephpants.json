@@ -591,14 +591,6 @@
             "sponsor": "Laravel Community",
             "year": 2023,
             "image": "74-aubrey.jpg"
-        },
-        {
-            "id": 75,
-            "name": "PHPClasses Pink",
-            "description": "PHPClasses",
-            "sponsor": "PHPClasses",
-            "year": 2020,
-            "image": "75-phpclasses-pink.png"
         }
-    ]
+
 }

@@ -18,6 +18,7 @@ class StatisticsController extends Controller
             ->groupBy('elephpants.id')
             ->groupBy('elephpants.name')
             ->groupBy('elephpants.description')
+            ->groupBy('elephpants.image')
             ->get();
 
         $nbUsersWithElephpant = DB::table('elephpant_user')

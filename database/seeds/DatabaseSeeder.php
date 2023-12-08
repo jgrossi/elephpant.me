@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             'twitter' => 'john',
             'country_code' => 'USA',
             'password' => \Illuminate\Support\Facades\Hash::make('secret'),
+            'mastodon' => '@john@elephpant.me'
         ]);
 
         factory(\App\User::class, 50)->create();

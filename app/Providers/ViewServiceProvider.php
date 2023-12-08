@@ -24,7 +24,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('countries', $countries);
         });
 
-        View::composer(['ranking.index', 'trade._user', 'herd.show'], function ($view) {
+        View::composer(['ranking.index', 'trade._user', 'herd.show', 'trade.index'], function ($view) {
             $usersQuery = (new UsersCountryQuery)->fetchAll();
             $countries = (new CountriesQuery())->fetchAll()->filter(function ($country) use ($usersQuery) {
                 return in_array($country['cca3'], $usersQuery->unique('country_code')->pluck('country_code')->toArray());

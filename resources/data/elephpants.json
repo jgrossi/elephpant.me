@@ -607,6 +607,22 @@
             "sponsor": "Dyflexis",
             "year": 2023,
             "image": "76-dyflexis.jpg"
+        },
+        {
+            "id": 77,
+            "name": "PHPStan",
+            "description": "PHPStan",
+            "sponsor": "PHPStan",
+            "year": 2024,
+            "image": "77-phpstan.jpg"
+        },
+        {
+            "id": 78,
+            "name": "Eddie",
+            "description": "PHP UK",
+            "sponsor": "PHP UK",
+            "year": 2024,
+            "image": "78-phpuk.jpg"
         }
     ]
 }

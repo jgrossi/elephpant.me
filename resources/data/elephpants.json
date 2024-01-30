@@ -493,7 +493,7 @@
             "sponsor": "Monsieur Biz",
             "year": 2020,
             "image": "55-sylius.jpg",
-            "prototype": true
+            "prototype": false
         },
         {
             "id": 56,
@@ -663,7 +663,8 @@
             "description": "Laracon US 2023",
             "sponsor": "Laravel Community",
             "year": 2023,
-            "image": "74-aubrey.jpg"
+            "image": "74-aubrey.jpg",
+            "prototype": false
         },
         {
             "id": 75,
@@ -671,7 +672,8 @@
             "description": "PHPClasses",
             "sponsor": "PHPClasses",
             "year": 2020,
-            "image": "75-phpclasses-pink.png"
+            "image": "75-phpclasses-pink.png",
+            "prototype": false
         },
         {
             "id": 76,
@@ -679,7 +681,8 @@
             "description": "Dyflexis",
             "sponsor": "Dyflexis",
             "year": 2023,
-            "image": "76-dyflexis.jpg"
+            "image": "76-dyflexis.jpg",
+            "prototype": false
         },
         {
             "id": 77,
@@ -687,7 +690,8 @@
             "description": "PHPStan",
             "sponsor": "PHPStan",
             "year": 2024,
-            "image": "77-phpstan.jpg"
+            "image": "77-phpstan.jpg",
+            "prototype": false
         },
         {
             "id": 78,
@@ -695,7 +699,8 @@
             "description": "PHP UK",
             "sponsor": "PHP UK",
             "year": 2024,
-            "image": "78-phpuk.jpg"
+            "image": "78-phpuk.jpg",
+            "prototype": false
         }
     ]
 }

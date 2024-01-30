@@ -49,7 +49,9 @@ final class TradingUsersQuery
                 'elephpants',
                 'elephpantsToTrade' => $elephpantsQuery,
             ])
-
+            ->when(request()->has('country') && !empty(request()->get('country')), function ($query) {
+                return $query->where('country_code', request()->get('country'));
+            })
             ->whereHas('elephpantsToTrade', $elephpantsQuery)
             ->has('elephpantsToTrade')
             ->whereExists(function ($query) use ($authUserId) {

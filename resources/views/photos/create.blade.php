@@ -12,7 +12,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="url">Image URL</label>
-                        <input type="text" class="form-control" id="url" name="url" placeholder="https://i.imgur.com/h0bMonH.jpg">
+                        <input type="text" class="form-control" id="url" name="url" placeholder="https://www.example.com/photo.jpg">
                         <small class="form-text text-muted">Upload your photo to somewhere first.</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Save photo</button>

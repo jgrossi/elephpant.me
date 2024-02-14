@@ -20,11 +20,16 @@
                                     <span class="ml-1">{!! $flag !!}</span>
                                 @endif
                             </div>
-                            <div>
-                                @if($user->twitter)
-                                    <a href="https://twitter.com/{{ $user->twitter }}">{{ '@' . $user->twitter }}</a>
-                                @endif
-                            </div>
+                            @if($user->twitter)
+                                <div>
+                                    Twitter: <a href="https://twitter.com/{{ $user->twitter }}" target="_blank">{{ '@' . $user->twitter }}</a>
+                                </div>
+                            @endif
+                            @if($user->mastodon)
+                                <div>
+                                    Mastodon: <a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ $user->mastodon }}</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -70,4 +75,24 @@
             </div>
         </div>
     </div>
+    @if(!is_null($possibleTrades))
+        <div class="container pt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @if(count($possibleTrades))
+                        @foreach($possibleTrades as $user)
+                            <h2>
+                                <span class="text-muted">Possible trades with {{ $user->name }}</span>
+                            </h2>
+                            @include('trade._possible_deal')
+                        @endforeach
+                    @else
+                        <div class="alert alert-info">
+                            We didn't find any possible trade.
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

@@ -12,7 +12,28 @@ class TradeController extends Controller
         /** @var User $loggedUser */
         $loggedUser = auth()->user();
         $users = $query->fetchAll($loggedUser);
+        $country = request('country');
 
-        return view('trade.index', compact('users'));
+        return view('trade.index', compact('users', 'country'));
+    }
+
+    public function senders(int $elephpantId, TradingUsersQuery $query)
+    {
+        /** @var User $loggedUser */
+        $loggedUser = auth()->user();
+        $users = $query->fetchAllOnlyIfHeHasElephpant($loggedUser, $elephpantId);
+        $country = request('country');
+
+        return view('trade.index', compact('users', 'country'));
+    }
+
+    public function receivers(int $elephpantId, TradingUsersQuery $query)
+    {
+        /** @var User $loggedUser */
+        $loggedUser = auth()->user();
+        $users = $query->fetchAllWhoLackElephpant($loggedUser, $elephpantId);
+        $country = request('country');
+
+        return view('trade.index', compact('users', 'country'));
     }
 }

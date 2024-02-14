@@ -4,9 +4,9 @@ namespace App;
 
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class User extends Authenticatable
@@ -14,7 +14,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'country_code', 'twitter', 'username'
+        'name', 'email', 'password', 'country_code', 'twitter', 'username', 'mastodon'
     ];
 
     protected $hidden = [
@@ -72,7 +72,9 @@ class User extends Authenticatable
             return;
         }
 
-        $this->elephpants()->attach($elephpant->id, compact('quantity'));
+        if ($quantity > 0) {
+            $this->elephpants()->attach($elephpant->id, compact('quantity'));
+        }
     }
 
     /**
@@ -83,7 +85,7 @@ class User extends Authenticatable
     public function avatar(): string
     {
         if ($this->twitter) {
-            return 'https://twitter-avatar.now.sh/' . $this->twitter;
+            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->twitter);
         }
 
         if (Gravatar::exists($this->email)) {

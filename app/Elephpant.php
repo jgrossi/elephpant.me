@@ -16,6 +16,7 @@ class Elephpant extends Model
         'sponsor',
         'year',
         'image',
+        'size'
     ];
 
     public function users(): BelongsToMany

@@ -3,7 +3,7 @@
         <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" class="card-img-top" alt="{{ $elephpant->name }}">
         <div class="card-body">
             <h5 class="card-title">
-                {{ $elephpant->name }}
+                {{ $elephpant->name }}@if ($elephpant->size != 'small') {{ $elephpant->size }}@endif
             </h5>
             <p class="card-text">
                 {{ $elephpant->description }}<br>

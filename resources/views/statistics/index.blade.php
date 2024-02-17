@@ -43,7 +43,7 @@
                                             <span class="mr-2 text-danger lead">x</span>
                                             @endif
                                         @endif
-                                        <span class="font-weight-bold">{{ $elephpant->name }}</span>
+                                        <span class="font-weight-bold">{{ $elephpant->name }}@if ($elephpant->size != 'small') {{ $elephpant->size }}@endif</span>
                                         <span>- {{ $elephpant->description }}</span>
                                     </td>
                                     <td class="text-center align-middle">

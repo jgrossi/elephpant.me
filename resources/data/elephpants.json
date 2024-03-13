@@ -623,6 +623,14 @@
             "sponsor": "PHP UK",
             "year": 2024,
             "image": "78-phpuk.jpg"
+        },
+        {
+            "id": 79,
+            "name": "Ploi",
+            "description": "Ploi",
+            "sponsor": "Ploi",
+            "year": 2024,
+            "image": "79-ploi.jpg"
         }
     ]
 }

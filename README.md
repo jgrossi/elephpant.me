@@ -37,6 +37,13 @@
 - config file `.env`
 - create local database  
 
+#### Database
+
+```bash
+$ php artisan migrate
+$ php artisan db:seed # only for generating fake data locally
+```
+
 #### Backend
 
 ```bash
@@ -44,13 +51,6 @@ $ composer install
 $ php artisan key:generate
 $ php artisan elephpants:read
 $ php artisan storage:link
-```
-
-#### Database
-
-```bash
-$ php artisan migrate
-$ php artisan db:seed # only for generating fake data locally
 ```
 
 ---

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Elephpant;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -39,7 +40,9 @@ class ReadElephpants extends Command
             $image = Image::make($localImagePath);
             $image->fit(300);
             $imageName = sprintf('%d-%s.jpg', $elephpant->id, Str::slug($elephpant->name));
-            $image->save(storage_path(sprintf('app/public/elephpants/%s', $imageName)));
+            $filePath = storage_path(sprintf('app/public/elephpants/%s', $imageName));
+            File::makeDirectory(dirname($filePath), 0755, true, true);
+            $image->save($filePath);
             $this->output->write('.', false);
 
             return $imageName;

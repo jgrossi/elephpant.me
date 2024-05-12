@@ -1,0 +1,18 @@
+cp .env.example .env
+
+cat <<EOT >> .env
+
+### Added by ddev project-setup ###
+DB_CONNECTION="mysql"
+DB_HOST="db"
+DB_PORT="3306"
+DB_DATABASE="db"
+DB_USERNAME="db"
+DB_PASSWORD="db"
+EOT
+
+composer install
+php artisan migrate
+php artisan key:generate
+php artisan elephpants:read
+php artisan storage:link

@@ -33,6 +33,17 @@
 
 ### Installation
 
+### Using ddev
+
+Clone this repo.
+
+```bash
+ddev start
+ddev project-setup
+```
+
+Access the site on https://elephpantme.ddev.site
+
 #### Prerequisite
 - config file `.env`
 - create local database  

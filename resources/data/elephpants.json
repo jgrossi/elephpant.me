@@ -639,6 +639,14 @@
             "sponsor": "php[tek] 2024",
             "year": 2024,
             "image": "80-oscar.jpg"
+        },
+        {
+            "id": 81,
+            "name": "Savvy",
+            "description": "safefive",
+            "sponsor": "Paddox GmbH",
+            "year": 2024,
+            "image": "81-safefive.jpg"
         }
     ]
 }

@@ -31,6 +31,7 @@ class ReadElephpants extends Command
                     ]
                 );
         }
+        $this->output->write(PHP_EOL, false);
     }
 
     private function processImage(object $elephpant): ?string
@@ -44,7 +45,6 @@ class ReadElephpants extends Command
             File::makeDirectory(dirname($filePath), 0755, true, true);
             $image->save($filePath);
             $this->output->write('.', false);
-
             return $imageName;
         }
 

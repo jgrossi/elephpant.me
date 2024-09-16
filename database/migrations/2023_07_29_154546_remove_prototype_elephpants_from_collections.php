@@ -13,7 +13,7 @@ class RemovePrototypeElephpantsFromCollections extends Migration
      */
     public function up()
     {
-        DB::statement('DELETE FROM elephpant_user WHERE elephpant_id IN (52,53,55,62)');
+        DB::statement('DELETE FROM elephpant_user WHERE elephpant_id IN (52,53,55,62,77)');
     }
 
     /**

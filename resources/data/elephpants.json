@@ -691,7 +691,7 @@
             "sponsor": "PHPStan",
             "year": 2024,
             "image": "77-phpstan.jpg",
-            "prototype": false
+            "prototype": true
         },
         {
             "id": 78,

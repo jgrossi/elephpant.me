@@ -33,9 +33,27 @@
 
 ### Installation
 
+### Using ddev
+
+Clone this repo.
+
+```bash
+ddev start
+ddev project-setup
+```
+
+Access the site on https://elephpantme.ddev.site
+
 #### Prerequisite
 - config file `.env`
 - create local database  
+
+#### Database
+
+```bash
+$ php artisan migrate
+$ php artisan db:seed # only for generating fake data locally
+```
 
 #### Backend
 
@@ -44,13 +62,6 @@ $ composer install
 $ php artisan key:generate
 $ php artisan elephpants:read
 $ php artisan storage:link
-```
-
-#### Database
-
-```bash
-$ php artisan migrate
-$ php artisan db:seed # only for generating fake data locally
 ```
 
 ---

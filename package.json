@@ -13,7 +13,7 @@
         "axios": "^1.7",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-preset-env": "^1.7.0",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^5.0.0",
         "cross-env": "^5.1",
         "flag-icon-css": "^3.4.2",
         "jquery": "^3.2",

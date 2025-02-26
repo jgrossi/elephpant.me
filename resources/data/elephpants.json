@@ -647,6 +647,14 @@
             "sponsor": "Paddox GmbH",
             "year": 2024,
             "image": "81-safefive.jpg"
+        },
+        {
+            "id": 82,
+            "name": "Sentaur",
+            "description": "sentry.io",
+            "sponsor": "Sentry",
+            "year": 2025,
+            "image": "82-sentaur.jpg"
         }
     ]
 }

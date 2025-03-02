@@ -23,9 +23,11 @@ final class RankedUsersQuery
 
         $users = $userQuery
             ->join('elephpant_user', 'users.id', '=', 'elephpant_user.user_id')
+            ->join('elephpants', 'elephpants.id', '=', 'elephpant_user.elephpant_id')
             ->select($visibleFields)
             ->selectRaw('SUM(elephpant_user.quantity) AS elephpants_total')
             ->selectRaw('COUNT(DISTINCT elephpant_user.elephpant_id) AS elephpants_unique')
+            ->where('prototype', 0)
             ->groupBy($visibleFields)
             ->orderBy('elephpants_unique', 'desc')
             ->orderBy('elephpants_total', 'desc')

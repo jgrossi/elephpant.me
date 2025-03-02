@@ -12,5 +12,6 @@ $factory->define(Elephpant::class, function (Faker $faker) {
         'year' => (int)$faker->dateTimeBetween('-12 years', 'now')->format('Y'),
         'sponsor' => $faker->company,
         'image' => $faker->imageUrl(),
+        'prototype' => $faker->boolean(1)
     ];
 });

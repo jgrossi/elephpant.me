@@ -16,14 +16,16 @@
 </div>
 <div class="container">
     @include('partials._search')
-    <p class="mb-4">
-        ElePHPants marked as <strong>Prototype Only</strong> are for reference and cannot be added to your herd or traded with other users as they were never mass produced.
-    </p>
     <div class="row">
         @if($elephpants->count())
             @foreach($elephpants as $key => $elephpant)
                 @include('elephpant._single_box', compact('elephpant'))
             @endforeach
+            <div class="col-12">
+                <p class="mb-4">
+                    ElePHPants marked as <strong>Prototype Only</strong> are for reference and cannot be added to your herd or traded with other users as they were never mass produced.
+                </p>
+            </div>
         @else
             @include('partials._no_elephpants_found')
         @endif

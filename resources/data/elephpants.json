@@ -655,6 +655,14 @@
             "sponsor": "Sentry",
             "year": 2025,
             "image": "82-sentaur.jpg"
-        }
+        },
+        {
+            "id": 83,
+            "name": "Tony",
+            "description": "Tony",
+            "sponsor": "php[tek] 2025",
+            "year": 2025,
+            "image": "83-tony.jpg"
+        },
     ]
 }

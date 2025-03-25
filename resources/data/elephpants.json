@@ -664,5 +664,13 @@
             "year": 2025,
             "image": "83-tony.jpg"
         },
+        {
+            "id": 84,
+            "name": "Doggy",
+            "description": "datadog.com",
+            "sponsor": "Datadog",
+            "year": 2025,
+            "image": "84-doggy.jpg"
+        }
     ]
 }

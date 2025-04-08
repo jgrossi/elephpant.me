@@ -24,6 +24,10 @@ body {
     }
 }
 
+.card:target {
+    border: 2px solid rgba(0, 0, 0, 1);
+}
+
 .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;

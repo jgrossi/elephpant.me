@@ -17,7 +17,7 @@ class RemovePrototypeElephpantsFromCollections extends Migration
             DELETE eu
             FROM elephpant_user eu
             LEFT JOIN users u ON eu.user_id = u.id
-            WHERE elephpant_id IN (52,53,55,62,77)
+            WHERE elephpant_id IN (52,53,55,62)
             AND u.twitter != 'OGProgrammer';
         ");
     }

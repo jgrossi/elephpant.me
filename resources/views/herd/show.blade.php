@@ -9,7 +9,7 @@
                         <img
                             class="mr-3 rounded-circle"
                             src="{{ $user->avatar() }}"
-                            alt="{{ $user->name }} twitter avatar">
+                            alt="{{ $user->name }} avatar">
                         <div class="media-body">
                             <h1>
                                 <span class="text-muted">{{ $user->name }}</span>
@@ -20,14 +20,19 @@
                                     <span class="ml-1">{!! $flag !!}</span>
                                 @endif
                             </div>
-                            @if($user->twitter)
+                            @if($user->x_handle)
                                 <div>
-                                    Twitter: <a href="https://twitter.com/{{ $user->twitter }}" target="_blank">{{ '@' . $user->twitter }}</a>
+                                    X/Twitter: <a href="https://twitter.com/{{ $user->x_handle }}" target="_blank">{{ '@' . $user->x_handle }}</a>
                                 </div>
                             @endif
                             @if($user->mastodon)
                                 <div>
-                                    Mastodon: <a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ $user->mastodon }}</a>
+                                    Mastodon: <a href="{{ $user->mastodonUrl() }}" target="_blank">{{ $user->mastodon }}</a>
+                                </div>
+                            @endif
+                            @if($user->bluesky)
+                                <div>
+                                    Bluesky: <a href="{{ $user->blueskyUrl() }}" target="_blank">{{ $user->bluesky }}</a>
                                 </div>
                             @endif
                         </div>

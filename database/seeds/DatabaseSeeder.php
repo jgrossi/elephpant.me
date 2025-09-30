@@ -9,10 +9,11 @@ class DatabaseSeeder extends Seeder
         factory(\App\User::class)->create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
-            'twitter' => 'john',
+            'x_handle' => 'john',
+            'mastodon' => '@john@elephpant.me',
+            'bluesky' => '@john.bsky.social',
             'country_code' => 'USA',
             'password' => \Illuminate\Support\Facades\Hash::make('secret'),
-            'mastodon' => '@john@elephpant.me'
         ]);
 
         factory(\App\User::class, 50)->create();

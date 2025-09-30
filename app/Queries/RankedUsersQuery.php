@@ -19,7 +19,7 @@ final class RankedUsersQuery
             $userQuery->where('country_code', $country);
         }
 
-        $visibleFields = ['users.id', 'users.name', 'users.username', 'users.twitter', 'users.country_code'];
+        $visibleFields = ['users.id', 'users.name', 'users.username', 'users.x_handle', 'users.country_code'];
 
         $users = $userQuery
             ->join('elephpant_user', 'users.id', '=', 'elephpant_user.user_id')

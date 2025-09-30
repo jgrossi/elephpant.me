@@ -98,14 +98,14 @@
                             <hr>
 
                             <div class="form-group row">
-                                <label for="twitter" class="col-md-4 col-form-label text-md-right">{{ __('Twitter') }}</label>
+                                <label for="x_handle" class="col-md-4 col-form-label text-md-right">{{ __('X/Twitter') }}</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">@</span>
                                         </div>
-                                        <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ old('twitter', $user->twitter) }}" autocomplete="twitter">
-                                        @error('twitter')
+                                        <input id="x_handle" type="text" class="form-control @error('x_handle') is-invalid @enderror" name="x_handle" value="{{ old('x_handle', $user->x_handle) }}" autocomplete="x_handle">
+                                        @error('x_handle')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -123,6 +123,23 @@
                                         </div>
                                         <input id="mastodon" type="text" class="form-control @error('mastodon') is-invalid @enderror" name="mastodon" value="{{ old('mastodon', $user->mastodon) }}">
                                         @error('mastodon')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="bluesky" class="col-md-4 col-form-label text-md-right">{{ __('Bluesky') }}</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">@</span>
+                                        </div>
+                                        <input id="bluesky" type="text" class="form-control @error('bluesky') is-invalid @enderror" name="bluesky" value="{{ old('bluesky', $user->bluesky) }}">
+                                        @error('bluesky')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

@@ -14,7 +14,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'country_code', 'twitter', 'username', 'mastodon'
+        'name', 'email', 'password', 'country_code', 'x_handle', 'username', 'mastodon', 'bluesky'
     ];
 
     protected $hidden = [
@@ -84,8 +84,8 @@ class User extends Authenticatable
      */
     public function avatar(): string
     {
-        if ($this->twitter) {
-            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->twitter);
+        if ($this->x_handle) {
+            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->x_handle);
         }
 
         if (Gravatar::exists($this->email)) {
@@ -95,9 +95,45 @@ class User extends Authenticatable
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->name);
     }
 
+    public function mastodonUrl(): ?string
+    {
+        if (!$this->mastodon) {
+            return null;
+        }
+
+        $handle = $this->mastodon;
+
+        if (!Str::startsWith($handle, '@')) {
+            $handle = '@' . $handle;
+        }
+
+        $atCount = substr_count($handle, '@');
+
+        if ($atCount >= 2) {
+            $parts = explode('@', ltrim($handle, '@'));
+            $username = '@' . $parts[0];
+            $domain = $parts[1];
+
+            return "https://{$domain}/{$username}";
+        }
+
+        return 'https://mastodon.social/' . $handle;
+    }
+
+    public function blueskyUrl(): ?string
+    {
+        if (!$this->bluesky) {
+            return null;
+        }
+
+        $handle = ltrim($this->bluesky, '@');
+
+        return 'https://bsky.app/profile/' . $handle;
+    }
+
     public static function generateUsername(User $user): string
     {
-        $username = $user->twitter ?: Str::slug($user->name);
+        $username = $user->x_handle ?: Str::slug($user->name);
         $count = 1;
 
         while (User::whereUsername($username)->exists()) {

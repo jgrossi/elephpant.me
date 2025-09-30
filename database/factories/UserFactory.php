@@ -11,10 +11,11 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'twitter' => $faker->userName,
+        'x_handle' => $faker->userName,
+        'mastodon' => '@'.$faker->userName.'@elephpant.me',
+        'bluesky' => '@'.$faker->userName.'.bsky.social',
         'country_code' => $faker->randomElement(['NLD', 'USA', 'BRA', 'FRA']),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
-        'mastodon' => '@'.$faker->userName.'@elephpant.me',
     ];
 });

@@ -54,14 +54,14 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="twitter" class="col-md-4 col-form-label text-md-right">{{ __('Twitter') }}</label>
+                            <label for="x_handle" class="col-md-4 col-form-label text-md-right">{{ __('X/Twitter') }}</label>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">@</span>
                                     </div>
-                                    <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ old('twitter') }}" autocomplete="twitter">
-                                    @error('twitter')
+                                    <input id="x_handle" type="text" class="form-control @error('x_handle') is-invalid @enderror" name="x_handle" value="{{ old('x_handle') }}" autocomplete="x_handle">
+                                    @error('x_handle')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

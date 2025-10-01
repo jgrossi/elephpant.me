@@ -1,12 +1,21 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Photo;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Photo::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+/**
+ * @extends Factory<Photo>
+ */
+class PhotoFactory extends Factory
+{
+    protected $model = Photo::class;
+
+    public function definition(): array
+    {
+        return [
+            //
+        ];
+    }
+}

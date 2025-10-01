@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 class AddUsernameField extends Command
 {
     protected $signature = 'users:fix-username';
+
     protected $description = 'Fix users with missing username field';
 
     public function handle()

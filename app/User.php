@@ -3,7 +3,9 @@
 namespace App;
 
 use Creativeorange\Gravatar\Facades\Gravatar;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -11,19 +13,28 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'country_code', 'twitter', 'username', 'mastodon'
+        'name', 'email', 'password', 'country_code', 'x_handle', 'username', 'mastodon', 'bluesky',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
 
     public function scopeNotLoggedIn(Builder $query)
     {
@@ -79,29 +90,63 @@ class User extends Authenticatable
 
     /**
      * Get the user avatar URL.
-     *
-     * @return string
      */
     public function avatar(): string
     {
-        if ($this->twitter) {
-            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->twitter);
+        if ($this->x_handle) {
+            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->x_handle);
         }
 
         if (Gravatar::exists($this->email)) {
             return Gravatar::get($this->email);
         }
 
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name);
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name);
+    }
+
+    public function mastodonUrl(): ?string
+    {
+        if (! $this->mastodon) {
+            return null;
+        }
+
+        $handle = $this->mastodon;
+
+        if (! Str::startsWith($handle, '@')) {
+            $handle = '@'.$handle;
+        }
+
+        $atCount = substr_count($handle, '@');
+
+        if ($atCount >= 2) {
+            $parts = explode('@', ltrim($handle, '@'));
+            $username = '@'.$parts[0];
+            $domain = $parts[1];
+
+            return "https://{$domain}/{$username}";
+        }
+
+        return 'https://mastodon.social/'.$handle;
+    }
+
+    public function blueskyUrl(): ?string
+    {
+        if (! $this->bluesky) {
+            return null;
+        }
+
+        $handle = ltrim($this->bluesky, '@');
+
+        return 'https://bsky.app/profile/'.$handle;
     }
 
     public static function generateUsername(User $user): string
     {
-        $username = $user->twitter ?: Str::slug($user->name);
+        $username = $user->x_handle ?: Str::slug($user->name);
         $count = 1;
 
         while (User::whereUsername($username)->exists()) {
-            $username = $username . $count;
+            $username = $username.$count;
             $count++;
         }
 

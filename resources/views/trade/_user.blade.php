@@ -5,14 +5,19 @@
             <strong>
                 <a href="{{ route('herds.show', $user->username) }}">{{ $user->name }}</a>
             </strong>
-            @if($user->twitter)
+            @if($user->x_handle)
                 <div>
-                    <span class="text-muted"><a href="https://twitter.com/{{ $user->twitter }}" target="_blank">{{ '@' . $user->twitter }}</a> on Twitter</span>
+                    <span class="text-muted"><a href="https://twitter.com/{{ $user->x_handle }}" target="_blank">{{ '@' . $user->x_handle }}</a> on X/Twitter</span>
                 </div>
             @endif
             @if($user->mastodon)
             <div>
-                <span class="text-muted"><a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ '@' . $user->mastodon }}</a> on Mastodon</span>
+                <span class="text-muted"><a href="{{ $user->mastodonUrl() }}" target="_blank">{{ $user->mastodon }}</a> on Mastodon</span>
+            </div>
+            @endif
+            @if($user->bluesky)
+            <div>
+                <span class="text-muted"><a href="{{ $user->blueskyUrl() }}" target="_blank">{{ $user->bluesky }}</a> on Bluesky</span>
             </div>
             @endif
         </p>

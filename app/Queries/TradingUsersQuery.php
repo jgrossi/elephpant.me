@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Queries;
 
 use App\Elephpant;
-use App\Queries\TradingUsersQueryOption;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -13,7 +12,7 @@ final class TradingUsersQuery
 {
     private const USER_MATCHING_LIMIT = 5;
 
-    public function fetchAll(User $user, TradingUsersQueryOption $options = null, int $limit = self::USER_MATCHING_LIMIT)
+    public function fetchAll(User $user, ?TradingUsersQueryOption $options = null, int $limit = self::USER_MATCHING_LIMIT)
     {
         $userElephpants = $user->elephpants;
 
@@ -32,7 +31,7 @@ final class TradingUsersQuery
         return $traders;
     }
 
-    private function fetchTraders(Collection $userElephpants, TradingUsersQueryOption $options = null, int $limit)
+    private function fetchTraders(Collection $userElephpants, ?TradingUsersQueryOption $options, int $limit)
     {
         $userElephpants = $userElephpants->pluck('id');
 
@@ -41,7 +40,6 @@ final class TradingUsersQuery
             $this->handleTradingOptions($query, $options);
         };
 
-
         $authUserId = auth()->id();
 
         return User::query()
@@ -49,7 +47,7 @@ final class TradingUsersQuery
                 'elephpants',
                 'elephpantsToTrade' => $elephpantsQuery,
             ])
-            ->when(request()->has('country') && !empty(request()->get('country')), function ($query) {
+            ->when(request()->has('country') && ! empty(request()->get('country')), function ($query) {
                 return $query->where('country_code', request()->get('country'));
             })
             ->whereHas('elephpantsToTrade', $elephpantsQuery)
@@ -67,7 +65,7 @@ final class TradingUsersQuery
             ->from('elephpant_user', 'eu4')
             ->where('eu4.user_id', $authUserId)
             ->where('eu4.quantity', '>', 1)
-            ->whereNotExists(function ($query5) use ($authUserId) {
+            ->whereNotExists(function ($query5) {
                 // that the listed user doesn't have
                 $query5
                     ->from('elephpant_user', 'eu5')
@@ -88,7 +86,7 @@ final class TradingUsersQuery
         $traderElephpants = $trader->elephpants->pluck('id')->toArray();
 
         $interests = $userAvailable->filter(function (Elephpant $elephpant) use ($traderElephpants) {
-            return !in_array($elephpant->id, $traderElephpants);
+            return ! in_array($elephpant->id, $traderElephpants);
         });
 
         $trader->elephpantsInterested = $interests;
@@ -96,7 +94,7 @@ final class TradingUsersQuery
 
     private function handleTradingOptions($query, $options)
     {
-        if (!$options) {
+        if (! $options) {
             return;
         }
         if ($options->targetUserId) {
@@ -112,22 +110,25 @@ final class TradingUsersQuery
 
     public function fetchAllForUser(User $user, int $targetUserId)
     {
-        $tradeOptions = new TradingUsersQueryOption();
+        $tradeOptions = new TradingUsersQueryOption;
         $tradeOptions->targetUserId = $targetUserId;
+
         return $this->fetchAll($user, $tradeOptions);
     }
 
     public function fetchAllOnlyIfHeHasElephpant(User $user, int $elephpantId)
     {
-        $tradeOptions = new TradingUsersQueryOption();
+        $tradeOptions = new TradingUsersQueryOption;
         $tradeOptions->withSpareElephpantId = $elephpantId;
+
         return $this->fetchAll($user, $tradeOptions);
     }
 
     public function fetchAllWhoLackElephpant(User $user, int $elephpantId)
     {
-        $tradeOptions = new TradingUsersQueryOption();
+        $tradeOptions = new TradingUsersQueryOption;
         $tradeOptions->lackElephpantId = $elephpantId;
+
         return $this->fetchAll($user, $tradeOptions);
     }
 

@@ -1,16 +1,25 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Elephpant;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Elephpant::class, function (Faker $faker) {
-    return [
-        'name' => $faker->firstName,
-        'popular_name' => $faker->name,
-        'year' => (int)$faker->dateTimeBetween('-12 years', 'now')->format('Y'),
-        'sponsor' => $faker->company,
-        'image' => $faker->imageUrl(),
-    ];
-});
+/**
+ * @extends Factory<Elephpant>
+ */
+class ElephpantFactory extends Factory
+{
+    protected $model = Elephpant::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->firstName(),
+            'popular_name' => fake()->name(),
+            'year' => (int) fake()->dateTimeBetween('-12 years', 'now')->format('Y'),
+            'sponsor' => fake()->company(),
+            'image' => fake()->imageUrl(),
+        ];
+    }
+}

@@ -30,7 +30,7 @@ final class RankedUsersQuery
             ->orderBy('elephpants_unique', 'desc')
             ->orderBy('elephpants_total', 'desc')
             ->orderBy('users.name', 'asc')
-            ->limit(static::LIMIT)
+            ->limit(self::LIMIT)
             ->get();
 
         foreach ($users as $user) {

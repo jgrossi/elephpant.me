@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Queries\TradingUsersQuery;
 use App\Queries\ElephpantsQuery;
+use App\Queries\TradingUsersQuery;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,9 +43,9 @@ class HerdController extends Controller
                 }
             }
         }
+
         return $tradePossibilites;
     }
-
 
     public function show(string $username, TradingUsersQuery $query)
     {

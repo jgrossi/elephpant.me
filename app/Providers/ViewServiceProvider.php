@@ -12,12 +12,12 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['auth.register', 'profile.edit'], function ($view) {
-            $countries = (new CountriesQuery())->fetchAll()->mapWithKeys(function ($country) {
+            $countries = (new CountriesQuery)->fetchAll()->mapWithKeys(function ($country) {
                 return [
-                    $country['cca3'] => [
+                    $country['cca3'] => collect([
                         'name' => $country['name']['common'],
                         'flag' => $country['flag']['flag-icon'],
-                    ]
+                    ]),
                 ];
             });
 
@@ -26,14 +26,14 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer(['ranking.index', 'trade._user', 'herd.show', 'trade.index'], function ($view) {
             $usersQuery = (new UsersCountryQuery)->fetchAll();
-            $countries = (new CountriesQuery())->fetchAll()->filter(function ($country) use ($usersQuery) {
+            $countries = (new CountriesQuery)->fetchAll()->filter(function ($country) use ($usersQuery) {
                 return in_array($country['cca3'], $usersQuery->unique('country_code')->pluck('country_code')->toArray());
             })->mapWithKeys(function ($country) {
                 return [
-                    $country['cca3'] => [
+                    $country['cca3'] => collect([
                         'name' => $country['name']['common'],
                         'flag' => $country['flag']['flag-icon'],
-                    ]
+                    ]),
                 ];
             });
             $view->with('countries', $countries);

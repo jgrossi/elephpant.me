@@ -28,7 +28,7 @@ final class CountriesQuery
 
     private function collection(): Collection
     {
-        return (new Countries())->all()
+        return (new Countries)->all()
             ->sortBy('name.common');
     }
 }

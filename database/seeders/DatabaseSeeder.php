@@ -1,36 +1,41 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Elephpant;
+use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        factory(\App\User::class)->create([
+        User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'x_handle' => 'john',
             'mastodon' => '@john@elephpant.me',
             'bluesky' => '@john.bsky.social',
             'country_code' => 'USA',
-            'password' => \Illuminate\Support\Facades\Hash::make('secret'),
+            'password' => Hash::make('secret'),
         ]);
 
-        factory(\App\User::class, 50)->create();
+        User::factory()->count(50)->create();
 
-        \Illuminate\Support\Facades\Artisan::call('elephpants:read');
+        Artisan::call('elephpants:read');
 
-        $me = \App\User::find(1);
-        $elephpants = \App\Elephpant::inRandomOrder()->limit(15)->get();
+        $me = User::find(1);
+        $elephpants = Elephpant::inRandomOrder()->limit(15)->get();
         foreach ($elephpants as $elephpant) {
             $me->elephpants()->attach($elephpant->id, ['quantity' => rand(2, 4)]);
         }
 
-        /** @var \Illuminate\Database\Eloquent\Collection $users */
-        $users = \App\User::inRandomOrder()->where('id', '<>', 1)->limit(rand(10, 15))->get();
+        $users = User::inRandomOrder()->where('id', '<>', 1)->limit(rand(10, 15))->get();
 
         foreach ($users as $user) {
-            $elephpants = \App\Elephpant::inRandomOrder()->limit(rand(5, 10))->get();
+            $elephpants = Elephpant::inRandomOrder()->limit(rand(5, 10))->get();
             foreach ($elephpants as $elephpant) {
                 $user->elephpants()->attach($elephpant->id, ['quantity' => rand(1, 3)]);
             }

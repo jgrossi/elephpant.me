@@ -13,7 +13,9 @@ class UserMessage extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $sender;
+
     public $receiver;
+
     public $message;
 
     public function __construct(User $sender, User $receiver, string $message)

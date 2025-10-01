@@ -11,6 +11,7 @@ use Intervention\Image\Facades\Image;
 class ReadElephpants extends Command
 {
     protected $signature = 'elephpants:read';
+
     protected $description = 'Read elePHPants in the JSON file';
 
     public function handle(): void
@@ -21,12 +22,12 @@ class ReadElephpants extends Command
         foreach ($elephpants as $elephpant) {
             Elephpant::query()
                 ->updateOrCreate(
-                    ['id' => (int)$elephpant->id],
+                    ['id' => (int) $elephpant->id],
                     [
                         'name' => $elephpant->name,
                         'description' => $elephpant->description,
                         'sponsor' => $elephpant->sponsor,
-                        'year' => (int)$elephpant->year,
+                        'year' => (int) $elephpant->year,
                         'image' => $this->processImage($elephpant),
                     ]
                 );
@@ -45,6 +46,7 @@ class ReadElephpants extends Command
             File::makeDirectory(dirname($filePath), 0755, true, true);
             $image->save($filePath);
             $this->output->write('.', false);
+
             return $imageName;
         }
 

@@ -434,11 +434,11 @@
         },
         {
             "id": 55,
-            "name": "Sylius",
+            "name": "Sylius (prototype)",
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
             "year": 2020,
-            "image": "55-sylius.jpg"
+            "image": "55-sylius-prototype.jpg"
         },
         {
             "id": 56,
@@ -671,6 +671,22 @@
             "sponsor": "Datadog",
             "year": 2025,
             "image": "84-doggy.jpg"
+        },
+        {
+            "id": 86,
+            "name": "Sylius Blue",
+            "description": "Sylius eCommerce",
+            "sponsor": "Monsieur Biz",
+            "year": 2024,
+            "image": "86-sylius-blue.jpg"
+        },
+        {
+            "id": 87,
+            "name": "Sylius Green, official",
+            "description": "Sylius eCommerce",
+            "sponsor": "Monsieur Biz",
+            "year": 2025,
+            "image": "87-sylius.jpg"
         }
     ]
 }

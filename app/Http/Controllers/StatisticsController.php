@@ -13,6 +13,7 @@ class StatisticsController extends Controller
         $elephpants = DB::table('elephpants')
             ->select(DB::raw('COUNT(elephpant_user.elephpant_id) as nbElephpant, id, name, description, SUM(elephpant_user.quantity) as totalElephpant, image'))
             ->leftJoin('elephpant_user', 'elephpants.id', '=', 'elephpant_user.elephpant_id')
+            ->where('prototype', 0)
             ->orderBy('nbElephpant', 'desc')
             ->orderBy('elephpants.id', 'desc')
             ->orderBy('totalElephpant', 'desc')

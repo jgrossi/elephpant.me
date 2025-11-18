@@ -671,6 +671,14 @@
             "sponsor": "Datadog",
             "year": 2025,
             "image": "84-doggy.jpg"
+        },
+        {
+            "id": 85,
+            "name": "Le Monstre",
+            "description": "frankenphp.dev",
+            "sponsor": "Les-Tilleuls.coop",
+            "year": 2025,
+            "image": "85-frankenphp.jpg"
         }
     ]
 }

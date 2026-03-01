@@ -27,7 +27,7 @@
                             @endif
                             @if($user->mastodon)
                                 <div>
-                                    Mastodon: <a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank">{{ $user->mastodon }}</a>
+                                    Mastodon: <a href="{{ Mastodon::profileUrl($user->mastodon) }}" target="_blank">{{ $user->mastodon }}</a>
                                 </div>
                             @endif
                         </div>

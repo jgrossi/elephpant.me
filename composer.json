@@ -9,9 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
-        "creativeorange/gravatar": "^1.0",
         "ext-json": "*",
+        "creativeorange/gravatar": "^1.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^7.10",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",

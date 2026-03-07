@@ -27,97 +27,106 @@
 
     <title>ElePHPant.me | The best place for your elePHPant collection</title>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
+    @fluxAppearance
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container">
-                <a class="navbar-brand text-light" href="{{ url('/') }}">
-                    <img src="{{ asset('img/elephpant.svg') }}" class="logo" alt="Elephant logo by Freepik"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body class="bg-zinc-50 dark:bg-zinc-900 antialiased min-h-screen flex flex-col">
+    <div id="app" class="flex flex-col flex-1 min-h-0">
+        <flux:header container class="bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700 h-14">
+            <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+            <flux:brand href="{{ url('/') }}" logo="{{ asset('img/elephpant.svg') }}" name="ElePHPant.me" class="max-lg:hidden" wire:navigate />
+            <flux:navbar class="-mb-px max-lg:hidden">
+                <flux:navbar.item href="{{ route('elephpants.index') }}" wire:navigate>{{ __('Species') }}</flux:navbar.item>
+                <flux:navbar.item href="{{ route('herds.edit') }}" wire:navigate>{{ __('My Herd') }}</flux:navbar.item>
+                <flux:navbar.item href="{{ route('rankings.index') }}" wire:navigate>{{ __('Ranking') }}</flux:navbar.item>
+                <flux:navbar.item href="{{ route('trades.index') }}" wire:navigate>{{ __('Trade Area') }}</flux:navbar.item>
+                <flux:navbar.item href="{{ route('statistics.index') }}" wire:navigate>{{ __('Statistics') }}</flux:navbar.item>
+            </flux:navbar>
+            <flux:spacer />
+            <flux:navbar class="me-4">
+                @guest
+                    <flux:navbar.item href="{{ route('login') }}" wire:navigate>{{ __('Login') }}</flux:navbar.item>
+                    @if (Route::has('register'))
+                        <flux:navbar.item href="{{ route('register') }}" wire:navigate>{{ __('Register') }}</flux:navbar.item>
+                    @endif
+                @else
+                    <flux:dropdown position="top" align="end">
+                        @php $user = Auth::user(); @endphp
+                        <flux:profile
+                            name="{{ $user->name }}"
+                            :avatar="$user->hasAvatarImage() ? $user->avatar() : null"
+                            avatar:color="auto"
+                            avatar:color:seed="{{ $user->id }}"
+                        />
+                        <flux:navmenu>
+                            <flux:navmenu.item href="{{ route('profile.edit') }}" icon="user" wire:navigate>{{ __('Profile') }}</flux:navmenu.item>
+                            <flux:navmenu.separator />
+                            <flux:navmenu.item href="#" icon="arrow-right-start-on-rectangle"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </flux:navmenu.item>
+                        </flux:navmenu>
+                    </flux:dropdown>
+                @endguest
+            </flux:navbar>
+        </flux:header>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ request()->routeIs('elephpants.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('elephpants.index') }}">{{ __('Species') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('herds.edit') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('herds.edit') }}">{{ __('My Herd') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('rankings.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('rankings.index') }}">{{ __('Ranking') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('trades.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('trades.index') }}">{{ __('Trade Area') }}</a>
-                        </li>
-                        <li class="nav-item {{ request()->routeIs('statistics.index') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('statistics.index') }}">{{ __('Statistics') }}</a>
-                        </li>
-                    </ul>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+            @csrf
+        </form>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+        <div class="app-body flex flex-1 w-full min-h-0">
+            <flux:sidebar sticky collapsible="mobile" class="lg:hidden bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
+                <flux:sidebar.header>
+                    <flux:sidebar.brand href="{{ url('/') }}" logo="{{ asset('img/elephpant.svg') }}" name="ElePHPant.me" wire:navigate />
+                    <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
+                </flux:sidebar.header>
+                <flux:sidebar.nav>
+                    <flux:sidebar.item href="{{ route('elephpants.index') }}" icon="squares-2x2" wire:navigate>{{ __('Species') }}</flux:sidebar.item>
+                    <flux:sidebar.item href="{{ route('herds.edit') }}" icon="heart" wire:navigate>{{ __('My Herd') }}</flux:sidebar.item>
+                    <flux:sidebar.item href="{{ route('rankings.index') }}" icon="trophy" wire:navigate>{{ __('Ranking') }}</flux:sidebar.item>
+                    <flux:sidebar.item href="{{ route('trades.index') }}" icon="arrow-path" wire:navigate>{{ __('Trade Area') }}</flux:sidebar.item>
+                    <flux:sidebar.item href="{{ route('statistics.index') }}" icon="chart-bar" wire:navigate>{{ __('Statistics') }}</flux:sidebar.item>
+                </flux:sidebar.nav>
+                <flux:sidebar.spacer />
+                <flux:sidebar.nav>
+                    @guest
+                        <flux:sidebar.item href="{{ route('login') }}" wire:navigate>{{ __('Login') }}</flux:sidebar.item>
+                        @if (Route::has('register'))
+                            <flux:sidebar.item href="{{ route('register') }}" wire:navigate>{{ __('Register') }}</flux:sidebar.item>
+                        @endif
+                    @else
+                        <flux:sidebar.item href="{{ route('profile.edit') }}" icon="user" wire:navigate>{{ __('Profile') }}</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('logout') }}" icon="arrow-right-start-on-rectangle"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </flux:sidebar.item>
+                    @endguest
+                </flux:sidebar.nav>
+            </flux:sidebar>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                        {{ __('Profile') }}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+            <div class="app-content flex-1 min-w-0">
+                <main class="app-main">
+                    <flux:main container class="pb-8 flex-1">
+                        @yield('content')
+                    </flux:main>
+                </main>
             </div>
-        </nav>
+        </div>
 
-        <main class="pb-3">
-            @yield('content')
-        </main>
-
-        <footer class="mt-4 text-center py-4 bg-white border-top">
+        <footer class="w-full mt-12 text-center py-6 border-t border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400">
             <p class="mb-2">
-                Made with ❤️ by <a href="http://twitter.com/junior_grossi" target="_blank">Junior Grossi</a>, <a href="https://www.linkedin.com/in/igorduarte17/" target="_blank">Igor Duarte</a> and <a href="https://github.com/jgrossi/elephpant.me/graphs/contributors" target="_blank">contributors</a>.
-                <span class="d-block d-md-inline">Contribute to this project on <a href="http://github.com/jgrossi/elephpant.me">GitHub</a>.</span>
+                Made with ❤️ by <flux:link href="http://twitter.com/junior_grossi" external>Junior Grossi</flux:link>, <flux:link href="https://www.linkedin.com/in/igorduarte17/" external>Igor Duarte</flux:link> and <flux:link href="https://github.com/jgrossi/elephpant.me/graphs/contributors" external>contributors</flux:link>.
+                <span class="block md:inline mt-1 md:mt-0">Contribute to this project on <flux:link href="http://github.com/jgrossi/elephpant.me" external>GitHub</flux:link>.</span>
             </p>
         </footer>
     </div>
+    @livewireScripts
+    @fluxScripts
 </body>
 </html>

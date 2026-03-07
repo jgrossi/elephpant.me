@@ -2,41 +2,23 @@
 
 namespace App\Providers;
 
-use App\Queries\CountriesQuery;
+use App\Country;
 use App\Queries\UsersCountryQuery;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        View::composer(['auth.register', 'profile.edit'], function ($view) {
-            $countries = (new CountriesQuery())->fetchAll()->mapWithKeys(function ($country) {
-                return [
-                    $country['cca3'] => [
-                        'name' => $country['name']['common'],
-                        'flag' => $country['flag']['flag-icon'],
-                    ]
-                ];
-            });
-
-            $view->with('countries', $countries);
+        View::composer(['auth.register', 'profile.edit'], function ($view): void {
+            $view->with('countries', Country::forDropdown());
         });
 
-        View::composer(['ranking.index', 'trade._user', 'herd.show', 'trade.index'], function ($view) {
-            $usersQuery = (new UsersCountryQuery)->fetchAll();
-            $countries = (new CountriesQuery())->fetchAll()->filter(function ($country) use ($usersQuery) {
-                return in_array($country['cca3'], $usersQuery->unique('country_code')->pluck('country_code')->toArray());
-            })->mapWithKeys(function ($country) {
-                return [
-                    $country['cca3'] => [
-                        'name' => $country['name']['common'],
-                        'flag' => $country['flag']['flag-icon'],
-                    ]
-                ];
-            });
-            $view->with('countries', $countries);
+        View::composer(['ranking.index', 'trade._user', 'herd.show'], function ($view): void {
+            $usersQuery = new UsersCountryQuery()->fetchAll();
+            $countryCodes = $usersQuery->unique('country_code')->pluck('country_code')->toArray();
+            $view->with('countries', Country::forDropdown($countryCodes));
         });
     }
 }

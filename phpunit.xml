@@ -17,16 +17,30 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+    <source>
+        <include>
             <directory suffix=".php">./app</directory>
-        </whitelist>
-    </filter>
+        </include>
+        <exclude>
+            <file>./app/Http/Controllers/Controller.php</file>
+            <file>./app/Http/Middleware/EncryptCookies.php</file>
+            <file>./app/Http/Middleware/TrimStrings.php</file>
+            <file>./app/Http/Middleware/TrustProxies.php</file>
+            <file>./app/Http/Middleware/VerifyCsrfToken.php</file>
+            <file>./app/Providers/TelescopeServiceProvider.php</file>
+        </exclude>
+    </source>
+    <coverage processUncoveredFiles="true">
+        <report>
+            <text outputFile="php://stdout" showUncoveredFiles="false" showOnlySummary="true"/>
+            <html outputDirectory="build/coverage"/>
+        </report>
+    </coverage>
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
-        <server name="CACHE_DRIVER" value="array"/>
-        <server name="MAIL_DRIVER" value="array"/>
+        <server name="CACHE_STORE" value="array"/>
+        <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
     </php>

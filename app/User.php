@@ -4,17 +4,25 @@ namespace App;
 
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
+/**
+ * @property-read EloquentCollection<int, Elephpant> $elephpants
+ * @property EloquentCollection<int, Elephpant>|null $elephpantsInterested
+ * @property \Carbon\Carbon|null $last_update
+ */
 class User extends Authenticatable
 {
+    use HasFactory;
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'country_code', 'twitter', 'username', 'mastodon'
+        'name', 'email', 'password', 'country_code', 'twitter', 'username', 'mastodon',
     ];
 
     protected $hidden = [
@@ -35,14 +43,14 @@ class User extends Authenticatable
         return $query->where('is_public', true);
     }
 
-    public function elephpants()
+    public function elephpants(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Elephpant::class)
             ->withPivot('quantity')
             ->withTimestamps();
     }
 
-    public function elephpantsToTrade()
+    public function elephpantsToTrade(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->elephpants()
             ->wherePivot('quantity', '>', 1);
@@ -51,14 +59,12 @@ class User extends Authenticatable
     public function elephpantsWithQuantity(): Collection
     {
         return $this->elephpants
-            ->mapWithKeys(function (Elephpant $elephpant) {
-                return [
-                    $elephpant->id => $elephpant->pivot->quantity,
-                ];
-            });
+            ->mapWithKeys(fn (Elephpant $elephpant): array => [
+                $elephpant->id => $elephpant->pivot->quantity,
+            ]);
     }
 
-    public function adopt(Elephpant $elephpant, int $quantity)
+    public function adopt(Elephpant $elephpant, int $quantity): void
     {
         $exists = $this->elephpants()
             ->whereElephpantId($elephpant->id)
@@ -66,21 +72,28 @@ class User extends Authenticatable
 
         if ($exists) {
             $quantity > 0 ?
-                $this->elephpants()->updateExistingPivot($elephpant->id, compact('quantity'), false) :
+                $this->elephpants()->updateExistingPivot($elephpant->id, ['quantity' => $quantity], false) :
                 $this->elephpants()->detach($elephpant->id);
 
             return;
         }
 
         if ($quantity > 0) {
-            $this->elephpants()->attach($elephpant->id, compact('quantity'));
+            $this->elephpants()->attach($elephpant->id, ['quantity' => $quantity]);
         }
     }
 
     /**
+     * Whether the user has an image-based avatar (Gravatar or Twitter).
+     * When false, use Flux avatar with initials and color="auto" instead.
+     */
+    public function hasAvatarImage(): bool
+    {
+        return $this->twitter || Gravatar::exists($this->email);
+    }
+
+    /**
      * Get the user avatar URL.
-     *
-     * @return string
      */
     public function avatar(): string
     {
@@ -92,7 +105,7 @@ class User extends Authenticatable
             return Gravatar::get($this->email);
         }
 
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name);
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name);
     }
 
     public static function generateUsername(User $user): string
@@ -101,7 +114,7 @@ class User extends Authenticatable
         $count = 1;
 
         while (User::whereUsername($username)->exists()) {
-            $username = $username . $count;
+            $username .= $count;
             $count++;
         }
 

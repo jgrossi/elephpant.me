@@ -1,29 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="jumbotron jumbotron-fluid text-center">
-    <h1>Welcome, collector! 🐘</h1>
-    <p class="lead">
-        Here is the right place for your elePHPants.<br>
-        You can <a href="{{ route('herds.edit') }}">update your herd</a>, see <a href="{{ route('rankings.index') }}">ranking</a> (global / per country), and
-        <a href="{{ route('trades.index') }}">find people to trade</a>.
-    </p>
-    @guest
-        <hr class="mt-4">
-        <a class="btn btn-primary" href="{{ route('register') }}" role="button">Register</a>
-        <a class="btn btn-outline-secondary" href="{{ route('login') }}" role="button">Login</a>
-    @endguest
-</div>
-<div class="container">
-    @include('partials._search')
-    <div class="row">
-        @if($elephpants->count())
-            @foreach($elephpants as $key => $elephpant)
-                @include('elephpant._single_box', compact('elephpant'))
-            @endforeach
-        @else
-            @include('partials._no_elephpants_found')
-        @endif
+    <div class="max-w-6xl mx-auto bg-zinc-200 dark:bg-zinc-800 rounded-xl px-6 py-12 md:py-16 mb-10 md:mb-14 text-center">
+        <flux:heading size="xl" level="1" class="text-zinc-900 dark:text-zinc-100">Welcome, collector! 🐘</flux:heading>
+        <flux:text class="mt-4 text-base text-zinc-700 dark:text-zinc-300">
+            Here is the right place for your elePHPants.<br>
+            You can <flux:link href="{{ route('herds.edit') }}" wire:navigate class="font-medium underline underline-offset-2 decoration-2 decoration-zinc-400 hover:decoration-zinc-600 dark:hover:decoration-zinc-300 rounded px-0.5 -mx-0.5">update your herd</flux:link>, see <flux:link href="{{ route('rankings.index') }}" wire:navigate class="font-medium underline underline-offset-2 decoration-2 decoration-zinc-400 hover:decoration-zinc-600 dark:hover:decoration-zinc-300 rounded px-0.5 -mx-0.5">ranking</flux:link> (global / per country), and
+            <flux:link href="{{ route('trades.index') }}" wire:navigate class="font-medium underline underline-offset-2 decoration-2 decoration-zinc-400 hover:decoration-zinc-600 dark:hover:decoration-zinc-300 rounded px-0.5 -mx-0.5">find people to trade</flux:link>.
+        </flux:text>
+        @guest
+            <div class="flex flex-wrap justify-center gap-3 mt-6">
+                <flux:button href="{{ route('register') }}" variant="primary" wire:navigate>Register</flux:button>
+                <flux:button href="{{ route('login') }}" variant="outline" wire:navigate>Login</flux:button>
+            </div>
+        @endguest
     </div>
-</div>
+
+    <livewire:species-search mode="catalog" defer />
 @endsection

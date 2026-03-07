@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Foundation\Inspiring;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,15 @@ use Illuminate\Foundation\Inspiring;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
-})->describe('Display an inspiring quote');
+})->purpose('Display an inspiring quote');
+
+/*
+|--------------------------------------------------------------------------
+| Task Scheduling
+|--------------------------------------------------------------------------
+|
+| Migrated from App\Console\Kernel::schedule()
+|
+*/
+
+Schedule::command('elephpants:read')->twiceDaily();

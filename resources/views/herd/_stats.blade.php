@@ -1,26 +1,14 @@
-<div id="stats-content" class="row mt-4">
-    <div class="col-12 col-md-4 mb-2 mb-md-0">
-        <div class="jumbotron py-2 mb-0">
-            <div class="container">
-                <p class="lead mb-1">Unique</p>
-                <h1 class="display-5 mb-0">{{ $stats['unique'] }}</h1>
-            </div>
-        </div>
+<div id="stats-content" class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6" wire:key="herd-stats-static">
+    <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 py-4 px-4 text-center">
+        <flux:text class="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Unique</flux:text>
+        <flux:heading size="xl" class="mt-1">{{ $stats['unique'] }}</flux:heading>
     </div>
-    <div class="col-12 col-md-4 mb-2 mb-md-0">
-        <div class="jumbotron py-2 mb-0">
-            <div class="container">
-                <p class="lead mb-1">Double</p>
-                <h1 class="display-5 mb-0">{{ $stats['double'] }}</h1>
-            </div>
-        </div>
+    <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 py-4 px-4 text-center">
+        <flux:text class="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Double</flux:text>
+        <flux:heading size="xl" class="mt-1">{{ $stats['double'] }}</flux:heading>
     </div>
-    <div class="col-12 col-md-4 mb-2 mb-md-0">
-        <div class="jumbotron py-2 mb-0">
-            <div class="container">
-                <p class="lead mb-1">Total</p>
-                <h1 class="display-5 mb-0">{{ $stats['total'] }}</h1>
-            </div>
-        </div>
+    <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 py-4 px-4 text-center">
+        <flux:text class="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Total</flux:text>
+        <flux:heading size="xl" class="mt-1">{{ $stats['total'] }}</flux:heading>
     </div>
 </div>

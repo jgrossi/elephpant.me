@@ -10,12 +10,13 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register()
+    #[\Override]
+    public function register(): void
     {
         //
     }
 
-    public function boot()
+    public function boot(): void
     {
         User::observe(UserObserver::class);
         ElephpantUser::observe(ElephpantUserObserver::class);

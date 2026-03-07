@@ -10,10 +10,22 @@ use Illuminate\Queue\SerializesModels;
 
 class UserMessage extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
+    /**
+     * @var \App\User
+     */
     public $sender;
+
+    /**
+     * @var \App\User
+     */
     public $receiver;
+
+    /**
+     * @var string
+     */
     public $message;
 
     public function __construct(User $sender, User $receiver, string $message)

@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@import "../../vendor/livewire/flux/dist/flux.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Re-assign Flux's gray of choice... */
+@theme {
+    --color-zinc-50: var(--color-slate-50);
+    --color-zinc-100: var(--color-slate-100);
+    --color-zinc-200: var(--color-slate-200);
+    --color-zinc-300: var(--color-slate-300);
+    --color-zinc-400: var(--color-slate-400);
+    --color-zinc-500: var(--color-slate-500);
+    --color-zinc-600: var(--color-slate-600);
+    --color-zinc-700: var(--color-slate-700);
+    --color-zinc-800: var(--color-slate-800);
+    --color-zinc-900: var(--color-slate-900);
+    --color-zinc-950: var(--color-slate-950);
+}
+@theme {
+    --color-accent: var(--color-violet-500);
+    --color-accent-content: var(--color-violet-600);
+    --color-accent-foreground: var(--color-white);
+}
+@layer theme {
+    .dark {
+        --color-accent: var(--color-violet-500);
+        --color-accent-content: var(--color-violet-300);
+        --color-accent-foreground: var(--color-white);
+    }
+}
+
+@source "../**/*.blade.php";
+@source "../**/*.{js,jsx,ts,tsx,vue}";
+
+@import "flag-icon-css/css/flag-icon.min.css";
+
+.app-body {
+    display: flex;
+}
+
+.app-content {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.dark body {
+    background-color: var(--color-zinc-900);
+}
+
+.herd-card-item.has-elephpants {
+    border-left-width: 3px;
+    border-left-color: #38c172;
+}
+
+.avatar-circle {
+    width: 128px;
+    height: 128px;
+    background-color: #e9ecef;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.dark .avatar-circle {
+    background-color: #3f3f46;
+}
+
+.avatar-circle .initials {
+    position: relative;
+    top: 36px;
+    font-size: 62.5px;
+    line-height: 62.5px;
+    color: #212529;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+
+.dark .avatar-circle .initials {
+    color: #fafafa;
+}
+
+/* Prevent brand logo from adding inline gap that pushes the header border down */
+[data-flux-header] [data-flux-brand] img {
+    display: block;
+    vertical-align: middle;
+}
+
+/* Keep herd quantity selector: input fills available space in its 3/4 column */
+.herd-counter input[type="number"],
+.herd-counter [data-flux-input] {
+    min-width: 0 !important;
+    flex: 1 1 0% !important;
+}
+
+/* Ranking table: center Unique, Total, Updated column headers */
+.ranking-table [data-flux-columns] th:nth-child(4),
+.ranking-table [data-flux-columns] th:nth-child(5),
+.ranking-table [data-flux-columns] th:nth-child(6) {
+    text-align: center;
+}
+.ranking-table [data-flux-columns] th:nth-child(4) > div,
+.ranking-table [data-flux-columns] th:nth-child(5) > div,
+.ranking-table [data-flux-columns] th:nth-child(6) > div {
+    justify-content: center;
+}
+
+/* wire:navigate progress bar: purple to match theme */
+#nprogress .bar {
+    background: var(--color-violet-500, #8b5cf6) !important;
+}
+#nprogress .spinner-icon {
+    border-top-color: var(--color-violet-500, #8b5cf6) !important;
+    border-left-color: var(--color-violet-500, #8b5cf6) !important;
+}

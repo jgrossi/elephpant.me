@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class RankedUsersQuery
 {
-    private const LIMIT = 50;
+    private const int LIMIT = 50;
 
     public function fetchAll(?string $country): Collection
     {
@@ -30,14 +30,12 @@ final class RankedUsersQuery
             ->orderBy('elephpants_unique', 'desc')
             ->orderBy('elephpants_total', 'desc')
             ->orderBy('users.name', 'asc')
-            ->limit(static::LIMIT)
+            ->limit(self::LIMIT)
             ->get();
 
         foreach ($users as $user) {
             $user->last_update = $user->elephpants
-                ->sortByDesc(function ($elephpant) {
-                    return $elephpant->pivot->updated_at->getTimestamp();
-                })
+                ->sortByDesc(fn ($elephpant) => $elephpant->pivot->updated_at->getTimestamp())
                 ->first()
                 ->pivot
                 ->updated_at;

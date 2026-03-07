@@ -6,7 +6,7 @@ use App\Photo;
 
 class PhotoController extends Controller
 {
-    public function create()
+    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('photos.create');
     }

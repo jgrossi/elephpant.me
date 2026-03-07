@@ -7,6 +7,8 @@ namespace App\Queries;
 final class TradingUsersQueryOption
 {
     public $lackElephpantId;
+
     public $withSpareElephpantId;
+
     public $targetUserId;
 }

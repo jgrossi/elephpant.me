@@ -1,15 +1,11 @@
-<div class="col-xl-3 col-md-4 col-sm-6 mb-3">
-    <div class="card d-flex" id="elephpant-{{ $elephpant->id }}">
-        <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" class="card-img-top" alt="{{ $elephpant->name }}">
-        <div class="card-body">
-            <h5 class="card-title">
-                {{ $elephpant->name }}
-            </h5>
-            <p class="card-text">
-                {{ $elephpant->description }}<br>
-                <strong>{{ $elephpant->sponsor }}</strong><br>
-                {{ $elephpant->year }}
-            </p>
-        </div>
+<flux:card class="h-full flex flex-col p-0" id="elephpant-{{ $elephpant->id }}">
+    <img src="{{ asset('storage/elephpants/' . $elephpant->image) }}" alt="{{ $elephpant->name }}" class="w-full object-cover rounded-t-lg aspect-square" loading="lazy" decoding="async">
+    <div class="p-4 flex-1 flex flex-col">
+        <flux:heading size="lg" class="mb-2">{{ $elephpant->name }}</flux:heading>
+        <flux:text class="text-sm">
+            {{ $elephpant->description }}<br>
+            <strong>{{ $elephpant->sponsor }}</strong><br>
+            {{ $elephpant->year }}
+        </flux:text>
     </div>
-</div>
+</flux:card>

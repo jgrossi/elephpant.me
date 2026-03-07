@@ -1,5 +1,6 @@
 # Laravel Directorys
 /public/hot
+/public/build
 /public/storage
 /storage/*.key
 /vendor
@@ -25,3 +26,6 @@ source/.vs/
 npm-debug.log*
 logs
 *.log
+
+# Coverage
+build/coverage/

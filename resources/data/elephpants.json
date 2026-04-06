@@ -679,6 +679,14 @@
             "sponsor": "Les-Tilleuls.coop",
             "year": 2025,
             "image": "85-frankenphp.jpg"
-        }
+        },
+        {
+            "id": 86,
+            "name": "Moni",
+            "description": "tideways.com",
+            "sponsor": "Tideways GmbH",
+            "year": 2026,
+            "image": "86-moni.jpg"
+	}
     ]
 }

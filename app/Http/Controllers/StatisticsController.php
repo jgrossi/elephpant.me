@@ -14,7 +14,7 @@ class StatisticsController extends Controller
         $nbUsers = DB::table('users')->count();
 
         return view('statistics.index', [
-            'nbUsers' => $nbUsers,
+            'nbUsers'              => $nbUsers,
             'nbUsersWithElephpant' => $nbUsersWithElephpant,
         ]);
     }

@@ -46,9 +46,9 @@ class HerdCounter extends Component
         $unique = count($userElephpants);
         $total = array_sum($userElephpants);
         $this->dispatch('refreshStats', stats: [
-            'unique' => $unique,
-            'total' => $total,
-            'double' => $total - $unique,
+            'unique'         => $unique,
+            'total'          => $total,
+            'double'         => $total - $unique,
             'userElephpants' => $userElephpants,
         ]);
     }

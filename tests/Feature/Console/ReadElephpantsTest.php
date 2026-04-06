@@ -9,11 +9,12 @@ use Intervention\Image\Facades\Image;
 test('elephpants read command creates or updates elephpants from json without image', function (): void {
     $jsonPath = resource_path('data/elephpants.json');
     $backup = $jsonPath.'.bak';
-    if (! is_file($jsonPath)) {
+    if (!is_file($jsonPath)) {
         $this->markTestSkipped('resources/data/elephpants.json not found');
     }
 
     File::copy($jsonPath, $backup);
+
     try {
         $minimal = ['elephpants' => [
             ['id' => 9999, 'name' => 'Test Elephant', 'description' => 'Desc', 'sponsor' => 'Sponsor', 'year' => 2020],
@@ -41,11 +42,12 @@ test('elephpants read command processes image when present', function (): void {
 
     $jsonPath = resource_path('data/elephpants.json');
     $backup = $jsonPath.'.bak';
-    if (! is_file($jsonPath)) {
+    if (!is_file($jsonPath)) {
         $this->markTestSkipped('resources/data/elephpants.json not found');
     }
 
     File::copy($jsonPath, $backup);
+
     try {
         $minimal = ['elephpants' => [
             ['id' => 9998, 'name' => 'With Image', 'description' => '', 'sponsor' => '', 'year' => 2021, 'image' => 'test.jpg'],

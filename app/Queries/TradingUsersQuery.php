@@ -146,7 +146,8 @@ final class TradingUsersQuery
     }
 
     /**
-     * @param  EloquentCollection<int, Elephpant>  $userElephpants
+     * @param EloquentCollection<int, Elephpant> $userElephpants
+     *
      * @return EloquentCollection<int, Elephpant>
      */
     private function keepTradableElephpants(EloquentCollection $userElephpants): EloquentCollection
@@ -155,13 +156,13 @@ final class TradingUsersQuery
     }
 
     /**
-     * @param  EloquentCollection<int, Elephpant>  $userAvailable
+     * @param EloquentCollection<int, Elephpant> $userAvailable
      */
     private function addInterestedElephpants(User $trader, EloquentCollection $userAvailable): void
     {
         $traderElephpants = $trader->elephpants->pluck('id')->toArray();
 
-        $interests = $userAvailable->filter(fn (Elephpant $elephpant): bool => ! in_array($elephpant->id, $traderElephpants));
+        $interests = $userAvailable->filter(fn (Elephpant $elephpant): bool => !in_array($elephpant->id, $traderElephpants));
 
         /** @var EloquentCollection<int, Elephpant> $interests */
         $trader->elephpantsInterested = $interests;
@@ -169,7 +170,7 @@ final class TradingUsersQuery
 
     private function handleTradingOptions($query, ?\App\Queries\TradingUsersQueryOption $options): void
     {
-        if (! $options instanceof \App\Queries\TradingUsersQueryOption) {
+        if (!$options instanceof \App\Queries\TradingUsersQueryOption) {
             return;
         }
 

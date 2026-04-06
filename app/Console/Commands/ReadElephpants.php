@@ -24,11 +24,11 @@ class ReadElephpants extends Command
                 ->updateOrCreate(
                     ['id' => (int) $elephpant->id],
                     [
-                        'name' => $elephpant->name,
+                        'name'        => $elephpant->name,
                         'description' => $elephpant->description,
-                        'sponsor' => $elephpant->sponsor,
-                        'year' => (int) $elephpant->year,
-                        'image' => $this->processImage($elephpant),
+                        'sponsor'     => $elephpant->sponsor,
+                        'year'        => (int) $elephpant->year,
+                        'image'       => $this->processImage($elephpant),
                     ]
                 );
         }

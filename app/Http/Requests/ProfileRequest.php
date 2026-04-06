@@ -20,10 +20,10 @@ class ProfileRequest extends FormRequest
 
         if ($section === 'account') {
             $rules = [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
+                'name'         => ['required', 'string', 'max:255'],
+                'email'        => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
                 'country_code' => ['required', 'string', 'size:3'],
-                'username' => ['required', 'string', Rule::unique('users')->ignore($this->user()->id)],
+                'username'     => ['required', 'string', Rule::unique('users')->ignore($this->user()->id)],
             ];
         }
 
@@ -35,7 +35,7 @@ class ProfileRequest extends FormRequest
 
         if ($section === 'public_profile') {
             $rules = [
-                'twitter' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
+                'twitter'  => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
                 'mastodon' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
             ];
         }

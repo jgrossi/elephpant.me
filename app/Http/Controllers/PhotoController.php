@@ -14,7 +14,7 @@ class PhotoController extends Controller
     public function store()
     {
         Photo::create([
-            'url' => request('url'),
+            'url'     => request('url'),
             'user_id' => auth()->id(),
         ]);
 

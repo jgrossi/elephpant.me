@@ -12,14 +12,14 @@ test('message store creates message and returns 204', function (): void {
 
     $response = $this->actingAs($sender)->postJson(route('messages.store'), [
         'receiver_id' => $receiver->id,
-        'message' => 'Hello from test',
+        'message'     => 'Hello from test',
     ]);
 
     $response->assertStatus(204);
 
     $this->assertDatabaseHas('messages', [
-        'sender_id' => $sender->id,
+        'sender_id'   => $sender->id,
         'receiver_id' => $receiver->id,
-        'message' => 'Hello from test',
+        'message'     => 'Hello from test',
     ]);
 });

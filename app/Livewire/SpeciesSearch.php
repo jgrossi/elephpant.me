@@ -62,7 +62,7 @@ class SpeciesSearch extends Component
 
     public function getFilteredElephpantsGroupedProperty(): Collection
     {
-        if ($this->mode !== 'herd' || ! Auth::check()) {
+        if ($this->mode !== 'herd' || !Auth::check()) {
             return collect();
         }
 
@@ -81,7 +81,7 @@ class SpeciesSearch extends Component
 
     public function getUserElephpantsProperty(): array
     {
-        if ($this->mode !== 'herd' || ! Auth::check()) {
+        if ($this->mode !== 'herd' || !Auth::check()) {
             return [];
         }
 
@@ -156,12 +156,12 @@ class SpeciesSearch extends Component
             foreach ($group as $elephpant) {
                 if (($userElephpants[$elephpant->id] ?? 0) == 0 && (string) ($elephpant->possible_senders ?? '') !== '') {
                     $tradePossibilites[$elephpant->id] = [
-                        'type' => 'senders',
+                        'type'  => 'senders',
                         'count' => count(explode(',', (string) $elephpant->possible_senders)),
                     ];
                 } elseif (($userElephpants[$elephpant->id] ?? 0) > 1 && (string) ($elephpant->possible_receivers ?? '') !== '') {
                     $tradePossibilites[$elephpant->id] = [
-                        'type' => 'receivers',
+                        'type'  => 'receivers',
                         'count' => count(explode(',', (string) $elephpant->possible_receivers)),
                     ];
                 }
@@ -174,13 +174,13 @@ class SpeciesSearch extends Component
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.species-search', [
-            'elephpants' => $this->filteredElephpants,
-            'elephpantsGrouped' => $this->filteredElephpantsGrouped,
-            'userElephpants' => $this->userElephpants,
+            'elephpants'         => $this->filteredElephpants,
+            'elephpantsGrouped'  => $this->filteredElephpantsGrouped,
+            'userElephpants'     => $this->userElephpants,
             'tradePossibilities' => $this->tradePossibilities,
-            'speciesCount' => $this->speciesCount,
-            'totalSpecies' => $this->totalSpecies,
-            'collectedSpecies' => $this->collectedSpecies,
+            'speciesCount'       => $this->speciesCount,
+            'totalSpecies'       => $this->totalSpecies,
+            'collectedSpecies'   => $this->collectedSpecies,
         ]);
     }
 }

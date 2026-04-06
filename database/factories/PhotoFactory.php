@@ -14,7 +14,7 @@ class PhotoFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'url' => $this->faker->url,
+            'url'     => $this->faker->url,
         ];
     }
 }

@@ -27,7 +27,7 @@ test('herd stats refresh sets from payload when provided', function (): void {
     Livewire::test(HerdStats::class)
         ->call('refresh', [
             'unique' => 5,
-            'total' => 10,
+            'total'  => 10,
             'double' => 5,
         ])
         ->assertSet('unique', 5)

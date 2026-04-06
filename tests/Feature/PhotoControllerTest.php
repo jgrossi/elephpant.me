@@ -29,6 +29,6 @@ test('authenticated user can store photo', function (): void {
     $response->assertSessionHas('status-success');
     $this->assertDatabaseHas('photos', [
         'user_id' => $user->id,
-        'url' => 'https://example.com/photo.jpg',
+        'url'     => 'https://example.com/photo.jpg',
     ]);
 });

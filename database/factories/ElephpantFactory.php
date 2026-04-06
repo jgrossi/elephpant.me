@@ -12,11 +12,11 @@ class ElephpantFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->firstName,
+            'name'        => $this->faker->firstName,
             'description' => $this->faker->sentence,
-            'year' => (int) $this->faker->dateTimeBetween('-12 years', 'now')->format('Y'),
-            'sponsor' => $this->faker->company,
-            'image' => $this->faker->imageUrl(),
+            'year'        => (int) $this->faker->dateTimeBetween('-12 years', 'now')->format('Y'),
+            'sponsor'     => $this->faker->company,
+            'image'       => $this->faker->imageUrl(),
         ];
     }
 }

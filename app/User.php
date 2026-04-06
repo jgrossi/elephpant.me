@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 /**
  * @property-read EloquentCollection<int, Elephpant> $elephpants
  * @property EloquentCollection<int, Elephpant>|null $elephpantsInterested
- * @property \Carbon\Carbon|null $last_update
+ * @property \Carbon\Carbon|null                     $last_update
  */
 class User extends Authenticatable
 {

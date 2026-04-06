@@ -15,16 +15,16 @@ class TradeController extends Controller
         $loggedUser = auth()->user();
         $countryCodesWithTraders = $query->getCountryCodesWithTraders($loggedUser);
         $country = request('country');
-        if ($country && ! in_array($country, $countryCodesWithTraders, true)) {
+        if ($country && !in_array($country, $countryCodesWithTraders, true)) {
             $countryCodesWithTraders[] = $country;
         }
 
         $countries = Country::forDropdown($countryCodesWithTraders);
 
         return view('trade.index', [
-            'users' => null,
-            'country' => $country,
-            'countries' => $countries,
+            'users'           => null,
+            'country'         => $country,
+            'countries'       => $countries,
             'useLivewireList' => true,
         ]);
     }
@@ -43,7 +43,7 @@ class TradeController extends Controller
             ? $query->getCountryCodesWithTraders($loggedUser, $options)
             : [];
         $currentCountry = request('country');
-        if ($currentCountry && ! in_array($currentCountry, $countryCodesWithTraders, true)) {
+        if ($currentCountry && !in_array($currentCountry, $countryCodesWithTraders, true)) {
             $countryCodesWithTraders[] = $currentCountry;
         }
 
@@ -66,7 +66,7 @@ class TradeController extends Controller
             ? $query->getCountryCodesWithTraders($loggedUser, $options)
             : [];
         $currentCountry = request('country');
-        if ($currentCountry && ! in_array($currentCountry, $countryCodesWithTraders, true)) {
+        if ($currentCountry && !in_array($currentCountry, $countryCodesWithTraders, true)) {
             $countryCodesWithTraders[] = $currentCountry;
         }
 

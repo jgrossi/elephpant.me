@@ -20,7 +20,7 @@ test('trade user list accepts country and countries', function (): void {
     $this->actingAs($user);
 
     $component = Livewire::test(TradeUserList::class, [
-        'country' => 'GBR',
+        'country'   => 'GBR',
         'countries' => ['GBR' => ['name' => 'United Kingdom', 'flag' => '🇬🇧']],
     ]);
 

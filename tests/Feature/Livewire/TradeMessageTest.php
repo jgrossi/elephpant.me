@@ -20,9 +20,9 @@ test('trade message send validates and creates message', function (): void {
         ->assertSet('message', '');
 
     $this->assertDatabaseHas('messages', [
-        'sender_id' => $sender->id,
+        'sender_id'   => $sender->id,
         'receiver_id' => $receiver->id,
-        'message' => 'Hello, trade?',
+        'message'     => 'Hello, trade?',
     ]);
 });
 

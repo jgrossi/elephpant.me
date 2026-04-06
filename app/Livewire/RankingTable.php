@@ -45,7 +45,7 @@ class RankingTable extends Component
     {
         return view('livewire.ranking-table', [
             'countries' => $this->countries,
-            'users' => $this->users,
+            'users'     => $this->users,
         ]);
     }
 }

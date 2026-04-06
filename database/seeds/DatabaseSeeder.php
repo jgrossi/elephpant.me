@@ -8,12 +8,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'twitter' => 'john',
+            'name'         => 'John Doe',
+            'email'        => 'john@example.com',
+            'twitter'      => 'john',
             'country_code' => 'USA',
-            'password' => \Illuminate\Support\Facades\Hash::make('secret'),
-            'mastodon' => '@john@elephpant.me',
+            'password'     => \Illuminate\Support\Facades\Hash::make('secret'),
+            'mastodon'     => '@john@elephpant.me',
         ]);
 
         User::factory(50)->create();

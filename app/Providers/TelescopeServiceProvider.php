@@ -38,6 +38,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             if ($entry->isScheduledTask()) {
                 return true;
             }
+
             return $entry->hasMonitoredTag();
         });
     }

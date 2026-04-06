@@ -32,9 +32,9 @@ class TradeMessage extends Component
         $receiver = User::findOrFail($this->receiverId);
 
         Message::create([
-            'sender_id' => auth()->id(),
+            'sender_id'   => auth()->id(),
             'receiver_id' => $this->receiverId,
-            'message' => $this->message,
+            'message'     => $this->message,
         ]);
 
         Mail::send(new UserMessage(auth()->user(), $receiver, $this->message));

@@ -23,7 +23,7 @@ class Country extends Model
     {
         $path = database_path('data/countries.json');
 
-        if (! file_exists($path)) {
+        if (!file_exists($path)) {
             return [];
         }
 

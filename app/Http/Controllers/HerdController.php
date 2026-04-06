@@ -22,13 +22,13 @@ class HerdController extends Controller
 
         $stats = [
             'unique' => $unique = count($userElephpants),
-            'total' => $total = array_sum($userElephpants),
+            'total'  => $total = array_sum($userElephpants),
             'double' => $total - $unique,
         ];
 
         return view('herd.show', [
-            'user' => $user,
-            'stats' => $stats,
+            'user'           => $user,
+            'stats'          => $stats,
             'possibleTrades' => $possibleTrades,
         ]);
     }

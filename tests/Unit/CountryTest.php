@@ -31,11 +31,12 @@ test('getRows returns empty array when countries file does not exist', function 
     $country = new Country();
     $ref = new ReflectionMethod($country, 'getRows');
     $path = database_path('data/countries.json');
-    if (! file_exists($path)) {
+    if (!file_exists($path)) {
         $this->markTestSkipped('countries.json not found');
     }
     $backup = $path.'.bak';
     rename($path, $backup);
+
     try {
         $rows = $ref->invoke($country);
         expect($rows)->toBeArray()->toBeEmpty();

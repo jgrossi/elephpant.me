@@ -18,12 +18,12 @@ test('register page returns 200', function (): void {
 
 test('register creates user and redirects', function (): void {
     $response = $this->post(route('register'), [
-        'name' => 'New User',
-        'email' => 'newuser@example.com',
-        'password' => 'password123',
+        'name'                  => 'New User',
+        'email'                 => 'newuser@example.com',
+        'password'              => 'password123',
         'password_confirmation' => 'password123',
-        'country_code' => 'GBR',
-        'twitter' => null,
+        'country_code'          => 'GBR',
+        'twitter'               => null,
     ]);
 
     $response->assertRedirect('/my-herd');
@@ -60,7 +60,7 @@ test('logout redirects', function (): void {
 });
 
 test('verification notice is served when authenticated and unverified', function (): void {
-    if (! \Illuminate\Support\Facades\Route::has('verification.notice')) {
+    if (!\Illuminate\Support\Facades\Route::has('verification.notice')) {
         $this->markTestSkipped('Email verification routes not registered');
     }
     $user = User::factory()->create(['email_verified_at' => null]);
@@ -71,7 +71,7 @@ test('verification notice is served when authenticated and unverified', function
 });
 
 test('verification resend redirects when authenticated', function (): void {
-    if (! \Illuminate\Support\Facades\Route::has('verification.resend')) {
+    if (!\Illuminate\Support\Facades\Route::has('verification.resend')) {
         $this->markTestSkipped('Email verification routes not registered');
     }
     $user = User::factory()->create();

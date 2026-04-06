@@ -44,7 +44,6 @@ test('species search herd mode with auth returns grouped data', function (): voi
     $component->assertStatus(200);
 });
 
-
 test('species search clearSearch resets q', function (): void {
     $component = Livewire::test(SpeciesSearch::class, ['mode' => 'catalog'])
         ->set('q', 'test')

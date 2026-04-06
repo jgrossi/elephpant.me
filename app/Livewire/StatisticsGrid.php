@@ -33,9 +33,9 @@ class StatisticsGrid extends Component
             : collect();
 
         return view('livewire.statistics-grid', [
-            'elephpants' => $elephpants,
+            'elephpants'            => $elephpants,
             'currentUserElephpants' => $currentUserElephpants,
-            'nbUsersWithElephpant' => $this->nbUsersWithElephpant,
+            'nbUsersWithElephpant'  => $this->nbUsersWithElephpant,
         ]);
     }
 

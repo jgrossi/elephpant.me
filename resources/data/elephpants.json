@@ -687,6 +687,14 @@
             "sponsor": "Tideways GmbH",
             "year": 2026,
             "image": "86-moni.jpg"
+        },
+        {
+            "id": 87,
+            "name": "Eric The Red",
+            "description": "laraveldk.org",
+            "sponsor": "Laravel Denmark",
+            "year": 2026,
+            "image": "87-laraveldk.jpg"
 	}
     ]
 }

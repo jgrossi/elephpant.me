@@ -6,7 +6,7 @@ use App\Photo;
 
 class PhotoController extends Controller
 {
-    public function create()
+    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('photos.create');
     }
@@ -14,7 +14,7 @@ class PhotoController extends Controller
     public function store()
     {
         Photo::create([
-            'url' => request('url'),
+            'url'     => request('url'),
             'user_id' => auth()->id(),
         ]);
 

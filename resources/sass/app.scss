@@ -5,10 +5,10 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 // Icons
-@import '~flag-icon-css/sass/flag-icon.scss';
+@import 'flag-icon-css/sass/flag-icon';
 
 body {
     background-color: #fcfcfc;

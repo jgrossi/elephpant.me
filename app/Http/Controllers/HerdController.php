@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Queries\TradingUsersQuery;
 use App\Queries\ElephpantsQuery;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HerdController extends Controller
@@ -47,7 +48,7 @@ class HerdController extends Controller
     }
 
 
-    public function show(string $username, TradingUsersQuery $query)
+    public function show(string $username, Request $request, TradingUsersQuery $query)
     {
         $user = User::whereUsername($username)->firstOrFail();
         $elephpants = $user->elephpants()->orderBy('year', 'desc')->orderBy('name', 'desc')->get();
@@ -67,6 +68,17 @@ class HerdController extends Controller
             'double' => $total - $unique,
         ];
 
-        return view('herd.show', compact('user', 'elephpants', 'stats', 'possibleTrades'));
+        $validated = $request->validate([
+            'filter' => 'nullable|in:unique,double',
+        ]);
+        $filter = $validated['filter'] ?? null;
+
+        if ($filter === 'unique') {
+            $elephpants = $elephpants->filter(fn ($elephpant) => $elephpant->pivot->quantity == 1)->values();
+        } elseif ($filter === 'double') {
+            $elephpants = $elephpants->filter(fn ($elephpant) => $elephpant->pivot->quantity > 1)->values();
+        }
+
+        return view('herd.show', compact('user', 'elephpants', 'stats', 'possibleTrades', 'filter'));
     }
 }

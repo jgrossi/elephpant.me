@@ -695,6 +695,14 @@
             "sponsor": "Laravel Denmark",
             "year": 2026,
             "image": "87-laraveldk.jpg"
-	    }
+	    },
+        {
+            "id": 88,
+            "name": "Holly",
+            "description": "Holly",
+            "sponsor": "php[tek] 2026",
+            "year": 2026,
+            "image": "88-holly.jpg"
+        }
     ]
 }

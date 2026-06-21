@@ -650,7 +650,7 @@
         },
         {
             "id": 82,
-            "name": "Sentaur",
+            "name": "Sentaur (1st Edition)",
             "description": "sentry.io",
             "sponsor": "Sentry",
             "year": 2025,
@@ -703,6 +703,14 @@
             "sponsor": "php[tek] 2026",
             "year": 2026,
             "image": "88-holly.jpg"
+        },
+        {
+            "id": 89,
+            "name": "Sentaur (2nd Edition)",
+            "description": "sentry.io",
+            "sponsor": "Sentry",
+            "year": 2026,
+            "image": "89-sentaur-edition-2.jpg"
         }
     ]
 }

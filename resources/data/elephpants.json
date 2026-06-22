@@ -434,11 +434,11 @@
         },
         {
             "id": 55,
-            "name": "Sylius",
+            "name": "Sylius (Prototype)",
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
             "year": 2020,
-            "image": "55-sylius.jpg"
+            "image": "55-sylius-prototype.jpg"
         },
         {
             "id": 56,
@@ -650,7 +650,7 @@
         },
         {
             "id": 82,
-            "name": "Sentaur",
+            "name": "Sentaur (1st Edition)",
             "description": "sentry.io",
             "sponsor": "Sentry",
             "year": 2025,
@@ -687,6 +687,46 @@
             "sponsor": "Tideways GmbH",
             "year": 2026,
             "image": "86-moni.jpg"
-	}
+        },
+        {
+            "id": 87,
+            "name": "Eric the Red",
+            "description": "laraveldk.org",
+            "sponsor": "Laravel Denmark",
+            "year": 2026,
+            "image": "87-laraveldk.jpg"
+	    },
+        {
+            "id": 88,
+            "name": "Holly",
+            "description": "Holly",
+            "sponsor": "php[tek] 2026",
+            "year": 2026,
+            "image": "88-holly.jpg"
+        },
+        {
+            "id": 89,
+            "name": "Sentaur (2nd Edition)",
+            "description": "sentry.io",
+            "sponsor": "Sentry",
+            "year": 2026,
+            "image": "89-sentaur-edition-2.jpg"
+        },
+        {
+            "id": 90,
+            "name": "Sylius (Blue - Error)",
+            "description": "Sylius eCommerce",
+            "sponsor": "Monsieur Biz",
+            "year": 2024,
+            "image": "90-sylius-blue.jpg"
+        },
+        {
+            "id": 91,
+            "name": "Sylius (Green - Official)",
+            "description": "Sylius eCommerce",
+            "sponsor": "Monsieur Biz",
+            "year": 2025,
+            "image": "91-sylius.jpg"
+        }
     ]
 }

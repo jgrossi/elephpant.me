@@ -133,9 +133,9 @@ test('species search herd mode accepts userElephpants and totalSpecies from moun
     $this->actingAs($user);
 
     $component = Livewire::test(SpeciesSearch::class, [
-        'mode' => 'herd',
+        'mode'           => 'herd',
         'userElephpants' => [$elephpant->id => 2],
-        'totalSpecies' => 42,
+        'totalSpecies'   => 42,
     ]);
 
     $component->assertSet('userElephpants', [$elephpant->id => 2])

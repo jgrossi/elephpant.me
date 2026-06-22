@@ -15,8 +15,16 @@ class HerdStats extends Component
 
     protected $listeners = ['refreshStats' => 'refresh'];
 
-    public function mount(): void
+    public function mount(?int $unique = null, ?int $total = null, ?int $double = null): void
     {
+        if ($unique !== null && $total !== null && $double !== null) {
+            $this->unique = $unique;
+            $this->total = $total;
+            $this->double = $double;
+
+            return;
+        }
+
         $this->refresh();
     }
 

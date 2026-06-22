@@ -58,10 +58,8 @@ class User extends Authenticatable
 
     public function elephpantsWithQuantity(): Collection
     {
-        return $this->elephpants
-            ->mapWithKeys(fn (Elephpant $elephpant): array => [
-                $elephpant->id => $elephpant->pivot->quantity,
-            ]);
+        return $this->elephpants()
+            ->pluck('elephpant_user.quantity', 'elephpants.id');
     }
 
     public function adopt(Elephpant $elephpant, int $quantity): void

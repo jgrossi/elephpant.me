@@ -7,6 +7,20 @@ use App\Livewire\HerdStats;
 use App\User;
 use Livewire\Livewire;
 
+test('herd stats mount uses provided stats without querying', function (): void {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    Livewire::test(HerdStats::class, [
+        'unique' => 3,
+        'total'  => 7,
+        'double' => 4,
+    ])
+        ->assertSet('unique', 3)
+        ->assertSet('total', 7)
+        ->assertSet('double', 4);
+});
+
 test('herd stats refresh loads from db when no payload', function (): void {
     $user = User::factory()->create();
     $elephpant = Elephpant::factory()->create();

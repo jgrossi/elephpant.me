@@ -9,6 +9,19 @@ test('homepage returns 200', function () {
     $response->assertStatus(200);
 });
 
+test('homepage shows total elephpants collected across all herds', function () {
+    $user = User::factory()->create();
+    $e1 = Elephpant::factory()->create();
+    $e2 = Elephpant::factory()->create();
+    $user->elephpants()->attach($e1->id, ['quantity' => 2]);
+    $user->elephpants()->attach($e2->id, ['quantity' => 1]);
+
+    $response = $this->get('/');
+
+    $response->assertSee('Species found');
+    $response->assertSee('3');
+});
+
 test('herd show returns 200 for existing user', function () {
     $user = User::factory()->create();
 

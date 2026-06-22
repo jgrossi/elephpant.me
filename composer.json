@@ -11,17 +11,17 @@
         "php": "^8.4",
         "ext-json": "*",
         "calebporzio/sushi": "^2.5",
-        "creativeorange/gravatar": "^1.0",
+        "creativeorange/gravatar": "^1.0.26",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
-        "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10",
-        "laravel/ui": "^4.6",
+        "laravel/framework": "^13.0",
+        "laravel/tinker": "^3.0",
+        "laravel/ui": "^4.6.3",
         "livewire/flux": "^2.13",
         "livewire/livewire": "^4.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.13",
+        "fruitcake/laravel-debugbar": "^4.0",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^3.0",
         "laravel/boost": "^2.2",
@@ -31,7 +31,7 @@
         "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^4.4",
         "rector/rector": "^2.3",
-        "spatie/laravel-ignition": "^2.7"
+        "spatie/laravel-ignition": "^2.12"
     },
     "config": {
         "optimize-autoloader": true,

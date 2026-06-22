@@ -26,6 +26,7 @@ final class RankedUsersQuery
             ->select($visibleFields)
             ->selectRaw('SUM(elephpant_user.quantity) AS elephpants_total')
             ->selectRaw('COUNT(DISTINCT elephpant_user.elephpant_id) AS elephpants_unique')
+            ->selectRaw('MAX(elephpant_user.updated_at) AS last_update')
             ->groupBy($visibleFields)
             ->orderBy('elephpants_unique', 'desc')
             ->orderBy('elephpants_total', 'desc')
@@ -33,13 +34,11 @@ final class RankedUsersQuery
             ->limit(self::LIMIT)
             ->get();
 
-        foreach ($users as $user) {
-            $user->last_update = $user->elephpants
-                ->sortByDesc(fn ($elephpant) => $elephpant->pivot->updated_at->getTimestamp())
-                ->first()
-                ->pivot
-                ->updated_at;
-        }
+        $users->each(function (User $user): void {
+            $user->last_update = $user->last_update
+                ? \Illuminate\Support\Carbon::parse($user->last_update)
+                : null;
+        });
 
         return $users;
     }

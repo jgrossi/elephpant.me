@@ -10,9 +10,9 @@
             <flux:button href="{{ route('herds.show', auth()->user()->username) }}" variant="primary" wire:navigate class="shrink-0">View public herd</flux:button>
         </div>
         <div id="stats">
-            @livewire('herd-stats')
+            @livewire('herd-stats', $herdStats)
         </div>
 
-        <livewire:species-search mode="herd" defer />
+        <livewire:species-search mode="herd" defer :user-elephpants="$userElephpants" :total-species="$totalSpecies" />
     </div>
 @endsection

@@ -35,7 +35,7 @@
                 @foreach($users as $user)
                     <flux:card class="space-y-0">
                         <div class="px-4 py-3 border-b border-zinc-200 dark:border-zinc-700">
-                            @include('trade._user')
+                            @include('trade._user', ['user' => $user, 'countries' => $countries])
                         </div>
                         <div class="p-4">
                             @include('trade._possible_deal')

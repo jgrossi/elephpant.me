@@ -1,16 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149461366-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-149461366-1');
-    </script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,11 +15,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>ElePHPant.me | The best place for your elePHPant collection</title>
+    <title>@yield('title', 'ElePHPant.me | The best place for your elePHPant collection')</title>
+    <meta name="description" content="@yield('meta_description', 'Track your ElePHPant collection, browse the species catalog, compare rankings, and connect with collectors ready to trade.')">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap"></noscript>
 
     @livewireStyles
     @fluxAppearance
@@ -42,9 +33,13 @@
             <flux:brand href="{{ url('/') }}" logo="{{ asset('img/elephpant.svg') }}" name="ElePHPant.me" class="max-lg:hidden" wire:navigate />
             <flux:navbar class="-mb-px max-lg:hidden">
                 <flux:navbar.item href="{{ route('elephpants.index') }}" wire:navigate>{{ __('Species') }}</flux:navbar.item>
-                <flux:navbar.item href="{{ route('herds.edit') }}" wire:navigate>{{ __('My Herd') }}</flux:navbar.item>
+                @auth
+                    <flux:navbar.item href="{{ route('herds.edit') }}" wire:navigate>{{ __('My Herd') }}</flux:navbar.item>
+                @endauth
                 <flux:navbar.item href="{{ route('rankings.index') }}" wire:navigate>{{ __('Ranking') }}</flux:navbar.item>
-                <flux:navbar.item href="{{ route('trades.index') }}" wire:navigate>{{ __('Trade Area') }}</flux:navbar.item>
+                @auth
+                    <flux:navbar.item href="{{ route('trades.index') }}" wire:navigate>{{ __('Trade Area') }}</flux:navbar.item>
+                @endauth
                 <flux:navbar.item href="{{ route('statistics.index') }}" wire:navigate>{{ __('Statistics') }}</flux:navbar.item>
             </flux:navbar>
             <flux:spacer />
@@ -88,9 +83,13 @@
                 </flux:sidebar.header>
                 <flux:sidebar.nav>
                     <flux:sidebar.item href="{{ route('elephpants.index') }}" icon="squares-2x2" wire:navigate>{{ __('Species') }}</flux:sidebar.item>
-                    <flux:sidebar.item href="{{ route('herds.edit') }}" icon="heart" wire:navigate>{{ __('My Herd') }}</flux:sidebar.item>
+                    @auth
+                        <flux:sidebar.item href="{{ route('herds.edit') }}" icon="heart" wire:navigate>{{ __('My Herd') }}</flux:sidebar.item>
+                    @endauth
                     <flux:sidebar.item href="{{ route('rankings.index') }}" icon="trophy" wire:navigate>{{ __('Ranking') }}</flux:sidebar.item>
-                    <flux:sidebar.item href="{{ route('trades.index') }}" icon="arrow-path" wire:navigate>{{ __('Trade Area') }}</flux:sidebar.item>
+                    @auth
+                        <flux:sidebar.item href="{{ route('trades.index') }}" icon="arrow-path" wire:navigate>{{ __('Trade Area') }}</flux:sidebar.item>
+                    @endauth
                     <flux:sidebar.item href="{{ route('statistics.index') }}" icon="chart-bar" wire:navigate>{{ __('Statistics') }}</flux:sidebar.item>
                 </flux:sidebar.nav>
                 <flux:sidebar.spacer />
@@ -119,13 +118,17 @@
             </div>
         </div>
 
-        <footer class="w-full mt-12 text-center py-6 border-t border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400">
-            <p class="mb-2">
-                Made with ❤️ by <flux:link href="http://twitter.com/junior_grossi" external>Junior Grossi</flux:link>, <flux:link href="https://www.linkedin.com/in/igorduarte17/" external>Igor Duarte</flux:link> and <flux:link href="https://github.com/jgrossi/elephpant.me/graphs/contributors" external>contributors</flux:link>.
-                <span class="block md:inline mt-1 md:mt-0">Contribute to this project on <flux:link href="http://github.com/jgrossi/elephpant.me" external>GitHub</flux:link>.</span>
-            </p>
-        </footer>
+        <div class="mt-auto pt-16 md:pt-24 lg:pt-28">
+            @include('partials._footer')
+        </div>
     </div>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-149461366-1"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-149461366-1');
+    </script>
     @livewireScripts
     @fluxScripts
 </body>

@@ -12,9 +12,12 @@ final class TradingUsersQuery
 {
     private const int USER_MATCHING_LIMIT = 5;
 
+    /** @var array<int, EloquentCollection<int, Elephpant>> */
+    private array $userElephpantsCache = [];
+
     public function fetchAll(User $user, ?TradingUsersQueryOption $options = null, int $limit = self::USER_MATCHING_LIMIT, ?string $country = null, bool $simplePaginate = false)
     {
-        $userElephpants = $user->elephpants;
+        $userElephpants = $this->userElephpants($user);
 
         $userAvailable = $this->keepTradableElephpants($userElephpants);
 
@@ -39,7 +42,7 @@ final class TradingUsersQuery
      */
     public function getCountryCodesWithTraders(User $user, ?TradingUsersQueryOption $options = null): array
     {
-        $userElephpants = $user->elephpants;
+        $userElephpants = $this->userElephpants($user);
         $userAvailable = $this->keepTradableElephpants($userElephpants);
 
         if ($userAvailable->count() === 0) {
@@ -105,7 +108,7 @@ final class TradingUsersQuery
      */
     public function countTraders(User $user, ?string $country = null): int
     {
-        $userElephpants = $user->elephpants;
+        $userElephpants = $this->userElephpants($user);
         $userAvailable = $this->keepTradableElephpants($userElephpants);
 
         if ($userAvailable->count() === 0) {
@@ -166,6 +169,14 @@ final class TradingUsersQuery
 
         /** @var EloquentCollection<int, Elephpant> $interests */
         $trader->elephpantsInterested = $interests;
+    }
+
+    /**
+     * @return EloquentCollection<int, Elephpant>
+     */
+    private function userElephpants(User $user): EloquentCollection
+    {
+        return $this->userElephpantsCache[$user->id] ??= $user->elephpants;
     }
 
     private function handleTradingOptions($query, ?\App\Queries\TradingUsersQueryOption $options): void

@@ -64,3 +64,18 @@ test('fetchAll excludes non public users', function (): void {
     expect($result)->toHaveCount(1);
     expect($result->first()->id)->toBe($publicUser->id);
 });
+
+test('fetchAll sets last_update from latest herd change', function (): void {
+    $user = User::factory()->create(['country_code' => 'GBR']);
+    $user->update(['is_public' => true]);
+    $older = Elephpant::factory()->create();
+    $newer = Elephpant::factory()->create();
+    $user->elephpants()->attach($older->id, ['quantity' => 1, 'updated_at' => now()->subDay()]);
+    $user->elephpants()->attach($newer->id, ['quantity' => 1, 'updated_at' => now()]);
+
+    $result = $this->query->fetchAll(null);
+
+    expect($result)->toHaveCount(1)
+        ->and($result->first()->last_update)->toBeInstanceOf(\Illuminate\Support\Carbon::class)
+        ->and($result->first()->relationLoaded('elephpants'))->toBeFalse();
+});

@@ -27,6 +27,31 @@ test('species search catalog mode filters by q', function (): void {
     $component->assertSee('Alpha');
 });
 
+test('species search catalog mode with limit shows latest species only', function (): void {
+    Elephpant::factory()->count(15)->create();
+
+    $component = Livewire::test(SpeciesSearch::class, ['mode' => 'catalog', 'limit' => 12]);
+    $view = $component->instance()->render();
+    $data = $view->getData();
+
+    expect($data['elephpants'])->toHaveCount(12)
+        ->and($data['isCatalogPreview'])->toBeTrue()
+        ->and($data['catalogTotal'])->toBe(15);
+});
+
+test('species search catalog mode searches full catalog when limited and q is set', function (): void {
+    Elephpant::factory()->create(['name' => 'Ancient Alpha', 'year' => 2010]);
+    Elephpant::factory()->count(14)->create(['year' => 2025]);
+
+    $component = Livewire::test(SpeciesSearch::class, ['mode' => 'catalog', 'limit' => 12])
+        ->set('q', 'Ancient');
+
+    $view = $component->instance()->render();
+
+    expect($view->getData()['elephpants'])->toHaveCount(1)
+        ->and($view->getData()['isCatalogPreview'])->toBeFalse();
+});
+
 test('species search placeholder returns view', function (): void {
     $component = Livewire::test(SpeciesSearch::class, ['mode' => 'catalog']);
     $placeholder = $component->instance()->placeholder([]);
@@ -63,24 +88,58 @@ test('species search herd mode render computes grouped data', function (): void 
     expect($view->getData())->toHaveKeys(['elephpants', 'elephpantsGrouped', 'userElephpants', 'tradePossibilities', 'speciesCount', 'totalSpecies', 'collectedSpecies']);
 });
 
-test('species search onRefreshStats sets userElephpantsFromEvent', function (): void {
+test('species search herd mode increment updates quantity and dispatches refreshStats', function (): void {
     $user = User::factory()->create();
+    $elephpant = Elephpant::factory()->create();
     $this->actingAs($user);
 
-    $component = Livewire::test(SpeciesSearch::class, ['mode' => 'herd']);
-    $component->call('onRefreshStats', ['userElephpants' => [1 => 2, 2 => 1]]);
+    Livewire::test(SpeciesSearch::class, ['mode' => 'herd'])
+        ->call('incrementQuantity', $elephpant->id)
+        ->assertDispatched('refreshStats');
 
-    $component->assertSet('userElephpantsFromEvent', [1 => 2, 2 => 1]);
+    $user->refresh();
+    $pivot = $user->elephpants()->where('elephpant_id', $elephpant->id)->first();
+    expect($pivot)->not->toBeNull();
+    expect($pivot->pivot->quantity)->toBe(1);
 });
 
-test('species search onRefreshStats does not set when payload has no userElephpants key', function (): void {
+test('species search herd mode decrement updates quantity when above zero', function (): void {
     $user = User::factory()->create();
+    $elephpant = Elephpant::factory()->create();
+    $user->elephpants()->attach($elephpant->id, ['quantity' => 2]);
     $this->actingAs($user);
 
-    $component = Livewire::test(SpeciesSearch::class, ['mode' => 'herd']);
-    $component->call('onRefreshStats', []);
+    Livewire::test(SpeciesSearch::class, ['mode' => 'herd', 'userElephpants' => [$elephpant->id => 2]])
+        ->call('decrementQuantity', $elephpant->id)
+        ->assertDispatched('refreshStats');
 
-    $component->assertSet('userElephpantsFromEvent', null);
+    $user->refresh();
+    expect($user->elephpants()->where('elephpant_id', $elephpant->id)->first()->pivot->quantity)->toBe(1);
+});
+
+test('species search herd mode decrement does nothing when quantity is zero', function (): void {
+    $user = User::factory()->create();
+    $elephpant = Elephpant::factory()->create();
+    $this->actingAs($user);
+
+    Livewire::test(SpeciesSearch::class, ['mode' => 'herd'])
+        ->call('decrementQuantity', $elephpant->id)
+        ->assertNotDispatched('refreshStats');
+});
+
+test('species search herd mode accepts userElephpants and totalSpecies from mount', function (): void {
+    $user = User::factory()->create();
+    $elephpant = Elephpant::factory()->create();
+    $this->actingAs($user);
+
+    $component = Livewire::test(SpeciesSearch::class, [
+        'mode' => 'herd',
+        'userElephpants' => [$elephpant->id => 2],
+        'totalSpecies' => 42,
+    ]);
+
+    $component->assertSet('userElephpants', [$elephpant->id => 2])
+        ->assertSet('totalSpecies', 42);
 });
 
 test('species search herd mode with q filter filters grouped elephpants', function (): void {
@@ -104,11 +163,9 @@ test('species search herd mode exposes totalSpecies and collectedSpecies', funct
 
     $this->actingAs($user);
     $component = Livewire::test(SpeciesSearch::class, ['mode' => 'herd']);
-    $view = $component->instance()->render();
-    $data = $view->getData();
 
-    expect($data['totalSpecies'])->toBeGreaterThan(0);
-    expect($data['collectedSpecies'])->toBe(1);
+    $component->assertSet('collectedSpecies', 1);
+    expect($component->instance()->render()->getData()['totalSpecies'])->toBeGreaterThan(0);
 });
 
 test('species search herd mode computes trade possibilities with senders and receivers', function (): void {

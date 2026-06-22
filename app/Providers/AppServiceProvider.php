@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\ElephpantUser;
 use App\Observers\ElephpantUserObserver;
 use App\Observers\UserObserver;
+use App\Queries\TradingUsersQuery;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     #[\Override]
     public function register(): void
     {
-        //
+        $this->app->singleton(TradingUsersQuery::class);
     }
 
     public function boot(): void

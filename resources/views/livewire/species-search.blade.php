@@ -1,4 +1,4 @@
-<div class="w-full max-w-6xl mx-auto">
+<div class="w-full">
     <div class="flex flex-nowrap items-center gap-3 mb-6">
         <flux:input
             type="text"
@@ -16,7 +16,13 @@
                 <flux:text class="text-sm text-zinc-600 dark:text-zinc-400 tabular-nums shrink-0">Species Found: {{ $collectedSpecies }} of {{ $totalSpecies }}</flux:text>
             </div>
         @elseif($mode === 'catalog')
-            <flux:text class="font-medium shrink-0 whitespace-nowrap ml-auto">Species Found: {{ $speciesCount }}</flux:text>
+            <flux:text class="font-medium shrink-0 whitespace-nowrap ml-auto">
+                @if($isCatalogPreview)
+                    Showing {{ $speciesCount }} of {{ $catalogTotal }}
+                @else
+                    Species Found: {{ $speciesCount }}
+                @endif
+            </flux:text>
         @endif
     </div>
 

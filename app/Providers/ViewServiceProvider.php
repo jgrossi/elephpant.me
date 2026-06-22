@@ -15,7 +15,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('countries', Country::forDropdown());
         });
 
-        View::composer(['ranking.index', 'trade._user', 'herd.show'], function ($view): void {
+        View::composer(['herd.show'], function ($view): void {
             $usersQuery = new UsersCountryQuery()->fetchAll();
             $countryCodes = $usersQuery->unique('country_code')->pluck('country_code')->toArray();
             $view->with('countries', Country::forDropdown($countryCodes));

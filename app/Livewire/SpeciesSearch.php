@@ -12,10 +12,8 @@ use Livewire\Component;
 /**
  * @property-read Collection<int, Elephpant> $filteredElephpants
  * @property-read Collection<int, Collection<int, Elephpant>> $filteredElephpantsGrouped
- * @property-read array<int, int> $userElephpants
  * @property-read array<int, array{type: string, count: int}> $tradePossibilities
  * @property-read int $speciesCount
- * @property-read int $totalSpecies
  * @property-read int $collectedSpecies
  */
 #[Defer]
@@ -26,17 +24,35 @@ class SpeciesSearch extends Component
     /** @var 'catalog'|'herd' */
     public string $mode = 'catalog';
 
-    /** @var array<int, int>|null Updated from refreshStats event so progress bars update without re-query. */
-    public ?array $userElephpantsFromEvent = null;
+    public ?int $limit = null;
+
+    /** @var array<int, int>|null */
+    public ?array $userElephpants = null;
+
+    public ?int $totalSpecies = null;
 
     protected $queryString = ['q' => ['except' => '']];
 
-    protected $listeners = ['refreshStats' => 'onRefreshStats'];
-
-    public function mount(string $mode = 'catalog'): void
+    public function mount(string $mode = 'catalog', ?int $limit = null, ?array $userElephpants = null, ?int $totalSpecies = null): void
     {
         $this->q = (string) request()->input('q', '');
         $this->mode = $mode === 'herd' ? 'herd' : 'catalog';
+        $this->limit = $limit;
+        $this->totalSpecies = $totalSpecies;
+
+        if ($this->mode === 'herd' && $totalSpecies !== null) {
+            $this->userElephpants = $userElephpants ?? [];
+        }
+    }
+
+    /** @return array<int, int> */
+    private function userElephpantQuantities(): array
+    {
+        if ($this->userElephpants === null && $this->mode === 'herd' && $this->totalSpecies === null && Auth::check()) {
+            $this->userElephpants = Auth::user()->elephpantsWithQuantity()->toArray();
+        }
+
+        return $this->userElephpants ?? [];
     }
 
     public function getFilteredElephpantsProperty(): Collection
@@ -55,6 +71,8 @@ class SpeciesSearch extends Component
                     ->orWhere('sponsor', 'LIKE', $term)
                     ->orWhere('year', 'LIKE', $term);
             });
+        } elseif ($this->limit !== null) {
+            $query->limit($this->limit);
         }
 
         return $query->get();
@@ -79,24 +97,56 @@ class SpeciesSearch extends Component
         return $elephpants;
     }
 
-    public function getUserElephpantsProperty(): array
+    public function incrementQuantity(int $elephpantId): void
     {
-        if ($this->mode !== 'herd' || !Auth::check()) {
-            return [];
-        }
-
-        if ($this->userElephpantsFromEvent !== null) {
-            return $this->userElephpantsFromEvent;
-        }
-
-        return Auth::user()->elephpantsWithQuantity()->toArray();
+        $quantities = $this->userElephpantQuantities();
+        $this->saveQuantity($elephpantId, ($quantities[$elephpantId] ?? 0) + 1);
     }
 
-    public function onRefreshStats($stats = null): void
+    public function decrementQuantity(int $elephpantId): void
     {
-        if (is_array($stats) && array_key_exists('userElephpants', $stats)) {
-            $this->userElephpantsFromEvent = $stats['userElephpants'];
+        $quantities = $this->userElephpantQuantities();
+        $quantity = $quantities[$elephpantId] ?? 0;
+
+        if ($quantity > 0) {
+            $this->saveQuantity($elephpantId, $quantity - 1);
         }
+    }
+
+    public function updatedUserElephpants($value, string $key): void
+    {
+        $this->saveQuantity((int) $key, (int) $value);
+    }
+
+    private function saveQuantity(int $elephpantId, int $quantity): void
+    {
+        if ($this->mode !== 'herd' || !Auth::check()) {
+            return;
+        }
+
+        $quantity = max(0, $quantity);
+        $quantities = $this->userElephpantQuantities();
+
+        if ($quantity === 0) {
+            unset($quantities[$elephpantId]);
+        } else {
+            $quantities[$elephpantId] = $quantity;
+        }
+
+        $this->userElephpants = $quantities;
+
+        $elephpant = Elephpant::findOrFail($elephpantId);
+        Auth::user()->adopt($elephpant, $quantity);
+
+        $unique = count($quantities);
+        $total = array_sum($quantities);
+
+        $this->dispatch('refreshStats', stats: [
+            'unique'         => $unique,
+            'total'          => $total,
+            'double'         => $total - $unique,
+            'userElephpants' => $quantities,
+        ]);
     }
 
     public function getTradePossibilitiesProperty(): array
@@ -107,7 +157,7 @@ class SpeciesSearch extends Component
 
         return $this->prepareTradePossibilities(
             $this->filteredElephpantsGrouped,
-            $this->userElephpants
+            $this->userElephpantQuantities()
         );
     }
 
@@ -120,22 +170,30 @@ class SpeciesSearch extends Component
         return $this->filteredElephpantsGrouped->flatten()->unique('id')->count();
     }
 
-    public function getTotalSpeciesProperty(): int
-    {
-        if ($this->mode !== 'herd') {
-            return 0;
-        }
-
-        return Elephpant::count();
-    }
-
     public function getCollectedSpeciesProperty(): int
     {
         if ($this->mode !== 'herd') {
             return 0;
         }
 
-        return count($this->userElephpants);
+        return count($this->userElephpantQuantities());
+    }
+
+    public function getCatalogTotalProperty(): int
+    {
+        if ($this->mode !== 'catalog') {
+            return 0;
+        }
+
+        return Elephpant::count();
+    }
+
+    public function getIsCatalogPreviewProperty(): bool
+    {
+        return $this->mode === 'catalog'
+            && $this->limit !== null
+            && $this->q === ''
+            && $this->catalogTotal > $this->speciesCount;
     }
 
     public function clearSearch(): void
@@ -176,10 +234,12 @@ class SpeciesSearch extends Component
         return view('livewire.species-search', [
             'elephpants'         => $this->filteredElephpants,
             'elephpantsGrouped'  => $this->filteredElephpantsGrouped,
-            'userElephpants'     => $this->userElephpants,
+            'userElephpants'     => $this->userElephpantQuantities(),
             'tradePossibilities' => $this->tradePossibilities,
             'speciesCount'       => $this->speciesCount,
-            'totalSpecies'       => $this->totalSpecies,
+            'catalogTotal'       => $this->catalogTotal,
+            'isCatalogPreview'   => $this->isCatalogPreview,
+            'totalSpecies'       => $this->mode === 'herd' ? ($this->totalSpecies ?? Elephpant::count()) : 0,
             'collectedSpecies'   => $this->collectedSpecies,
         ]);
     }

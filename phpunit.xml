@@ -26,7 +26,7 @@
             <file>./app/Http/Middleware/EncryptCookies.php</file>
             <file>./app/Http/Middleware/TrimStrings.php</file>
             <file>./app/Http/Middleware/TrustProxies.php</file>
-            <file>./app/Http/Middleware/VerifyCsrfToken.php</file>
+            <file>./app/Http/Middleware/PreventRequestForgery.php</file>
             <file>./app/Providers/TelescopeServiceProvider.php</file>
         </exclude>
     </source>

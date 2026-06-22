@@ -23,8 +23,13 @@
     --color-zinc-950: var(--color-slate-950);
 }
 @theme {
+    --color-violet-500: rgb(104 88 246);
+    --color-violet-600: rgb(71 58 196);
+    --color-violet-700: rgb(46 38 130);
+    --color-violet-300: rgb(196 188 252);
+    --color-purple-500: rgb(104 88 246);
     --color-accent: var(--color-violet-500);
-    --color-accent-content: var(--color-violet-600);
+    --color-accent-content: var(--color-violet-700);
     --color-accent-foreground: var(--color-white);
 }
 @layer theme {
@@ -111,9 +116,13 @@
 
 /* wire:navigate progress bar: purple to match theme */
 #nprogress .bar {
-    background: var(--color-violet-500, #8b5cf6) !important;
+    background: var(--color-violet-500, rgb(104 88 246)) !important;
 }
 #nprogress .spinner-icon {
-    border-top-color: var(--color-violet-500, #8b5cf6) !important;
-    border-left-color: var(--color-violet-500, #8b5cf6) !important;
+    border-top-color: var(--color-violet-500, rgb(104 88 246)) !important;
+    border-left-color: var(--color-violet-500, rgb(104 88 246)) !important;
+}
+
+[data-flux-main]:has(> .home-hero) {
+    padding-top: 0;
 }

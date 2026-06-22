@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Elephpant;
 use App\Queries\TradingUsersQuery;
 use App\User;
 
@@ -9,7 +10,19 @@ class HerdController extends Controller
 {
     public function edit(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view('herd.edit');
+        $userElephpants = auth()->user()->elephpantsWithQuantity()->toArray();
+        $unique = count($userElephpants);
+        $total = array_sum($userElephpants);
+
+        return view('herd.edit', [
+            'userElephpants' => $userElephpants,
+            'herdStats'      => [
+                'unique' => $unique,
+                'total'  => $total,
+                'double' => $total - $unique,
+            ],
+            'totalSpecies' => Elephpant::count(),
+        ]);
     }
 
     public function show(string $username, TradingUsersQuery $query): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

@@ -13,12 +13,41 @@ test('authenticated user can access my-herd', function (): void {
     $response->assertStatus(200);
 });
 
+test('my herd page avoids excessive database queries on initial load', function (): void {
+    Elephpant::factory()->count(3)->create();
+    $user = User::factory()->create();
+    $elephpant = Elephpant::first();
+    $user->elephpants()->attach($elephpant->id, ['quantity' => 1]);
+
+    \Illuminate\Support\Facades\DB::enableQueryLog();
+
+    $this->actingAs($user)->get(route('herds.edit'));
+
+    $queries = collect(\Illuminate\Support\Facades\DB::getQueryLog())
+        ->reject(fn (array $query): bool => str_contains($query['query'], 'telescope'));
+
+    expect($queries->count())->toBeLessThan(10);
+});
+
 test('authenticated user can access trade', function (): void {
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)->get(route('trades.index'));
 
     $response->assertStatus(200);
+});
+
+test('trade index avoids excessive database queries', function (): void {
+    $user = User::factory()->create();
+
+    \Illuminate\Support\Facades\DB::enableQueryLog();
+
+    $this->actingAs($user)->get(route('trades.index'));
+
+    $queries = collect(\Illuminate\Support\Facades\DB::getQueryLog())
+        ->reject(fn (array $query): bool => str_contains($query['query'], 'telescope'));
+
+    expect($queries->count())->toBeLessThan(10);
 });
 
 test('authenticated user can access trade with country filter', function (): void {

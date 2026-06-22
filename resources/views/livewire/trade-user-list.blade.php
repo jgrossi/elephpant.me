@@ -18,7 +18,7 @@
     @elseif($this->users->count() === 0)
         <flux:callout variant="info">No users found that can trade with you.</flux:callout>
     @else
-        <flux:callout variant="info" icon="information-circle" heading="Found {{ $this->totalTraders }} {{ \Illuminate\Support\Str::plural('user', $this->totalTraders) }} that can trade with you." class="mb-4" />
+        <flux:callout variant="info" icon="information-circle" heading="Found {{ $this->users->total() }} {{ \Illuminate\Support\Str::plural('user', $this->users->total()) }} that can trade with you." class="mb-4" />
         <div class="flex justify-end mt-4 mb-4">
             {{ $this->users->links() }}
         </div>

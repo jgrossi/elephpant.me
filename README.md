@@ -67,8 +67,10 @@ $ php artisan storage:link
 ---
 
 ### Maintainers
-Junior Grossi – [@junior_grossi](https://twitter.com/junior_grossi)  
-Igor Santos – [@IgorSantoos17](https://twitter.com/IgorSantoos17)
+Junior Grossi – [@junior_grossi](https://x.com/junior_grossi)  
+Igor Santos – [@IgorSantoos17](https://x.com/IgorSantoos17)
+Jon Purvis - [@jonpurvis_](https://x.com/jonpurvis_)
+Thomas Eiling - [@TEiling88](https://x.com/TEiling88)
 
 
 This project is `Open Source` and contains [MIT License](LICENSE).

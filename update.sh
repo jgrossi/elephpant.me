@@ -6,12 +6,14 @@ cd "$(dirname "$0")"
 
 echo "==> Maintenance mode ON"
 php artisan down
+trap 'php artisan up' EXIT
 
 echo "==> Pulling latest code"
-git pull origin master
+git fetch origin
+git reset --hard origin/master
 
 echo "==> Installing PHP dependencies"
-composer install --no-dev --optimize-autoloader --no-interaction
+composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 echo "==> Running database migrations"
 php artisan migrate --force
@@ -34,8 +36,5 @@ php artisan view:cache
 
 echo "==> Fixing storage permissions"
 chmod -R 775 storage bootstrap/cache
-
-echo "==> Maintenance mode OFF"
-php artisan up
 
 echo "Done."

@@ -14,17 +14,17 @@ git reset --hard origin/master
 
 echo "==> Installing PHP dependencies"
 composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
-
-echo "==> Running database migrations"
-php artisan migrate --force
-
-php artisan elephpants:read
-php artisan storage:link
+php artisan storage:link || true
 
 echo "==> Clearing caches"
 php artisan config:clear
 php artisan view:clear
 php artisan cache:clear
+
+echo "==> Running database migrations"
+php artisan migrate --force
+
+php artisan elephpants:read
 
 echo "==> Building frontend assets"
 npm install --legacy-peer-deps --silent

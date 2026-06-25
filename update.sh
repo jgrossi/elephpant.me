@@ -27,7 +27,9 @@ php artisan migrate --force
 php artisan elephpants:read
 
 echo "==> Building frontend assets"
-npm install --legacy-peer-deps --silent
+npm install laravel-mix@5 webpack@4 webpack-cli@4 --save-dev
+rm -rf node_modules
+npm install --legacy-peer-deps
 npm run production
 
 echo "==> Rebuilding caches"

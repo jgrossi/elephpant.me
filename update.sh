@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+echo "==> Maintenance mode ON"
+php artisan down
+
+echo "==> Pulling latest code"
+git pull origin master
+
+echo "==> Installing PHP dependencies"
+composer install --no-dev --optimize-autoloader --no-interaction
+
+echo "==> Running database migrations"
+php artisan migrate --force
+
+php artisan elephpants:read
+php artisan storage:link
+
+echo "==> Clearing caches"
+php artisan config:clear
+php artisan view:clear
+php artisan cache:clear
+
+echo "==> Fixing storage permissions"
+chmod -R 775 storage bootstrap/cache
+
+echo "==> Maintenance mode OFF"
+php artisan up
+
+echo "Done."

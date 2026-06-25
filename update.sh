@@ -24,6 +24,14 @@ php artisan config:clear
 php artisan view:clear
 php artisan cache:clear
 
+echo "==> Building frontend assets"
+npm install --legacy-peer-deps --silent
+npm run production
+
+echo "==> Rebuilding caches"
+php artisan config:cache
+php artisan view:cache
+
 echo "==> Fixing storage permissions"
 chmod -R 775 storage bootstrap/cache
 

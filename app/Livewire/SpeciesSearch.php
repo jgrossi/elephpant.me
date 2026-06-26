@@ -15,6 +15,8 @@ use Livewire\Component;
  * @property-read array<int, array{type: string, count: int}> $tradePossibilities
  * @property-read int $speciesCount
  * @property-read int $collectedSpecies
+ * @property-read int $catalogTotal
+ * @property-read bool $isCatalogPreview
  */
 #[Defer]
 class SpeciesSearch extends Component

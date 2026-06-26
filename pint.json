@@ -1,3 +1,8 @@
 {
-    "preset": "psr12"
+    "preset": "psr12",
+    "rules": {
+        "class_definition": {
+            "space_before_parenthesis": false
+        }
+    }
 }

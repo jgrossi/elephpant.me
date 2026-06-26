@@ -4,12 +4,16 @@ namespace App\Livewire;
 
 use App\User;
 use Livewire\Attributes\Defer;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 #[Defer]
 class PublicHerdCollection extends Component
 {
     public string $username = '';
+
+    #[Url]
+    public ?string $filter = null;
 
     public function mount(string $username): void
     {
@@ -25,8 +29,14 @@ class PublicHerdCollection extends Component
             ->get()
             ->filter(fn ($e): bool => (int) ($e->pivot->quantity ?? 0) > 0);
 
+        if ($this->filter === 'unique') {
+            $elephpants = $elephpants->filter(fn ($e): bool => (int) ($e->pivot->quantity ?? 0) === 1);
+        } elseif ($this->filter === 'double') {
+            $elephpants = $elephpants->filter(fn ($e): bool => (int) ($e->pivot->quantity ?? 0) > 1);
+        }
+
         return view('livewire.public-herd-collection', [
-            'elephpants' => $elephpants,
+            'elephpants' => $elephpants->values(),
         ]);
     }
 

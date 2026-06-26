@@ -73,9 +73,9 @@
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p>Copyright &copy; {{ date('Y') }} ElePHPant.me contributors.</p>
                 <p>
-                    <a href="https://www.creoline.com/en" target="_blank" class="inline-flex items-center opacity-60 transition hover:opacity-100">
+                    <a href="https://www.creoline.com?utm_source=elephpant.me" target="_blank" class="inline-flex items-center opacity-60 transition hover:opacity-100">
                         Hosting proudly sponsored by&nbsp;
-                        <img src="{{ asset('img/creoline-logo-white.svg') }}" alt="Creoline" class="h-5 h-auto" style="width:140px;">
+                        <img src="{{ asset('img/creoline-logo-white.svg') }}" alt="Creoline" class="h-5 h-auto" style="width:110px;">
                     </a>
                 </p>
                 <p>

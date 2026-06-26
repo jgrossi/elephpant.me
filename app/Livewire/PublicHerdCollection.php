@@ -30,9 +30,9 @@ class PublicHerdCollection extends Component
             ->filter(fn ($e): bool => (int) ($e->pivot->quantity ?? 0) > 0);
 
         if ($this->filter === 'unique') {
-            $elephpants = $elephpants->filter(fn ($e): bool => (int) $e->pivot->quantity === 1);
+            $elephpants = $elephpants->filter(fn ($e): bool => (int) ($e->pivot->quantity ?? 0) === 1);
         } elseif ($this->filter === 'double') {
-            $elephpants = $elephpants->filter(fn ($e): bool => (int) $e->pivot->quantity > 1);
+            $elephpants = $elephpants->filter(fn ($e): bool => (int) ($e->pivot->quantity ?? 0) > 1);
         }
 
         return view('livewire.public-herd-collection', [

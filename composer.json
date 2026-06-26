@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "ext-json": "*",
         "calebporzio/sushi": "^2.5",
         "creativeorange/gravatar": "^1.0.26",
@@ -37,7 +37,6 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
-        "platform": {"php": "8.4.0"},
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }

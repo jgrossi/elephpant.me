@@ -12,7 +12,17 @@ DB_PASSWORD="db"
 EOT
 
 composer install
+
 php artisan migrate
 php artisan key:generate
 php artisan elephpants:read
-php artisan storage:link
+php artisan storage:link || true
+
+npm ci && npm run build
+
+php artisan view:clear
+php artisan config:clear
+
+echo "==> Rebuilding caches"
+php artisan config:cache
+php artisan route:cache

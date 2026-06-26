@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Queries\RankedUsersQuery;
-
 class RankingController extends Controller
 {
-    public function index(RankedUsersQuery $usersQuery)
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $country = request('country');
-        $users = $usersQuery->fetchAll($country);
-
-        return view('ranking.index', compact('users', 'country'));
+        return view('ranking.index');
     }
 }

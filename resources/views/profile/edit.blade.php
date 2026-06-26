@@ -1,145 +1,112 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Profile') }}</div>
+    <div class="max-w-6xl mx-auto space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 py-6 md:py-8 mb-6 md:mb-8">
+            <div>
+                <flux:heading size="xl" level="1">{{ __('Profile') }}</flux:heading>
+                <flux:text class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Manage your account settings and public profile.</flux:text>
+            </div>
+        </div>
 
-                    <div class="card-body">
-                        @include('_status')
-                        <form method="POST" action="{{ route('profile.update') }}">
-                            @csrf
-                            @method('PUT')
+        @include('_status')
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+        <div class="space-y-12">
+            {{-- Account --}}
+            <div class="flex flex-col sm:flex-row sm:gap-12 gap-6">
+                <div class="sm:w-48 shrink-0">
+                    <flux:heading size="lg" class="text-zinc-900 dark:text-zinc-100">{{ __('Account') }}</flux:heading>
+                    <flux:text class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Your basic account information used across the site.</flux:text>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="section" value="account" />
+                        <flux:field>
+                            <flux:label>{{ __('Name') }}</flux:label>
+                            <flux:input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus />
+                            <flux:error name="name" />
+                        </flux:field>
+                        <flux:field>
+                            <flux:label>{{ __('E-Mail Address') }}</flux:label>
+                            <flux:input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" required autocomplete="email" />
+                            <flux:error name="email" />
+                        </flux:field>
+                        <flux:field>
+                            <flux:label>{{ __('Country') }}</flux:label>
+                            <flux:select name="country_code" id="country_code" required>
+                                <option value="">-- {{ __('Select your country') }} --</option>
+                                @foreach($countries as $code => $current)
+                                    <option value="{{ $code }}" {{ $code === old('country_code', $user->country_code) ? 'selected' : '' }}>
+                                        {{ is_array($current) ? ($current['name'] ?? '') : $current->get('name') }}
+                                    </option>
+                                @endforeach
+                            </flux:select>
+                            <flux:error name="country_code" />
+                        </flux:field>
+                        <flux:field>
+                            <flux:label>{{ __('Username') }}</flux:label>
+                            <flux:input type="text" name="username" id="username" value="{{ old('username', $user->username) }}" autocomplete="username" />
+                            <flux:error name="username" />
+                        </flux:field>
+                        <flux:button type="submit" variant="primary">{{ __('Save') }}</flux:button>
+                    </form>
+                </div>
+            </div>
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
+            <div class="border-t border-zinc-200 dark:border-zinc-700" aria-hidden="true"></div>
 
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
+            {{-- Password --}}
+            <div class="flex flex-col sm:flex-row sm:gap-12 gap-6">
+                <div class="sm:w-48 shrink-0">
+                    <flux:heading size="lg" class="text-zinc-900 dark:text-zinc-100">{{ __('Password') }}</flux:heading>
+                    <flux:text class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Leave blank to keep your current password.</flux:text>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="section" value="password" />
+                        <flux:field>
+                            <flux:label>{{ __('Password') }}</flux:label>
+                            <flux:input type="password" name="password" id="password" autocomplete="new-password" />
+                            <flux:error name="password" />
+                        </flux:field>
+                        <flux:field>
+                            <flux:label>{{ __('Confirm Password') }}</flux:label>
+                            <flux:input type="password" name="password_confirmation" id="password-confirm" autocomplete="new-password" />
+                        </flux:field>
+                        <flux:button type="submit" variant="primary">{{ __('Save') }}</flux:button>
+                    </form>
+                </div>
+            </div>
 
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            <div class="border-t border-zinc-200 dark:border-zinc-700" aria-hidden="true"></div>
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="country_code" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
-                                <div class="col-md-6">
-                                    <select name="country_code" id="country_code" name="country_code" class="form-control @error('country_code') is-invalid @enderror" name="country_code" value="{{ old('country_code') }}" required autocomplete="country_code">
-                                        <option value="">-- Select your country --</option>
-                                        @foreach($countries as $code => $current)
-                                            <option value="{{ $code }}" {{ $code === old('country_code', $user->country_code) ? 'selected' : '' }}>
-                                                {{ $current->get('name') }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('country_code')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-                                <div class="col-md-6">
-                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', $user->username) }}" autocomplete="twitter">
-                                    @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="form-group row">
-                                <label for="twitter" class="col-md-4 col-form-label text-md-right">{{ __('Twitter') }}</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">@</span>
-                                        </div>
-                                        <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ old('twitter', $user->twitter) }}" autocomplete="twitter">
-                                        @error('twitter')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="mastodon" class="col-md-4 col-form-label text-md-right">{{ __('Mastodon') }}</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">@</span>
-                                        </div>
-                                        <input id="mastodon" type="text" class="form-control @error('mastodon') is-invalid @enderror" name="mastodon" value="{{ old('mastodon', $user->mastodon) }}">
-                                        @error('mastodon')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Save profile') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+            {{-- Public profile --}}
+            <div class="flex flex-col sm:flex-row sm:gap-12 gap-6">
+                <div class="sm:w-48 shrink-0">
+                    <flux:heading size="lg" class="text-zinc-900 dark:text-zinc-100">{{ __('Public profile') }}</flux:heading>
+                    <flux:text class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Social links shown on your herd and in the trade area.</flux:text>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="section" value="public_profile" />
+                        <flux:field>
+                            <flux:label>{{ __('Twitter') }}</flux:label>
+                            <flux:input type="text" name="twitter" id="twitter" value="{{ old('twitter', $user->twitter) }}" placeholder="@username" autocomplete="twitter" />
+                            <flux:error name="twitter" />
+                        </flux:field>
+                        <flux:field>
+                            <flux:label>{{ __('Mastodon') }}</flux:label>
+                            <flux:input type="text" name="mastodon" id="mastodon" value="{{ old('mastodon', $user->mastodon) }}" placeholder="@username" />
+                            <flux:error name="mastodon" />
+                        </flux:field>
+                        <flux:button type="submit" variant="primary">{{ __('Save') }}</flux:button>
+                    </form>
                 </div>
             </div>
         </div>

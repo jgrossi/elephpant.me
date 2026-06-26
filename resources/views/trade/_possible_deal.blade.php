@@ -1,30 +1,31 @@
+<div class="space-y-6 mb-6">
+    <div>
+        <flux:heading size="sm" class="text-zinc-600 dark:text-zinc-400 mb-2">Their doubles you don't have</flux:heading>
+        @if($user->elephpantsToTrade->isEmpty())
+            <flux:text class="text-sm text-zinc-500 dark:text-zinc-400">None</flux:text>
+        @else
+            <div class="flex flex-wrap gap-2">
+                @foreach($user->elephpantsToTrade as $elephpant)
+                    @include('trade._elephpant_tile', ['elephpant' => $elephpant])
+                @endforeach
+            </div>
+        @endif
+    </div>
 
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        User's double elePHPants you don't have yet:
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        @foreach($user->elephpantsToTrade as $elephpant)
-                                            @include('trade._elephpant')
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        User's looking for these ones you have double:
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        @foreach($user->elephpantsInterested as $elephpant)
-                                            @include('trade._elephpant')
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div data-controller="ping" data-ping-id="{{ $user->id }}">
-                                    <div class="message-box alert alert-success mb-0" style="display: none;">🎉 The message was sent to the user! 👏👏</div>
-                                    <div class="form-box">
-                                        <div class="form-group mb-2">
-                                            <textarea name="message" id="" class="form-control" rows="2" placeholder="Hey, just saw you're looking for an elePHPant I have double. Let's trade?" data-target="ping.message"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" data-action="ping#send">Send message to user</button>
-                                    </div>
-                                </div>
+    <div>
+        <flux:heading size="sm" class="text-zinc-600 dark:text-zinc-400 mb-2">They're looking for (you have double)</flux:heading>
+        @if($user->elephpantsInterested->isEmpty())
+            <flux:text class="text-sm text-zinc-500 dark:text-zinc-400">None</flux:text>
+        @else
+            <div class="flex flex-wrap gap-2">
+                @foreach($user->elephpantsInterested as $elephpant)
+                    @include('trade._elephpant_tile', ['elephpant' => $elephpant])
+                @endforeach
+            </div>
+        @endif
+    </div>
+
+    <div>
+        @livewire('trade-message', ['receiverId' => $user->id], key('trade-message-'.$user->id))
+    </div>
+</div>

@@ -1,21 +1,22 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        factory(\App\User::class)->create([
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'twitter' => 'john',
+        User::factory()->create([
+            'name'         => 'John Doe',
+            'email'        => 'john@example.com',
+            'twitter'      => 'john',
             'country_code' => 'USA',
-            'password' => \Illuminate\Support\Facades\Hash::make('secret'),
-            'mastodon' => '@john@elephpant.me'
+            'password'     => \Illuminate\Support\Facades\Hash::make('secret'),
+            'mastodon'     => '@john@elephpant.me',
         ]);
 
-        factory(\App\User::class, 50)->create();
+        User::factory(50)->create();
 
         \Illuminate\Support\Facades\Artisan::call('elephpants:read');
 

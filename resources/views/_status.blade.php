@@ -1,23 +1,15 @@
 @if(session('status-success'))
-    <div class="alert alert-success mx-auto">
-        {{ session('status-success') }}
-    </div>
+    <flux:callout variant="success" icon="check-circle" heading="{{ session('status-success') }}" class="mb-4" />
 @endif
 
 @if(session('status-warning'))
-    <div class="alert alert-warning mx-auto">
-        {{ session('status-warning') }}
-    </div>
+    <flux:callout variant="warning" icon="exclamation-triangle" heading="{{ session('status-warning') }}" class="mb-4" />
 @endif
 
 @if(session('status-info'))
-    <div class="alert alert-info mx-auto">
-        {{ session('status-info') }}
-    </div>
+    <flux:callout variant="info" icon="information-circle" heading="{{ session('status-info') }}" class="mb-4" />
 @endif
 
 @if(session('status-danger'))
-    <div class="alert alert-danger mx-auto">
-        {{ session('status-danger') }}
-    </div>
+    <flux:callout variant="danger" icon="x-circle" heading="{{ session('status-danger') }}" class="mb-4" />
 @endif

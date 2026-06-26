@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Elephpant;
-use Illuminate\Http\Request;
 
 class ElephpantController extends Controller
 {
-    public function index(Request $request)
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $elephpants = Elephpant::query()->filter($request)->orderBy('year', 'desc')->orderBy('id', 'desc')->get();
+        $total = Elephpant::count();
 
-        return view('elephpant.index', compact('elephpants'));
+        return view('elephpant.index', ['total' => $total]);
     }
 }

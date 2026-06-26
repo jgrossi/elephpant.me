@@ -15,11 +15,9 @@ final class UsersCountryQuery
 
         $visibleFields = ['users.country_code'];
 
-        $users = $userQuery
+        return $userQuery
             ->select($visibleFields)
             ->groupBy($visibleFields)
             ->get();
-
-        return $users;
     }
 }

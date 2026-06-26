@@ -5,17 +5,19 @@ namespace App\Providers;
 use App\ElephpantUser;
 use App\Observers\ElephpantUserObserver;
 use App\Observers\UserObserver;
+use App\Queries\TradingUsersQuery;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register()
+    #[\Override]
+    public function register(): void
     {
-        //
+        $this->app->singleton(TradingUsersQuery::class);
     }
 
-    public function boot()
+    public function boot(): void
     {
         User::observe(UserObserver::class);
         ElephpantUser::observe(ElephpantUserObserver::class);

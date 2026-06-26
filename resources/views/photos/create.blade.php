@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="text-center mb-4">
-                    <h1>Upload your elePHPoto!</h1>
-                    <p class="lead">Show the world your elePHPants.</p>
-                </div>
-                <form action="{{ route('photos.store') }}" method="POST">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="url">Image URL</label>
-                        <input type="text" class="form-control" id="url" name="url" placeholder="https://www.example.com/photo.jpg">
-                        <small class="form-text text-muted">Upload your photo to somewhere first.</small>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save photo</button>
+    <div class="max-w-md mx-auto px-4 pt-8">
+        <div class="text-center mb-6">
+            <flux:heading size="xl" level="1">Upload your elePHPoto!</flux:heading>
+            <flux:text class="mt-2">Show the world your elePHPants.</flux:text>
+        </div>
+        <flux:card class="space-y-4">
+            <div>
+                <form action="{{ route('photos.store') }}" method="POST" class="space-y-4">
+                    @csrf
+                    <flux:field>
+                        <flux:label>Image URL</flux:label>
+                        <flux:input type="url" name="url" id="url" placeholder="https://www.example.com/photo.jpg" />
+                        <flux:description>Upload your photo to somewhere first.</flux:description>
+                    </flux:field>
+                    <flux:button type="submit" variant="primary">Save photo</flux:button>
                 </form>
             </div>
-        </div>
+        </flux:card>
     </div>
 @endsection

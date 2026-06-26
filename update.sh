@@ -30,7 +30,6 @@ npm ci && npm run build
 
 php artisan view:clear
 php artisan config:clear
-php artisan livewire:discover
 
 echo "==> Rebuilding caches"
 php artisan config:cache

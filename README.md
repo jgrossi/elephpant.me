@@ -18,13 +18,13 @@
 - JavaScript, jQuery (popovers)
 
 #### Backend
-- PHP 8.2+ (target 8.5)
+- PHP 8.5
 - Laravel 10
-- Livewire 3, FakerPHP
+- Livewire 4, FakerPHP
 - Composer, PHPUnit
 
 #### Database
-- MySQL 5.8^
+- MySQL 8.0^
 
 ---
 
@@ -68,11 +68,6 @@ $ npm install
 $ npm run build   # or npm run dev
 ```
 
-### Upgrade notes
-
-- **Laravel 11/12:** Upgrading past Laravel 10 is currently blocked by `pragmarx/countries` (via `pragmarx/coollection` → abandoned `tightenco/collect`), which conflicts with Symfony 7. Replacing `pragmarx/countries` with another package would allow moving to Laravel 11+ and Livewire 4.
-- **PHP 8.5:** The app supports PHP 8.2+. When PHP 8.5 is available, set `"php": "^8.5"` in `composer.json` if you want to require it.
-
 ---
 
 ### Maintainers
@@ -81,5 +76,7 @@ Igor Santos – [@IgorSantoos17](https://x.com/IgorSantoos17)
 Jon Purvis - [@jonpurvis_](https://x.com/jonpurvis_)
 Thomas Eiling - [@TEiling88](https://x.com/TEiling88)
 
+### Sponsors
+Hosting: [Creoline](https://creoline.com/en)
 
 This project is `Open Source` and contains [MIT License](LICENSE).

@@ -69,15 +69,26 @@
             </div>
         </div>
 
-        <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 text-sm text-violet-200/75 sm:flex-row sm:items-center sm:justify-between">
-            <p>Copyright &copy; {{ date('Y') }} ElePHPant.me contributors.</p>
-            <p>
-                Made with <span aria-hidden="true">&hearts;</span><span class="sr-only">love</span>
-                by
-                <a href="https://twitter.com/junior_grossi" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Junior Grossi</a>,
-                <a href="https://www.linkedin.com/in/igorduarte17/" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Igor Duarte</a>,
-                and the community.
-            </p>
+        <div class="mt-12 border-t border-white/10 pt-8 text-sm text-violet-200/75">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p>Copyright &copy; {{ date('Y') }} ElePHPant.me contributors.</p>
+                <p>
+                    <a href="https://www.creoline.com/en" target="_blank" class="inline-flex items-center opacity-60 transition hover:opacity-100">
+                        Hosting proudly sponsored by&nbsp;
+                        <img src="{{ asset('img/creoline-logo-white.svg') }}" alt="Creoline" class="h-5 h-auto">
+                    </a>
+                </p>
+                <p>
+                    Made with <span aria-hidden="true">&hearts;</span><span class="sr-only">love</span>
+                    by
+                    <a href="https://twitter.com/junior_grossi" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Junior Grossi</a>,
+                    <a href="https://www.linkedin.com/in/igorduarte17/" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Igor Duarte</a>,
+                    and the community.
+                </p>
+            </div>
+            <div class="mt-4 flex items-center justify-center gap-2 border-t border-white/10 pt-4">
+
+            </div>
         </div>
     </div>
 </footer>

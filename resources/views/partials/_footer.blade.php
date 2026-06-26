@@ -75,7 +75,7 @@
                 <p>
                     <a href="https://www.creoline.com/en" target="_blank" class="inline-flex items-center opacity-60 transition hover:opacity-100">
                         Hosting proudly sponsored by&nbsp;
-                        <img src="{{ asset('img/creoline-logo-white.svg') }}" alt="Creoline" class="h-5 h-auto">
+                        <img src="{{ asset('img/creoline-logo-white.svg') }}" alt="Creoline" class="h-5 h-auto" style="width:140px;">
                     </a>
                 </p>
                 <p>

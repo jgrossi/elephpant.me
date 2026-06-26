@@ -11,7 +11,7 @@ class AdoptionController extends Controller
     public function update(AdoptionRequest $request, Elephpant $elephpant)
     {
         $user = Auth::user();
-        $user->adopt($elephpant, $request->get('quantity'));
+        $user->adopt($elephpant, $request->input('quantity'));
 
         return response()->json(null, 204);
     }

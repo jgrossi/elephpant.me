@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ElephpantController;
 use App\Http\Controllers\Api\HerdController;
 use Illuminate\Http\Request;
 
@@ -19,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/herd/{username}', [HerdController::class, 'show'])->name('api.herds.show');
+
+Route::get('/elephpants', [ElephpantController::class, 'index'])->name('api.elephpants.index');
+Route::get('/elephpants/{elephpant}', [ElephpantController::class, 'show'])->name('api.elephpants.show');

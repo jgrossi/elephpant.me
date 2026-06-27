@@ -3,7 +3,7 @@
 set -euo pipefail
 
 cd "$(dirname "$0")"
-
+export PATH="/opt/plesk/php/8.5/bin:$PATH"
 echo "==> Maintenance mode ON"
 php artisan down
 trap 'php artisan up' EXIT

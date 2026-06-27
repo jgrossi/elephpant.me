@@ -18,6 +18,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            source ~/.bash_profile || source ~/.bashrc || true
             cd /var/www/vhosts/elephpant.me/httpdocs
             ./update.sh

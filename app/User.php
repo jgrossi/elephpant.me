@@ -21,14 +21,17 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
+    #[\Override]
     protected $fillable = [
         'name', 'email', 'password', 'country_code', 'twitter', 'username', 'mastodon',
     ];
 
+    #[\Override]
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+    #[\Override]
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

@@ -10,8 +10,10 @@ use Intervention\Image\Facades\Image;
 
 class ReadElephpants extends Command
 {
+    #[\Override]
     protected $signature = 'elephpants:read';
 
+    #[\Override]
     protected $description = 'Read elePHPants in the JSON file';
 
     public function handle(): void

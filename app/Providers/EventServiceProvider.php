@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
@@ -14,6 +16,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array<string, array<int, string>>
      */
+    #[\Override]
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,

@@ -24,7 +24,7 @@ class HerdController extends Controller
 
         $elephpants = $user->elephpants
             ->sortBy('year')
-            ->map(fn ($elephpant) => [
+            ->map(fn ($elephpant): array => [
                 'id'          => $elephpant->id,
                 'name'        => $elephpant->name,
                 'description' => $elephpant->description,

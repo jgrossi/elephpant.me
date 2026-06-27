@@ -15,10 +15,11 @@ npm-debug.log
 yarn-error.log
 .phpunit.result.cache
 
-# Visual Studio Files
+# IDE Files
 source/.vs/
 .vs/
 /.vscode
+.idea
 
 # Dependecies
 /node_modules

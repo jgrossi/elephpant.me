@@ -51,3 +51,25 @@ jobs:
 
       - name: Run tests
         run: ./vendor/bin/pest -p
+
+  lint-openapi:
+    name: Validate OpenAPI docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup node
+        uses: actions/setup-node@v6
+
+      - name: Install Redocly CLI
+        run: npm install --no-save @redocly/cli@latest
+
+      - name: Run Redocly lint
+        run: |
+          npx redocly lint public/openapi.yaml \
+            --extends recommended \
+            --format github-actions \
+            --max-problems 500 \
+            --lint-config error

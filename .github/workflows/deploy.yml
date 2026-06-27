@@ -17,6 +17,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
+          request_pty: true
           script: |
-            cd /var/www/vhosts/elephpant.me/httpdocs
-            ./update.sh
+            bash -l -c "cd /var/www/vhosts/elephpant.me/httpdocs && ./update.sh"

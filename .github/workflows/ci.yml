@@ -73,3 +73,27 @@ jobs:
             --format github-actions \
             --max-problems 500 \
             --lint-config error
+
+  validate-elephpants-data:
+    name: Validate elePHPants data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Validate schema
+        uses: dsanders11/json-schema-validate-action
+        with:
+          schema: resources/data/elephpants.schema.json
+          files: resources/data/elephpants.json
+
+      - name: Check for duplicate IDs
+        run: |
+          dup=$(jq -r '.elephpants[].id' resources/data/elephpants.json | sort | uniq -d)
+          if [[ -n "$dup" ]]; then
+            echo "Duplicate IDs found in resources/data/elephpants.json: $dup"
+            exit 1
+          else
+            echo "All IDs in elephpants.json are unique 👍"
+            exit 0
+          fi

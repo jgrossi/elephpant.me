@@ -15,8 +15,10 @@ class Country extends Model
 {
     use Sushi;
 
+    #[\Override]
     protected $primaryKey = 'code';
 
+    #[\Override]
     public $incrementing = false;
 
     public function getRows(): array

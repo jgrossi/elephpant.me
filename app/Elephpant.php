@@ -16,6 +16,7 @@ class Elephpant extends Model
 {
     use \Illuminate\Database\Eloquent\Factories\HasFactory;
 
+    #[\Override]
     protected $fillable = [
         'id',
         'name',

@@ -13,6 +13,7 @@ class HerdStats extends Component
 
     public int $double = 0;
 
+    #[\Override]
     protected $listeners = ['refreshStats' => 'refresh'];
 
     public function mount(?int $unique = null, ?int $total = null, ?int $double = null): void

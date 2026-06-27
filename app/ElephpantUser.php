@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,10 +11,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ElephpantUser extends Model
 {
+    #[\Override]
     protected $table = 'elephpant_user';
 
+    #[\Override]
     protected $fillable = ['user_id', 'elephpant_id', 'quantity'];
 
+    #[\Override]
     protected $casts = [
         'quantity' => 'integer',
     ];

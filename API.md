@@ -2,7 +2,7 @@
 
 A free, public JSON API for the PHP community. No authentication required.
 
-**Base URL:** `https://elephpant.me/api`
+**Base URL:** `https://www.elephpant.me/api`
 
 ---
 
@@ -25,8 +25,8 @@ Returns a paginated list of all elephpant species, ordered by year and name. 20 
 **Example request**
 
 ```bash
-curl https://elephpant.me/api/elephpants
-curl https://elephpant.me/api/elephpants?page=2
+curl https://www.elephpant.me/api/elephpants
+curl https://www.elephpant.me/api/elephpants?page=2
 ```
 
 **Example response**
@@ -40,16 +40,16 @@ curl https://elephpant.me/api/elephpants?page=2
       "description": "First Blue",
       "sponsor": "Nexen / Alter Way",
       "year": 2007,
-      "image_url": "https://elephpant.me/storage/elephpants/1-original-blue.jpg",
+      "image_url": "https://www.elephpant.me/storage/elephpants/1-original-blue.jpg",
       "owners": 142,
-      "url": "https://elephpant.me/api/elephpants/1"
+      "url": "https://www.elephpant.me/api/elephpants/1"
     }
   ],
   "links": {
-    "first": "https://elephpant.me/api/elephpants?page=1",
-    "last": "https://elephpant.me/api/elephpants?page=5",
+    "first": "https://www.elephpant.me/api/elephpants?page=1",
+    "last": "https://www.elephpant.me/api/elephpants?page=5",
     "prev": null,
-    "next": "https://elephpant.me/api/elephpants?page=2"
+    "next": "https://www.elephpant.me/api/elephpants?page=2"
   },
   "meta": {
     "current_page": 1,
@@ -73,7 +73,7 @@ Returns details for a specific elephpant species by ID.
 **Example request**
 
 ```bash
-curl https://elephpant.me/api/elephpants/1
+curl https://www.elephpant.me/api/elephpants/1
 ```
 
 **Example response**
@@ -86,9 +86,9 @@ curl https://elephpant.me/api/elephpants/1
     "description": "First Blue",
     "sponsor": "Nexen / Alter Way",
     "year": 2007,
-    "image_url": "https://elephpant.me/storage/elephpants/1-original-blue.jpg",
+    "image_url": "https://www.elephpant.me/storage/elephpants/1-original-blue.jpg",
     "owners": 142,
-    "url": "https://elephpant.me/api/elephpants/1"
+    "url": "https://www.elephpant.me/api/elephpants/1"
   }
 }
 ```
@@ -112,7 +112,7 @@ Returns the full herd of a registered collector, including stats and a list of a
 **Example request**
 
 ```bash
-curl https://elephpant.me/api/herd/junior_grossi
+curl https://www.elephpant.me/api/herd/junior_grossi
 ```
 
 **Example response**
@@ -125,7 +125,7 @@ curl https://elephpant.me/api/herd/junior_grossi
   "country": "br",
   "twitter": "junior_grossi",
   "mastodon": null,
-  "herd_url": "https://elephpant.me/herd/junior_grossi",
+  "herd_url": "https://www.elephpant.me/herd/junior_grossi",
   "stats": {
     "total": 42,
     "unique": 30,
@@ -138,7 +138,7 @@ curl https://elephpant.me/api/herd/junior_grossi
       "description": "First Blue",
       "sponsor": "Nexen / Alter Way",
       "year": 2007,
-      "image_url": "https://elephpant.me/storage/elephpants/1-original-blue.jpg",
+      "image_url": "https://www.elephpant.me/storage/elephpants/1-original-blue.jpg",
       "quantity": 2
     }
   ]

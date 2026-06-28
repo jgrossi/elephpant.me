@@ -68,7 +68,7 @@ jobs:
 
       - name: Run Redocly lint
         run: |
-          npx redocly lint public/openapi.yaml \
+          npx redocly lint openapi.yaml \
             --extends recommended \
             --format github-actions \
             --max-problems 500 \

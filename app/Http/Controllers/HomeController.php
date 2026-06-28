@@ -22,11 +22,25 @@ class HomeController extends Controller
                 ->orderByDesc('id')
                 ->limit(self::CATALOG_PREVIEW_LIMIT)
                 ->get(),
-            'featuredElephpants'  => Elephpant::query()
-                ->whereNotNull('image')
-                ->inRandomOrder()
-                ->limit(4)
-                ->get(['id', 'name', 'image', 'year']),
+            'featuredElephpantPool' => $this->featuredElephpantPool(),
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection<int, array{id: int, name: string, year: int<0, max>, imageUrl: string}>
+     */
+    private function featuredElephpantPool(): \Illuminate\Support\Collection
+    {
+        return Elephpant::query()
+            ->whereNotNull('image')
+            ->get(['id', 'name', 'image', 'year'])
+            ->shuffle()
+            ->map(fn (Elephpant $elephpant): array => [
+                'id'       => $elephpant->id,
+                'name'     => $elephpant->name,
+                'year'     => (int) $elephpant->year,
+                'imageUrl' => asset('storage/elephpants/'.$elephpant->image),
+            ])
+            ->values();
     }
 }

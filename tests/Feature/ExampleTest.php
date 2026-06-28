@@ -18,7 +18,7 @@ test('homepage shows total elephpants collected across all herds', function () {
 
     $response = $this->get('/');
 
-    $response->assertSee('Species found');
+    $response->assertSee('Total Collected');
     $response->assertSee('3');
 });
 

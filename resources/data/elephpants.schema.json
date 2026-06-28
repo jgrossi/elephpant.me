@@ -31,8 +31,7 @@
                     "name",
                     "description",
                     "sponsor",
-                    "year",
-                    "prototype"
+                    "year"
                 ]
             }
         }

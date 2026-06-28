@@ -1,0 +1,288 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ElePHPant.me API
+  description: |
+    A free, public JSON API for the PHP community.
+
+servers:
+  - url: https://www.elephpant.me/api
+    description: Production
+  - url: https://www.elephpantme.ddev.site
+    description: Local ddev
+
+security: []
+
+tags:
+  - name: Elephpants
+  - name: Herds
+
+paths:
+  /elephpants:
+    get:
+      tags:
+        - ElePHPants
+      summary: List all elephpants
+      description: >
+        Returns a paginated list of all elephpant species,
+        ordered by year and name.
+      parameters:
+        - name: page
+          in: query
+          description: Page number.
+          required: false
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+      responses:
+        "200":
+          description: Paginated list of elephpants.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedElePHPants"
+
+  /elephpants/{id}:
+    get:
+      tags:
+        - ElePHPants
+      summary: Get a single elePHPant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: elePHPant ID
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: elePHPant found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/elePHPant"
+                required:
+                  - data
+        "404":
+          description: elePHPant ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /herd/{username}:
+    get:
+      tags:
+        - Herds
+      summary: Get a user's herd
+      description: Returns the full herd of a registered collector, including statistics and collected elePHPants.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: Collector username.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Herd returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Herd"
+        "403":
+          description: User's herd is private.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Username not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    elePHPant:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - sponsor
+        - year
+        - owners
+        - url
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Original Blue
+        description:
+          type: string
+          example: First Blue
+        sponsor:
+          type: string
+          example: Nexen / Alter Way
+        year:
+          type: integer
+          example: 2007
+        image_url:
+          nullable: true
+          type: string
+          format: uri
+          example: https://www.elephpant.me/storage/elephpants/1-original-blue.jpg
+        owners:
+          type: integer
+          description: The number of users that have at least one of this elePHPant in their herd
+          example: 142
+        url:
+          type: string
+          format: uri
+          example: https://www.elephpant.me/api/elephpants/1
+
+    HerdElePHPant:
+      allOf:
+        - $ref: "#/components/schemas/elePHPant"
+        - type: object
+          required:
+            - quantity
+          properties:
+            quantity:
+              type: integer
+              example: 2
+
+    HerdStats:
+      type: object
+      required:
+        - total
+        - unique
+        - spare
+      properties:
+        total:
+          type: integer
+          example: 42
+        unique:
+          type: integer
+          example: 30
+        spare:
+          type: integer
+          example: 12
+
+    Herd:
+      type: object
+      required:
+        - username
+        - name
+        - avatar
+        - country
+        - herd_url
+        - stats
+        - elephpants
+      properties:
+        username:
+          type: string
+          example: junior_grossi
+        name:
+          type: string
+          example: Junior Grossi
+        avatar:
+          type: string
+          format: uri
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+          example: br
+        twitter:
+          nullable: true
+          type: string
+          example: junior_grossi
+        mastodon:
+          nullable: true
+          type: string
+          example: null
+        herd_url:
+          type: string
+          format: uri
+          example: https://www.elephpant.me/herd/junior_grossi
+        stats:
+          $ref: "#/components/schemas/HerdStats"
+        elephpants:
+          type: array
+          items:
+            $ref: "#/components/schemas/HerdElePHPant"
+
+    PaginationLinks:
+      type: object
+      required:
+        - first
+        - last
+        - prev
+        - next
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          nullable: true
+          type: string
+          format: uri
+        next:
+          nullable: true
+          type: string
+          format: uri
+
+    PaginationMeta:
+      type: object
+      required:
+        - current_page
+        - last_page
+        - per_page
+        - total
+      properties:
+        current_page:
+          type: integer
+          example: 1
+        last_page:
+          type: integer
+          example: 5
+        per_page:
+          type: integer
+          example: 20
+        total:
+          type: integer
+          example: 91
+
+    PaginatedElePHPants:
+      type: object
+      required:
+        - data
+        - links
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/elePHPant"
+        links:
+          $ref: "#/components/schemas/PaginationLinks"
+        meta:
+          $ref: "#/components/schemas/PaginationMeta"
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Resource not found

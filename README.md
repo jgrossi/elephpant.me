@@ -9,6 +9,7 @@
     - global / per country
 - Find people to trade
 - See statistics about elephpants
+- API, documented at https://www.elephpant.me/openapi.yaml
 
 ### Stack
 

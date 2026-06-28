@@ -33,45 +33,28 @@
                                 Log in
                             </a>
                         @endauth
-                        <a href="#catalog" class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-violet-100 transition hover:bg-white/10">
+                        <a href="{{ route('elephpants.index') }}" wire:navigate class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-violet-100 transition hover:bg-white/10">
                             Browse species
                         </a>
                     </div>
 
                     <dl class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 max-w-xl mx-auto lg:mx-0">
                         <div class="rounded-xl border border-white/10 bg-white/5 p-3.5">
-                            <dt class="text-sm text-violet-200/80 whitespace-nowrap">Species catalogued</dt>
+                            <dt class="text-sm text-violet-200/80 whitespace-nowrap">Total Species</dt>
                             <dd class="mt-1 text-2xl font-semibold tabular-nums text-white">{{ number_format($speciesCount) }}</dd>
                         </div>
                         <div class="rounded-xl border border-white/10 bg-white/5 p-3.5">
-                            <dt class="text-sm text-violet-200/80 whitespace-nowrap">Collectors with herds</dt>
+                            <dt class="text-sm text-violet-200/80 whitespace-nowrap">Total Herds</dt>
                             <dd class="mt-1 text-2xl font-semibold tabular-nums text-white">{{ number_format($collectorCount) }}</dd>
                         </div>
                         <div class="rounded-xl border border-white/10 bg-white/5 p-3.5 col-span-2 sm:col-span-1">
-                            <dt class="text-sm text-violet-200/80 whitespace-nowrap">Species found</dt>
+                            <dt class="text-sm text-violet-200/80 whitespace-nowrap">Total Collected</dt>
                             <dd class="mt-1 text-2xl font-semibold tabular-nums text-white">{{ number_format($collectedTotal) }}</dd>
                         </div>
                     </dl>
                 </div>
 
-                <div class="hidden sm:grid grid-cols-2 gap-4 max-w-md mx-auto lg:max-w-none">
-                    @foreach ($featuredElephpants as $elephpant)
-                        <div @class([
-                            'relative aspect-square overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl shadow-indigo-950/30',
-                            'translate-y-5' => $loop->iteration === 2 || $loop->iteration === 4,
-                        ])>
-                            <x-elephpant-image
-                                :elephpant="$elephpant"
-                                class="size-full object-cover"
-                                :loading="$loop->first ? 'eager' : 'lazy'"
-                                :fetchpriority="$loop->first ? 'high' : null"
-                            />
-                            <span class="absolute bottom-3 left-3 rounded-full bg-indigo-950/75 px-2 py-0.5 text-xs font-semibold text-white">
-                                {{ $elephpant->year }}
-                            </span>
-                        </div>
-                    @endforeach
-                </div>
+                <x-featured-elephpants :pool="$featuredElephpantPool" />
             </div>
         </div>
     </section>

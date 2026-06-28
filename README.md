@@ -73,7 +73,7 @@ $ npm run build   # or npm run dev
 
 ### Maintainers
 Junior Grossi – [@junior_grossi](https://x.com/junior_grossi)  
-Igor Santos – [@IgorSantoos17](https://x.com/IgorSantoos17)  
+Igor Duarte – [@Igor Duarte](https://www.linkedin.com/in/igorduartedev/)  
 Jon Purvis - [@jonpurvis_](https://x.com/jonpurvis_)  
 Thomas Eiling - [@TEiling88](https://x.com/TEiling88)
 

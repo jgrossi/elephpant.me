@@ -10,17 +10,12 @@
                     An open-source home for PHP&rsquo;s beloved mascot collectors. Catalog your herd, compare rankings,
                     and find people to trade with at conferences and beyond.
                 </p>
-                <div class="mt-6">
-                    <a
-                        href="https://github.com/jgrossi/elephpant.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-[#2e2682] shadow-sm transition hover:bg-violet-50"
-                    >
-                        <flux:icon icon="code-bracket-square" variant="mini" class="size-4" />
-                        View on GitHub
+                <p class="mt-6">
+                    <a href="https://www.creoline.com?utm_source=elephpant.me" target="_blank" rel="noopener noreferrer" class="inline-flex items-center opacity-60 transition hover:opacity-100">
+                        Hosting proudly sponsored by&nbsp;
+                        <img src="{{ asset('img/creoline-logo-white.svg') }}" alt="Creoline" class="h-5 h-auto" style="width:110px;">
                     </a>
-                </div>
+                </p>
             </div>
 
             <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
@@ -63,6 +58,7 @@
                     <h2 class="text-sm font-semibold text-white">Community</h2>
                     <ul class="mt-3 space-y-2 text-sm">
                         <li><a href="https://www.php.net" target="_blank" rel="noopener noreferrer" class="text-violet-200/85 transition hover:text-white">PHP.net</a></li>
+                        <li><a href="https://afieldguidetoelephpants.net/" target="_blank" rel="noopener noreferrer" class="text-violet-200/85 transition hover:text-white">Field Guide</a></li>
                         <li><a href="https://github.com/jgrossi/elephpant.me/blob/master/README.md" target="_blank" rel="noopener noreferrer" class="text-violet-200/85 transition hover:text-white">About this site</a></li>
                     </ul>
                 </div>
@@ -70,24 +66,17 @@
         </div>
 
         <div class="mt-12 border-t border-white/10 pt-8 text-sm text-violet-200/75">
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <p>Copyright &copy; {{ date('Y') }} ElePHPant.me contributors.</p>
-                <p>
-                    <a href="https://www.creoline.com?utm_source=elephpant.me" target="_blank" class="inline-flex items-center opacity-60 transition hover:opacity-100">
-                        Hosting proudly sponsored by&nbsp;
-                        <img src="{{ asset('img/creoline-logo-white.svg') }}" alt="Creoline" class="h-5 h-auto" style="width:110px;">
-                    </a>
+                <p class="sm:max-w-lg sm:text-right">
+                    Maintained by
+                    <a href="https://x.com/junior_grossi" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Junior Grossi</a>,
+                    <a href="https://www.linkedin.com/in/igorduartedev/" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Igor Duarte</a>,
+                    <a href="https://x.com/jonpurvis_" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Jon Purvis</a>, and
+                    <a href="https://x.com/TEiling88" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Thomas Eiling</a>,
+                    with thanks to
+                    <a href="https://github.com/jgrossi/elephpant.me/graphs/contributors" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">additional contributors</a>.
                 </p>
-                <p>
-                    Made with <span aria-hidden="true">&hearts;</span><span class="sr-only">love</span>
-                    by
-                    <a href="https://twitter.com/junior_grossi" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Junior Grossi</a>,
-                    <a href="https://www.linkedin.com/in/igorduarte17/" target="_blank" rel="noopener noreferrer" class="text-violet-100 underline-offset-2 hover:text-white hover:underline">Igor Duarte</a>,
-                    and the community.
-                </p>
-            </div>
-            <div class="mt-4 flex items-center justify-center gap-2 border-t border-white/10 pt-4">
-
             </div>
         </div>
     </div>

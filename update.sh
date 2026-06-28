@@ -34,6 +34,9 @@ echo "==> Rebuilding caches"
 php artisan config:cache
 php artisan route:cache
 
+echo "==> make openapi.yaml public available"
+cp openapi.yaml public/openapi.yaml
+
 echo "==> Fixing storage permissions"
 chmod -R 775 storage bootstrap/cache
 

@@ -15,6 +15,9 @@ echo "==> Installing PHP dependencies"
 composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 php artisan storage:link || true
 
+GIT_REV=$(git rev-parse HEAD)
+echo '<!-- '"$GIT_REV"' -->' >> resources/views/layouts/app.blade.php
+
 echo "==> Clearing caches"
 php artisan config:clear
 php artisan view:clear

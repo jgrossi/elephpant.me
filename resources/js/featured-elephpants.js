@@ -3,12 +3,11 @@ document.addEventListener('alpine:init', () => {
         slots: [],
         pool,
         timers: [],
-        reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
 
         init() {
             this.slots = this.initialSlots();
 
-            if (this.reducedMotion || this.pool.length <= 1) {
+            if (this.pool.length <= 1) {
                 return;
             }
 
@@ -29,14 +28,14 @@ document.addEventListener('alpine:init', () => {
             return shuffled.slice(0, 4).map((item, index) => ({
                 ...item,
                 key: `${item.id}-${index}`,
-                glitching: false,
                 offset: index === 1 || index === 3,
+                eager: index === 0,
             }));
         },
 
         scheduleSlot(index) {
             const run = () => {
-                this.glitchSwap(index);
+                this.swapSlot(index);
 
                 this.timers.push(setTimeout(run, 5000 + Math.random() * 4000));
             };
@@ -44,23 +43,24 @@ document.addEventListener('alpine:init', () => {
             run();
         },
 
-        glitchSwap(index) {
-            this.slots[index].glitching = true;
+        swapSlot(index) {
+            const excludeIds = this.slots.map((slot) => slot.id);
+            const next = this.pickReplacement(excludeIds);
+            const offset = this.slots[index].offset;
+            const image = new Image();
 
-            setTimeout(() => {
-                const excludeIds = this.slots.map((slot) => slot.id);
-                const next = this.pickReplacement(excludeIds);
-                const offset = this.slots[index].offset;
-
+            image.onload = () => {
                 this.slots = this.slots.map((slot, slotIndex) => slotIndex === index
                     ? {
                         ...next,
                         key: `${next.id}-${Date.now()}`,
-                        glitching: false,
                         offset,
+                        eager: false,
                     }
                     : slot);
-            }, 850);
+            };
+
+            image.src = next.imageUrl;
         },
 
         pickReplacement(excludeIds) {

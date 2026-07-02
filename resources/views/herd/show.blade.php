@@ -16,6 +16,12 @@
 
         @auth
             @if($user->id !== auth()->id())
+                <flux:button href="{{ route('herds.compare', [$user->username, auth()->user()->username]) }}" variant="outline" size="sm" wire:navigate>
+                    Compare to my herd
+                </flux:button>
+            @endif
+
+            @if($user->id !== auth()->id())
                 @if(! is_null($possibleTrades))
                     <flux:heading size="lg" class="text-zinc-600 dark:text-zinc-300 mt-8 mb-4">Possible Trades</flux:heading>
                     <div>

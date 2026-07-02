@@ -54,12 +54,14 @@
                         @php $user = Auth::user(); @endphp
                         <flux:profile
                             name="{{ $user->name }}"
+                            class="cursor-pointer"
                             :avatar="$user->hasAvatarImage() ? $user->avatar() : null"
                             avatar:color="auto"
                             avatar:color:seed="{{ $user->id }}"
                         />
                         <flux:navmenu>
                             <flux:navmenu.item href="{{ route('profile.edit') }}" icon="user" wire:navigate>{{ __('Profile') }}</flux:navmenu.item>
+                            <flux:navmenu.item href="{{ route('messages.conversations') }}" icon="envelope" wire:navigate>{{ __('Messages') }}</flux:navmenu.item>
                             <flux:navmenu.separator />
                             <flux:navmenu.item href="#" icon="arrow-right-start-on-rectangle"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

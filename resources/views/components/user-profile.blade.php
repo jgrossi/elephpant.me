@@ -11,11 +11,7 @@
 @endphp
 
 <div class="flex flex-wrap items-start gap-4" {{ $attributes }}>
-    @if($user->hasAvatarImage())
-        <flux:avatar size="lg" circle class="{{ $avatarClass }}" src="{{ $user->avatar() }}" alt="{{ $user->name }}" />
-    @else
-        <flux:avatar size="lg" circle class="{{ $avatarClass }}" name="{{ $user->name }}" color="auto" :color:seed="$user->id" />
-    @endif
+    <x-user-avatar :user="$user" :avatarClass="$avatarClass" />
     <div class="min-w-0">
         @if($nameAsLink)
             <p class="mb-0 font-medium">

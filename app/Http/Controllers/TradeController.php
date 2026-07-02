@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Queries\MessagesQuery;
 use App\Queries\TradingUsersQuery;
 use App\Queries\TradingUsersQueryOption;
 use App\User;
@@ -29,7 +30,7 @@ class TradeController extends Controller
         ]);
     }
 
-    public function senders(int $elephpantId, TradingUsersQuery $query): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function senders(int $elephpantId, TradingUsersQuery $query, MessagesQuery $mQuery): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         /** @var User $loggedUser */
         $loggedUser = auth()->user();
@@ -52,7 +53,7 @@ class TradeController extends Controller
         return view('trade.index', ['users' => $users, 'country' => $country, 'countries' => $countries, 'useLivewireList' => false]);
     }
 
-    public function receivers(int $elephpantId, TradingUsersQuery $query): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function receivers(int $elephpantId, TradingUsersQuery $query, MessagesQuery $mQuery): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         /** @var User $loggedUser */
         $loggedUser = auth()->user();

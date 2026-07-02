@@ -10,9 +10,9 @@ use Livewire\Component;
 
 class TradeMessage extends Component
 {
-    public int $receiverId;
+    public User $receiverUser;
 
-    public string $message = '';
+    public string $message = "Hey, just saw you're looking for an elePHPant I have double. Let's trade?";
 
     public bool $sent = false;
 
@@ -20,24 +20,22 @@ class TradeMessage extends Component
         'message' => 'required',
     ];
 
-    public function mount(int $receiverId): void
+    public function mount(User $receiverUser): void
     {
-        $this->receiverId = $receiverId;
+        $this->receiverUser = $receiverUser;
     }
 
     public function send(): void
     {
         $this->validate();
 
-        $receiver = User::findOrFail($this->receiverId);
-
         Message::create([
             'sender_id'   => auth()->id(),
-            'receiver_id' => $this->receiverId,
+            'receiver_id' => $this->receiverUser->id,
             'message'     => $this->message,
         ]);
 
-        Mail::send(new UserMessage(auth()->user(), $receiver, $this->message));
+        Mail::send(new UserMessage(auth()->user(), $this->receiverUser, $this->message));
 
         $this->message = '';
         $this->sent = true;

@@ -18,6 +18,7 @@
         Ownership = % of users (with at least one elePHPant) who have this species.
     </flux:text>
     @if(auth()->check())
+        <!-- TODO: filter -->
         <flux:text class="text-sm text-zinc-500 dark:text-zinc-400 block mt-1">
             <flux:badge color="green" size="sm" class="align-middle">In your collection</flux:badge>
             <flux:badge color="red" size="sm" class="align-middle ml-1">Not in your collection</flux:badge>

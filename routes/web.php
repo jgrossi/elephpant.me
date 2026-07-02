@@ -15,6 +15,7 @@ Route::namespace('App\Http\Controllers')->group(function (): void {
     Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
 
     Route::middleware(['auth'])->group(function (): void {
+        Route::get('/herd/compare/{username0}/{username1}', 'HerdController@compare')->name('herds.compare');
         Route::get('/my-herd', 'HerdController@edit')->name('herds.edit');
         Route::get('/my-herd/stats', 'HerdController@stats')->name('herds.stats');
         Route::get('/trade', 'TradeController@index')->name('trades.index');

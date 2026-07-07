@@ -34,9 +34,9 @@
                 </flux:field>
 
                 <flux:field>
-                    <flux:label>{{ __('Twitter') }}</flux:label>
-                    <flux:input type="text" name="twitter" id="twitter" value="{{ old('twitter') }}" placeholder="@username" autocomplete="twitter" />
-                    <flux:error name="twitter" />
+                    <flux:label>{{ __('X/Twitter') }}</flux:label>
+                    <flux:input type="text" name="x_handle" id="x_handle" value="{{ old('x_handle') }}" placeholder="@username" autocomplete="x_handle" />
+                    <flux:error name="x_handle" />
                 </flux:field>
 
                 <flux:separator />

@@ -34,8 +34,9 @@ class ProfileRequest extends FormRequest
 
         if ($section === 'public_profile') {
             return [
-                'twitter'  => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
+                'x_handle' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
                 'mastodon' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
+                'bluesky'  => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
             ];
         }
 

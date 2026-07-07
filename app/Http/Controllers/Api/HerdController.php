@@ -40,8 +40,9 @@ class HerdController extends Controller
             'name'     => $user->name,
             'avatar'   => $user->avatar(),
             'country'  => $user->country_code,
-            'twitter'  => $user->twitter,
+            'x_handle' => $user->x_handle,
             'mastodon' => $user->mastodon,
+            'bluesky'  => $user->bluesky,
             'herd_url' => route('herds.show', $user->username),
             'stats'    => [
                 'total'  => $total,

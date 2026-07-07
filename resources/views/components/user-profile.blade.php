@@ -25,14 +25,19 @@
             <flux:heading size="xl" level="1" class="text-zinc-600 dark:text-zinc-300">{{ $user->name }}</flux:heading>
         @endif
         <x-country-with-flag :country="$country" />
-        @if($user->twitter)
+        @if($user->x_handle)
             <flux:text class="{{ $compact ? 'text-sm text-zinc-500 dark:text-zinc-400' : '' }} mt-1">
-                Twitter: <a href="https://twitter.com/{{ $user->twitter }}" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{{ '@' . $user->twitter }}</a>
+                X/Twitter: <a href="https://twitter.com/{{ $user->x_handle }}" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{{ '@' . $user->x_handle }}</a>
             </flux:text>
         @endif
         @if($user->mastodon)
             <flux:text class="{{ $compact ? 'text-sm text-zinc-500 dark:text-zinc-400' : '' }} mt-1 {{ $compact ? 'block' : '' }}">
-                Mastodon: <a href="https://mastodon.social/{{ $user->mastodon }}" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{{ $user->mastodon }}</a>
+                Mastodon: <a href="{{ $user->mastodonUrl() }}" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{{ $user->mastodon }}</a>
+            </flux:text>
+        @endif
+        @if($user->bluesky)
+            <flux:text class="{{ $compact ? 'text-sm text-zinc-500 dark:text-zinc-400' : '' }} mt-1 {{ $compact ? 'block' : '' }}">
+                Bluesky: <a href="{{ $user->blueskyUrl() }}" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{{ $user->bluesky }}</a>
             </flux:text>
         @endif
     </div>

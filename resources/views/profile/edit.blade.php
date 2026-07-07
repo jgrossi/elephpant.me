@@ -96,14 +96,19 @@
                         @method('PUT')
                         <input type="hidden" name="section" value="public_profile" />
                         <flux:field>
-                            <flux:label>{{ __('Twitter') }}</flux:label>
-                            <flux:input type="text" name="twitter" id="twitter" value="{{ old('twitter', $user->twitter) }}" placeholder="@username" autocomplete="twitter" />
-                            <flux:error name="twitter" />
+                            <flux:label>{{ __('X/Twitter') }}</flux:label>
+                            <flux:input type="text" name="x_handle" id="x_handle" value="{{ old('x_handle', $user->x_handle) }}" placeholder="@username" autocomplete="x_handle" />
+                            <flux:error name="x_handle" />
                         </flux:field>
                         <flux:field>
                             <flux:label>{{ __('Mastodon') }}</flux:label>
                             <flux:input type="text" name="mastodon" id="mastodon" value="{{ old('mastodon', $user->mastodon) }}" placeholder="@username" />
                             <flux:error name="mastodon" />
+                        </flux:field>
+                        <flux:field>
+                            <flux:label>{{ __('Bluesky') }}</flux:label>
+                            <flux:input type="text" name="bluesky" id="bluesky" value="{{ old('bluesky', $user->bluesky) }}" placeholder="@username.bsky.social" />
+                            <flux:error name="bluesky" />
                         </flux:field>
                         <flux:button type="submit" variant="primary">{{ __('Save') }}</flux:button>
                     </form>

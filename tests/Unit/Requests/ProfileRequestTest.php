@@ -48,8 +48,9 @@ test('ProfileRequest has expected rules for public_profile section', function ()
 
     $rules = $request->rules();
 
-    expect($rules)->toHaveKey('twitter');
+    expect($rules)->toHaveKey('x_handle');
     expect($rules)->toHaveKey('mastodon');
+    expect($rules)->toHaveKey('bluesky');
 });
 
 test('ProfileRequest authorize returns true', function (): void {

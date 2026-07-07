@@ -23,7 +23,7 @@ class User extends Authenticatable
 
     #[\Override]
     protected $fillable = [
-        'name', 'email', 'password', 'country_code', 'twitter', 'username', 'mastodon',
+        'name', 'email', 'password', 'country_code', 'x_handle', 'username', 'mastodon', 'bluesky',
     ];
 
     #[\Override]
@@ -85,12 +85,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Whether the user has an image-based avatar (Gravatar or Twitter).
+     * Whether the user has an image-based avatar (Gravatar or X).
      * When false, use Flux avatar with initials and color="auto" instead.
      */
     public function hasAvatarImage(): bool
     {
-        return $this->twitter || Gravatar::exists($this->email);
+        return $this->x_handle || Gravatar::exists($this->email);
     }
 
     /**
@@ -98,8 +98,8 @@ class User extends Authenticatable
      */
     public function avatar(): string
     {
-        if ($this->twitter) {
-            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->twitter);
+        if ($this->x_handle) {
+            return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->x_handle);
         }
 
         if (Gravatar::exists($this->email)) {
@@ -109,9 +109,46 @@ class User extends Authenticatable
         return 'https://ui-avatars.com/api/?name='.urlencode($this->name);
     }
 
+    /**
+     * Build the canonical profile URL for the user's Mastodon handle.
+     *
+     * Full `@user@instance` handles resolve to that instance; bare handles
+     * fall back to mastodon.social.
+     */
+    public function mastodonUrl(): ?string
+    {
+        if (! $this->mastodon) {
+            return null;
+        }
+
+        $handle = ltrim($this->mastodon, '@');
+
+        if (str_contains($handle, '@')) {
+            [$user, $instance] = explode('@', $handle, 2);
+
+            if ($user !== '' && $instance !== '') {
+                return sprintf('https://%s/@%s', $instance, $user);
+            }
+        }
+
+        return 'https://mastodon.social/@'.$handle;
+    }
+
+    /**
+     * Build the profile URL for the user's Bluesky handle.
+     */
+    public function blueskyUrl(): ?string
+    {
+        if (! $this->bluesky) {
+            return null;
+        }
+
+        return 'https://bsky.app/profile/'.ltrim($this->bluesky, '@');
+    }
+
     public static function generateUsername(User $user): string
     {
-        $username = $user->twitter ?: Str::slug($user->name);
+        $username = $user->x_handle ?: Str::slug($user->name);
         $count = 1;
 
         while (User::whereUsername($username)->exists()) {

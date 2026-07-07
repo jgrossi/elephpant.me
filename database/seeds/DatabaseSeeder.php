@@ -10,10 +10,11 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name'         => 'John Doe',
             'email'        => 'john@example.com',
-            'twitter'      => 'john',
+            'x_handle'     => 'john',
             'country_code' => 'USA',
             'password'     => \Illuminate\Support\Facades\Hash::make('secret'),
             'mastodon'     => '@john@elephpant.me',
+            'bluesky'      => '@john.bsky.social',
         ]);
 
         User::factory(50)->create();

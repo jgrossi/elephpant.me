@@ -23,7 +23,7 @@ test('register creates user and redirects', function (): void {
         'password'              => 'password123',
         'password_confirmation' => 'password123',
         'country_code'          => 'GBR',
-        'twitter'               => null,
+        'x_handle'              => null,
     ]);
 
     $response->assertRedirect('/my-herd');

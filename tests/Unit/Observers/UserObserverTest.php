@@ -8,7 +8,7 @@ uses(Tests\TestCase::class, RefreshDatabase::class);
 test('creating user sets username via observer', function () {
     $user = User::factory()->create([
         'name'     => 'Jane Doe',
-        'twitter'  => null,
+        'x_handle' => null,
         'username' => null,
     ]);
 

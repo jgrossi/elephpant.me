@@ -201,11 +201,15 @@ components:
           type: string
           description: ISO 3166-1 alpha-2 country code
           example: br
-        twitter:
+        x_handle:
           nullable: true
           type: string
           example: junior_grossi
         mastodon:
+          nullable: true
+          type: string
+          example: null
+        bluesky:
           nullable: true
           type: string
           example: null

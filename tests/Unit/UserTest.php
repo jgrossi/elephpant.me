@@ -60,7 +60,7 @@ test('scopePublic filters by is_public', function () {
 });
 
 test('generateUsername produces unique username', function () {
-    $user = User::factory()->make(['name' => 'Test User', 'twitter' => null]);
+    $user = User::factory()->make(['name' => 'Test User', 'x_handle' => null]);
 
     $username = User::generateUsername($user);
 
@@ -71,7 +71,7 @@ test('generateUsername appends number when username exists', function () {
     User::withoutEvents(function () {
         User::factory()->create(['username' => 'jane-doe', 'name' => 'Jane Doe']);
     });
-    $user = User::factory()->make(['name' => 'Jane Doe', 'twitter' => null]);
+    $user = User::factory()->make(['name' => 'Jane Doe', 'x_handle' => null]);
 
     $username = User::generateUsername($user);
 
@@ -79,29 +79,29 @@ test('generateUsername appends number when username exists', function () {
     expect($username)->toMatch('/^jane-doe\d+$/');
 });
 
-test('hasAvatarImage returns true when user has twitter', function () {
-    $user = User::factory()->make(['twitter' => 'johndoe']);
+test('hasAvatarImage returns true when user has x_handle', function () {
+    $user = User::factory()->make(['x_handle' => 'johndoe']);
 
     expect($user->hasAvatarImage())->toBeTrue();
 });
 
-test('avatar returns twitter microlink url when user has twitter', function () {
-    $user = User::factory()->make(['twitter' => 'johndoe']);
+test('avatar returns microlink url when user has x_handle', function () {
+    $user = User::factory()->make(['x_handle' => 'johndoe']);
 
     expect($user->avatar())->toContain('twitter.com/johndoe');
 });
 
-test('avatar returns ui-avatars fallback when no twitter and no gravatar', function () {
+test('avatar returns ui-avatars fallback when no x_handle and no gravatar', function () {
     \Creativeorange\Gravatar\Facades\Gravatar::shouldReceive('exists')->andReturn(false);
-    $user = User::factory()->make(['twitter' => null, 'name' => 'Jane Doe']);
+    $user = User::factory()->make(['x_handle' => null, 'name' => 'Jane Doe']);
 
     expect($user->avatar())->toContain('ui-avatars.com');
 });
 
-test('avatar returns gravatar url when no twitter but gravatar exists', function () {
+test('avatar returns gravatar url when no x_handle but gravatar exists', function () {
     \Creativeorange\Gravatar\Facades\Gravatar::shouldReceive('exists')->andReturn(true);
     \Creativeorange\Gravatar\Facades\Gravatar::shouldReceive('get')->andReturn('https://gravatar.com/avatar/xxx');
-    $user = User::factory()->make(['twitter' => null]);
+    $user = User::factory()->make(['x_handle' => null]);
 
     expect($user->avatar())->toBe('https://gravatar.com/avatar/xxx');
 });
@@ -114,4 +114,52 @@ test('scopeNotLoggedIn excludes current user', function () {
     $result = User::notLoggedIn()->get();
 
     expect($result->pluck('id')->toArray())->not->toContain($user->id);
+});
+
+test('mastodonUrl returns null when no mastodon handle', function () {
+    $user = User::factory()->make(['mastodon' => null]);
+
+    expect($user->mastodonUrl())->toBeNull();
+});
+
+test('mastodonUrl falls back to mastodon.social for a bare handle', function () {
+    $user = User::factory()->make(['mastodon' => 'john']);
+
+    expect($user->mastodonUrl())->toBe('https://mastodon.social/@john');
+});
+
+test('mastodonUrl keeps an existing leading @ on a bare handle', function () {
+    $user = User::factory()->make(['mastodon' => '@john']);
+
+    expect($user->mastodonUrl())->toBe('https://mastodon.social/@john');
+});
+
+test('mastodonUrl resolves the instance for a full handle', function () {
+    $user = User::factory()->make(['mastodon' => '@john@phpc.social']);
+
+    expect($user->mastodonUrl())->toBe('https://phpc.social/@john');
+});
+
+test('mastodonUrl resolves the instance for a full handle without leading @', function () {
+    $user = User::factory()->make(['mastodon' => 'john@phpc.social']);
+
+    expect($user->mastodonUrl())->toBe('https://phpc.social/@john');
+});
+
+test('mastodonUrl falls back to mastodon.social for a malformed handle with no instance', function () {
+    $user = User::factory()->make(['mastodon' => 'john@']);
+
+    expect($user->mastodonUrl())->toBe('https://mastodon.social/@john@');
+});
+
+test('blueskyUrl returns null when no bluesky handle', function () {
+    $user = User::factory()->make(['bluesky' => null]);
+
+    expect($user->blueskyUrl())->toBeNull();
+});
+
+test('blueskyUrl builds a profile url and strips a leading @', function () {
+    $user = User::factory()->make(['bluesky' => '@john.bsky.social']);
+
+    expect($user->blueskyUrl())->toBe('https://bsky.app/profile/john.bsky.social');
 });

@@ -7,12 +7,16 @@ Message: {{ $message }}
 
 Sent by: {{ $sender->name }}
 
-@if($sender->twitter)
-Twitter: <a href="https://twitter.com/{{ $sender->twitter }}">Link to Twitter account</a>
+@if($sender->x_handle)
+X/Twitter: <a href="https://twitter.com/{{ $sender->x_handle }}">Link to X/Twitter account</a>
 @endif
 
 @if($sender->mastodon)
-Mastodon: <a href="https://mastodon.social/{{ $sender->mastodon }}">{{ $sender->mastodon }}</a>
+Mastodon: <a href="{{ $sender->mastodonUrl() }}">{{ $sender->mastodon }}</a>
+@endif
+
+@if($sender->bluesky)
+Bluesky: <a href="{{ $sender->blueskyUrl() }}">{{ $sender->bluesky }}</a>
 @endif
 
 @component('mail::button', ['url' => route('herds.show', $sender->username)])

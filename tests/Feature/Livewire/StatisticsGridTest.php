@@ -61,3 +61,18 @@ test('statistics grid mount called directly sets nbUsersWithElephpant', function
 
     expect($component->nbUsersWithElephpant)->toBe(99);
 });
+
+test('statistics grid renders elephpant models with ownership counts and formatted names', function (): void {
+    $elephpant = \App\Elephpant::factory()->create(['name' => 'Moni', 'format' => \App\Format::Large]);
+    \App\User::factory()->create()->elephpants()->attach($elephpant->id, ['quantity' => 3]);
+    \App\User::factory()->create()->elephpants()->attach($elephpant->id, ['quantity' => 1]);
+
+    $component = Livewire::withoutLazyLoading()->test(StatisticsGrid::class, ['nbUsersWithElephpant' => 2]);
+    $statisticsElephpant = $component->instance()->render()->getData()['elephpants']->first();
+
+    expect($statisticsElephpant)->toBeInstanceOf(\App\Elephpant::class)
+        ->and($statisticsElephpant->users_count)->toBe(2)
+        ->and((int) $statisticsElephpant->copies)->toBe(4);
+
+    $component->assertSee('Moni (Large)')->assertSee('100%');
+});

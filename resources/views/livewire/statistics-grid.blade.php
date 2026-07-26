@@ -3,7 +3,7 @@
         @foreach($elephpants as $elephpant)
             @php
                 $ownershipPercent = $nbUsersWithElephpant > 0
-                    ? round((($elephpant->nbElephpant / $nbUsersWithElephpant) * 100), 2)
+                    ? round((($elephpant->users_count / $nbUsersWithElephpant) * 100), 2)
                     : 0;
             @endphp
             @include('statistics._elephpant_card', [

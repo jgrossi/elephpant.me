@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Elephpant;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Defer;
 use Livewire\Component;
 
@@ -19,13 +19,12 @@ class StatisticsGrid extends Component
 
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $elephpants = DB::table('elephpants')
-            ->select(DB::raw('COUNT(elephpant_user.elephpant_id) as nbElephpant, elephpants.id, elephpants.name, elephpants.description, elephpants.image, elephpants.sponsor, elephpants.year, SUM(elephpant_user.quantity) as totalElephpant'))
-            ->leftJoin('elephpant_user', 'elephpants.id', '=', 'elephpant_user.elephpant_id')
-            ->orderBy('nbElephpant', 'desc')
-            ->orderBy('elephpants.id', 'desc')
-            ->orderBy('totalElephpant', 'desc')
-            ->groupBy('elephpants.id', 'elephpants.name', 'elephpants.description', 'elephpants.image', 'elephpants.sponsor', 'elephpants.year')
+        $elephpants = Elephpant::query()
+            ->withCount('users')
+            ->withSum('users as copies', 'elephpant_user.quantity')
+            ->orderBy('users_count', 'desc')
+            ->orderBy('id', 'desc')
+            ->orderBy('copies', 'desc')
             ->get();
 
         $currentUserElephpants = Auth::check()

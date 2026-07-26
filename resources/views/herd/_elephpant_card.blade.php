@@ -2,7 +2,7 @@
     <x-elephpant-image :elephpant="$elephpant" class="w-full object-cover rounded-t-lg aspect-square" />
     <div class="p-4 flex-1 flex flex-col">
         <div class="flex flex-wrap items-center gap-2 mb-2">
-            <flux:heading size="lg" class="mb-0">{{ $elephpant->name }}</flux:heading>
+            <flux:heading size="lg" class="mb-0">{{ $elephpant->formattedName() }}</flux:heading>
             @if (isset($tradePossibilites[$elephpant->id]) && ($tradePossibilites[$elephpant->id]['count'] ?? 0) > 0)
                 @php $trade = $tradePossibilites[$elephpant->id]; @endphp
                 @if ($trade['type'] == 'senders')

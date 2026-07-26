@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
  * @property int|null    $users_count
  * @property int|null    $copies
  * @property float|null  $ownership_percentage
+ * @property Format      $format
  */
 class Elephpant extends Model
 {
@@ -22,12 +23,21 @@ class Elephpant extends Model
     #[\Override]
     protected $fillable = [
         'id',
+        'format',
         'name',
         'description',
         'sponsor',
         'year',
         'image',
     ];
+
+    #[\Override]
+    protected function casts(): array
+    {
+        return [
+            'format' => Format::class,
+        ];
+    }
 
     public function users(): BelongsToMany
     {
@@ -42,5 +52,14 @@ class Elephpant extends Model
             ->orWhere('description', 'LIKE', '%'.$request->input('q').'%')
             ->orWhere('sponsor', 'LIKE', '%'.$request->input('q').'%')
             ->orWhere('year', 'LIKE', '%'.$request->input('q').'%');
+    }
+
+    public function formattedName(): string
+    {
+        if ($this->format == Format::Small) {
+            return $this->name;
+        }
+
+        return $this->name . ' ('.ucfirst($this->format->value).')';
     }
 }

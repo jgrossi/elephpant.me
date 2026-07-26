@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Elephpant;
 use App\ElephpantUser;
+use App\Format;
 use App\User;
 
 class HomeController extends Controller
@@ -18,6 +19,7 @@ class HomeController extends Controller
             'collectedTotal'      => (int) ElephpantUser::query()->sum('quantity'),
             'catalogPreviewLimit' => self::CATALOG_PREVIEW_LIMIT,
             'latestElephpants'    => Elephpant::query()
+                ->whereNot('format', Format::Large)
                 ->orderByDesc('year')
                 ->orderByDesc('id')
                 ->limit(self::CATALOG_PREVIEW_LIMIT)
@@ -33,6 +35,7 @@ class HomeController extends Controller
     {
         return Elephpant::query()
             ->whereNotNull('image')
+            ->whereNot('format', Format::Large)
             ->get(['id', 'name', 'image', 'year'])
             ->shuffle()
             ->map(fn (Elephpant $elephpant): array => [

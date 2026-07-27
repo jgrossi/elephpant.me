@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="home-hero relative left-1/2 -translate-x-1/2 w-screen max-w-[100vw] overflow-hidden border-b border-white/10 bg-gradient-to-br from-[#2e2682] via-violet-500 to-[#5848dc] dark:from-[#120f24] dark:via-[#1e1848] dark:to-[#352a8a]">
-        <div class="relative mx-auto max-w-6xl px-6 py-16 md:py-24 lg:py-28">
+        <div class="relative mx-auto max-w-7xl px-6 lg:px-8 py-16 md:py-24 lg:py-28">
             <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
                 <div class="text-center lg:text-left">
                     <p class="inline-block rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[0.8125rem] font-medium tracking-wide text-violet-100">

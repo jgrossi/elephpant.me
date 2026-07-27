@@ -43,7 +43,7 @@
                 <flux:navbar.item href="{{ route('statistics.index') }}" wire:navigate>{{ __('Statistics') }}</flux:navbar.item>
             </flux:navbar>
             <flux:spacer />
-            <flux:navbar class="me-4">
+            <flux:navbar>
                 @guest
                     <flux:navbar.item href="{{ route('login') }}" wire:navigate>{{ __('Login') }}</flux:navbar.item>
                     @if (Route::has('register'))

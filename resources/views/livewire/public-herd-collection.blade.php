@@ -1,4 +1,4 @@
-<div class="w-full max-w-6xl mx-auto">
+<div class="w-full">
     @if($elephpants->count() > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach($elephpants as $elephpant)

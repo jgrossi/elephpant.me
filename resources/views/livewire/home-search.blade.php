@@ -1,4 +1,4 @@
-<div class="max-w-6xl mx-auto">
+<div class="w-full">
     <div class="flex flex-nowrap items-center gap-3 mb-6">
         <flux:input
             type="text"

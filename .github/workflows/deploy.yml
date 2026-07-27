@@ -7,6 +7,8 @@ on:
 
 jobs:
   deploy:
+    # Only deploy from the canonical repo — not forks (e.g. after syncing master).
+    if: github.repository == 'jgrossi/elephpant.me'
     runs-on: ubuntu-latest
 
     steps:

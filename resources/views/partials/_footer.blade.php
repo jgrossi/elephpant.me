@@ -1,5 +1,5 @@
 <footer class="site-footer relative left-1/2 -translate-x-1/2 w-screen max-w-[100vw] overflow-hidden border-t border-white/10 bg-gradient-to-br from-[#2e2682] via-violet-500 to-[#5848dc] text-violet-100 dark:from-[#120f24] dark:via-[#1e1848] dark:to-[#352a8a]">
-    <div class="relative mx-auto max-w-6xl px-6 py-12 md:py-14">
+    <div class="relative mx-auto max-w-7xl px-6 lg:px-8 py-12 md:py-14">
         <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)] lg:gap-16">
             <div>
                 <div class="flex items-center gap-2.5">

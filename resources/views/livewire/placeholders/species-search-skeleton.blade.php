@@ -1,4 +1,4 @@
-<div class="w-full max-w-6xl mx-auto">
+<div class="w-full">
     <div class="flex flex-nowrap items-center gap-3 mb-6">
         <flux:skeleton class="h-10 flex-1 max-w-md rounded-lg" animate="shimmer" />
         <flux:text class="font-medium shrink-0 whitespace-nowrap ml-auto text-zinc-500 dark:text-zinc-400">Species Found: …</flux:text>

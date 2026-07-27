@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-6xl mx-auto space-y-6">
+    <div class="space-y-6">
         <div class="flex flex-wrap items-start gap-4 py-6 md:py-8">
             <x-user-profile :user="$user" :countries="$countries" />
         </div>

@@ -14,7 +14,7 @@
 
         <livewire:public-herd-collection :username="$user->username" defer />
 
-        @if(!is_null($possibleTrades))
+        @if($user->id != auth()->id() && !is_null($possibleTrades))
             <flux:heading size="lg" class="text-zinc-600 dark:text-zinc-300 mt-8 mb-4">Possible Trades</flux:heading>
             <div>
                 @if(count($possibleTrades))

@@ -13,7 +13,7 @@ test('trade message send validates and creates message', function (): void {
     $receiver = User::factory()->create();
     $this->actingAs($sender);
 
-    Livewire::test(TradeMessage::class, ['receiverId' => $receiver->id])
+    Livewire::test(TradeMessage::class, ['receiverUser' => $receiver])
         ->set('message', 'Hello, trade?')
         ->call('send')
         ->assertSet('sent', true)

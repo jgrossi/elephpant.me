@@ -59,6 +59,21 @@ class User extends Authenticatable
             ->wherePivot('quantity', '>', 1);
     }
 
+    public function getLastMessageWith(User $otherUser): ?Message
+    {
+        return Message::query()
+            ->where(function ($q) use ($otherUser): void {
+                $q->where('sender_id', $this->id)
+                    ->where('receiver_id', $otherUser->id);
+            })
+            ->orWhere(function ($q) use ($otherUser): void {
+                $q->where('sender_id', $otherUser->id)
+                    ->where('receiver_id', $this->id);
+            })
+            ->orderByDesc('id')
+            ->first();
+    }
+
     public function elephpantsWithQuantity(): Collection
     {
         return $this->elephpants()

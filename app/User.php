@@ -15,6 +15,8 @@ use Illuminate\Support\Str;
  * @property-read EloquentCollection<int, Elephpant> $elephpants
  * @property EloquentCollection<int, Elephpant>|null $elephpantsInterested
  * @property \Carbon\Carbon|null                     $last_update
+ * @property int|null                                $elephpants_total
+ * @property int|null                                $elephpants_unique
  */
 class User extends Authenticatable
 {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ElephpantController;
 use App\Http\Controllers\Api\HerdController;
+use App\Http\Controllers\Api\RankingController;
 use Illuminate\Http\Request;
 
 /*
@@ -23,3 +24,5 @@ Route::get('/herd/{username}', [HerdController::class, 'show'])->name('api.herds
 
 Route::get('/elephpants', [ElephpantController::class, 'index'])->name('api.elephpants.index');
 Route::get('/elephpants/{elephpant}', [ElephpantController::class, 'show'])->name('api.elephpants.show');
+
+Route::get('/ranking', [RankingController::class, 'index'])->name('api.ranking.index');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Carbon;
 
 class HerdController extends Controller
 {
@@ -21,6 +22,7 @@ class HerdController extends Controller
         $elephpantsWithQuantity = $user->elephpantsWithQuantity()->toArray();
         $unique = count($elephpantsWithQuantity);
         $total = array_sum($elephpantsWithQuantity);
+        $lastSeen = $user->elephpants()->max('elephpant_user.updated_at');
 
         $elephpants = $user->elephpants
             ->sortBy('year')
@@ -36,15 +38,16 @@ class HerdController extends Controller
             ->values();
 
         return response()->json([
-            'username' => $user->username,
-            'name'     => $user->name,
-            'avatar'   => $user->avatar(),
-            'country'  => $user->country_code,
-            'x_handle' => $user->x_handle,
-            'mastodon' => $user->mastodon,
-            'bluesky'  => $user->bluesky,
-            'herd_url' => route('herds.show', $user->username),
-            'stats'    => [
+            'username'   => $user->username,
+            'name'       => $user->name,
+            'avatar'     => $user->avatar(),
+            'country'    => $user->country_code,
+            'x_handle'   => $user->x_handle,
+            'mastodon'   => $user->mastodon,
+            'bluesky'    => $user->bluesky,
+            'herd_url'   => route('herds.show', $user->username),
+            'last_seen'  => $lastSeen ? Carbon::parse($lastSeen)->toIso8601String() : null,
+            'stats'      => [
                 'total'  => $total,
                 'unique' => $unique,
                 'spare'  => $total - $unique,

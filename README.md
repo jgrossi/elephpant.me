@@ -71,6 +71,23 @@ $ npm run build   # or npm run dev
 
 ---
 
+### API documentation
+
+`openapi.yaml` (at the repo root, served at https://www.elephpant.me/openapi.yaml) is **hand-written**,
+not generated from code. There is no scanner or annotation package producing it.
+
+When you add, remove or change an API endpoint (a route under `routes/api.php` and its controller in
+`app/Http/Controllers/Api`), update `openapi.yaml` yourself in the same change:
+
+- Add/update the `paths` entry for the route.
+- Add/update any `components.schemas` the response uses.
+- Keep field names, types and nullability in the schema in sync with what the controller actually returns.
+
+You can sanity-check the file with any OpenAPI 3.0 linter/viewer (e.g. paste it into
+[Swagger Editor](https://editor.swagger.io)) before committing.
+
+---
+
 ### Maintainers
 Junior Grossi – [@junior_grossi](https://x.com/junior_grossi)  
 Igor Duarte – [@Igor Duarte](https://www.linkedin.com/in/igorduartedev/)  

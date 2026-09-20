@@ -16,6 +16,7 @@ security: []
 tags:
   - name: Elephpants
   - name: Herds
+  - name: Ranking
 
 paths:
   /elephpants:
@@ -107,6 +108,31 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /ranking:
+    get:
+      tags:
+        - Ranking
+      summary: List the top collectors
+      description: >
+        Returns the top 50 public herds ranked by number of unique elePHPants,
+        then by total elePHPants, then alphabetically by name. Optionally
+        scoped to a single country.
+      parameters:
+        - name: country
+          in: query
+          description: ISO 3166-1 alpha-3 country code to filter the ranking by.
+          required: false
+          schema:
+            type: string
+            example: DNK
+      responses:
+        "200":
+          description: Ranking returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ranking"
+
 components:
   schemas:
     elePHPant:
@@ -185,6 +211,7 @@ components:
         - avatar
         - country
         - herd_url
+        - last_seen
         - stats
         - elephpants
       properties:
@@ -199,8 +226,8 @@ components:
           format: uri
         country:
           type: string
-          description: ISO 3166-1 alpha-2 country code
-          example: br
+          description: ISO 3166-1 alpha-3 country code
+          example: BRA
         x_handle:
           nullable: true
           type: string
@@ -217,12 +244,77 @@ components:
           type: string
           format: uri
           example: https://www.elephpant.me/herd/junior_grossi
+        last_seen:
+          nullable: true
+          type: string
+          format: date-time
+          description: When the collector last updated their herd (add, remove or change a quantity). Null if the herd is empty.
+          example: "2026-08-14T09:32:00+00:00"
         stats:
           $ref: "#/components/schemas/HerdStats"
         elephpants:
           type: array
           items:
             $ref: "#/components/schemas/HerdElePHPant"
+
+    RankedUser:
+      type: object
+      required:
+        - rank
+        - username
+        - name
+        - country
+        - elephpants_total
+        - elephpants_unique
+        - last_update
+        - herd_url
+      properties:
+        rank:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: junior_grossi
+        name:
+          type: string
+          example: Junior Grossi
+        country:
+          nullable: true
+          type: string
+          description: ISO 3166-1 alpha-3 country code
+          example: BRA
+        elephpants_total:
+          type: integer
+          example: 42
+        elephpants_unique:
+          type: integer
+          example: 30
+        last_update:
+          nullable: true
+          type: string
+          format: date-time
+          description: When this collector last updated their herd.
+          example: "2026-08-14T09:32:00+00:00"
+        herd_url:
+          type: string
+          format: uri
+          example: https://www.elephpant.me/herd/junior_grossi
+
+    Ranking:
+      type: object
+      required:
+        - country
+        - ranking
+      properties:
+        country:
+          nullable: true
+          type: string
+          description: The country filter applied, or null for the global ranking.
+          example: null
+        ranking:
+          type: array
+          items:
+            $ref: "#/components/schemas/RankedUser"
 
     PaginationLinks:
       type: object

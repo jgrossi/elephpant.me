@@ -11,6 +11,9 @@ final class RankedUsersQuery
 {
     private const int LIMIT = 50;
 
+    /**
+     * @return Collection<int, User>
+     */
     public function fetchAll(?string $country): Collection
     {
         $userQuery = User::query()->public();

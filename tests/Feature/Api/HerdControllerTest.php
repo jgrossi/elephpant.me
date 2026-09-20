@@ -36,6 +36,7 @@ test('api herd endpoint exposes last_seen based on the most recent elephpant upd
 
     $response->assertOk();
     $response->assertJsonPath('last_seen', \Illuminate\Support\Carbon::parse($lastUpdate)->toIso8601String());
+    $response->assertJsonPath('updated_at', \Illuminate\Support\Carbon::parse($lastUpdate)->toIso8601String());
 });
 
 test('api herd endpoint returns null last_seen when the herd is empty', function (): void {
@@ -46,6 +47,7 @@ test('api herd endpoint returns null last_seen when the herd is empty', function
 
     $response->assertOk();
     $response->assertJsonPath('last_seen', null);
+    $response->assertJsonPath('updated_at', null);
 });
 
 test('api herd endpoint is forbidden for a private herd', function (): void {

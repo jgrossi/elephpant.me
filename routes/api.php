@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\ElephpantController;
 use App\Http\Controllers\Api\HerdController;
 use App\Http\Controllers\Api\RankingController;
@@ -26,3 +27,5 @@ Route::get('/elephpants', [ElephpantController::class, 'index'])->name('api.elep
 Route::get('/elephpants/{elephpant}', [ElephpantController::class, 'show'])->name('api.elephpants.show');
 
 Route::get('/ranking', [RankingController::class, 'index'])->name('api.ranking.index');
+
+Route::get('/countries', [CountryController::class, 'index'])->name('api.countries.index');

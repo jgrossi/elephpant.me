@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
  * @property \Carbon\Carbon|null                     $last_update
  * @property int|null                                $elephpants_total
  * @property int|null                                $elephpants_unique
+ * @property int|null                                $rank
  */
 class User extends Authenticatable
 {

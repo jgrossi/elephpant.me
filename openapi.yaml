@@ -261,7 +261,6 @@ components:
         - avatar
         - country
         - herd_url
-        - last_seen
         - updated_at
         - stats
         - elephpants
@@ -295,17 +294,11 @@ components:
           type: string
           format: uri
           example: https://www.elephpant.me/herd/junior_grossi
-        last_seen:
-          nullable: true
-          type: string
-          format: date-time
-          description: When the collector last updated their herd (add, remove or change a quantity). Null if the herd is empty.
-          example: "2026-08-14T09:32:00+00:00"
         updated_at:
           nullable: true
           type: string
           format: date-time
-          description: Same value as last_seen. Use this field for If-Modified-Since style conditional re-fetching.
+          description: When the collector last updated their herd (add, remove or change a quantity). Null if the herd is empty.
           example: "2026-08-14T09:32:00+00:00"
         stats:
           $ref: "#/components/schemas/HerdStats"

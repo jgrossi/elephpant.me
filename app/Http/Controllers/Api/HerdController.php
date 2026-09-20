@@ -22,8 +22,8 @@ class HerdController extends Controller
         $elephpantsWithQuantity = $user->elephpantsWithQuantity()->toArray();
         $unique = count($elephpantsWithQuantity);
         $total = array_sum($elephpantsWithQuantity);
-        $lastSeen = $user->elephpants()->max('elephpant_user.updated_at');
-        $lastSeenIso = $lastSeen ? Carbon::parse($lastSeen)->toIso8601String() : null;
+        $lastUpdate = $user->elephpants()->max('elephpant_user.updated_at');
+        $updatedAt = $lastUpdate ? Carbon::parse($lastUpdate)->toIso8601String() : null;
 
         $elephpants = $user->elephpants
             ->sortBy('year')
@@ -47,8 +47,7 @@ class HerdController extends Controller
             'mastodon'   => $user->mastodon,
             'bluesky'    => $user->bluesky,
             'herd_url'   => route('herds.show', $user->username),
-            'last_seen'  => $lastSeenIso,
-            'updated_at' => $lastSeenIso,
+            'updated_at' => $updatedAt,
             'stats'      => [
                 'total'  => $total,
                 'unique' => $unique,

@@ -24,7 +24,7 @@ test('api herd endpoint exposes x_handle and bluesky keys', function (): void {
     $response->assertJsonMissing(['twitter' => 'john']);
 });
 
-test('api herd endpoint exposes last_seen based on the most recent elephpant update', function (): void {
+test('api herd endpoint exposes updated_at based on the most recent elephpant update', function (): void {
     $user = User::factory()->create();
     $user->update(['is_public' => true]);
     $elephpant = Elephpant::factory()->create();
@@ -35,18 +35,16 @@ test('api herd endpoint exposes last_seen based on the most recent elephpant upd
     $response = $this->getJson(route('api.herds.show', $user->username));
 
     $response->assertOk();
-    $response->assertJsonPath('last_seen', \Illuminate\Support\Carbon::parse($lastUpdate)->toIso8601String());
     $response->assertJsonPath('updated_at', \Illuminate\Support\Carbon::parse($lastUpdate)->toIso8601String());
 });
 
-test('api herd endpoint returns null last_seen when the herd is empty', function (): void {
+test('api herd endpoint returns null updated_at when the herd is empty', function (): void {
     $user = User::factory()->create();
     $user->update(['is_public' => true]);
 
     $response = $this->getJson(route('api.herds.show', $user->username));
 
     $response->assertOk();
-    $response->assertJsonPath('last_seen', null);
     $response->assertJsonPath('updated_at', null);
 });
 

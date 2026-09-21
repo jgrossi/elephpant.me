@@ -23,8 +23,9 @@
         "symfony/mailgun-mailer": "^8.1"
     },
     "require-dev": {
-        "fruitcake/laravel-debugbar": "^4.0",
         "fakerphp/faker": "^1.23",
+        "fruitcake/laravel-debugbar": "^4.0",
+        "knuckleswtf/scribe": "^5.11",
         "larastan/larastan": "^3.0",
         "laravel/boost": "^2.2",
         "laravel/pint": "^1.27",
@@ -74,6 +75,10 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "docs": [
+            "@php artisan scribe:generate",
+            "@php -r \"copy('storage/app/scribe/openapi.yaml', 'openapi.yaml');\""
         ]
     }
 }

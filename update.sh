@@ -27,6 +27,7 @@ echo '<!-- '"$GIT_REV"' -->' >> resources/views/layouts/app.blade.php
 
 echo "==> Clearing caches"
 php artisan config:clear
+php artisan route:clear
 php artisan view:clear
 php artisan cache:clear
 

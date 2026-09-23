@@ -3,13 +3,20 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-echo "==> Maintenance mode ON"
-php artisan down
-trap 'php artisan up' EXIT
+# After git reset, re-exec so the rest of this deploy uses the updated script
+# (bash would otherwise keep running the pre-pull inode).
+if [[ "${1:-}" != "--post-pull" ]]; then
+    echo "==> Maintenance mode ON"
+    php artisan down
 
-echo "==> Pulling latest code"
-git fetch origin
-git reset --hard origin/master
+    echo "==> Pulling latest code"
+    git fetch origin
+    git reset --hard origin/master
+
+    exec bash "$0" --post-pull
+fi
+
+trap 'php artisan up' EXIT
 
 echo "==> Installing PHP dependencies"
 composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist

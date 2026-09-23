@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 /**
@@ -62,6 +63,21 @@ class User extends Authenticatable
             ->wherePivot('quantity', '>', 1);
     }
 
+    public function getLastMessageWith(User $otherUser): ?Message
+    {
+        return Message::query()
+            ->where(function ($q) use ($otherUser): void {
+                $q->where('sender_id', $this->id)
+                    ->where('receiver_id', $otherUser->id);
+            })
+            ->orWhere(function ($q) use ($otherUser): void {
+                $q->where('sender_id', $otherUser->id)
+                    ->where('receiver_id', $this->id);
+            })
+            ->orderByDesc('id')
+            ->first();
+    }
+
     public function elephpantsWithQuantity(): Collection
     {
         return $this->elephpants()
@@ -88,12 +104,17 @@ class User extends Authenticatable
     }
 
     /**
+     * Memoized Gravatar existence check for this model instance.
+     */
+    private ?bool $gravatarExists = null;
+
+    /**
      * Whether the user has an image-based avatar (Gravatar or X).
      * When false, use Flux avatar with initials and color="auto" instead.
      */
     public function hasAvatarImage(): bool
     {
-        return $this->x_handle || Gravatar::exists($this->email);
+        return filled($this->x_handle) || $this->gravatarExists();
     }
 
     /**
@@ -101,15 +122,55 @@ class User extends Authenticatable
      */
     public function avatar(): string
     {
-        if ($this->x_handle) {
+        if (filled($this->x_handle)) {
             return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->x_handle);
         }
 
-        if (Gravatar::exists($this->email)) {
+        if ($this->gravatarExists()) {
             return Gravatar::get($this->email);
         }
 
         return 'https://ui-avatars.com/api/?name='.urlencode($this->name);
+    }
+
+    /**
+     * Avatar image URL that can be resolved without remote lookups.
+     * Use this in list UIs; fall back to Flux initials when null.
+     */
+    public function localAvatarUrl(): ?string
+    {
+        if (! filled($this->x_handle)) {
+            return null;
+        }
+
+        return sprintf('https://api.microlink.io/?url=https://twitter.com/%s&embed=image.url', $this->x_handle);
+    }
+
+    /**
+     * Whether a Gravatar exists for this user's email.
+     *
+     * Results are memoized on the instance and cached to avoid repeated
+     * HTTP round-trips (Gravatar::exists performs a remote request).
+     */
+    protected function gravatarExists(): bool
+    {
+        if ($this->gravatarExists !== null) {
+            return $this->gravatarExists;
+        }
+
+        $email = $this->email;
+
+        if ($email === '') {
+            return $this->gravatarExists = false;
+        }
+
+        $cacheKey = 'gravatar-exists:'.hash('sha256', Str::lower(trim($email)));
+
+        return $this->gravatarExists = Cache::remember(
+            $cacheKey,
+            now()->addWeek(),
+            static fn (): bool => Gravatar::exists($email),
+        );
     }
 
     /**

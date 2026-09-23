@@ -6,9 +6,25 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
+use Knuckles\Scribe\Attributes\Endpoint;
+use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\ResponseField;
+use Knuckles\Scribe\Attributes\UrlParam;
 
+#[Group('Herds', "A single collector's herd of elePHPants.")]
 class HerdController extends Controller
 {
+    #[Endpoint(
+        title: "Get a collector's herd",
+        description: 'Returns the full herd of a registered collector, including statistics and collected elePHPants. 403s if the herd is private.',
+    )]
+    #[UrlParam('username', 'string', 'Collector username.', example: 'john')]
+    #[ResponseField('country', 'string', 'ISO 3166-1 alpha-3 country code.')]
+    #[ResponseField('updated_at', 'string', 'When the collector last updated their herd (add, remove or change a quantity). Null if the herd is empty.')]
+    #[ResponseField('stats.total', 'integer', 'Total elePHPants held, including spares.')]
+    #[ResponseField('stats.unique', 'integer', 'Distinct elePHPant species held.')]
+    #[ResponseField('stats.spare', 'integer', 'Extra copies beyond one of each species held (total - unique).')]
+    #[ResponseField('elephpants[].quantity', 'integer', 'How many of this elePHPant the collector owns.')]
     public function show(string $username): JsonResponse
     {
         $user = User::with('elephpants')

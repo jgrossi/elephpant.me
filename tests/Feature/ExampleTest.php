@@ -30,13 +30,26 @@ test('herd show returns 200 for existing user', function () {
     $response->assertStatus(200);
 });
 
-test('herd show with authenticated user includes possible trades', function () {
+test('herd show with authenticated user includes contact section', function () {
     $user = User::factory()->create();
     $viewer = User::factory()->create();
     $elephpant = Elephpant::factory()->create();
     $user->elephpants()->attach($elephpant->id, ['quantity' => 1]);
 
-    $response = $this->actingAs($viewer)->get(route('herds.show', $user->username));
+    $this->actingAs($viewer)
+        ->get(route('herds.show', $user->username))
+        ->assertSuccessful()
+        ->assertSee('Collection')
+        ->assertSee('Contact')
+        ->assertSee('Send Message');
+});
 
-    $response->assertStatus(200);
+test('herd show does not show contact section on own profile', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->get(route('herds.show', $user->username))
+        ->assertSuccessful()
+        ->assertSee('Collection')
+        ->assertDontSee('>Contact<', false);
 });

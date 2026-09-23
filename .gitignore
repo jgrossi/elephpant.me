@@ -30,3 +30,12 @@ logs
 
 # Coverage
 build/coverage/
+
+# Scribe-generated API docs (produced by `composer docs` / update.sh)
+/openapi.yaml
+/public/vendor/scribe/
+/resources/views/scribe/
+/storage/app/scribe/
+/.scribe/endpoints/
+/.scribe/endpoints.cache/
+/.scribe/.filehashes

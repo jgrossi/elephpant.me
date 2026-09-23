@@ -5,6 +5,38 @@ declare(strict_types=1);
 use App\Elephpant;
 use App\User;
 
+test('api elephpants index defaults to 20 per page', function (): void {
+    Elephpant::factory()->count(25)->create();
+
+    $response = $this->getJson(route('api.elephpants.index'));
+
+    $response->assertOk();
+    $response->assertJsonCount(20, 'data');
+    $response->assertJsonPath('meta.per_page', 20);
+});
+
+test('api elephpants index honours per_page so the catalogue fits in one request', function (): void {
+    Elephpant::factory()->count(25)->create();
+
+    $response = $this->getJson(route('api.elephpants.index', ['per_page' => 100]));
+
+    $response->assertOk();
+    $response->assertJsonCount(25, 'data');
+    $response->assertJsonPath('meta.last_page', 1);
+});
+
+test('api elephpants index clamps per_page to a sane range', function (): void {
+    Elephpant::factory()->count(3)->create();
+
+    $this->getJson(route('api.elephpants.index', ['per_page' => 5000]))
+        ->assertOk()
+        ->assertJsonPath('meta.per_page', 100);
+
+    $this->getJson(route('api.elephpants.index', ['per_page' => 0]))
+        ->assertOk()
+        ->assertJsonPath('meta.per_page', 1);
+});
+
 test('api elephpants index exposes owners, copies, ownership_percentage and updated_at', function (): void {
     $elephpant = Elephpant::factory()->create();
     $owner = User::factory()->create();

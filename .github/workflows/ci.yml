@@ -60,6 +60,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      - uses: ./.github/actions/setup-php
+
+      - name: Prepare Laravel application
+        run: cp .env.testing .env
+
+      - name: Migrate and load species data
+        run: |
+          php artisan migrate --force
+          php artisan elephpants:read
+
+      - name: Generate API docs
+        run: php artisan scribe:generate
+
       - name: Setup node
         uses: actions/setup-node@v6
 
@@ -68,7 +81,7 @@ jobs:
 
       - name: Run Redocly lint
         run: |
-          npx redocly lint openapi.yaml \
+          npx redocly lint storage/app/scribe/openapi.yaml \
             --extends recommended \
             --format github-actions \
             --max-problems 500 \

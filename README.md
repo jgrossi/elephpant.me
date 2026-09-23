@@ -9,7 +9,7 @@
     - global / per country
 - Find people to trade
 - See statistics about elephpants
-- API, documented at https://www.elephpant.me/docs (spec: https://www.elephpant.me/openapi.yaml)
+- API, documented at https://www.elephpant.me/docs (spec: https://www.elephpant.me/docs.openapi)
 
 ### Stack
 
@@ -74,18 +74,21 @@ $ npm run build   # or npm run dev
 ### API documentation
 
 API docs are **generated from the code** with [Scribe](https://scribe.knuckles.wtf/laravel), not
-written by hand. Two things come out of one command:
+written by hand. Deploy runs `php artisan scribe:generate` in `update.sh`, so generated files are
+**not** committed.
 
-- `openapi.yaml` at the repo root, served at https://www.elephpant.me/openapi.yaml
-- a browsable HTML page at https://www.elephpant.me/docs
+Public URLs (served by Scribe):
 
-Never edit `openapi.yaml` by hand: the next regeneration overwrites it. To change the docs, change
-the controller (or `config/scribe.php`) and regenerate.
+- HTML docs: https://www.elephpant.me/docs
+- OpenAPI spec: https://www.elephpant.me/docs.openapi
 
-#### Regenerating
+Never edit generated OpenAPI or HTML by hand. To change the docs, update the API controllers (or
+`config/scribe.php`) and regenerate.
+
+#### Regenerating locally
 
 ```bash
-$ composer docs   # php artisan scribe:generate, then copies the spec to openapi.yaml
+$ composer docs   # php artisan scribe:generate
 ```
 
 Scribe calls every endpoint for real while generating, and uses the actual responses as the
@@ -98,16 +101,22 @@ $ php artisan db:seed   # real species catalogue + fake collectors and herds
 $ composer docs
 ```
 
-Scribe writes into several places, and the deploy does not run Scribe, so whatever is committed is
-what production serves. Commit all of it along with your change:
+What belongs in git:
 
 | Path | What it is |
 |---|---|
-| `openapi.yaml` | The spec, at its public URL. Copied here by `composer docs` |
-| `storage/app/scribe/openapi.yaml` | Same spec, read by the `/docs.openapi` route |
-| `resources/views/scribe/` | The `/docs` page itself |
+| `config/scribe.php` | Scribe configuration |
+| Controller attributes | Endpoint descriptions / groups |
+| `.scribe/intro.md`, `.scribe/auth.md`, `.scribe/endpoints/custom.*.yaml` | Optional hand-edited Scribe sources |
+
+What is generated (gitignored; produced on deploy / via `composer docs`):
+
+| Path | What it is |
+|---|---|
+| `storage/app/scribe/openapi.yaml` | Generated OpenAPI spec (served at `/docs.openapi`) |
+| `resources/views/scribe/` | The `/docs` Blade page |
 | `public/vendor/scribe/` | CSS and JS for that page |
-| `.scribe/` | Scribe's extracted source. `intro.md` here is editable by hand |
+| `.scribe/endpoints*` | Extracted endpoint cache |
 
 #### Describing an endpoint
 
@@ -127,11 +136,7 @@ class HerdController extends Controller
 The `example` on a `UrlParam` is the value Scribe puts in the URL when it calls the endpoint, so it
 has to exist in the seeded database or the captured example response will be a 404.
 
-CI validates the committed `openapi.yaml` with [Redocly](https://redocly.com/docs/cli).
-
-Scribe is a dev dependency, and the `/docs` route comes from the package, so the deploy has to run
-`composer install` **with** dev dependencies (as it does today). `openapi.yaml` is a plain file and
-is served either way.
+CI generates the spec with Scribe, then validates it with [Redocly](https://redocly.com/docs/cli).
 
 ---
 

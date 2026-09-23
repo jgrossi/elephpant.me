@@ -38,3 +38,8 @@ test('statistics page contains key content', function (): void {
     $response->assertStatus(200);
     $response->assertSee('Statistics', false);
 });
+
+test('legacy openapi.yaml redirects to scribe docs.openapi', function (): void {
+    $this->get('/openapi.yaml')
+        ->assertRedirect('/docs.openapi');
+});

@@ -14,6 +14,7 @@
         "creativeorange/gravatar": "^1.0.26",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
+        "knuckleswtf/scribe": "^5.11",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "laravel/ui": "^4.6.3",
@@ -25,7 +26,6 @@
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "fruitcake/laravel-debugbar": "^4.0",
-        "knuckleswtf/scribe": "^5.11",
         "larastan/larastan": "^3.0",
         "laravel/boost": "^2.2",
         "laravel/pint": "^1.27",
@@ -77,8 +77,7 @@
             "@php artisan key:generate --ansi"
         ],
         "docs": [
-            "@php artisan scribe:generate",
-            "@php -r \"copy('storage/app/scribe/openapi.yaml', 'openapi.yaml');\""
+            "@php artisan scribe:generate"
         ]
     }
 }

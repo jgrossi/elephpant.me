@@ -48,6 +48,7 @@
                 <div>
                     <h2 class="text-sm font-semibold text-white">Project</h2>
                     <ul class="mt-3 space-y-2 text-sm">
+                        <li><a href="{{ url('/docs') }}" class="text-violet-200/85 transition hover:text-white">API Docs</a></li>
                         <li><a href="https://github.com/jgrossi/elephpant.me" target="_blank" rel="noopener noreferrer" class="text-violet-200/85 transition hover:text-white">Source code</a></li>
                         <li><a href="https://github.com/jgrossi/elephpant.me/graphs/contributors" target="_blank" rel="noopener noreferrer" class="text-violet-200/85 transition hover:text-white">Contributors</a></li>
                         <li><a href="https://github.com/jgrossi/elephpant.me/issues" target="_blank" rel="noopener noreferrer" class="text-violet-200/85 transition hover:text-white">Report an issue</a></li>

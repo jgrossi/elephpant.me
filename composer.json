@@ -14,6 +14,7 @@
         "creativeorange/gravatar": "^1.0.26",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
+        "knuckleswtf/scribe": "^5.11",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "laravel/ui": "^4.6.3",
@@ -23,8 +24,8 @@
         "symfony/mailgun-mailer": "^8.1"
     },
     "require-dev": {
-        "fruitcake/laravel-debugbar": "^4.0",
         "fakerphp/faker": "^1.23",
+        "fruitcake/laravel-debugbar": "^4.0",
         "larastan/larastan": "^3.0",
         "laravel/boost": "^2.2",
         "laravel/pint": "^1.27",
@@ -74,6 +75,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "docs": [
+            "@php artisan scribe:generate"
         ]
     }
 }

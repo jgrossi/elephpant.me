@@ -27,6 +27,9 @@ echo "==> Running database migrations"
 php artisan migrate --force
 php artisan elephpants:read
 
+echo "==> Generating API docs"
+php artisan scribe:generate
+
 echo "==> Building frontend assets"
 npm ci && npm run build
 
@@ -36,9 +39,6 @@ php artisan config:clear
 echo "==> Rebuilding caches"
 php artisan config:cache
 php artisan route:cache
-
-echo "==> make openapi.yaml public available"
-cp openapi.yaml public/openapi.yaml
 
 echo "==> Fixing storage permissions"
 chmod -R 775 storage bootstrap/cache

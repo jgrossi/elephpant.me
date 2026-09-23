@@ -6,6 +6,7 @@ Route::namespace('App\Http\Controllers')->group(function (): void {
     Auth::routes(['verify' => true]);
 
     Route::redirect('/home', '/');
+    Route::redirect('/openapi.yaml', '/docs.openapi');
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/species', 'ElephpantController@index')->name('elephpants.index');
     Route::get('/herd/{username}', 'HerdController@show')->name('herds.show');

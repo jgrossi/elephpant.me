@@ -62,8 +62,13 @@ jobs:
 
       - uses: ./.github/actions/setup-php
 
+      # .env.testing uses DB_DATABASE=:memory:, which does not survive across
+      # separate artisan processes (migrate → elephpants:read → scribe:generate).
       - name: Prepare Laravel application
-        run: cp .env.testing .env
+        run: |
+          cp .env.testing .env
+          touch database/ci-openapi.sqlite
+          sed -i 's|^DB_DATABASE=.*|DB_DATABASE=database/ci-openapi.sqlite|' .env
 
       - name: Migrate and load species data
         run: |

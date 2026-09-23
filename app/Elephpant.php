@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
  * @property-read \Illuminate\Database\Eloquent\Relations\Pivot&object{quantity: int, updated_at: \Carbon\Carbon|null} $pivot
  * @property string|null $possible_senders
  * @property string|null $possible_receivers
+ * @property int|null    $users_count
+ * @property int|null    $copies
+ * @property float|null  $ownership_percentage
  */
 class Elephpant extends Model
 {

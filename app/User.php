@@ -157,7 +157,7 @@ class User extends Authenticatable
 
         $email = $this->email;
 
-        if (! is_string($email) || $email === '') {
+        if ($email === '') {
             return $this->gravatarExists = false;
         }
 

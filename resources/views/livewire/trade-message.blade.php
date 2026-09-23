@@ -14,7 +14,7 @@
 
                     $preview = Str::limit($message->message, 80);
                 @endphp
-                <flux:callout icon="envelope" variant="secondary" heading="Last message" inline>
+                <flux:callout icon="envelope" variant="secondary" heading="Last message" inline class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700">
                     <flux:callout.text>
                         <div>{{ $preview }}</div>
                         <time class="text-xs text-zinc-500 dark:text-zinc-400 mt-1" datetime="">
@@ -31,10 +31,20 @@
             @endif
 
             <flux:field>
-                <flux:textarea wire:model="message" rows="auto" />
+                <flux:textarea wire:model.live="message" rows="4" resize="vertical" />
                 <flux:error name="message" />
             </flux:field>
-            <flux:button type="button" variant="primary" wire:click="send">Send Message</flux:button>
+            <div class="flex justify-end">
+                <flux:button
+                    type="button"
+                    variant="primary"
+                    wire:click="send"
+                    class="cursor-pointer"
+                    :disabled="blank($message)"
+                >
+                    Send Message
+                </flux:button>
+            </div>
         </div>
     @endif
 </div>

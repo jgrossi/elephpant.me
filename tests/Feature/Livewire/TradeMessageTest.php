@@ -26,6 +26,23 @@ test('trade message send validates and creates message', function (): void {
     ]);
 });
 
+test('trade message last message callout uses a white background', function (): void {
+    $sender = User::factory()->create();
+    $receiver = User::factory()->create();
+    $this->actingAs($sender);
+
+    \App\Message::query()->create([
+        'sender_id'   => $sender->id,
+        'receiver_id' => $receiver->id,
+        'message'     => 'Earlier trade chat',
+    ]);
+
+    Livewire::test(TradeMessage::class, ['receiverUser' => $receiver])
+        ->assertSee('Last message')
+        ->assertSee('Earlier trade chat')
+        ->assertSeeHtml('bg-white');
+});
+
 test('trade message send requires message', function (): void {
     $sender = User::factory()->create();
     $receiver = User::factory()->create();

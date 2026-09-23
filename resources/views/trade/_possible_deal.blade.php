@@ -24,8 +24,4 @@
             </div>
         @endif
     </div>
-
-    <div>
-        @livewire('trade-message', ['receiverUser' => $user], key('trade-message-'.$user->id))
-    </div>
 </div>

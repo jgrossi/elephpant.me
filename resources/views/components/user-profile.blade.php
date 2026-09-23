@@ -13,10 +13,14 @@
 <div class="flex flex-wrap items-start gap-4" {{ $attributes }}>
     <x-user-avatar :user="$user" :avatarClass="$avatarClass" />
     <div class="min-w-0">
-        @if($nameAsLink)
+        @if($nameAsLink && $compact)
             <p class="mb-0 font-medium">
                 <a href="{{ route('herds.show', $user->username) }}" wire:navigate class="text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100">{{ $user->name }}</a>
             </p>
+        @elseif($nameAsLink)
+            <flux:heading size="xl" level="1" class="text-zinc-600 dark:text-zinc-300">
+                <a href="{{ route('herds.show', $user->username) }}" wire:navigate class="hover:text-zinc-900 dark:hover:text-zinc-100">{{ $user->name }}</a>
+            </flux:heading>
         @else
             <flux:heading size="xl" level="1" class="text-zinc-600 dark:text-zinc-300">{{ $user->name }}</flux:heading>
         @endif

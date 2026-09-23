@@ -49,9 +49,13 @@ final class MessagesQuery
     {
         $authUserId = auth()->id();
 
-        $latestPerOther = Message::query()
+        $statsPerOther = Message::query()
             ->selectRaw(
-                'CASE WHEN sender_id = ? THEN receiver_id ELSE sender_id END as other_id, MAX(id) as max_id',
+                'CASE WHEN sender_id = ? THEN receiver_id ELSE sender_id END as other_id,
+                MAX(id) as max_id,
+                COUNT(*) as message_count,
+                MIN(created_at) as conversation_started_at,
+                MAX(created_at) as last_message_at',
                 [$authUserId]
             )
             ->where(function ($q) use ($authUserId): void {
@@ -61,7 +65,12 @@ final class MessagesQuery
             ->groupBy('other_id');
 
         return $this->getAllQuery()
-            ->joinSub($latestPerOther, 'latest', function ($join) use ($authUserId): void {
+            ->addSelect([
+                'latest.message_count',
+                'latest.conversation_started_at',
+                'latest.last_message_at',
+            ])
+            ->joinSub($statsPerOther, 'latest', function ($join) use ($authUserId): void {
                 $join->on(DB::raw(sprintf('CASE WHEN m.sender_id = %s THEN m.receiver_id ELSE m.sender_id END', $authUserId)), '=', 'latest.other_id')
                     ->on('m.id', '=', 'latest.max_id');
             })

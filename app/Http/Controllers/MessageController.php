@@ -30,25 +30,29 @@ class MessageController extends Controller
     {
         $messages = $query->getConversations();
 
-        return view('messages.index', ['messages' => $messages]);
+        return view('messages.index', [
+            'messages' => $messages,
+            'dateFormat' => $this->dateFormatFor(auth()->user()),
+        ]);
     }
 
-    public function conversation(string $username, MessagesQuery $query): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function conversation(string $username): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $otherUser = User::with('elephpants')->whereUsername($username)->firstOrFail();
-        $messages = $query->getMessagesWithLoggedInUserAndSomeoneElse($otherUser->id);
 
-        $dateFormat = match (auth()->user()->country_code) {
+        return view('messages.conversation', [
+            'dateFormat' => $this->dateFormatFor(auth()->user()),
+            'otherUser' => $otherUser,
+            'countries' => Country::forDropdown([$otherUser->country_code]),
+        ]);
+    }
+
+    private function dateFormatFor(User $user): string
+    {
+        return match ($user->country_code) {
             'USA', 'PHL' => 'F jS Y g:ia',
             'CHN', 'HUN', 'IRN', 'JPN', 'KOR', 'LTU', 'PRK', 'SWE' => 'Y F j H:i',
             default => 'j F Y H:i',
         };
-
-        return view('messages.conversation', [
-            'messages' => $messages,
-            'dateFormat' => $dateFormat,
-            'otherUser' => $otherUser,
-            'countries' => Country::forDropdown([$otherUser->country_code]),
-        ]);
     }
 }

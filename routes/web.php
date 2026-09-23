@@ -23,6 +23,8 @@ Route::namespace('App\Http\Controllers')->group(function (): void {
         Route::get('/photo/create', 'PhotoController@create')->name('photos.create');
         Route::post('/photo', 'PhotoController@store')->name('photos.store');
         Route::post('/message', 'MessageController@store')->name('messages.store');
+        Route::get('/conversations', 'MessageController@conversations')->name('messages.conversations');
+        Route::get('/conversations/{username}', 'MessageController@conversation')->name('messages.conversation');
         Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
         Route::put('/profile', 'ProfileController@update')->name('profile.update');
     });

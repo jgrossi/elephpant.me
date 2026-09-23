@@ -14,19 +14,26 @@
 
         <livewire:public-herd-collection :username="$user->username" defer />
 
-        @if(!is_null($possibleTrades))
-            <flux:heading size="lg" class="text-zinc-600 dark:text-zinc-300 mt-8 mb-4">Possible Trades</flux:heading>
-            <div>
-                @if(count($possibleTrades))
-                    <div class="space-y-4">
-                    @foreach($possibleTrades as $possibleUser)
-                        @include('trade._possible_deal', ['user' => $possibleUser])
-                    @endforeach
+        @auth
+            @if($user->id !== auth()->id())
+                @if(! is_null($possibleTrades))
+                    <flux:heading size="lg" class="text-zinc-600 dark:text-zinc-300 mt-8 mb-4">Possible Trades</flux:heading>
+                    <div>
+                        @if(count($possibleTrades))
+                            <div class="space-y-4">
+                            @foreach($possibleTrades as $possibleUser)
+                                @include('trade._possible_deal', ['user' => $possibleUser])
+                            @endforeach
+                            </div>
+                        @else
+                            <flux:callout variant="info">We didn't find any possible trade.</flux:callout>
+                        @endif
                     </div>
-                @else
-                    <flux:callout variant="info">We didn't find any possible trade.</flux:callout>
                 @endif
-            </div>
-        @endif
+
+                <flux:heading size="lg" class="text-zinc-600 dark:text-zinc-300 mt-8 mb-4">Contact</flux:heading>
+                <livewire:trade-message :receiver-user="$user" :key="'trade-message-'.$user->id" />
+            @endif
+        @endauth
     </div>
 @endsection

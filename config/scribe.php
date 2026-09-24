@@ -25,6 +25,11 @@ return [
         ISO 3166-1 alpha-3 (`DNK`, `GBR`, `BRA`).
 
         Be kind to the herd: cache what you fetch rather than re-reading the whole catalogue.
+
+        Every endpoint answers a conditional request. Send back the `ETag` you were given as
+        `If-None-Match`, and an unchanged resource returns `304 Not Modified` with no body.
+        A herd also carries `Last-Modified`, covering both the herd and the profile around it,
+        so `If-Modified-Since` works there too.
         INTRO,
 
     // The base URL displayed in the docs.

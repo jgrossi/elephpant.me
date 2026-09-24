@@ -30,9 +30,9 @@ test('herd show avatars fall back on image error and are not circles', function 
     \Creativeorange\Gravatar\Facades\Gravatar::shouldReceive('exists')->andReturn(false);
 
     $user = \App\User::factory()->create([
-        'x_handle' => 'webaaz',
-        'name'     => 'Webaaz',
-        'username' => 'webaaz',
+        'x_handle'  => 'example_user',
+        'name'      => 'Example User',
+        'username'  => 'example-user',
         'is_public' => true,
     ]);
 

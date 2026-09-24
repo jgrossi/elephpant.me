@@ -25,6 +25,11 @@ return [
         ISO 3166-1 alpha-3 (`DNK`, `GBR`, `BRA`).
 
         Be kind to the herd: cache what you fetch rather than re-reading the whole catalogue.
+
+        Requests are limited per caller address, currently 120 a minute. Every response says
+        where you stand in `X-RateLimit-Limit` and `X-RateLimit-Remaining`, and those headers are the
+        authority rather than this paragraph. Going over earns a `429` and a `Retry-After`
+        telling you how many seconds to wait.
         INTRO,
 
     // The base URL displayed in the docs.

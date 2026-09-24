@@ -32,7 +32,6 @@
                                 class="flex flex-row items-center gap-x-4 rounded-lg border py-4 px-4 transition border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900">
 
                                 <flux:avatar
-                                    circle
                                     size="lg"
                                     name="{{ $otherUser->name }}"
                                     color="auto"

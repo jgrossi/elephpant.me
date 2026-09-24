@@ -139,7 +139,34 @@ test('conversation page avatar src is not double-escaped for x handle urls', fun
 
     expect($html)
         ->toContain('api.microlink.io/?url=https://twitter.com/nfabre&amp;embed=image.url')
-        ->not->toContain('&amp;amp;embed=image.url');
+        ->not->toContain('&amp;amp;embed=image.url')
+        ->toContain('onerror="this.remove()"')
+        ->not->toContain('data-circle="true"');
+});
+
+test('conversations list avatars are rounded squares with image fallback', function (): void {
+    Gravatar::shouldReceive('exists')->andReturn(false);
+
+    $user = User::factory()->create(['x_handle' => null]);
+    $partner = User::factory()->create([
+        'x_handle' => 'nfabre',
+        'name'     => 'Nicolas Fabre',
+    ]);
+
+    Message::query()->create([
+        'sender_id'   => $partner->id,
+        'receiver_id' => $user->id,
+        'message'     => 'Hello',
+    ]);
+
+    $html = $this->actingAs($user)
+        ->get(route('messages.conversations'))
+        ->assertSuccessful()
+        ->getContent();
+
+    expect($html)
+        ->toContain('onerror="this.remove()"')
+        ->not->toContain('data-circle="true"');
 });
 
 test('conversation page shows name once for consecutive messages from the same sender', function (): void {

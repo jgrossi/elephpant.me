@@ -5,7 +5,6 @@
 ])
 <flux:avatar
     size="{{ $size }}"
-    circle
     class="{{ $avatarClass }}"
     name="{{ $user->name }}"
     color="auto"

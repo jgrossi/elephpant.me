@@ -4,21 +4,21 @@
     @else
         <div class="space-y-3">
             @php
-                $message = $receiverUser->getLastMessageWith(auth()->user());
+                $lastMessage = $receiverUser->getLastMessageWith(auth()->user());
             @endphp
-            @if ($message)
+            @if ($lastMessage)
                 @php
-                    $otherUser = $message->sender_id === auth()->id()
-                        ? $message->receiver
-                        : $message->sender;
+                    $otherUser = $lastMessage->sender_id === auth()->id()
+                        ? $lastMessage->receiver
+                        : $lastMessage->sender;
 
-                    $preview = Str::limit($message->message, 80);
+                    $preview = Str::limit($lastMessage->message, 80);
                 @endphp
                 <flux:callout icon="envelope" variant="secondary" heading="Last message" inline class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700">
                     <flux:callout.text>
                         <div>{{ $preview }}</div>
                         <time class="text-xs text-zinc-500 dark:text-zinc-400 mt-1" datetime="">
-                            {{ $message->created_at->diffForHumans(null, \Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago
+                            {{ $lastMessage->created_at->diffForHumans(null, \Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago
                         </time>
                     </flux:callout.text>
 

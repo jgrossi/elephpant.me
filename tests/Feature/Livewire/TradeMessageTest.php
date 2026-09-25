@@ -53,3 +53,17 @@ test('trade message send requires message', function (): void {
         ->call('send')
         ->assertHasErrors(['message']);
 });
+
+test('trade message send button is enabled with the default draft when there is no history', function (): void {
+    $sender = User::factory()->create();
+    $receiver = User::factory()->create();
+    $this->actingAs($sender);
+
+    $component = Livewire::test(TradeMessage::class, ['receiverUser' => $receiver]);
+
+    expect($component->html())->not->toContain('disabled="disabled"');
+
+    $component->set('message', '');
+
+    expect($component->html())->toContain('disabled="disabled"');
+});

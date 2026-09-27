@@ -6,6 +6,7 @@ use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -55,6 +56,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Elephpant::class)
             ->withPivot('quantity')
             ->withTimestamps();
+    }
+
+    public function conversations(): HasMany
+    {
+        return $this->hasMany(Conversation::class);
     }
 
     public function elephpantsToTrade(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

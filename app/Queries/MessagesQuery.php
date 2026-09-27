@@ -45,7 +45,7 @@ final class MessagesQuery
             ->join('users as receiver', 'm.receiver_id', '=', 'receiver.id');
     }
 
-    public function getConversations(): Collection
+public function getConversations(): Collection
     {
         $authUserId = auth()->id();
 
@@ -73,6 +73,20 @@ final class MessagesQuery
             ->joinSub($statsPerOther, 'latest', function ($join) use ($authUserId): void {
                 $join->on(DB::raw(sprintf('CASE WHEN m.sender_id = %s THEN m.receiver_id ELSE m.sender_id END', $authUserId)), '=', 'latest.other_id')
                     ->on('m.id', '=', 'latest.max_id');
+            })
+            ->leftJoin('conversations', function ($join) use ($authUserId) {
+                $join->on(
+                        DB::raw('CASE WHEN m.sender_id = %s THEN m.receiver_id ELSE m.sender_id END', $authUserId),
+                        '=', 'conversations.other_user_id'
+                )
+                ->where(function ($join) use ($authUserId) {
+                    $join->where('conversations.user_id', $authUserId)
+                         ->orWhere('conversations.other_user_id', $authUserId);
+                });
+            })
+            ->where(function ($query) {
+                $query->whereNull('conversations.id') // conversation record doesn't exist -> not deleted
+                    ->orWhereNull('conversations.deleted_at'); // or exists and not deleted
             })
             ->orderBy('m.id', 'desc')
             ->get();

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Conversation;
 use App\Http\Requests\MessageRequest;
 use App\Mail\UserMessage;
 use App\Message;
-use App\User;
-use Illuminate\Support\Facades\Mail;
 use App\Queries\MessagesQuery;
+use App\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -45,6 +48,24 @@ class MessageController extends Controller
             'otherUser' => $otherUser,
             'countries' => Country::forDropdown([$otherUser->country_code]),
         ]);
+    }
+
+    public function destroy(Request $request, string $username): RedirectResponse
+    {
+        $otherUser = User::whereUsername($username)->firstOrFail();
+        $user = $request->user();
+
+        abort_unless($user instanceof User, 403);
+        abort_unless($user->getLastMessageWith($otherUser) !== null, 403);
+
+        Conversation::withTrashed()->firstOrCreate([
+            'user_id'       => $user->id,
+            'other_user_id' => $otherUser->id,
+        ])->delete();
+
+        return redirect()
+            ->route('messages.conversations')
+            ->with('status', 'Conversation deleted.');
     }
 
     private function dateFormatFor(User $user): string

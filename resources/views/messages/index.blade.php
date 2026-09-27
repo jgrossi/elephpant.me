@@ -7,6 +7,11 @@
             <flux:text class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Browse your conversations with other collectors.</flux:text>
         </div>
     </div>
+    @if (session('status'))
+        <flux:callout variant="success" class="mb-6">
+            <flux:callout.text>{{ session('status') }}</flux:callout.text>
+        </flux:callout>
+    @endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
@@ -28,8 +33,18 @@
                                 $lastMessageAt = \Carbon\Carbon::parse($message->last_message_at);
                             @endphp
 
-                            <a href="{{ route('messages.conversation', $otherUser->username) }}"
-                                class="flex flex-row items-center gap-x-4 rounded-lg border py-4 px-4 transition border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900">
+<a href="{{ route('messages.conversation', $otherUser->username) }}"
+                                 class="flex flex-row items-center gap-x-4 rounded-lg border py-4 px-4 transition border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900">
+                                 <!-- Delete Conversation Button -->
+                                 <form method="POST" action="{{ route('messages.conversations.destroy', $otherUser->username) }}"
+                                       class="ml-4" style="display: inline;"
+                                       onsubmit="return confirm('Are you sure you want to clear this conversation? This action cannot be undone.');">
+                                     @csrf
+                                     @method('DELETE')
+                                     <button type="submit" class="text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300">
+                                         <i class="fas fa-trash"></i>
+                                     </button>
+                                 </form>
 
                                 <flux:avatar
                                     size="lg"
@@ -60,6 +75,17 @@
                                 </div>
 
                             </a>
+
+                             <!-- Delete Conversation Button -->
+                                 <form method="POST" action="{{ route('messages.conversations.destroy', $otherUser->username) }}"
+                                       class="ml-4" style="display: inline;"
+                                       onsubmit="return confirm('Are you sure you want to clear this conversation? This action cannot be undone.');">
+                                     @csrf
+                                     @method('DELETE')
+                                     <button type="submit" class="text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300">
+                                         <i class="fas fa-trash"></i>
+                                     </button>
+                                 </form>
 
                         @endforeach
 

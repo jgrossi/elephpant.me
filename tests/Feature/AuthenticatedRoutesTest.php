@@ -58,6 +58,52 @@ test('authenticated user can access trade with country filter', function (): voi
     $response->assertStatus(200);
 });
 
+test('trade index searches traders and passes paginated results to the view', function (): void {
+    $user = User::factory()->create(['country_code' => 'USA']);
+    $trader = User::factory()->create([
+        'name' => 'Searchable Trader',
+        'country_code' => 'GBR',
+    ]);
+    $otherTrader = User::factory()->create([
+        'name' => 'Other Trader',
+        'country_code' => 'GBR',
+    ]);
+    $userOffer = Elephpant::factory()->create();
+    $traderOffer = Elephpant::factory()->create();
+    $otherTraderOffer = Elephpant::factory()->create();
+
+    $user->elephpants()->attach($userOffer->id, ['quantity' => 2]);
+    $trader->elephpants()->attach($traderOffer->id, ['quantity' => 2]);
+    $otherTrader->elephpants()->attach($otherTraderOffer->id, ['quantity' => 2]);
+
+    for ($index = 1; $index < 6; $index++) {
+        $additionalTrader = User::factory()->create([
+            'name' => "Searchable Trader {$index}",
+            'country_code' => 'GBR',
+        ]);
+        $additionalOffer = Elephpant::factory()->create();
+        $additionalTrader->elephpants()->attach($additionalOffer->id, ['quantity' => 2]);
+    }
+
+    $response = $this->actingAs($user)->get(route('trades.index', [
+        'search' => 'Searchable',
+        'country' => 'GBR',
+    ]));
+
+    $response->assertSuccessful()
+        ->assertViewHas('search', 'Searchable')
+        ->assertViewHas('trades', function ($trades) use ($trader, $otherTrader): bool {
+            return $trades instanceof \Illuminate\Pagination\LengthAwarePaginator
+                && $trades->getCollection()->contains('id', $trader->id)
+                && !$trades->getCollection()->contains('id', $otherTrader->id);
+        })
+        ->assertSee('Clear filters')
+        ->assertSee(route('trades.index'))
+        ->assertSee('page=2')
+        ->assertSee('search=Searchable')
+        ->assertSee('country=GBR');
+});
+
 test('authenticated user can access profile', function (): void {
     $user = User::factory()->create();
 

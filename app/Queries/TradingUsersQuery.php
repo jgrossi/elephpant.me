@@ -15,7 +15,7 @@ final class TradingUsersQuery
     /** @var array<int, EloquentCollection<int, Elephpant>> */
     private array $userElephpantsCache = [];
 
-    public function fetchAll(User $user, ?TradingUsersQueryOption $options = null, int $limit = self::USER_MATCHING_LIMIT, ?string $country = null, bool $simplePaginate = false)
+    public function fetchAll(User $user, ?TradingUsersQueryOption $options = null, int $limit = self::USER_MATCHING_LIMIT, ?string $country = null, bool $simplePaginate = false, ?string $search = null)
     {
         $userElephpants = $this->userElephpants($user);
 
@@ -25,7 +25,7 @@ final class TradingUsersQuery
             return null;
         }
 
-        $traders = $this->fetchTraders($userElephpants, $options, $limit, $country, $simplePaginate);
+        $traders = $this->fetchTraders($userElephpants, $options, $limit, $country, $simplePaginate, $search);
 
         foreach ($traders as $trader) {
             $this->addInterestedElephpants($trader, $userAvailable);
@@ -71,7 +71,7 @@ final class TradingUsersQuery
             ->toArray();
     }
 
-    private function fetchTraders(EloquentCollection $userElephpants, ?TradingUsersQueryOption $options = null, int $limit = 0, ?string $country = null, bool $simplePaginate = false)
+    private function fetchTraders(EloquentCollection $userElephpants, ?TradingUsersQueryOption $options = null, int $limit = 0, ?string $country = null, bool $simplePaginate = false, ?string $search = null)
     {
         $userElephpants = $userElephpants->pluck('id');
 
@@ -92,6 +92,15 @@ final class TradingUsersQuery
                 'elephpantsToTrade' => $elephpantsQuery,
             ])
             ->when($countryFilter !== null && $countryFilter !== '', fn ($q) => $q->where('country_code', $countryFilter))
+            ->when($search !== null && $search !== '', function ($query) use ($search): void {
+                $query->where(function ($query) use ($search): void {
+                    $query->where('name', 'like', '%'.$search.'%')
+                        ->orWhere('username', 'like', '%'.$search.'%')
+                        ->orWhereHas('elephpants', function ($q) use ($search) {
+                            $q->where('name', 'like', '%'.$search.'%');
+                        });
+                });
+            })
             ->whereHas('elephpantsToTrade', $elephpantsQuery)
             ->has('elephpantsToTrade')
             ->whereExists(function ($q) use ($authUserId): void {

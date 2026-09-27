@@ -14,6 +14,11 @@
         @else
             <div class="space-y-3 mb-6">
                 <form id="trade-filter-form" action="{{ request()->url() }}" method="get" class="flex flex-wrap items-center gap-2">
+                    @if(isset($trades))
+                        <flux:input type="search" name="search" value="{{ $search }}" placeholder="Search traders" class="min-w-[220px]" />
+                        <flux:button type="submit" icon="magnifying-glass">Search</flux:button>
+                        <flux:button href="{{ request()->url() }}" variant="ghost" icon="x-mark">Clear filters</flux:button>
+                    @endif
                     <flux:select name="country" id="country" class="min-w-[200px]" onchange="document.getElementById('trade-filter-form').submit()">
                         <option value="">-- All Traders --</option>
                         @foreach($countries as $code => $current)
@@ -28,11 +33,13 @@
                 @endif
             </div>
 
-            @if(!$users)
+            @php($tradeResults = $trades ?? $users)
+
+            @if(!$tradeResults)
                 <flux:callout variant="info">You don't have any double elePHPant to trade yet.</flux:callout>
-            @elseif(count($users))
-                <flux:callout variant="info" icon="information-circle" heading="Found {{ $users->total() }} {{ \Illuminate\Support\Str::plural('user', $users->total()) }} that can trade with you." class="mb-4" />
-                @foreach($users as $user)
+            @elseif(count($tradeResults))
+                <flux:callout variant="info" icon="information-circle" heading="Found {{ $tradeResults->total() }} {{ \Illuminate\Support\Str::plural('user', $tradeResults->total()) }} that can trade with you." class="mb-4" />
+                @foreach($tradeResults as $user)
                     <flux:card class="space-y-0">
                         <div class="px-4 py-3 border-b border-zinc-200 dark:border-zinc-700">
                             @include('trade._user', ['user' => $user, 'countries' => $countries])
@@ -43,7 +50,7 @@
                     </flux:card>
                 @endforeach
                 <div class="flex justify-center mt-6">
-                    {{ $users->appends(request()->query())->links() }}
+                    {{ $tradeResults->appends(request()->query())->links() }}
                 </div>
             @else
                 <flux:callout variant="info">No users found that can trade with you.</flux:callout>

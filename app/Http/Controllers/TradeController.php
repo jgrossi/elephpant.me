@@ -10,23 +10,31 @@ use App\User;
 
 class TradeController extends Controller
 {
+    /**
+     * @queryParam search string Optional substring of a trader's name or username. Example: Ada
+     * @queryParam country string Optional ISO 3166-1 alpha-3 country code. Example: GBR
+     */
     public function index(TradingUsersQuery $query): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         /** @var User $loggedUser */
         $loggedUser = auth()->user();
         $countryCodesWithTraders = $query->getCountryCodesWithTraders($loggedUser);
         $country = request('country');
+        $search = trim((string) request('search', ''));
         if ($country && !in_array($country, $countryCodesWithTraders, true)) {
             $countryCodesWithTraders[] = $country;
         }
 
         $countries = Country::forDropdown($countryCodesWithTraders);
+        $trades = $query->fetchAll($loggedUser, null, 5, $country, false, $search);
 
         return view('trade.index', [
-            'users'           => null,
+            'trades'          => $trades,
+            'users'           => $trades,
+            'search'          => $search,
             'country'         => $country,
             'countries'       => $countries,
-            'useLivewireList' => true,
+            'useLivewireList' => false,
         ]);
     }
 

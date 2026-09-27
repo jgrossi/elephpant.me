@@ -58,10 +58,25 @@ class MessageController extends Controller
         abort_unless($user instanceof User, 403);
         abort_unless($user->getLastMessageWith($otherUser) !== null, 403);
 
-        Conversation::withTrashed()->firstOrCreate([
-            'user_id'       => $user->id,
-            'other_user_id' => $otherUser->id,
-        ])->delete();
+        // Look for an existing conversation in either order (including trashed ones)
+        $conversation = Conversation::where(function ($query) use ($user, $otherUser) {
+                $query->where('user_id', $user->id)
+                      ->where('other_user_id', $otherUser->id);
+            })->orWhere(function ($query) use ($user, $otherUser) {
+                $query->where('user_id', $otherUser->id)
+                      ->where('other_user_id', $user->id);
+            })->withTrashed()->first();
+
+        // If no conversation exists, create one (we'll delete it right after)
+        if (!$conversation) {
+            $conversation = Conversation::firstOrCreate([
+                'user_id' => $user->id,
+                'other_user_id' => $otherUser->id,
+            ]);
+        }
+
+        // Soft delete the conversation
+        $conversation->delete();
 
         return redirect()
             ->route('messages.conversations')

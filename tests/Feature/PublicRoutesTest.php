@@ -8,6 +8,20 @@ test('species page returns 200', function (): void {
     $response->assertStatus(200);
 });
 
+test('species page hides the herd shortcut from guests', function (): void {
+    $this->get(route('elephpants.index'))
+        ->assertSuccessful()
+        ->assertDontSeeText('Go to "My Herd" page');
+});
+
+test('species page shows the herd shortcut to authenticated users', function (): void {
+    $user = \App\User::factory()->create();
+
+    $this->actingAs($user)->get(route('elephpants.index'))
+        ->assertSuccessful()
+        ->assertSeeText('Go to "My Herd" page');
+});
+
 test('species page with q query string loads search', function (): void {
     $response = $this->get(route('elephpants.index', ['q' => 'test']));
 

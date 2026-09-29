@@ -102,15 +102,17 @@
     flex: 1 1 0% !important;
 }
 
-/* Ranking table: center Unique, Total, Updated column headers */
+/* Ranking table: center Unique, Double, Total, Updated column headers */
 .ranking-table [data-flux-columns] th:nth-child(4),
 .ranking-table [data-flux-columns] th:nth-child(5),
-.ranking-table [data-flux-columns] th:nth-child(6) {
+.ranking-table [data-flux-columns] th:nth-child(6),
+.ranking-table [data-flux-columns] th:nth-child(7) {
     text-align: center;
 }
 .ranking-table [data-flux-columns] th:nth-child(4) > div,
 .ranking-table [data-flux-columns] th:nth-child(5) > div,
-.ranking-table [data-flux-columns] th:nth-child(6) > div {
+.ranking-table [data-flux-columns] th:nth-child(6) > div,
+.ranking-table [data-flux-columns] th:nth-child(7) > div {
     justify-content: center;
 }
 

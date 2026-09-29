@@ -23,6 +23,7 @@
                         <flux:table.column width="30%">Name</flux:table.column>
                         <flux:table.column>Country</flux:table.column>
                         <flux:table.column width="10%" align="center">Unique</flux:table.column>
+                        <flux:table.column width="10%" align="center">Double</flux:table.column>
                         <flux:table.column width="10%" align="center">Total</flux:table.column>
                         <flux:table.column width="12%" align="center">Updated</flux:table.column>
                     </flux:table.columns>
@@ -41,6 +42,7 @@
                                     {{ $userCountry['name'] ?? 'N/A' }}
                                 </flux:table.cell>
                                 <flux:table.cell class="text-center">{{ $user->elephpants_unique }}</flux:table.cell>
+                                <flux:table.cell class="text-center">{{ $user->elephpants_total - $user->elephpants_unique }}</flux:table.cell>
                                 <flux:table.cell class="text-center">{{ $user->elephpants_total }}</flux:table.cell>
                                 <flux:table.cell class="text-center">{{ $user->last_update->diffForHumans(null, \Carbon\CarbonInterface::DIFF_ABSOLUTE) }}</flux:table.cell>
                             </flux:table.row>

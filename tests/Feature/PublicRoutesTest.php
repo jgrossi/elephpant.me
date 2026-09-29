@@ -11,7 +11,7 @@ test('species page returns 200', function (): void {
 test('species page hides the herd shortcut from guests', function (): void {
     $this->get(route('elephpants.index'))
         ->assertSuccessful()
-        ->assertDontSee('Go to "My Herd" page');
+        ->assertDontSeeText('Go to "My Herd" page');
 });
 
 test('species page shows the herd shortcut to authenticated users', function (): void {
@@ -19,7 +19,7 @@ test('species page shows the herd shortcut to authenticated users', function ():
 
     $this->actingAs($user)->get(route('elephpants.index'))
         ->assertSuccessful()
-        ->assertSee('Go to "My Herd" page');
+        ->assertSeeText('Go to "My Herd" page');
 });
 
 test('species page with q query string loads search', function (): void {

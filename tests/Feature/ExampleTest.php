@@ -30,6 +30,17 @@ test('herd show returns 200 for existing user', function () {
     $response->assertStatus(200);
 });
 
+test('herd show displays the last herd update', function () {
+    $user = User::factory()->create();
+    $elephpant = Elephpant::factory()->create();
+    $user->elephpants()->attach($elephpant->id, ['quantity' => 1]);
+
+    $response = $this->get(route('herds.show', $user->username));
+
+    $response->assertSuccessful();
+    $response->assertSee('Herd last updated');
+});
+
 test('herd show with authenticated user includes contact section', function () {
     $user = User::factory()->create();
     $viewer = User::factory()->create();

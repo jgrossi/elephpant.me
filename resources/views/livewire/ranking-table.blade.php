@@ -35,12 +35,8 @@
                         @foreach($users as $key => $user)
                             @php $userCountry = $countries[$user->country_code] ?? null; @endphp
                             <flux:table.row
-                                @auth
-                                    @if($user->id === auth()->id())
-                                        id="ranking-user-{{ $user->id }}"
-                                        class="bg-zinc-100 dark:bg-zinc-800"
-                                    @endif
-                                @endauth
+                                :id="auth()->check() && $user->id === auth()->id() ? 'ranking-user-'.$user->id : null"
+                                :class="auth()->check() && $user->id === auth()->id() ? 'bg-zinc-100 dark:bg-zinc-800' : null"
                             >
                                 <flux:table.cell class="text-center">{{ $key + 1 }}</flux:table.cell>
                                 <flux:table.cell>

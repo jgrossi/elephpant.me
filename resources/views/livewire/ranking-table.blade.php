@@ -10,7 +10,7 @@
         </div>
         @auth
             @if($users->contains('id', auth()->id()))
-                <flux:button type="button" x-on:click="document.getElementById('ranking-user-{{ auth()->id() }}')?.scrollIntoView({ behavior: 'smooth', block: 'center' })">Find Me</flux:button>
+                <flux:button href="#ranking-user-{{ auth()->id() }}">Find Me</flux:button>
             @endif
         @endauth
     </div>

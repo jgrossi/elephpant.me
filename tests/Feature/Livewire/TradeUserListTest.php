@@ -27,3 +27,13 @@ test('trade user list accepts country and countries', function (): void {
     $component->assertSet('country', 'GBR');
     $component->assertSet('countries', ['GBR' => ['name' => 'United Kingdom', 'flag' => '🇬🇧']]);
 });
+
+
+test('trade user list uses simple pagination', function (): void {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+    $elephpant = \App\Elephpant::factory()->create();
+    $user->elephpants()->attach($elephpant->id, ['quantity' => 2]);
+    $component = Livewire::test(TradeUserList::class);
+    expect($component->get('users'))->toBeInstanceOf(\Illuminate\Pagination\Paginator::class);
+});

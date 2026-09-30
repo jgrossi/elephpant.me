@@ -33,7 +33,14 @@ class TradeUserList extends Component
     public function users()
     {
         return app(TradingUsersQuery::class)
-            ->fetchAll(auth()->user(), null, 5, $this->country, false);
+            ->fetchAll(auth()->user(), null, 5, $this->country, true);
+    }
+
+    #[Computed]
+    public function userCount(): int
+    {
+        return app(TradingUsersQuery::class)
+            ->countTraders(auth()->user(), $this->country);
     }
 
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

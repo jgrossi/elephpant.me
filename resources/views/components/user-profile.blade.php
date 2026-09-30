@@ -3,6 +3,7 @@
     'countries' => [],
     'nameAsLink' => false,
     'compact' => false,
+    'lastUpdated' => null,
 ])
 
 @php
@@ -25,6 +26,12 @@
             <flux:heading size="xl" level="1" class="text-zinc-600 dark:text-zinc-300">{{ $user->name }}</flux:heading>
         @endif
         <x-country-with-flag :country="$country" />
+        @if($lastUpdated)
+            <flux:text class="{{ $compact ? 'text-sm text-zinc-500 dark:text-zinc-400' : '' }} mt-1 flex items-center gap-1">
+                <flux:icon icon="calendar" variant="outline" class="size-4" />
+                Herd last updated {{ \Carbon\Carbon::parse($lastUpdated)->diffForHumans() }}
+            </flux:text>
+        @endif
         @if($user->x_handle)
             <flux:text class="{{ $compact ? 'text-sm text-zinc-500 dark:text-zinc-400' : '' }} mt-1">
                 X/Twitter: <a href="https://twitter.com/{{ $user->x_handle }}" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{{ '@' . $user->x_handle }}</a>

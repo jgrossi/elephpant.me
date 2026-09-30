@@ -40,9 +40,10 @@ class HerdController extends Controller
         ];
 
         return view('herd.show', [
-            'user'           => $user,
-            'stats'          => $stats,
-            'possibleTrades' => $possibleTrades,
+            'user'            => $user,
+            'stats'           => $stats,
+            'possibleTrades'  => $possibleTrades,
+            'herdLastUpdated' => $user->elephpants()->max('elephpant_user.updated_at'),
         ]);
     }
 }

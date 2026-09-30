@@ -3,8 +3,8 @@
 namespace App\Livewire;
 
 use App\Country;
+use App\Queries\CountryCollectorsQuery;
 use App\Queries\RankedUsersQuery;
-use App\Queries\UsersCountryQuery;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -30,8 +30,9 @@ class RankingTable extends Component
 
     public function getCountriesProperty(): array
     {
-        $usersQuery = new UsersCountryQuery()->fetchAll();
-        $countryCodes = $usersQuery->unique('country_code')->pluck('country_code')->toArray();
+        $countryCodes = collect(app(CountryCollectorsQuery::class)->fetchAll())
+            ->pluck('code')
+            ->all();
 
         return Country::forDropdown($countryCodes);
     }

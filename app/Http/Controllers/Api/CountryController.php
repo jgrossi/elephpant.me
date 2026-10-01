@@ -28,7 +28,7 @@ class CountryController extends Controller
             country does not appear here.
             DESC,
     )]
-    #[Response(status: 500, description: 'Unexpected server error.', content: ['message' => 'Server Error'])]
+    #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     #[ResponseField('countries[].code', 'string', 'ISO 3166-1 alpha-3 country code, as used by the country filter on /ranking.')]
     #[ResponseField('countries[].code_2', 'string', 'ISO 3166-1 alpha-2 country code, handy for flag emoji.')]
     #[ResponseField('countries[].collectors', 'integer', 'Public herds in this country holding at least one elePHPant. Agrees with the total from `/ranking?country={code}`.')]

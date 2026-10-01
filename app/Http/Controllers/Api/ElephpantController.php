@@ -36,7 +36,7 @@ class ElephpantController extends Controller
     )]
     #[QueryParam('page', 'integer', 'Page number.', required: false, example: 1)]
     #[QueryParam('per_page', 'integer', 'Species per page, 1 to 100. Defaults to 20, so the whole catalogue fits in one request at 100.', required: false, example: 'No-example')]
-    #[Response(status: 500, description: 'Unexpected server error.', content: ['message' => 'Server Error'])]
+    #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     #[ResponseField('data[].owners', 'integer', 'Number of collectors that have at least one of this elePHPant in their herd.')]
     #[ResponseField('data[].copies', 'integer', 'Every copy held across all herds, including spares (SUM of quantity, not distinct owners).')]
     #[ResponseField('data[].ownership_percentage', 'number', 'Percentage of all collectors who own at least one of this elePHPant, rounded to 2 decimals.')]
@@ -67,8 +67,8 @@ class ElephpantController extends Controller
             DESC,
     )]
     #[UrlParam('id', 'integer', 'elePHPant ID.', example: 1)]
-    #[Response(status: 404, description: 'No elePHPant with that ID.', content: ['message' => 'No query results for model [App\\Elephpant].'])]
-    #[Response(status: 500, description: 'Unexpected server error.', content: ['message' => 'Server Error'])]
+    #[Response(content: ['message' => 'No query results for model [App\\Elephpant].'], status: 404, description: 'No elePHPant with that ID.')]
+    #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     public function show(Elephpant $elephpant): ElephpantResource
     {
         $elephpant->loadCount('users');

@@ -13,6 +13,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
 use Knuckles\Scribe\Attributes\QueryParam;
+use Knuckles\Scribe\Attributes\Response;
 use Knuckles\Scribe\Attributes\ResponseField;
 
 #[Group('Ranking', 'Collector leaderboards, globally or scoped to a country.')]
@@ -29,6 +30,7 @@ class RankingController extends Controller
     )]
     #[QueryParam('country', 'string', 'ISO 3166-1 alpha-3 country code to filter the ranking by.', required: false, example: 'GBR')]
     #[QueryParam('page', 'integer', 'Page number.', required: false, example: 1)]
+    #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     #[ResponseField('data[].rank', 'integer', 'Position in the full ordering, not relative to the current page.')]
     #[ResponseField('data[].stats.spare', 'integer', 'Extra copies beyond one of each species held (total - unique).')]
     #[ResponseField('data[].updated_at', 'string', 'When this collector last updated their herd. Null if the herd is empty.')]

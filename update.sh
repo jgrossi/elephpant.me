@@ -35,9 +35,6 @@ echo "==> Running database migrations"
 php artisan migrate --force
 php artisan elephpants:read
 
-echo "==> Generating API docs"
-php artisan scribe:generate
-
 echo "==> Building frontend assets"
 npm ci && npm run build
 
@@ -50,5 +47,15 @@ php artisan route:cache
 
 echo "==> Fixing storage permissions"
 chmod -R 775 storage bootstrap/cache
+
+# Scribe response calls go through the HTTP kernel. If we generate while
+# `artisan down` is still active, every example becomes a 503 and that is
+# what ends up in /docs and /docs.openapi.
+echo "==> Bringing site back up before generating API docs"
+php artisan up
+trap - EXIT
+
+echo "==> Generating API docs"
+php artisan scribe:generate
 
 echo "Done."

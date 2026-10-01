@@ -11,6 +11,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
 use Knuckles\Scribe\Attributes\QueryParam;
+use Knuckles\Scribe\Attributes\Response;
 use Knuckles\Scribe\Attributes\ResponseField;
 use Knuckles\Scribe\Attributes\UrlParam;
 
@@ -23,10 +24,19 @@ class ElephpantController extends Controller
 
     #[Endpoint(
         title: 'List all elephpants',
-        description: 'Returns a paginated list of all elephpant species, ordered by year and name.',
+        description: <<<'DESC'
+            Returns a paginated catalogue of every elePHPant species, ordered by year then
+            name. Each item includes ownership stats (`owners`, `copies`,
+            `ownership_percentage`) so you can rank rarity without scraping herds.
+
+            Defaults to 20 per page; pass `per_page` up to 100 to pull the whole catalogue
+            in one request. Prefer this when you need to browse or search the species list;
+            use GET /api/elephpants/{id} when you already know the id.
+            DESC,
     )]
     #[QueryParam('page', 'integer', 'Page number.', required: false, example: 1)]
     #[QueryParam('per_page', 'integer', 'Species per page, 1 to 100. Defaults to 20, so the whole catalogue fits in one request at 100.', required: false, example: 'No-example')]
+    #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     #[ResponseField('data[].owners', 'integer', 'Number of collectors that have at least one of this elePHPant in their herd.')]
     #[ResponseField('data[].copies', 'integer', 'Every copy held across all herds, including spares (SUM of quantity, not distinct owners).')]
     #[ResponseField('data[].ownership_percentage', 'number', 'Percentage of all collectors who own at least one of this elePHPant, rounded to 2 decimals.')]
@@ -46,8 +56,19 @@ class ElephpantController extends Controller
         return ElephpantResource::collection($elephpants);
     }
 
-    #[Endpoint(title: 'Get a single elePHPant')]
+    #[Endpoint(
+        title: 'Get a single elePHPant',
+        description: <<<'DESC'
+            Returns one species by id, with the same ownership fields as the list endpoint
+            (`owners`, `copies`, `ownership_percentage`) plus catalogue details and image URL.
+
+            Use this when you already have an id from the list, a herd, or a ranking payload
+            and only need that species. Returns 404 if the id does not exist.
+            DESC,
+    )]
     #[UrlParam('id', 'integer', 'elePHPant ID.', example: 1)]
+    #[Response(content: ['message' => 'No query results for model [App\\Elephpant].'], status: 404, description: 'No elePHPant with that ID.')]
+    #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     public function show(Elephpant $elephpant): ElephpantResource
     {
         $elephpant->loadCount('users');

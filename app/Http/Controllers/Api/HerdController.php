@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\Response;
 use Knuckles\Scribe\Attributes\ResponseField;
 use Knuckles\Scribe\Attributes\UrlParam;
 
@@ -19,6 +20,9 @@ class HerdController extends Controller
         description: 'Returns the full herd of a registered collector, including statistics and collected elePHPants. 403s if the herd is private.',
     )]
     #[UrlParam('username', 'string', 'Collector username.', example: 'john')]
+    #[Response(content: ['message' => 'This herd is private.'], status: 403, description: 'The herd is marked private by its owner.')]
+    #[Response(content: ['message' => 'No query results for model [App\\User].'], status: 404, description: 'No collector with that username.')]
+    #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     #[ResponseField('country', 'string', 'ISO 3166-1 alpha-3 country code.')]
     #[ResponseField('updated_at', 'string', 'When the collector last updated their herd (add, remove or change a quantity). Null if the herd is empty.')]
     #[ResponseField('stats.total', 'integer', 'Total elePHPants held, including spares.')]

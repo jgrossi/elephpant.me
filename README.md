@@ -92,8 +92,11 @@ $ composer docs   # php artisan scribe:generate
 ```
 
 Scribe calls every endpoint for real while generating, and uses the actual responses as the
-examples in the docs. That means **the database you generate against becomes the examples**, so
-seed it first:
+success examples in the docs. That means **the database you generate against becomes the
+examples**, so seed it first. Error responses (4xx / 5xx) are declared explicitly with
+`#[Response]` on the controllers so they stay documented even when a response call fails.
+Deploy brings the site out of maintenance mode before `scribe:generate`, otherwise every
+example would be a 503.
 
 ```bash
 $ php artisan migrate:fresh

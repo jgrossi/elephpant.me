@@ -62,7 +62,7 @@ return [
     'type' => 'laravel',
 
     // See https://scribe.knuckles.wtf/laravel/reference/config#theme for supported options
-    'theme' => 'default',
+    'theme' => 'elements',
 
     'static' => [
         // HTML documentation, assets and Postman collection will be generated to this folder.
@@ -139,6 +139,7 @@ return [
     // Note: does not work for `external` docs types
     'example_languages' => [
         'bash',
+        'php',
         'javascript',
     ],
 

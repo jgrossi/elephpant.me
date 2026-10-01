@@ -8,6 +8,11 @@
             @endforeach
         </flux:select>
         </div>
+        @auth
+            @if($users->contains('id', auth()->id()))
+                <flux:button href="#ranking-user-{{ auth()->id() }}">Find Me</flux:button>
+            @endif
+        @endauth
     </div>
 
     @if($country && !isset($countries[$country]))
@@ -30,7 +35,10 @@
                     <flux:table.rows>
                         @foreach($users as $key => $user)
                             @php $userCountry = $countries[$user->country_code] ?? null; @endphp
-                            <flux:table.row>
+                            <flux:table.row
+                                :id="auth()->check() && $user->id === auth()->id() ? 'ranking-user-'.$user->id : null"
+                                :class="auth()->check() && $user->id === auth()->id() ? 'bg-zinc-100 dark:bg-zinc-800' : null"
+                            >
                                 <flux:table.cell class="text-center">{{ $key + 1 }}</flux:table.cell>
                                 <flux:table.cell>
                                     <a href="{{ route('herds.show', $user->username) }}" wire:navigate class="underline hover:no-underline">{{ $user->name }}</a>

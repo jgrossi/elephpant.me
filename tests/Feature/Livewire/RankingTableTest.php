@@ -19,11 +19,11 @@ test('ranking table selectCountry sets country', function (): void {
 });
 
 
-test('ranking country filter only includes countries with ranked collectors', function (): void {
-    \App\User::factory()->create(['country_code' => 'USA']);
-    $collector = \App\User::factory()->create(['country_code' => 'GBR']);
-    $elephpant = \App\Elephpant::factory()->create();
-    $collector->elephpants()->attach($elephpant->id, ['quantity' => 1]);
-    $component = Livewire::test(RankingTable::class);
-    expect($component->get('countries'))->toHaveKey('GBR')->not->toHaveKey('USA');
+test('ranking table shows double elephpant count between unique and total', function (): void {
+    $user = \App\User::factory()->create(['country_code' => 'GBR']);
+    $first = \App\Elephpant::factory()->create();
+    $second = \App\Elephpant::factory()->create();
+    $user->elephpants()->attach($first->id, ['quantity' => 2]);
+    $user->elephpants()->attach($second->id, ['quantity' => 1]);
+    Livewire::test(RankingTable::class)->assertSeeInOrder(['Unique', 'Double', 'Total'])->assertSeeInOrder(['2', '1', '3']);
 });

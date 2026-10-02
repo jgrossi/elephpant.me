@@ -52,10 +52,36 @@ test('configured social accounts render labeled links with their existing URLs',
             ->and($platformLinks->item(0)->getAttribute('href'))->toBe($url)
             ->and($platformLinks->item(0)->getAttribute('target'))->toBe('_blank')
             ->and($platformLinks->item(0)->getAttribute('rel'))->toBe('noopener noreferrer')
-            ->and($platformLinks->item(0)->getAttribute('class'))->toContain('focus-visible:outline-2')
-            ->and($xpath->query('//*[@data-flux-tooltip]')->length)->toBe(3)
-            ->and($xpath->query('//*[@data-social-links]//svg[@aria-hidden="true"]')->length)->toBe(3);
+            ->and($platformLinks->item(0)->getAttribute('class'))->toContain('focus-visible:outline-2');
     }
+
+    expect($xpath->query('//*[@data-flux-tooltip]')->length)->toBe(3)
+        ->and($xpath->query('//*[@data-social-links]//svg[@aria-hidden="true"]')->length)->toBe(3);
+});
+
+test('only configured social account renders when user has a single link', function (): void {
+    $user = User::factory()->make([
+        'x_handle' => null,
+        'mastodon' => '@kj@phpc.social',
+        'bluesky' => null,
+    ]);
+    $xpath = profileXPath(renderUserProfile($user));
+    $groups = $xpath->query('//*[@data-social-links]');
+    $links = socialProfileLinks($xpath);
+
+    expect($groups->length)->toBe(1)
+        ->and($links->length)->toBe(1);
+
+    $mastodonLinks = $xpath->query('//*[@data-social-links]//a[@aria-label="Mastodon"]');
+
+    expect($mastodonLinks->length)->toBe(1)
+        ->and($mastodonLinks->item(0)->getAttribute('href'))->toBe('https://phpc.social/@kj')
+        ->and($mastodonLinks->item(0)->getAttribute('target'))->toBe('_blank')
+        ->and($mastodonLinks->item(0)->getAttribute('rel'))->toBe('noopener noreferrer')
+        ->and($xpath->query('//*[@data-social-links]//a[@aria-label="X/Twitter"]')->length)->toBe(0)
+        ->and($xpath->query('//*[@data-social-links]//a[@aria-label="Bluesky"]')->length)->toBe(0)
+        ->and($xpath->query('//*[@data-flux-tooltip]')->length)->toBe(1)
+        ->and($xpath->query('//*[@data-social-links]//svg[@aria-hidden="true"]')->length)->toBe(1);
 });
 
 test('social links render as icons in one horizontal group', function (): void {

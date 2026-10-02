@@ -47,11 +47,11 @@
             </flux:text>
         @endif
         @if($socialLinks)
-            <div data-social-links class="mt-1 flex items-center gap-1.5">
+            <div data-social-links class="mt-2 flex items-center gap-2">
                 @foreach($socialLinks as $platform => $socialLink)
                     <flux:tooltip :content="$platform" position="top">
-                        <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $platform }}" class="flex size-11 items-center justify-center rounded-md text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white dark:focus-visible:outline-blue-400">
-                            <flux:icon :name="$socialLink['icon']" class="size-6" />
+                        <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $platform }}" class="inline-flex text-zinc-500 transition-colors hover:text-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:text-zinc-400 dark:hover:text-zinc-200 dark:focus-visible:outline-blue-400">
+                            <flux:icon :name="$socialLink['icon']" class="size-4.5" />
                         </a>
                     </flux:tooltip>
                 @endforeach

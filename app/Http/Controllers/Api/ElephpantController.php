@@ -35,7 +35,7 @@ class ElephpantController extends Controller
             DESC,
     )]
     #[QueryParam('page', 'integer', 'Page number.', required: false, example: 1)]
-    #[QueryParam('per_page', 'integer', 'Species per page, 1 to 100. Defaults to 20, so the whole catalogue fits in one request at 100.', required: false, example: 'No-example')]
+    #[QueryParam('per_page', 'integer', 'Species per page, 1 to 100. Defaults to 20', required: false, example: 'No-example')]
     #[Response(content: ['message' => 'Server Error'], status: 500, description: 'Unexpected server error.')]
     #[ResponseField('data[].owners', 'integer', 'Number of collectors that have at least one of this elePHPant in their herd.')]
     #[ResponseField('data[].copies', 'integer', 'Every copy held across all herds, including spares (SUM of quantity, not distinct owners).')]

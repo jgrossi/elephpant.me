@@ -2,6 +2,7 @@
     "elephpants": [
         {
             "id": 1,
+            "format":"small",
             "name": "Original Blue",
             "description": "First Blue",
             "sponsor": "Nexen \/ Alter Way",
@@ -10,6 +11,7 @@
         },
         {
             "id": 2,
+            "format": "small",
             "name": "Original Pink",
             "description": "First Pink",
             "sponsor": "Alter Way",
@@ -18,6 +20,7 @@
         },
         {
             "id": 3,
+            "format": "small",
             "name": "Blue",
             "description": "OpenGoodies Blue",
             "sponsor": "OpenGoodies",
@@ -26,6 +29,7 @@
         },
         {
             "id": 4,
+            "format": "small",
             "name": "Pink",
             "description": "OpenGoodies Pink",
             "sponsor": "OpenGoodies",
@@ -34,6 +38,7 @@
         },
         {
             "id": 5,
+            "format": "small",
             "name": "Oracle",
             "description": "Oracle Blue",
             "sponsor": "Oracle Corporation",
@@ -42,6 +47,7 @@
         },
         {
             "id": 6,
+            "format": "small",
             "name": "Zend Blue",
             "description": "ZendCon 2010",
             "sponsor": "Zend Technologies",
@@ -50,6 +56,7 @@
         },
         {
             "id": 7,
+            "format": "small",
             "name": "Chili",
             "description": "Zend Red, ZendCon 2013",
             "sponsor": "Zend Technologies",
@@ -58,6 +65,7 @@
         },
         {
             "id": 8,
+            "format": "small",
             "name": "Z-Ray",
             "description": "ZendCon 2014",
             "sponsor": "Zend Technologies",
@@ -66,6 +74,7 @@
         },
         {
             "id": 9,
+            "format": "small",
             "name": "Zend PHP7",
             "description": "ZendCon 2015",
             "sponsor": "Zend Technologies",
@@ -74,6 +83,7 @@
         },
         {
             "id": 10,
+            "format": "small",
             "name": "ElPHPis",
             "description": "ZendCon 2016",
             "sponsor": "Zend Technologies",
@@ -82,6 +92,7 @@
         },
         {
             "id": 11,
+            "format": "small",
             "name": "Denim",
             "description": "ZendCon 2017",
             "sponsor": "Rogue Wave Software",
@@ -90,6 +101,7 @@
         },
         {
             "id": 12,
+            "format": "small",
             "name": "Zoe",
             "description": "ZendCon 2018",
             "sponsor": "Rogue Wave Software",
@@ -98,6 +110,7 @@
         },
         {
             "id": 13,
+            "format": "small",
             "name": "Zend Framework",
             "description": "Zend Green",
             "sponsor": "Zend Technologies",
@@ -106,6 +119,7 @@
         },
         {
             "id": 14,
+            "format": "small",
             "name": "Archie",
             "description": "php[architect]",
             "sponsor": "php[architect]",
@@ -114,6 +128,7 @@
         },
         {
             "id": 15,
+            "format": "small",
             "name": "Umoja",
             "description": "PHP Women",
             "sponsor": "PHP Women",
@@ -122,6 +137,7 @@
         },
         {
             "id": 16,
+            "format": "small",
             "name": "Sonny",
             "description": "Sunshine PHP Conference",
             "sponsor": "Sunshine PHP, Zend Technologies",
@@ -130,6 +146,7 @@
         },
         {
             "id": 17,
+            "format": "small",
             "name": "Sonny Nexmo",
             "description": "Sunshine PHP Conference",
             "sponsor": "Sunshine PHP, Nexmo",
@@ -138,6 +155,7 @@
         },
         {
             "id": 18,
+            "format": "small",
             "name": "Liona",
             "description": "Laravel",
             "sponsor": "Laravel Community",
@@ -146,6 +164,7 @@
         },
         {
             "id": 19,
+            "format": "small",
             "name": "MurPHPy",
             "description": "AmsterdamPHP",
             "sponsor": "AmsterdamPHP Community",
@@ -154,6 +173,7 @@
         },
         {
             "id": 20,
+            "format": "small",
             "name": "Phil Snow",
             "description": "ConFoo Web Techno Conference",
             "sponsor": "ConFoo",
@@ -162,6 +182,7 @@
         },
         {
             "id": 21,
+            "format": "small",
             "name": "Symfony 10 Years",
             "description": "Symfony Framework",
             "sponsor": "Sensio Labs",
@@ -170,6 +191,7 @@
         },
         {
             "id": 22,
+            "format": "small",
             "name": "Symfony Black",
             "description": "Symfony Framework",
             "sponsor": "Sensio Labs",
@@ -178,6 +200,7 @@
         },
         {
             "id": 23,
+            "format": "small",
             "name": "Cody Blou",
             "description": "Shopware",
             "sponsor": "shopware AG",
@@ -186,6 +209,7 @@
         },
         {
             "id": 24,
+            "format": "small",
             "name": "Echo",
             "description": "Globalis",
             "sponsor": "Globalis",
@@ -194,6 +218,7 @@
         },
         {
             "id": 25,
+            "format": "small",
             "name": "Dutch PHP",
             "description": "Dutch PHP Conference",
             "sponsor": "ibuildings",
@@ -202,6 +227,7 @@
         },
         {
             "id": 26,
+            "format": "small",
             "name": "Enfys",
             "description": "Rainbow",
             "sponsor": "PHPDiversity",
@@ -210,6 +236,7 @@
         },
         {
             "id": 27,
+            "format": "small",
             "name": "Chloe",
             "description": "Roave",
             "sponsor": "Roave",
@@ -218,6 +245,7 @@
         },
         {
             "id": 28,
+            "format": "small",
             "name": "AFUP",
             "description": "AFUP",
             "sponsor": "AFUP",
@@ -226,6 +254,7 @@
         },
         {
             "id": 29,
+            "format": "small",
             "name": "CakePHP",
             "description": "CakePHP Framework",
             "sponsor": "CakePHP",
@@ -234,6 +263,7 @@
         },
         {
             "id": 30,
+            "format": "small",
             "name": "CakeSF",
             "description": "Cake Software Foundation",
             "sponsor": "CakePHP",
@@ -242,6 +272,7 @@
         },
         {
             "id": 31,
+            "format": "small",
             "name": "Hero",
             "description": "Heroku",
             "sponsor": "Heroku",
@@ -250,6 +281,7 @@
         },
         {
             "id": 32,
+            "format": "small",
             "name": "Magento",
             "description": "Magento",
             "sponsor": "Magento",
@@ -258,6 +290,7 @@
         },
         {
             "id": 33,
+            "format": "small",
             "name": "Jorvik",
             "description": "PHP Yorkshire",
             "sponsor": "PHP Yorkshire Conference",
@@ -266,6 +299,7 @@
         },
         {
             "id": 34,
+            "format": "small",
             "name": "Pollita",
             "description": "PHP Roundtable",
             "sponsor": "PHP Roundtable Podcast",
@@ -274,6 +308,7 @@
         },
         {
             "id": 35,
+            "format": "small",
             "name": "Luxy",
             "description": "PHPBenelux",
             "sponsor": "PHPBenelux Conference",
@@ -282,6 +317,7 @@
         },
         {
             "id": 36,
+            "format": "small",
             "name": "Unity",
             "description": "Darkmira Tour PHP 2019",
             "sponsor": "Darkmira Tour PHP",
@@ -290,6 +326,7 @@
         },
         {
             "id": 37,
+            "format": "small",
             "name": "Molly",
             "description": "PHP Woolly Mammoth",
             "sponsor": "Peter Meth \/ Softer Software",
@@ -298,6 +335,7 @@
         },
         {
             "id": 38,
+            "format": "small",
             "name": "pHackyderm",
             "description": "HHVM",
             "sponsor": "Facebook",
@@ -306,6 +344,7 @@
         },
         {
             "id": 39,
+            "format": "small",
             "name": "PHPers",
             "description": "PHPers Summit 2019",
             "sponsor": "PHPers Poland",
@@ -314,6 +353,7 @@
         },
         {
             "id": 40,
+            "format": "small",
             "name": "PHPCE",
             "description": "PHPCE 2018",
             "sponsor": "PHPCE Conference",
@@ -322,6 +362,7 @@
         },
         {
             "id": 41,
+            "format": "small",
             "name": "PHPClasses",
             "description": "PHPClasses",
             "sponsor": "PHPClasses",
@@ -330,6 +371,7 @@
         },
         {
             "id": 42,
+            "format": "small",
             "name": "JePHPry",
             "description": "Check24",
             "sponsor": "Check24",
@@ -338,6 +380,7 @@
         },
         {
             "id": 43,
+            "format": "small",
             "name": "PhpStorm elephpant",
             "description": "PhpStorm elephpant",
             "sponsor": "JetBrains",
@@ -346,6 +389,7 @@
         },
         {
             "id": 44,
+            "format": "small",
             "name": "Cloudy",
             "description": "Linux for PHP",
             "sponsor": "Linux for PHP",
@@ -354,6 +398,7 @@
         },
         {
             "id": 45,
+            "format": "small",
             "name": "Janusz",
             "description": "PHPConPoland",
             "sponsor": "PHP Conference Poland",
@@ -362,6 +407,7 @@
         },
         {
             "id": 46,
+            "format": "small",
             "name": "Symfony Gray",
             "description": "SymfonyCon 2019",
             "sponsor": "Sensio Labs",
@@ -370,6 +416,7 @@
         },
         {
             "id": 47,
+            "format": "small",
             "name": "PHPCon",
             "description": "PHP Conference Japan 2019",
             "sponsor": "PHP Conference Japan",
@@ -378,6 +425,7 @@
         },
         {
             "id": 48,
+            "format": "small",
             "name": "CakeDC",
             "description": "CakeDC",
             "sponsor": "CakePHP",
@@ -386,6 +434,7 @@
         },
         {
             "id": 49,
+            "format": "small",
             "name": "CakeFest",
             "description": "CakeFest 2019",
             "sponsor": "CakePHP",
@@ -394,6 +443,7 @@
         },
         {
             "id": 50,
+            "format": "small",
             "name": "Cody Vuelette",
             "description": "Shopware",
             "sponsor": "Shopware AG",
@@ -402,6 +452,7 @@
         },
         {
             "id": 51,
+            "format": "small",
             "name": "PHPCon Grandpa",
             "description": "PHPCon Poland 2015",
             "sponsor": "PHP Conference Poland",
@@ -410,6 +461,7 @@
         },
         {
             "id": 54,
+            "format": "small",
             "name": "Upinside",
             "description": "Upinside School",
             "sponsor": "Upinside School",
@@ -418,6 +470,7 @@
         },
         {
             "id": 56,
+            "format": "small",
             "name": "The Joker",
             "description": "Le foo du roi: \"The Joker\"",
             "sponsor": "ConFoo.ca",
@@ -426,6 +479,7 @@
         },
         {
             "id": 57,
+            "format": "small",
             "name": "Symfony 15 Years",
             "description": "Symfony Framework 15 Years",
             "sponsor": "Sensio Labs",
@@ -434,6 +488,7 @@
         },
         {
             "id": 58,
+            "format": "small",
             "name": "Aida",
             "description": "phpday conference mascotte",
             "sponsor": "GrUSP",
@@ -442,6 +497,7 @@
         },
         {
             "id": 59,
+            "format": "small",
             "name": "#Docler",
             "description": "Docler",
             "sponsor": "Docler Holding",
@@ -450,6 +506,7 @@
         },
         {
             "id": 60,
+            "format": "small",
             "name": "InPHPinity",
             "description": "PHP8 ElePHPant",
             "sponsor": "@faguo & @Elroubio",
@@ -458,6 +515,7 @@
         },
         {
             "id": 61,
+            "format": "small",
             "name": "Groundy",
             "description": "SiteGround elePHPant",
             "sponsor": "SiteGround",
@@ -466,6 +524,7 @@
         },
         {
             "id": 63,
+            "format": "small",
             "name": "Kellerkinder",
             "description": "Kellerkinder",
             "sponsor": "Die Kellerkinder",
@@ -474,6 +533,7 @@
         },
         {
             "id": 64,
+            "format": "small",
             "name": "PHPartner",
             "description": "Office Partner Elephpant",
             "sponsor": "Office Partner",
@@ -482,6 +542,7 @@
         },
         {
             "id": 65,
+            "format": "small",
             "name": "Mollie",
             "description": "Mollie",
             "sponsor": "Mollie",
@@ -490,6 +551,7 @@
         },
         {
             "id": 66,
+            "format": "small",
             "name": "KaraFun",
             "description": "KaraFun",
             "sponsor": "KaraFun",
@@ -498,6 +560,7 @@
         },
         {
             "id": 67,
+            "format": "small",
             "name": "Thelia",
             "description": "Thelia",
             "sponsor": "OpenStudio",
@@ -506,6 +569,7 @@
         },
         {
             "id": 68,
+            "format": "small",
             "name": "Archie",
             "description": "I'm a php[architect]",
             "sponsor": "php[architect]",
@@ -514,6 +578,7 @@
         },
         {
             "id": 69,
+            "format": "small",
             "name": "Dutchie",
             "description": "DLF ElePHPant",
             "sponsor": "Dutch Laravel Foundation",
@@ -522,6 +587,7 @@
         },
         {
             "id": 70,
+            "format": "small",
             "name": "Alex",
             "description": "Vonage",
             "sponsor": "Vonage",
@@ -530,6 +596,7 @@
         },
         {
             "id": 71,
+            "format": "small",
             "name": "Notive",
             "description": "Notive",
             "sponsor": "Notive",
@@ -538,6 +605,7 @@
         },
         {
             "id": 72,
+            "format": "small",
             "name": "Yomeva",
             "description": "Yomeva 10th Anniversary",
             "sponsor": "Yomeva",
@@ -546,6 +614,7 @@
         },
         {
             "id": 73,
+            "format": "small",
             "name": "CMGT",
             "description": "ElePHPant for Alumni",
             "sponsor": "CMGT",
@@ -554,6 +623,7 @@
         },
         {
             "id": 74,
+            "format": "small",
             "name": "Aubrey",
             "description": "Laracon US 2023",
             "sponsor": "Laravel Community",
@@ -562,6 +632,7 @@
         },
         {
             "id": 75,
+            "format": "small",
             "name": "PHPClasses Pink",
             "description": "PHPClasses",
             "sponsor": "PHPClasses",
@@ -570,6 +641,7 @@
         },
         {
             "id": 76,
+            "format": "small",
             "name": "Flexy",
             "description": "Dyflexis",
             "sponsor": "Dyflexis",
@@ -578,6 +650,7 @@
         },
         {
             "id": 77,
+            "format": "small",
             "name": "PHPStan",
             "description": "PHPStan",
             "sponsor": "PHPStan",
@@ -586,6 +659,7 @@
         },
         {
             "id": 78,
+            "format": "small",
             "name": "Eddie",
             "description": "PHP UK",
             "sponsor": "PHP UK",
@@ -594,6 +668,7 @@
         },
         {
             "id": 79,
+            "format": "small",
             "name": "Ploi",
             "description": "Ploi",
             "sponsor": "Ploi",
@@ -602,6 +677,7 @@
         },
         {
             "id": 80,
+            "format": "small",
             "name": "Oscar",
             "description": "Oscar",
             "sponsor": "php[tek] 2024",
@@ -610,6 +686,7 @@
         },
         {
             "id": 81,
+            "format": "small",
             "name": "Savvy",
             "description": "safefive",
             "sponsor": "Paddox GmbH",
@@ -618,6 +695,7 @@
         },
         {
             "id": 82,
+            "format": "small",
             "name": "Sentaur (1st Edition)",
             "description": "sentry.io",
             "sponsor": "Sentry",
@@ -626,6 +704,7 @@
         },
         {
             "id": 83,
+            "format": "small",
             "name": "Tony",
             "description": "Tony",
             "sponsor": "php[tek] 2025",
@@ -634,6 +713,7 @@
         },
         {
             "id": 84,
+            "format": "small",
             "name": "Doggy",
             "description": "datadog.com",
             "sponsor": "Datadog",
@@ -642,6 +722,7 @@
         },
         {
             "id": 85,
+            "format": "small",
             "name": "Le Monstre",
             "description": "frankenphp.dev",
             "sponsor": "Les-Tilleuls.coop",
@@ -650,6 +731,7 @@
         },
         {
             "id": 86,
+            "format": "small",
             "name": "Moni",
             "description": "tideways.com",
             "sponsor": "Tideways GmbH",
@@ -658,6 +740,7 @@
         },
         {
             "id": 87,
+            "format": "small",
             "name": "Eric the Red",
             "description": "laraveldk.org",
             "sponsor": "Laravel Denmark",
@@ -666,6 +749,7 @@
 	    },
         {
             "id": 88,
+            "format": "small",
             "name": "Holly",
             "description": "Holly",
             "sponsor": "php[tek] 2026",
@@ -674,6 +758,7 @@
         },
         {
             "id": 89,
+            "format": "small",
             "name": "Sentaur (2nd Edition)",
             "description": "sentry.io",
             "sponsor": "Sentry",
@@ -682,6 +767,7 @@
         },
         {
             "id": 90,
+            "format": "small",
             "name": "Sylius (Blue - Error)",
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
@@ -690,6 +776,7 @@
         },
         {
             "id": 91,
+            "format": "small",
             "name": "Sylius (Green - Official)",
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
@@ -698,6 +785,7 @@
         },
         {
             "id": 92,
+            "format": "small",
             "name": "Magento (Adobe)",
             "description": "Magento",
             "sponsor": "Magento",
@@ -706,11 +794,336 @@
         },
         {
             "id": 93,
+            "format": "small",
             "name": "SymfonyCasts",
             "description": "SymfonyCasts",
             "sponsor": "SymfonyCasts",
             "year": 2020,
             "image": "93-symfonycasts.jpg"
+        },
+        {
+            "id": 94,
+            "format": "large",
+            "name": "Original Blue",
+            "description": "First Blue",
+            "sponsor": "Nexen / Alter Way",
+            "year": 2007,
+            "image": "1-original-blue.jpg"
+        },
+        {
+            "id": 95,
+            "format": "large",
+            "name": "Original Pink",
+            "description": "First Pink",
+            "sponsor": "Alter Way",
+            "year": 2011,
+            "image": "2-original-pink.jpg"
+        },
+        {
+            "id": 96,
+            "format": "large",
+            "name": "Blue",
+            "description": "OpenGoodies Blue",
+            "sponsor": "OpenGoodies",
+            "year": 2015,
+            "image": "3-blue.jpg"
+        },
+        {
+            "id": 97,
+            "format": "large",
+            "name": "Pink",
+            "description": "OpenGoodies Pink",
+            "sponsor": "OpenGoodies",
+            "year": 2015,
+            "image": "4-pink.jpg"
+        },
+        {
+            "id": 98,
+            "format": "large",
+            "name": "Oracle",
+            "description": "Oracle Blue",
+            "sponsor": "Oracle Corporation",
+            "year": 2008,
+            "image": "5-oracle.jpg"
+        },
+        {
+            "id": 99,
+            "format": "large",
+            "name": "Zend Blue",
+            "description": "ZendCon 2010",
+            "sponsor": "Zend Technologies",
+            "year": 2010,
+            "image": "6-zend-blue.jpg"
+        },
+        {
+            "id": 100,
+            "format": "large",
+            "name": "Chili",
+            "description": "Zend Red, ZendCon 2013",
+            "sponsor": "Zend Technologies",
+            "year": 2013,
+            "image": "7-chili.jpg"
+        },
+        {
+            "id": 101,
+            "format": "large",
+            "name": "Zend PHP7",
+            "description": "ZendCon 2015",
+            "sponsor": "Zend Technologies",
+            "year": 2015,
+            "image": "9-zend-php7.jpg"
+        },
+        {
+            "id": 102,
+            "format": "large",
+            "name": "ElPHPis",
+            "description": "ZendCon 2016",
+            "sponsor": "Zend Technologies",
+            "year": 2016,
+            "image": "10-elphpis.jpg"
+        },
+        {
+            "id": 103,
+            "format": "large",
+            "name": "Denim",
+            "description": "ZendCon 2017",
+            "sponsor": "Rogue Wave Software",
+            "year": 2017,
+            "image": "103-denim-large.jpg"
+        },
+        {
+            "id": 104,
+            "format": "large",
+            "name": "Zoe",
+            "description": "ZendCon 2018",
+            "sponsor": "Rogue Wave Software",
+            "year": 2018,
+            "image": "12-zoe.jpg"
+        },
+        {
+            "id": 105,
+            "format": "large",
+            "name": "Zend Framework",
+            "description": "Zend Green",
+            "sponsor": "Zend Technologies",
+            "year": 2012,
+            "image": "13-zend-framework.jpg"
+        },
+        {
+            "id": 106,
+            "format": "large",
+            "name": "Archie",
+            "description": "php[architect]",
+            "sponsor": "php[architect]",
+            "year": 2014,
+            "image": "106-archie-large.jpg"
+        },
+        {
+            "id": 107,
+            "format": "large",
+            "name": "Umoja",
+            "description": "PHP Women",
+            "sponsor": "PHP Women",
+            "year": 2014,
+            "image": "107-phpwomen-large.jpg"
+        },
+        {
+            "id": 108,
+            "format": "large",
+            "name": "Sonny Nexmo",
+            "description": "Sunshine PHP Conference",
+            "sponsor": "Sunshine PHP, Nexmo",
+            "year": 2019,
+            "image": "17-sonny-nexmo.jpg"
+        },
+        {
+            "id": 109,
+            "format": "large",
+            "name": "Liona",
+            "description": "Laravel",
+            "sponsor": "Laravel Community",
+            "year": 2014,
+            "image": "18-liona.jpg"
+        },
+        {
+            "id": 110,
+            "format": "large",
+            "name": "MurPHPy",
+            "description": "AmsterdamPHP",
+            "sponsor": "AmsterdamPHP Community",
+            "year": 2014,
+            "image": "110-murphpy-large.jpg"
+        },
+        {
+            "id": 111,
+            "format": "large",
+            "name": "Phil Snow",
+            "description": "ConFoo Web Techno Conference",
+            "sponsor": "ConFoo",
+            "year": 2015,
+            "image": "20-phil-snow.jpg"
+        },
+        {
+            "id": 112,
+            "format": "large",
+            "name": "Symfony Black",
+            "description": "Symfony Framework",
+            "sponsor": "Sensio Labs",
+            "year": 2016,
+            "image": "22-symfony-black.jpg"
+        },
+        {
+            "id": 113,
+            "format": "large",
+            "name": "Cody Blou",
+            "description": "Shopware",
+            "sponsor": "shopware AG",
+            "year": 2016,
+            "image": "23-cody-blou.jpg"
+        },
+        {
+            "id": 114,
+            "format": "large",
+            "name": "Echo",
+            "description": "Globalis",
+            "sponsor": "Globalis",
+            "year": 2016,
+            "image": "24-echo.jpg"
+        },
+        {
+            "id": 115,
+            "format": "large",
+            "name": "Dutch PHP",
+            "description": "Dutch PHP Conference",
+            "sponsor": "ibuildings",
+            "year": 2016,
+            "image": "25-dutch-php.jpg"
+        },
+        {
+            "id": 116,
+            "format": "large",
+            "name": "Enfys",
+            "description": "Rainbow",
+            "sponsor": "PHPDiversity",
+            "year": 2016,
+            "image": "26-enfys.jpg"
+        },
+        {
+            "id": 117,
+            "format": "large",
+            "name": "Luxy",
+            "description": "PHPBenelux",
+            "sponsor": "PHPBenelux Conference",
+            "year": 2019,
+            "image": "35-luxy.jpg"
+        },
+        {
+            "id": 118,
+            "format": "large",
+            "name": "Molly",
+            "description": "PHP Woolly Mammoth",
+            "sponsor": "Peter Meth / Softer Software",
+            "year": 2015,
+            "image": "37-molly.jpg"
+        },
+        {
+            "id": 119,
+            "format": "large",
+            "name": "PHPCon",
+            "description": "PHP Conference Japan 2019",
+            "sponsor": "PHP Conference Japan",
+            "year": 2019,
+            "image": "47-phpcon.jpg"
+        },
+        {
+            "id": 120,
+            "format": "large",
+            "name": "KaraFun",
+            "description": "KaraFun",
+            "sponsor": "KaraFun",
+            "year": 2022,
+            "image": "66-karafun.jpg"
+        },
+        {
+            "id": 121,
+            "format": "large",
+            "name": "Flexy",
+            "description": "Dyflexis",
+            "sponsor": "Dyflexis",
+            "year": 2023,
+            "image": "76-dyflexis.jpg"
+        },
+        {
+            "id": 122,
+            "format": "large",
+            "name": "Sylius (Green)",
+            "description": "Sylius eCommerce",
+            "sponsor": "Monsieur Biz",
+            "year": 2025,
+            "image": "91-sylius.jpg"
+        },
+        {
+            "id": 123,
+            "format": "large",
+            "name": "Symfony Gray",
+            "description": "SymfonyCon 2019",
+            "sponsor": "Sensio Labs",
+            "year": 2019,
+            "image": "46-symfony-gray.jpg"
+        },
+        {
+            "id": 124,
+            "format": "large",
+            "name": "Symfony 15 Years",
+            "description": "Symfony Framework 15 Years",
+            "sponsor": "Sensio Labs",
+            "year": 2020,
+            "image": "57-symfony-15-years.png"
+        },
+        {
+            "id": 125,
+            "format": "large",
+            "name": "Molly",
+            "description": "PHP Woolly Mammoth",
+            "sponsor": "Peter Meth \/ Softer Software",
+            "year": 2015,
+            "image": "37-molly.jpg"
+        },
+        {
+            "id": 126,
+            "format": "large",
+            "name": "Le Monstre",
+            "description": "frankenphp.dev",
+            "sponsor": "Les-Tilleuls.coop",
+            "year": 2025,
+            "image": "85-frankenphp.jpg"
+        },
+        {
+            "id": 127,
+            "format": "large",
+            "name": "The Joker",
+            "description": "Le foo du roi: \"The Joker\"",
+            "sponsor": "ConFoo.ca",
+            "year": 2020,
+            "image": "56-the-joker.jpg"
+        },
+        {
+            "id": 128,
+            "format": "large",
+            "name": "Moni",
+            "description": "tideways.com",
+            "sponsor": "Tideways GmbH",
+            "year": 2026,
+            "image": "86-moni.jpg"
+        },
+        {
+            "id": 129,
+            "format": "large",
+            "name": "Mollie",
+            "description": "Mollie",
+            "sponsor": "Mollie",
+            "year": 2021,
+            "image": "65-mollie.jpg"
         }
     ]
 }

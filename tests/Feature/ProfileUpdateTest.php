@@ -59,3 +59,57 @@ test('profile update with password updates hashed password', function (): void {
     $user->refresh();
     expect($user->password)->not->toBe($oldHash);
 });
+
+test('profile update rejects another users email address', function (): void {
+    $user = User::factory()->create([
+        'name'         => 'User One',
+        'email'        => 'user1@example.com',
+        'country_code' => 'USA',
+    ]);
+    $otherUser = User::factory()->create([
+        'name'         => 'User Two',
+        'email'        => 'user2@example.com',
+        'country_code' => 'GBR',
+    ]);
+
+    $response = $this->actingAs($user)->put(route('profile.update'), [
+        'section'      => 'account',
+        'name'         => $user->name,
+        'email'        => $otherUser->email,
+        'username'     => $user->username,
+        'country_code' => $user->country_code,
+    ]);
+
+    $response->assertSessionHasErrors(['email']);
+
+    $user->refresh();
+    expect($user->email)->toBe('user1@example.com');
+
+    $otherUser->refresh();
+    expect($otherUser->email)->toBe('user2@example.com');
+});
+
+test('profile update allows user to retain their existing email address', function (): void {
+    $user = User::factory()->create([
+        'name'         => 'Original Name',
+        'email'        => 'original@example.com',
+        'country_code' => 'USA',
+    ]);
+
+    $response = $this->actingAs($user)->put(route('profile.update'), [
+        'section'      => 'account',
+        'name'         => 'Updated Name',
+        'email'        => 'original@example.com',
+        'username'     => $user->username,
+        'country_code' => 'GBR',
+    ]);
+
+    $response->assertSessionHasNoErrors();
+    $response->assertRedirect(route('profile.edit'));
+    $response->assertSessionHas('status-success');
+
+    $user->refresh();
+    expect($user->name)->toBe('Updated Name');
+    expect($user->email)->toBe('original@example.com');
+    expect($user->country_code)->toBe('GBR');
+});

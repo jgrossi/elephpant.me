@@ -19,6 +19,10 @@ Mastodon: <a href="{{ $sender->mastodonUrl() }}">{{ $sender->mastodon }}</a>
 Bluesky: <a href="{{ $sender->blueskyUrl() }}">{{ $sender->bluesky }}</a>
 @endif
 
+@if($sender->github)
+GitHub: <a href="{{ $sender->githubUrl() }}">{{ $sender->github }}</a>
+@endif
+
 @component('mail::button', ['url' => route('herds.show', $sender->username)])
 Sender's collection
 @endcomponent

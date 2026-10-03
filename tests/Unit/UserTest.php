@@ -163,3 +163,14 @@ test('blueskyUrl builds a profile url and strips a leading @', function () {
 
     expect($user->blueskyUrl())->toBe('https://bsky.app/profile/john.bsky.social');
 });
+
+test('githubUrl returns null when no github username', function () {
+    $user = User::factory()->make(['github' => null]);
+
+    expect($user->githubUrl())->toBeNull();
+});
+
+test('githubUrl builds a profile url and strips a leading @', function () {
+    expect(User::factory()->make(['github' => 'octocat'])->githubUrl())->toBe('https://github.com/octocat')
+        ->and(User::factory()->make(['github' => '@octocat'])->githubUrl())->toBe('https://github.com/octocat');
+});

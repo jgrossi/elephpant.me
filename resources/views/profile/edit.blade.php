@@ -110,6 +110,11 @@
                             <flux:input type="text" name="bluesky" id="bluesky" value="{{ old('bluesky', $user->bluesky) }}" placeholder="@username.bsky.social" />
                             <flux:error name="bluesky" />
                         </flux:field>
+                        <flux:field>
+                            <flux:label>{{ __('GitHub') }}</flux:label>
+                            <flux:input type="text" name="github" id="github" value="{{ old('github', $user->github) }}" placeholder="@username" />
+                            <flux:error name="github" />
+                        </flux:field>
                         <flux:button type="submit" variant="primary">{{ __('Save') }}</flux:button>
                     </form>
                 </div>

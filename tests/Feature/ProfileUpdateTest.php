@@ -59,3 +59,55 @@ test('profile update with password updates hashed password', function (): void {
     $user->refresh();
     expect($user->password)->not->toBe($oldHash);
 });
+
+test('profile update public_profile section saves a github username', function (): void {
+    $user = User::factory()->create(['github' => null]);
+
+    $response = $this->actingAs($user)->put(route('profile.update'), [
+        'section' => 'public_profile',
+        'github'  => '@octocat',
+    ]);
+
+    $response->assertRedirect(route('profile.edit'));
+    expect($user->refresh()->github)->toBe('@octocat');
+});
+
+test('profile update clears the github username when left empty', function (): void {
+    $user = User::factory()->create(['github' => 'octocat']);
+
+    $this->actingAs($user)->put(route('profile.update'), [
+        'section' => 'public_profile',
+        'github'  => '',
+    ])->assertSessionHasNoErrors();
+
+    expect($user->refresh()->github)->toBeNull();
+});
+
+test('profile update rejects invalid github usernames', function (string $invalid): void {
+    $user = User::factory()->create(['github' => null]);
+
+    $response = $this->actingAs($user)->put(route('profile.update'), [
+        'section' => 'public_profile',
+        'github'  => $invalid,
+    ]);
+
+    $response->assertSessionHasErrors(['github']);
+    expect($user->refresh()->github)->toBeNull();
+})->with([
+    'url'              => 'https://github.com/octocat',
+    'slash'            => 'octo/cat',
+    'leading hyphen'   => '-octocat',
+    'trailing hyphen'  => 'octocat-',
+    'double hyphen'    => 'octo--cat',
+    'underscore'       => 'octo_cat',
+    'too long'         => str_repeat('a', 40),
+]);
+
+test('profile update accepts a github username of 39 characters', function (): void {
+    $user = User::factory()->create(['github' => null]);
+
+    $this->actingAs($user)->put(route('profile.update'), [
+        'section' => 'public_profile',
+        'github'  => str_repeat('a', 39),
+    ])->assertSessionHasNoErrors();
+});

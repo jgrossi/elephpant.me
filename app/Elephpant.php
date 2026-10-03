@@ -43,4 +43,9 @@ class Elephpant extends Model
             ->orWhere('sponsor', 'LIKE', '%'.$request->input('q').'%')
             ->orWhere('year', 'LIKE', '%'.$request->input('q').'%');
     }
+
+    public function formattedName(): string
+    {
+        return $this->name;
+    }
 }

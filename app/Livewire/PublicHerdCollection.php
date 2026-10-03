@@ -23,6 +23,9 @@ class PublicHerdCollection extends Component
     public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $user = User::whereUsername($this->username)->firstOrFail();
+
+        abort_unless($user->canHerdBeViewedBy(auth()->user()), 403, 'This herd is private');
+
         $elephpants = $user->elephpants()
             ->orderBy('year', 'desc')
             ->orderBy('id', 'desc')
@@ -37,6 +40,7 @@ class PublicHerdCollection extends Component
 
         return view('livewire.public-herd-collection', [
             'elephpants' => $elephpants->values(),
+            'isPrivate'  => ! $user->is_public,
         ]);
     }
 

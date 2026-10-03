@@ -25,9 +25,14 @@ class HerdController extends Controller
         ]);
     }
 
-    public function show(string $username, TradingUsersQuery $query): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function show(string $username, TradingUsersQuery $query): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
     {
         $user = User::with('elephpants')->whereUsername($username)->firstOrFail();
+
+        if (! $user->canHerdBeViewedBy(auth()->user())) {
+            return response()->view('herd.private', status: 403);
+        }
+
         $userElephpants = $user->elephpantsWithQuantity()->toArray();
 
         $loggedUser = auth()->user();

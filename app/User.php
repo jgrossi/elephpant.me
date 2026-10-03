@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $query->where('is_public', true);
     }
 
+    public function canHerdBeViewedBy(?self $viewer): bool
+    {
+        return $this->is_public || $viewer?->is($this);
+    }
+
     public function elephpants(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Elephpant::class)

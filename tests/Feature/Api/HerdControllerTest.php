@@ -57,3 +57,12 @@ test('api herd endpoint is forbidden for a private herd', function (): void {
 
     $response->assertForbidden();
 });
+
+test('api herd endpoint exposes the github key', function (): void {
+    $user = User::factory()->create(['github' => 'octocat']);
+    $user->update(['is_public' => true]);
+
+    $this->getJson(route('api.herds.show', $user->username))
+        ->assertOk()
+        ->assertJson(['github' => 'octocat']);
+});

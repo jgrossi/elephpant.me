@@ -37,6 +37,7 @@ class ProfileRequest extends FormRequest
                 'x_handle' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
                 'mastodon' => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
                 'bluesky'  => ['nullable', 'string', Rule::unique('users')->ignore($this->user()->id)],
+                'github'   => ['nullable', 'string', 'regex:/^@?[A-Za-z0-9](?:[A-Za-z0-9]|-(?=[A-Za-z0-9])){0,38}$/'],
             ];
         }
 

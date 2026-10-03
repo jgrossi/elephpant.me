@@ -22,6 +22,10 @@
             'url' => $user->blueskyUrl(),
             'icon' => 'bluesky',
         ] : null,
+        'GitHub' => $user->github ? [
+            'url' => $user->githubUrl(),
+            'icon' => 'github',
+        ] : null,
     ]);
 @endphp
 

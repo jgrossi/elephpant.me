@@ -66,6 +66,7 @@ class HerdController extends Controller
             'x_handle'   => $user->x_handle,
             'mastodon'   => $user->mastodon,
             'bluesky'    => $user->bluesky,
+            'github'     => $user->github,
             'herd_url'   => route('herds.show', $user->username),
             'updated_at' => $updatedAt,
             'stats'      => [

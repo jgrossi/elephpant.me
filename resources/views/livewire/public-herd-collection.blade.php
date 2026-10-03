@@ -1,4 +1,8 @@
 <div class="w-full">
+    @if($isPrivate)
+        <flux:callout icon="lock-closed" variant="secondary" class="mb-6" heading="Your herd is private" text="Only you can see its contents" />
+    @endif
+
     @if($elephpants->count() > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach($elephpants as $elephpant)

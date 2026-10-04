@@ -40,6 +40,38 @@ test('herd show returns 404 for missing username', function (): void {
     $response->assertStatus(404);
 });
 
+test('herd show hides private herd details from guests', function (): void {
+    $user = \App\User::factory()->create(['is_public' => false, 'name' => 'Secret Collector']);
+    $elephpant = \App\Elephpant::factory()->create();
+    $user->elephpants()->attach($elephpant->id, ['quantity' => 3]);
+
+    $this->get(route('herds.show', $user->username))
+        ->assertForbidden()
+        ->assertSeeText('This herd is private')
+        ->assertDontSeeText('Secret Collector')
+        ->assertDontSee('public-herd-collection');
+});
+
+test('herd show hides private herd details from other users', function (): void {
+    $user = \App\User::factory()->create(['is_public' => false, 'name' => 'Secret Collector']);
+
+    $this->actingAs(\App\User::factory()->create())
+        ->get(route('herds.show', $user->username))
+        ->assertForbidden()
+        ->assertSeeText('This herd is private')
+        ->assertDontSeeText('Secret Collector');
+});
+
+test('herd show lets the owner view their own private herd', function (): void {
+    $user = \App\User::factory()->create(['is_public' => false, 'name' => 'Secret Collector']);
+
+    $this->actingAs($user)
+        ->get(route('herds.show', $user->username))
+        ->assertSuccessful()
+        ->assertSeeText('Secret Collector')
+        ->assertDontSeeText('This herd is private');
+});
+
 test('herd show avatars fall back on image error and are not circles', function (): void {
     \Creativeorange\Gravatar\Facades\Gravatar::shouldReceive('exists')->andReturn(false);
 

@@ -47,3 +47,45 @@ test('public herd collection mount sets username', function (): void {
 
     expect($component->username)->toBe('johndoe');
 });
+
+test('public herd collection is forbidden for a private herd', function (): void {
+    $user = User::factory()->create(['is_public' => false]);
+
+    Livewire::test(PublicHerdCollection::class, ['username' => $user->username])
+        ->instance()
+        ->render();
+})->throws(\Symfony\Component\HttpKernel\Exception\HttpException::class, 'This herd is private');
+
+test('public herd collection renders a private herd for its owner', function (): void {
+    $user = User::factory()->create(['is_public' => false]);
+
+    $view = Livewire::actingAs($user)
+        ->test(PublicHerdCollection::class, ['username' => $user->username])
+        ->instance()
+        ->render();
+
+    expect($view->getData())->toHaveKey('elephpants');
+});
+
+test('public herd collection shows a private notice to the owner', function (): void {
+    $user = User::factory()->create(['is_public' => false]);
+
+    expect(Livewire::actingAs($user)
+        ->test(PublicHerdCollection::class, ['username' => $user->username])
+        ->instance()
+        ->render()
+        ->render())
+        ->toContain('Your herd is private')
+        ->toContain('Only you can see its contents');
+});
+
+test('public herd collection does not show a private notice for a public herd', function (): void {
+    $user = User::factory()->create(['is_public' => true]);
+
+    expect(Livewire::actingAs($user)
+        ->test(PublicHerdCollection::class, ['username' => $user->username])
+        ->instance()
+        ->render()
+        ->render())
+        ->not->toContain('Your herd is private');
+});

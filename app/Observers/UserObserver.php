@@ -8,6 +8,8 @@ class UserObserver
 {
     public function creating(User $user): void
     {
-        $user->username = User::generateUsername($user);
+        if (blank($user->username)) {
+            $user->username = User::generateUsername($user);
+        }
     }
 }

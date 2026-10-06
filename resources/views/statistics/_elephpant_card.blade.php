@@ -1,7 +1,7 @@
 <flux:card class="h-full flex flex-col p-0" id="elephpant-{{ $elephpant->id }}">
     <x-elephpant-image :elephpant="$elephpant" class="w-full object-cover rounded-t-lg aspect-square" />
     <div class="p-4 flex-1 flex flex-col">
-        <flux:heading size="lg" class="mb-2">{{ $elephpant->name }}</flux:heading>
+        <flux:heading size="lg" class="mb-2">{{ $elephpant->formattedName() }}</flux:heading>
         <flux:text class="text-sm mb-4">
             {{ $elephpant->description }}<br>
             @if(!empty($elephpant->sponsor))
@@ -18,11 +18,11 @@
             </div>
             <div class="flex justify-between text-sm text-zinc-600 dark:text-zinc-400">
                 <span>Users</span>
-                <span class="font-medium text-zinc-900 dark:text-white">{{ $elephpant->nbElephpant }}</span>
+                <span class="font-medium text-zinc-900 dark:text-white">{{ $elephpant->users_count }}</span>
             </div>
             <div class="flex justify-between text-sm text-zinc-600 dark:text-zinc-400">
                 <span>Total</span>
-                <span class="font-medium text-zinc-900 dark:text-white">{{ (int) $elephpant->totalElephpant }}</span>
+                <span class="font-medium text-zinc-900 dark:text-white">{{ (int) $elephpant->copies }}</span>
             </div>
         </div>
         @if(auth()->check() && isset($currentUserElephpants))

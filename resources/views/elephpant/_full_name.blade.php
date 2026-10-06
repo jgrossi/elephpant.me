@@ -1,1 +1,1 @@
-<strong>{{ $elephpant->name }}</strong> <em>({{ $elephpant->popular_name }})</em>
+<strong>{{ $elephpant->formattedName() }}</strong> <em>({{ $elephpant->popular_name }})</em>

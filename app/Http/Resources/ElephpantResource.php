@@ -18,6 +18,7 @@ class ElephpantResource extends JsonResource
     {
         return [
             'id'                   => $this->id,
+            'format'               => $this->format,
             'name'                 => $this->name,
             'description'          => $this->description,
             'sponsor'              => $this->sponsor,

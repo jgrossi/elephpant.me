@@ -10,17 +10,18 @@ Thank you for contributing to ElePHPant.me! This guide outlines how to contribut
    git clone git@github.com:<your-username>/elephpant.me.git
    cd elephpant.me
    ```
-3. **Create a focused branch** from the latest `master` branch:
+3. **Install dependencies**: run `composer install` (and `npm install && npm run build` if you're touching frontend assets) before running tests.
+4. **Create a focused branch** from the latest `master` branch:
    ```bash
    git checkout -b feat/your-feature-name
    ```
-4. **Make your changes** with clear, focused commits.
-5. **Run validation** locally (tests and code style checks).
-6. **Push your branch** to your fork:
+5. **Make your changes** with clear, focused commits.
+6. **Run validation** locally (tests, code style, and static analysis).
+7. **Push your branch** to your fork:
    ```bash
    git push -u origin feat/your-feature-name
    ```
-7. **Open a pull request** against `master` describing the change and linking any relevant issues.
+8. **Open a pull request** against `master` describing the change and linking any relevant issues.
 
 ## Running tests
 
@@ -48,20 +49,40 @@ php artisan test --filter="profile update"
 ./vendor/bin/pest --filter="profile update"
 ```
 
-## Code style
+## Code style and quality
 
-This project uses [Laravel Pint](https://laravel.com/docs/pint) for code style formatting. CI verifies formatting on every pull request.
+CI runs several automated quality gates on every pull request: **Pint** (formatting), **Larastan** (static analysis), **Rector** (code quality and modernization), and **Pest** (tests). Running `./vendor/bin/pint --test` and tests locally are great, but they are not the only gates.
 
-Check code formatting without modifying files:
+### Code style (Pint)
+
+This project uses [Laravel Pint](https://laravel.com/docs/pint) for code style formatting:
 
 ```bash
+# Check code formatting without modifying files
 ./vendor/bin/pint --test
+
+# Automatically fix code style issues
+./vendor/bin/pint
 ```
 
-Automatically fix code style issues:
+### Static analysis (Larastan)
+
+Run [Larastan](https://github.com/larastan/larastan) (PHPStan) to verify type safety:
 
 ```bash
-./vendor/bin/pint
+./vendor/bin/phpstan analyse
+```
+
+### Rector
+
+Run [Rector](https://getrector.com) to check code quality:
+
+```bash
+# Check for refactoring suggestions without modifying files
+./vendor/bin/rector process --dry-run
+
+# Automatically apply changes
+./vendor/bin/rector process
 ```
 
 ## Test database
@@ -80,7 +101,13 @@ Because tests use in-memory SQLite, the test suite executes safely in memory wit
 When writing tests for forms or request validation, assert that the application validation layer catches errors as expected:
 
 ```php
+// For standard web form POSTs (the default for existing forms)
 $response->assertSessionHasErrors('email');
+
+// For JSON / API endpoints
+$response->assertJsonValidationErrors('email');
 ```
+
+Session assertions (`assertSessionHasErrors`) are the right default for web form POST requests like those in the application today. If you are writing tests for JSON/API endpoints, use `assertJsonValidationErrors` instead.
 
 Tests should assert that validation errors are returned in the session or response, rather than allowing invalid data to reach the database and relying on an unhandled database `UNIQUE` constraint exception (such as `SQLSTATE[23000]`) to fail the request.

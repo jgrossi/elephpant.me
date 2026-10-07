@@ -55,3 +55,14 @@ test('elephpant import service fails when an invalid enum is used', function ():
     $this->expectException(ValueError::class);
     $importer->import();
 });
+
+test('elephpant import service fails when a property is empty', function (): void {
+    $minimal = [
+        (object)['id' => 9997, 'format' => 'small', 'name' => 'Empty Sponsor', 'description' => 'Desc', 'sponsor' => '', 'year' => 2020, 'color' => 'blue'],
+    ];
+
+    $importer = new ElephpantImporter($minimal, new NullOutput());
+
+    expect(fn () => $importer->import())->toThrow(LogicException::class, 'Property sponsor must not be empty on 9997');
+    expect(Elephpant::find(9997))->toBeNull();
+});

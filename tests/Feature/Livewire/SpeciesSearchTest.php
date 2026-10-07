@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Elephpant;
+use App\Format;
 use App\Livewire\SpeciesSearch;
 use App\User;
 use Livewire\Livewire;
@@ -208,4 +209,130 @@ test('species search prepareTradePossibilities receivers branch is covered', fun
     expect($result)->toHaveKey($e2->id);
     expect($result[$e2->id]['type'])->toBe('senders');
     expect($result[$e2->id]['count'])->toBe(2);
+});
+
+test('species search herd mode filters by year, color, size and ownership', function (string $property, array $values, array $expected): void {
+    $user = User::factory()->create();
+    $owned = Elephpant::factory()->create(['name' => 'Owned Blue Small', 'year' => 2024, 'color' => 'Blue', 'format' => Format::Small]);
+    Elephpant::factory()->create(['name' => 'Red Large', 'year' => 2023, 'color' => 'Red', 'format' => Format::Large]);
+    Elephpant::factory()->create(['name' => 'Green Small', 'year' => 2022, 'color' => 'Green', 'format' => Format::Small]);
+    $user->elephpants()->attach($owned->id, ['quantity' => 1]);
+    $this->actingAs($user);
+
+    $grouped = Livewire::test(SpeciesSearch::class, ['mode' => 'herd'])
+        ->set($property, $values)
+        ->instance()->render()->getData()['elephpantsGrouped'];
+
+    expect($grouped->flatten()->pluck('name')->sort()->values()->all())->toBe($expected);
+})->with([
+    'single year'      => ['years', ['2024'], ['Owned Blue Small']],
+    'multiple years'   => ['years', ['2024', '2022'], ['Green Small', 'Owned Blue Small']],
+    'colors'           => ['colors', ['Red', 'Green'], ['Green Small', 'Red Large']],
+    'size'             => ['sizes', ['large'], ['Red Large']],
+    'owned'            => ['ownership', ['owned'], ['Owned Blue Small']],
+    'not owned'        => ['ownership', ['not-owned'], ['Green Small', 'Red Large']],
+    'owned and not'    => ['ownership', ['owned', 'not-owned'], ['Green Small', 'Owned Blue Small', 'Red Large']],
+    'no filter values' => ['years', [], ['Green Small', 'Owned Blue Small', 'Red Large']],
+]);
+
+test('species search herd mode combines filters across types', function (): void {
+    $user = User::factory()->create();
+    Elephpant::factory()->create(['name' => 'Match', 'year' => 2024, 'color' => 'Blue', 'format' => Format::Small]);
+    Elephpant::factory()->create(['name' => 'Wrong Color', 'year' => 2024, 'color' => 'Red', 'format' => Format::Small]);
+    Elephpant::factory()->create(['name' => 'Wrong Size', 'year' => 2024, 'color' => 'Blue', 'format' => Format::Large]);
+    $this->actingAs($user);
+
+    $grouped = Livewire::test(SpeciesSearch::class, ['mode' => 'herd'])
+        ->set('years', ['2024'])
+        ->set('colors', ['Blue'])
+        ->set('sizes', ['small'])
+        ->set('ownership', ['not-owned'])
+        ->instance()->render()->getData()['elephpantsGrouped'];
+
+    expect($grouped->flatten()->pluck('name')->all())->toBe(['Match']);
+});
+
+test('species search herd mode renders filter dropdowns with options', function (): void {
+    $user = User::factory()->create();
+    Elephpant::factory()->create(['year' => 2019, 'color' => 'Purple']);
+    Elephpant::factory()->create(['year' => 2021, 'color' => '']);
+    $this->actingAs($user);
+
+    $component = Livewire::withoutLazyLoading()->test(SpeciesSearch::class, ['mode' => 'herd']);
+
+    $component->assertSee(['Year', 'Color', 'Size', 'Owned', 'Not owned', '2019', '2021', 'Purple', 'Large', 'Small'])
+        ->assertDontSee('Clear filters');
+    expect($component->instance()->availableColors)->toBe(['', 'Purple']);
+});
+
+test('species search clearFilters resets all filters', function (): void {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    Livewire::test(SpeciesSearch::class, ['mode' => 'herd'])
+        ->set('years', ['2024'])
+        ->set('colors', ['Blue'])
+        ->set('sizes', ['large'])
+        ->set('ownership', ['owned'])
+        ->assertSee('Clear filters')
+        ->call('clearFilters')
+        ->assertSet('years', [])
+        ->assertSet('colors', [])
+        ->assertSet('sizes', [])
+        ->assertSet('ownership', []);
+});
+
+test('species search herd mode shows a loading state while filters update', function (): void {
+    $this->actingAs(User::factory()->create());
+
+    Livewire::withoutLazyLoading()->test(SpeciesSearch::class, ['mode' => 'herd'])
+        ->assertSeeHtml('wire:loading.flex wire:target="q, years, colors, sizes, ownership, clearFilters"')
+        ->assertSeeHtml('wire:loading.class="opacity-50 pointer-events-none"')
+        ->assertSee('Updating results…');
+});
+
+test('species search facet counts reflect search and other filters but not their own', function (): void {
+    $user = User::factory()->create();
+    $owned = Elephpant::factory()->create(['name' => 'Alpha', 'year' => 2024, 'color' => 'Black', 'format' => Format::Large]);
+    Elephpant::factory()->create(['name' => 'Beta', 'year' => 2024, 'color' => 'Black', 'format' => Format::Large]);
+    Elephpant::factory()->create(['name' => 'Gamma', 'year' => 2023, 'color' => 'Blue', 'format' => Format::Large]);
+    Elephpant::factory()->create(['name' => 'Delta', 'year' => 2023, 'color' => 'Black', 'format' => Format::Small]);
+    $user->elephpants()->attach($owned->id, ['quantity' => 1]);
+    $this->actingAs($user);
+
+    $component = Livewire::test(SpeciesSearch::class, ['mode' => 'herd'])->set('sizes', ['large']);
+    $counts = $component->instance()->facetCounts;
+
+    expect($counts['colors'])->toEqual(['Black' => 2, 'Blue' => 1])
+        ->and($counts['years'])->toEqual(['2024' => 2, '2023' => 1])
+        ->and($counts['sizes'])->toEqual(['large' => 3, 'small' => 1])
+        ->and($counts['ownership'])->toEqual(['owned' => 1, 'not-owned' => 2]);
+
+    $counts = $component->set('q', 'Alpha')->instance()->facetCounts;
+
+    expect($counts['colors'])->toEqual(['Black' => 1])
+        ->and($counts['sizes'])->toEqual(['large' => 1]);
+});
+
+test('species search disables filter options with no matches unless selected', function (): void {
+    $user = User::factory()->create();
+    Elephpant::factory()->create(['year' => 2024, 'color' => 'Black', 'format' => Format::Large]);
+    Elephpant::factory()->create(['year' => 2023, 'color' => 'Brown', 'format' => Format::Small]);
+    $this->actingAs($user);
+
+    $html = Livewire::withoutLazyLoading()->test(SpeciesSearch::class, ['mode' => 'herd'])
+        ->set('sizes', ['large'])
+        ->set('colors', ['Brown'])
+        ->html();
+
+    $checkbox = function (string $value) use ($html): string {
+        preg_match('/<ui-menu-checkbox[^>]*value="'.$value.'"[^>]*>.*?<\/ui-menu-checkbox>/s', $html, $matches);
+
+        return $matches[0] ?? '';
+    };
+
+    expect($checkbox('Black'))->toContain('Black (1)')->not->toContain('disabled="disabled"')
+        ->and($checkbox('Brown'))->toContain('Brown (0)')->not->toContain('disabled="disabled"')
+        ->and($checkbox('2023'))->toContain('2023 (0)')->toContain('disabled="disabled"')
+        ->and($checkbox('2024'))->toContain('2024 (0)')->toContain('disabled="disabled"');
 });

@@ -7,6 +7,7 @@
             "description": "First Blue",
             "sponsor": "Nexen \/ Alter Way",
             "year": 2007,
+            "color": "Blue",
             "image": "1-original-blue.jpg"
         },
         {
@@ -16,6 +17,7 @@
             "description": "First Pink",
             "sponsor": "Alter Way",
             "year": 2011,
+            "color": "Pink",
             "image": "2-original-pink.jpg"
         },
         {
@@ -25,6 +27,7 @@
             "description": "OpenGoodies Blue",
             "sponsor": "OpenGoodies",
             "year": 2015,
+            "color": "Blue",
             "image": "3-blue.jpg"
         },
         {
@@ -34,6 +37,7 @@
             "description": "OpenGoodies Pink",
             "sponsor": "OpenGoodies",
             "year": 2015,
+            "color": "Pink",
             "image": "4-pink.jpg"
         },
         {
@@ -43,6 +47,7 @@
             "description": "Oracle Blue",
             "sponsor": "Oracle Corporation",
             "year": 2008,
+            "color": "Blue",
             "image": "5-oracle.jpg"
         },
         {
@@ -52,6 +57,7 @@
             "description": "ZendCon 2010",
             "sponsor": "Zend Technologies",
             "year": 2010,
+            "color": "Blue",
             "image": "6-zend-blue.jpg"
         },
         {
@@ -61,6 +67,7 @@
             "description": "Zend Red, ZendCon 2013",
             "sponsor": "Zend Technologies",
             "year": 2013,
+            "color": "Red",
             "image": "7-chili.jpg"
         },
         {
@@ -70,6 +77,7 @@
             "description": "ZendCon 2014",
             "sponsor": "Zend Technologies",
             "year": 2014,
+            "color": "Blue",
             "image": "8-z-ray.jpg"
         },
         {
@@ -79,6 +87,7 @@
             "description": "ZendCon 2015",
             "sponsor": "Zend Technologies",
             "year": 2015,
+            "color": "Teal",
             "image": "9-zend-php7.jpg"
         },
         {
@@ -88,6 +97,7 @@
             "description": "ZendCon 2016",
             "sponsor": "Zend Technologies",
             "year": 2016,
+            "color": "White",
             "image": "10-elphpis.jpg"
         },
         {
@@ -97,6 +107,7 @@
             "description": "ZendCon 2017",
             "sponsor": "Rogue Wave Software",
             "year": 2017,
+            "color": "Blue",
             "image": "11-denim.jpg"
         },
         {
@@ -106,6 +117,7 @@
             "description": "ZendCon 2018",
             "sponsor": "Rogue Wave Software",
             "year": 2018,
+            "color": "Blue",
             "image": "12-zoe.jpg"
         },
         {
@@ -115,6 +127,7 @@
             "description": "Zend Green",
             "sponsor": "Zend Technologies",
             "year": 2012,
+            "color": "Green",
             "image": "13-zend-framework.jpg"
         },
         {
@@ -124,6 +137,7 @@
             "description": "php[architect]",
             "sponsor": "php[architect]",
             "year": 2014,
+            "color": "Orange",
             "image": "14-archie.jpg"
         },
         {
@@ -133,6 +147,7 @@
             "description": "PHP Women",
             "sponsor": "PHP Women",
             "year": 2014,
+            "color": "Purple",
             "image": "15-umoja.jpg"
         },
         {
@@ -142,6 +157,7 @@
             "description": "Sunshine PHP Conference",
             "sponsor": "Sunshine PHP, Zend Technologies",
             "year": 2014,
+            "color": "Yellow",
             "image": "16-sonny.jpg"
         },
         {
@@ -151,6 +167,7 @@
             "description": "Sunshine PHP Conference",
             "sponsor": "Sunshine PHP, Nexmo",
             "year": 2019,
+            "color": "Yellow",
             "image": "17-sonny-nexmo.jpg"
         },
         {
@@ -160,6 +177,7 @@
             "description": "Laravel",
             "sponsor": "Laravel Community",
             "year": 2014,
+            "color": "Red",
             "image": "18-liona.jpg"
         },
         {
@@ -169,6 +187,7 @@
             "description": "AmsterdamPHP",
             "sponsor": "AmsterdamPHP Community",
             "year": 2014,
+            "color": "Black",
             "image": "19-murphpy.jpg"
         },
         {
@@ -178,6 +197,7 @@
             "description": "ConFoo Web Techno Conference",
             "sponsor": "ConFoo",
             "year": 2015,
+            "color": "White",
             "image": "20-phil-snow.jpg"
         },
         {
@@ -187,6 +207,7 @@
             "description": "Symfony Framework",
             "sponsor": "Sensio Labs",
             "year": 2015,
+            "color": "Black",
             "image": "21-symfony-10-years.jpg"
         },
         {
@@ -196,6 +217,7 @@
             "description": "Symfony Framework",
             "sponsor": "Sensio Labs",
             "year": 2016,
+            "color": "Black",
             "image": "22-symfony-black.jpg"
         },
         {
@@ -205,6 +227,7 @@
             "description": "Shopware",
             "sponsor": "shopware AG",
             "year": 2016,
+            "color": "Blue",
             "image": "23-cody-blou.jpg"
         },
         {
@@ -214,6 +237,7 @@
             "description": "Globalis",
             "sponsor": "Globalis",
             "year": 2016,
+            "color": "White",
             "image": "24-echo.jpg"
         },
         {
@@ -223,6 +247,7 @@
             "description": "Dutch PHP Conference",
             "sponsor": "ibuildings",
             "year": 2016,
+            "color": "White",
             "image": "25-dutch-php.jpg"
         },
         {
@@ -232,6 +257,7 @@
             "description": "Rainbow",
             "sponsor": "PHPDiversity",
             "year": 2016,
+            "color": "Multicolored",
             "image": "26-enfys.jpg"
         },
         {
@@ -241,6 +267,7 @@
             "description": "Roave",
             "sponsor": "Roave",
             "year": 2017,
+            "color": "Gray",
             "image": "27-chloe.jpg"
         },
         {
@@ -250,6 +277,7 @@
             "description": "AFUP",
             "sponsor": "AFUP",
             "year": 2017,
+            "color": "Blue",
             "image": "28-afup.jpg"
         },
         {
@@ -259,6 +287,7 @@
             "description": "CakePHP Framework",
             "sponsor": "CakePHP",
             "year": 2017,
+            "color": "Red",
             "image": "29-cakephp.jpg"
         },
         {
@@ -268,6 +297,7 @@
             "description": "Cake Software Foundation",
             "sponsor": "CakePHP",
             "year": 2017,
+            "color": "Yellow",
             "image": "30-cakesf.jpg"
         },
         {
@@ -277,6 +307,7 @@
             "description": "Heroku",
             "sponsor": "Heroku",
             "year": 2017,
+            "color": "Purple",
             "image": "31-hero.jpg"
         },
         {
@@ -286,6 +317,7 @@
             "description": "Magento",
             "sponsor": "Magento",
             "year": 2017,
+            "color": "Gray",
             "image": "32-magento.jpg"
         },
         {
@@ -295,6 +327,7 @@
             "description": "PHP Yorkshire",
             "sponsor": "PHP Yorkshire Conference",
             "year": 2018,
+            "color": "Blue",
             "image": "33-jorvik.jpg"
         },
         {
@@ -304,6 +337,7 @@
             "description": "PHP Roundtable",
             "sponsor": "PHP Roundtable Podcast",
             "year": 2018,
+            "color": "Purple",
             "image": "34-pollita.jpg"
         },
         {
@@ -313,6 +347,7 @@
             "description": "PHPBenelux",
             "sponsor": "PHPBenelux Conference",
             "year": 2019,
+            "color": "White",
             "image": "35-luxy.jpg"
         },
         {
@@ -322,6 +357,7 @@
             "description": "Darkmira Tour PHP 2019",
             "sponsor": "Darkmira Tour PHP",
             "year": 2019,
+            "color": "Yellow",
             "image": "36-unity.jpg"
         },
         {
@@ -331,6 +367,7 @@
             "description": "PHP Woolly Mammoth",
             "sponsor": "Peter Meth \/ Softer Software",
             "year": 2015,
+            "color": "Brown",
             "image": "37-molly.jpg"
         },
         {
@@ -340,6 +377,7 @@
             "description": "HHVM",
             "sponsor": "Facebook",
             "year": 2015,
+            "color": "Gray",
             "image": "38-phackyderm.jpg"
         },
         {
@@ -349,6 +387,7 @@
             "description": "PHPers Summit 2019",
             "sponsor": "PHPers Poland",
             "year": 2019,
+            "color": "White",
             "image": "39-phpers.jpg"
         },
         {
@@ -358,6 +397,7 @@
             "description": "PHPCE 2018",
             "sponsor": "PHPCE Conference",
             "year": 2018,
+            "color": "Blue",
             "image": "40-phpce.jpg"
         },
         {
@@ -367,6 +407,7 @@
             "description": "PHPClasses",
             "sponsor": "PHPClasses",
             "year": 2018,
+            "color": "Blue",
             "image": "41-phpclasses.jpg"
         },
         {
@@ -376,6 +417,7 @@
             "description": "Check24",
             "sponsor": "Check24",
             "year": 2019,
+            "color": "Blue",
             "image": "42-jephpry.jpg"
         },
         {
@@ -385,6 +427,7 @@
             "description": "PhpStorm elephpant",
             "sponsor": "JetBrains",
             "year": 2019,
+            "color": "Black",
             "image": "43-phpstorm-elephpant.jpg"
         },
         {
@@ -394,6 +437,7 @@
             "description": "Linux for PHP",
             "sponsor": "Linux for PHP",
             "year": 2019,
+            "color": "Blue",
             "image": "44-cloudy.png"
         },
         {
@@ -403,6 +447,7 @@
             "description": "PHPConPoland",
             "sponsor": "PHP Conference Poland",
             "year": 2019,
+            "color": "Red",
             "image": "45-janusz.jpg"
         },
         {
@@ -412,6 +457,7 @@
             "description": "SymfonyCon 2019",
             "sponsor": "Sensio Labs",
             "year": 2019,
+            "color": "Gray",
             "image": "46-symfony-gray.jpg"
         },
         {
@@ -421,6 +467,7 @@
             "description": "PHP Conference Japan 2019",
             "sponsor": "PHP Conference Japan",
             "year": 2019,
+            "color": "White",
             "image": "47-phpcon.jpg"
         },
         {
@@ -430,6 +477,7 @@
             "description": "CakeDC",
             "sponsor": "CakePHP",
             "year": 2019,
+            "color": "Blue",
             "image": "48-cakedc.jpg"
         },
         {
@@ -439,6 +487,7 @@
             "description": "CakeFest 2019",
             "sponsor": "CakePHP",
             "year": 2019,
+            "color": "Blue",
             "image": "49-cakefest.jpg"
         },
         {
@@ -448,6 +497,7 @@
             "description": "Shopware",
             "sponsor": "Shopware AG",
             "year": 2019,
+            "color": "Pink",
             "image": "50-cody-vuelette.jpg"
         },
         {
@@ -457,6 +507,7 @@
             "description": "PHPCon Poland 2015",
             "sponsor": "PHP Conference Poland",
             "year": 2015,
+            "color": "Purple",
             "image": "51-phpcon-grandpa.jpg"
         },
         {
@@ -466,6 +517,7 @@
             "description": "Upinside School",
             "sponsor": "Upinside School",
             "year": 2020,
+            "color": "Black",
             "image": "54-upinside.png"
         },
         {
@@ -475,6 +527,7 @@
             "description": "Le foo du roi: \"The Joker\"",
             "sponsor": "ConFoo.ca",
             "year": 2020,
+            "color": "Blue",
             "image": "56-the-joker.jpg"
         },
         {
@@ -484,6 +537,7 @@
             "description": "Symfony Framework 15 Years",
             "sponsor": "Sensio Labs",
             "year": 2020,
+            "color": "Gray",
             "image": "57-symfony-15-years.png"
         },
         {
@@ -493,6 +547,7 @@
             "description": "phpday conference mascotte",
             "sponsor": "GrUSP",
             "year": 2020,
+            "color": "Multicolored",
             "image": "58-aida.jpg"
         },
         {
@@ -502,6 +557,7 @@
             "description": "Docler",
             "sponsor": "Docler Holding",
             "year": 2020,
+            "color": "Red",
             "image": "59-docler.jpg"
         },
         {
@@ -511,6 +567,7 @@
             "description": "PHP8 ElePHPant",
             "sponsor": "@faguo & @Elroubio",
             "year": 2020,
+            "color": "Blue",
             "image": "60-inphpinity.jpg"
         },
         {
@@ -520,6 +577,7 @@
             "description": "SiteGround elePHPant",
             "sponsor": "SiteGround",
             "year": 2020,
+            "color": "Black",
             "image": "61-groundy.jpg"
         },
         {
@@ -529,6 +587,7 @@
             "description": "Kellerkinder",
             "sponsor": "Die Kellerkinder",
             "year": 2021,
+            "color": "Orange",
             "image": "63-kellerkinder.jpg"
         },
         {
@@ -538,6 +597,7 @@
             "description": "Office Partner Elephpant",
             "sponsor": "Office Partner",
             "year": 2022,
+            "color": "Red",
             "image": "64-phpartner.jpg"
         },
         {
@@ -547,6 +607,7 @@
             "description": "Mollie",
             "sponsor": "Mollie",
             "year": 2021,
+            "color": "Black",
             "image": "65-mollie.jpg"
         },
         {
@@ -556,6 +617,7 @@
             "description": "KaraFun",
             "sponsor": "KaraFun",
             "year": 2022,
+            "color": "White",
             "image": "66-karafun.jpg"
         },
         {
@@ -565,6 +627,7 @@
             "description": "Thelia",
             "sponsor": "OpenStudio",
             "year": 2021,
+            "color": "Orange",
             "image": "67-thelia.jpg"
         },
         {
@@ -574,6 +637,7 @@
             "description": "I'm a php[architect]",
             "sponsor": "php[architect]",
             "year": 2022,
+            "color": "Orange",
             "image": "68-archie.png"
         },
         {
@@ -583,6 +647,7 @@
             "description": "DLF ElePHPant",
             "sponsor": "Dutch Laravel Foundation",
             "year": 2022,
+            "color": "Red",
             "image": "69-dutchie.jpg"
         },
         {
@@ -592,6 +657,7 @@
             "description": "Vonage",
             "sponsor": "Vonage",
             "year": 2022,
+            "color": "Black",
             "image": "70-alex.jpg"
         },
         {
@@ -601,6 +667,7 @@
             "description": "Notive",
             "sponsor": "Notive",
             "year": 2023,
+            "color": "Blue",
             "image": "71-notive.jpg"
         },
         {
@@ -610,6 +677,7 @@
             "description": "Yomeva 10th Anniversary",
             "sponsor": "Yomeva",
             "year": 2023,
+            "color": "Blue",
             "image": "72-yomeva.png"
         },
         {
@@ -619,6 +687,7 @@
             "description": "ElePHPant for Alumni",
             "sponsor": "CMGT",
             "year": 2022,
+            "color": "Teal",
             "image": "73-cmgt.jpeg"
         },
         {
@@ -628,6 +697,7 @@
             "description": "Laracon US 2023",
             "sponsor": "Laravel Community",
             "year": 2023,
+            "color": "Black",
             "image": "74-aubrey.jpg"
         },
         {
@@ -637,6 +707,7 @@
             "description": "PHPClasses",
             "sponsor": "PHPClasses",
             "year": 2020,
+            "color": "Pink",
             "image": "75-phpclasses-pink.png"
         },
         {
@@ -646,6 +717,7 @@
             "description": "Dyflexis",
             "sponsor": "Dyflexis",
             "year": 2023,
+            "color": "Blue",
             "image": "76-dyflexis.jpg"
         },
         {
@@ -655,6 +727,7 @@
             "description": "PHPStan",
             "sponsor": "PHPStan",
             "year": 2024,
+            "color": "Blue",
             "image": "77-phpstan.jpg"
         },
         {
@@ -664,6 +737,7 @@
             "description": "PHP UK",
             "sponsor": "PHP UK",
             "year": 2024,
+            "color": "Blue",
             "image": "78-phpuk.jpg"
         },
         {
@@ -673,6 +747,7 @@
             "description": "Ploi",
             "sponsor": "Ploi",
             "year": 2024,
+            "color": "Blue",
             "image": "79-ploi.jpg"
         },
         {
@@ -682,6 +757,7 @@
             "description": "Oscar",
             "sponsor": "php[tek] 2024",
             "year": 2024,
+            "color": "Blue",
             "image": "80-oscar.jpg"
         },
         {
@@ -691,6 +767,7 @@
             "description": "safefive",
             "sponsor": "Paddox GmbH",
             "year": 2024,
+            "color": "White",
             "image": "81-safefive.jpg"
         },
         {
@@ -700,6 +777,7 @@
             "description": "sentry.io",
             "sponsor": "Sentry",
             "year": 2025,
+            "color": "Purple",
             "image": "82-sentaur.jpg"
         },
         {
@@ -709,6 +787,7 @@
             "description": "Tony",
             "sponsor": "php[tek] 2025",
             "year": 2025,
+            "color": "Brown",
             "image": "83-tony.jpg"
         },
         {
@@ -718,6 +797,7 @@
             "description": "datadog.com",
             "sponsor": "Datadog",
             "year": 2025,
+            "color": "Purple",
             "image": "84-doggy.jpg"
         },
         {
@@ -727,6 +807,7 @@
             "description": "frankenphp.dev",
             "sponsor": "Les-Tilleuls.coop",
             "year": 2025,
+            "color": "Yellow",
             "image": "85-frankenphp.jpg"
         },
         {
@@ -736,6 +817,7 @@
             "description": "tideways.com",
             "sponsor": "Tideways GmbH",
             "year": 2026,
+            "color": "Blue",
             "image": "86-moni.jpg"
         },
         {
@@ -745,6 +827,7 @@
             "description": "laraveldk.org",
             "sponsor": "Laravel Denmark",
             "year": 2026,
+            "color": "Red",
             "image": "87-laraveldk.jpg"
 	    },
         {
@@ -754,6 +837,7 @@
             "description": "Holly",
             "sponsor": "php[tek] 2026",
             "year": 2026,
+            "color": "Yellow",
             "image": "88-holly.jpg"
         },
         {
@@ -763,6 +847,7 @@
             "description": "sentry.io",
             "sponsor": "Sentry",
             "year": 2026,
+            "color": "Purple",
             "image": "89-sentaur-edition-2.jpg"
         },
         {
@@ -772,6 +857,7 @@
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
             "year": 2024,
+            "color": "White",
             "image": "90-sylius-blue.jpg"
         },
         {
@@ -781,6 +867,7 @@
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
             "year": 2025,
+            "color": "White",
             "image": "91-sylius.jpg"
         },
         {
@@ -790,6 +877,7 @@
             "description": "Magento",
             "sponsor": "Magento",
             "year": 2018,
+            "color": "Gray",
             "image": "92-magento-adobe.jpg"
         },
         {
@@ -799,6 +887,7 @@
             "description": "SymfonyCasts",
             "sponsor": "SymfonyCasts",
             "year": 2020,
+            "color": "White",
             "image": "93-symfonycasts.jpg"
         },
         {
@@ -808,6 +897,7 @@
             "description": "First Blue",
             "sponsor": "Nexen / Alter Way",
             "year": 2007,
+            "color": "Blue",
             "image": "1-original-blue.jpg"
         },
         {
@@ -817,6 +907,7 @@
             "description": "First Pink",
             "sponsor": "Alter Way",
             "year": 2011,
+            "color": "Pink",
             "image": "2-original-pink.jpg"
         },
         {
@@ -826,6 +917,7 @@
             "description": "OpenGoodies Blue",
             "sponsor": "OpenGoodies",
             "year": 2015,
+            "color": "Blue",
             "image": "3-blue.jpg"
         },
         {
@@ -835,6 +927,7 @@
             "description": "OpenGoodies Pink",
             "sponsor": "OpenGoodies",
             "year": 2015,
+            "color": "Pink",
             "image": "4-pink.jpg"
         },
         {
@@ -844,6 +937,7 @@
             "description": "Oracle Blue",
             "sponsor": "Oracle Corporation",
             "year": 2008,
+            "color": "Blue",
             "image": "5-oracle.jpg"
         },
         {
@@ -853,6 +947,7 @@
             "description": "ZendCon 2010",
             "sponsor": "Zend Technologies",
             "year": 2010,
+            "color": "Blue",
             "image": "6-zend-blue.jpg"
         },
         {
@@ -862,6 +957,7 @@
             "description": "Zend Red, ZendCon 2013",
             "sponsor": "Zend Technologies",
             "year": 2013,
+            "color": "Red",
             "image": "7-chili.jpg"
         },
         {
@@ -871,6 +967,7 @@
             "description": "ZendCon 2015",
             "sponsor": "Zend Technologies",
             "year": 2015,
+            "color": "Teal",
             "image": "9-zend-php7.jpg"
         },
         {
@@ -880,6 +977,7 @@
             "description": "ZendCon 2016",
             "sponsor": "Zend Technologies",
             "year": 2016,
+            "color": "White",
             "image": "10-elphpis.jpg"
         },
         {
@@ -889,6 +987,7 @@
             "description": "ZendCon 2017",
             "sponsor": "Rogue Wave Software",
             "year": 2017,
+            "color": "Blue",
             "image": "103-denim-large.jpg"
         },
         {
@@ -898,6 +997,7 @@
             "description": "ZendCon 2018",
             "sponsor": "Rogue Wave Software",
             "year": 2018,
+            "color": "Blue",
             "image": "12-zoe.jpg"
         },
         {
@@ -907,6 +1007,7 @@
             "description": "Zend Green",
             "sponsor": "Zend Technologies",
             "year": 2012,
+            "color": "Green",
             "image": "13-zend-framework.jpg"
         },
         {
@@ -916,6 +1017,7 @@
             "description": "php[architect]",
             "sponsor": "php[architect]",
             "year": 2014,
+            "color": "Orange",
             "image": "106-archie-large.jpg"
         },
         {
@@ -925,6 +1027,7 @@
             "description": "PHP Women",
             "sponsor": "PHP Women",
             "year": 2014,
+            "color": "Purple",
             "image": "107-phpwomen-large.jpg"
         },
         {
@@ -934,6 +1037,7 @@
             "description": "Sunshine PHP Conference",
             "sponsor": "Sunshine PHP, Nexmo",
             "year": 2019,
+            "color": "Yellow",
             "image": "17-sonny-nexmo.jpg"
         },
         {
@@ -943,6 +1047,7 @@
             "description": "Laravel",
             "sponsor": "Laravel Community",
             "year": 2014,
+            "color": "Red",
             "image": "18-liona.jpg"
         },
         {
@@ -952,6 +1057,7 @@
             "description": "AmsterdamPHP",
             "sponsor": "AmsterdamPHP Community",
             "year": 2014,
+            "color": "Black",
             "image": "110-murphpy-large.jpg"
         },
         {
@@ -961,6 +1067,7 @@
             "description": "ConFoo Web Techno Conference",
             "sponsor": "ConFoo",
             "year": 2015,
+            "color": "White",
             "image": "20-phil-snow.jpg"
         },
         {
@@ -970,6 +1077,7 @@
             "description": "Symfony Framework",
             "sponsor": "Sensio Labs",
             "year": 2016,
+            "color": "Black",
             "image": "22-symfony-black.jpg"
         },
         {
@@ -979,6 +1087,7 @@
             "description": "Shopware",
             "sponsor": "shopware AG",
             "year": 2016,
+            "color": "Blue",
             "image": "23-cody-blou.jpg"
         },
         {
@@ -988,6 +1097,7 @@
             "description": "Globalis",
             "sponsor": "Globalis",
             "year": 2016,
+            "color": "White",
             "image": "24-echo.jpg"
         },
         {
@@ -997,6 +1107,7 @@
             "description": "Dutch PHP Conference",
             "sponsor": "ibuildings",
             "year": 2016,
+            "color": "White",
             "image": "25-dutch-php.jpg"
         },
         {
@@ -1006,6 +1117,7 @@
             "description": "Rainbow",
             "sponsor": "PHPDiversity",
             "year": 2016,
+            "color": "Multicolored",
             "image": "26-enfys.jpg"
         },
         {
@@ -1015,6 +1127,7 @@
             "description": "PHPBenelux",
             "sponsor": "PHPBenelux Conference",
             "year": 2019,
+            "color": "White",
             "image": "35-luxy.jpg"
         },
         {
@@ -1024,6 +1137,7 @@
             "description": "PHP Woolly Mammoth",
             "sponsor": "Peter Meth / Softer Software",
             "year": 2015,
+            "color": "Brown",
             "image": "37-molly.jpg"
         },
         {
@@ -1033,6 +1147,7 @@
             "description": "PHP Conference Japan 2019",
             "sponsor": "PHP Conference Japan",
             "year": 2019,
+            "color": "White",
             "image": "47-phpcon.jpg"
         },
         {
@@ -1042,6 +1157,7 @@
             "description": "KaraFun",
             "sponsor": "KaraFun",
             "year": 2022,
+            "color": "White",
             "image": "66-karafun.jpg"
         },
         {
@@ -1051,6 +1167,7 @@
             "description": "Dyflexis",
             "sponsor": "Dyflexis",
             "year": 2023,
+            "color": "Blue",
             "image": "76-dyflexis.jpg"
         },
         {
@@ -1060,6 +1177,7 @@
             "description": "Sylius eCommerce",
             "sponsor": "Monsieur Biz",
             "year": 2025,
+            "color": "White",
             "image": "91-sylius.jpg"
         },
         {
@@ -1069,6 +1187,7 @@
             "description": "SymfonyCon 2019",
             "sponsor": "Sensio Labs",
             "year": 2019,
+            "color": "Gray",
             "image": "46-symfony-gray.jpg"
         },
         {
@@ -1078,6 +1197,7 @@
             "description": "Symfony Framework 15 Years",
             "sponsor": "Sensio Labs",
             "year": 2020,
+            "color": "Gray",
             "image": "57-symfony-15-years.png"
         },
         {
@@ -1087,6 +1207,7 @@
             "description": "frankenphp.dev",
             "sponsor": "Les-Tilleuls.coop",
             "year": 2025,
+            "color": "Yellow",
             "image": "85-frankenphp.jpg"
         },
         {
@@ -1096,6 +1217,7 @@
             "description": "Le foo du roi: \"The Joker\"",
             "sponsor": "ConFoo.ca",
             "year": 2020,
+            "color": "Blue",
             "image": "56-the-joker.jpg"
         },
         {
@@ -1105,6 +1227,7 @@
             "description": "tideways.com",
             "sponsor": "Tideways GmbH",
             "year": 2026,
+            "color": "Blue",
             "image": "86-moni.jpg"
         },
         {
@@ -1114,6 +1237,7 @@
             "description": "Mollie",
             "sponsor": "Mollie",
             "year": 2021,
+            "color": "Black",
             "image": "65-mollie.jpg"
         }
     ]

@@ -23,6 +23,7 @@ class ElephpantResource extends JsonResource
             'description'          => $this->description,
             'sponsor'              => $this->sponsor,
             'year'                 => $this->year,
+            'color'                => $this->color,
             'image_url'            => $this->image ? asset('storage/elephpants/'.$this->image) : null,
             'owners'               => $this->whenCounted('users'),
             'copies'               => (int) ($this->copies ?? 0),

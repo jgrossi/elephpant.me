@@ -28,6 +28,7 @@ class Elephpant extends Model
         'description',
         'sponsor',
         'year',
+        'color',
         'image',
     ];
 

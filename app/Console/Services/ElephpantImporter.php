@@ -27,6 +27,7 @@ class ElephpantImporter
                         'description' => $elephpant->description,
                         'sponsor'     => $elephpant->sponsor,
                         'year'        => (int) $elephpant->year,
+                        'color'       => $elephpant->color,
                         'image'       => $this->processImage($elephpant),
                     ]
                 );

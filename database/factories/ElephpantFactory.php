@@ -17,6 +17,7 @@ class ElephpantFactory extends Factory
             'name'        => $this->faker->firstName,
             'description' => $this->faker->sentence,
             'year'        => (int) $this->faker->dateTimeBetween('-12 years', 'now')->format('Y'),
+            'color'       => $this->faker->colorName,
             'sponsor'     => $this->faker->company,
             'image'       => $this->faker->imageUrl(),
         ];

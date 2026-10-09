@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use App\Elephpant;
+use App\Format;
 use App\Queries\ElephpantsQuery;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Defer;
 use Livewire\Component;
 
@@ -17,6 +19,13 @@ use Livewire\Component;
  * @property-read int $collectedSpecies
  * @property-read int $catalogTotal
  * @property-read bool $isCatalogPreview
+ * @property-read array<int, string> $availableYears
+ * @property-read array<int, string> $availableColors
+ * @property-read array<string, string> $availableSizes
+ * @property-read array<string, string> $availableOwnership
+ * @property-read int $activeFilterCount
+ * @property-read Collection<int|string, Collection<int, Elephpant>> $searchedElephpantsGrouped
+ * @property-read array<string, array<string, int>> $facetCounts
  */
 #[Defer]
 class SpeciesSearch extends Component
@@ -26,6 +35,9 @@ class SpeciesSearch extends Component
     /** @var 'catalog'|'herd' */
     public string $mode = 'catalog';
 
+    /** @var array<int, 'years'|'colors'|'sizes'|'ownership'> */
+    private const array FILTERS = ['years', 'colors', 'sizes', 'ownership'];
+
     public ?int $limit = null;
 
     /** @var array<int, int>|null */
@@ -33,7 +45,25 @@ class SpeciesSearch extends Component
 
     public ?int $totalSpecies = null;
 
-    protected $queryString = ['q' => ['except' => '']];
+    /** @var array<int, string> */
+    public array $years = [];
+
+    /** @var array<int, string> */
+    public array $colors = [];
+
+    /** @var array<int, string> */
+    public array $sizes = [];
+
+    /** @var array<int, 'owned'|'not-owned'> */
+    public array $ownership = [];
+
+    protected $queryString = [
+        'q'         => ['except' => ''],
+        'years'     => ['except' => []],
+        'colors'    => ['except' => []],
+        'sizes'     => ['except' => []],
+        'ownership' => ['except' => []],
+    ];
 
     public function mount(string $mode = 'catalog', ?int $limit = null, ?array $userElephpants = null, ?int $totalSpecies = null): void
     {
@@ -80,7 +110,12 @@ class SpeciesSearch extends Component
         return $query->get();
     }
 
-    public function getFilteredElephpantsGroupedProperty(): Collection
+    /**
+     * Herd elePHPants matching the search box, before the dropdown filters are applied.
+     * Memoized per request because the underlying query is expensive.
+     */
+    #[Computed]
+    public function searchedElephpantsGrouped(): Collection
     {
         if ($this->mode !== 'herd' || !Auth::check()) {
             return collect();
@@ -97,6 +132,126 @@ class SpeciesSearch extends Component
         }
 
         return $elephpants;
+    }
+
+    public function getFilteredElephpantsGroupedProperty(): Collection
+    {
+        $elephpants = $this->searchedElephpantsGrouped;
+
+        if ($this->activeFilterCount > 0) {
+            $quantities = $this->userElephpantQuantities();
+            $elephpants = $elephpants->map(fn ($group) => $group->filter(fn (Elephpant $elephpant): bool => $this->matchesFilters($elephpant, $quantities))->values())->filter->isNotEmpty();
+        }
+
+        return $elephpants;
+    }
+
+    /**
+     * For each filter, how many elePHPants each option would match given the search and every other filter.
+     *
+     * @return array<string, array<string, int>>
+     */
+    public function getFacetCountsProperty(): array
+    {
+        $quantities = $this->userElephpantQuantities();
+        $elephpants = $this->searchedElephpantsGrouped->flatten(1);
+        $counts = array_fill_keys(self::FILTERS, []);
+
+        foreach (self::FILTERS as $filter) {
+            foreach ($elephpants as $elephpant) {
+                if ($this->matchesFilters($elephpant, $quantities, except: $filter)) {
+                    $value = $this->filterValue($elephpant, $filter, $quantities);
+                    $counts[$filter][$value] = ($counts[$filter][$value] ?? 0) + 1;
+                }
+            }
+        }
+
+        return $counts;
+    }
+
+    /**
+     * @param array<int, int>                           $quantities
+     * @param 'years'|'colors'|'sizes'|'ownership'|null $except
+     */
+    private function matchesFilters(Elephpant $elephpant, array $quantities, ?string $except = null): bool
+    {
+        foreach (self::FILTERS as $filter) {
+            if ($filter === $except) {
+                continue;
+            }
+
+            if ($this->{$filter} === []) {
+                continue;
+            }
+
+            if (!in_array($this->filterValue($elephpant, $filter, $quantities), array_map(strval(...), $this->{$filter}), true)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @param 'years'|'colors'|'sizes'|'ownership' $filter
+     * @param array<int, int>                      $quantities
+     */
+    private function filterValue(Elephpant $elephpant, string $filter, array $quantities): string
+    {
+        return match ($filter) {
+            'years'     => (string) $elephpant->year,
+            'colors'    => (string) $elephpant->color,
+            'sizes'     => $elephpant->format->value,
+            'ownership' => ($quantities[$elephpant->id] ?? 0) > 0 ? 'owned' : 'not-owned',
+        };
+    }
+
+    /** @return array<int, string> */
+    public function getAvailableYearsProperty(): array
+    {
+        return Elephpant::query()
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year')
+            ->map(fn ($year): string => (string) $year)
+            ->all();
+    }
+
+    /** @return array<int, string> */
+    public function getAvailableColorsProperty(): array
+    {
+        return Elephpant::query()
+            ->distinct()
+            ->orderBy('color')
+            ->pluck('color')
+            ->all();
+    }
+
+    /** @return array<string, string> */
+    public function getAvailableSizesProperty(): array
+    {
+        return collect(Format::cases())
+            ->mapWithKeys(fn (Format $format): array => [$format->value => ucfirst($format->value)])
+            ->all();
+    }
+
+    /** @return array<string, string> */
+    public function getAvailableOwnershipProperty(): array
+    {
+        return [
+            'owned'     => 'Owned',
+            'not-owned' => 'Not owned',
+        ];
+    }
+
+    public function getActiveFilterCountProperty(): int
+    {
+        return count($this->years) + count($this->colors) + count($this->sizes) + count($this->ownership);
+    }
+
+    public function clearFilters(): void
+    {
+        $this->reset('years', 'colors', 'sizes', 'ownership');
     }
 
     public function incrementQuantity(int $elephpantId): void
@@ -243,6 +398,14 @@ class SpeciesSearch extends Component
             'isCatalogPreview'   => $this->isCatalogPreview,
             'totalSpecies'       => $this->mode === 'herd' ? ($this->totalSpecies ?? Elephpant::count()) : 0,
             'collectedSpecies'   => $this->collectedSpecies,
+            'facetCounts'        => $this->mode === 'herd' ? $this->facetCounts : [],
+            'filterOptions'      => $this->mode === 'herd' ? [
+                'years'     => ['label' => 'Year', 'options' => array_combine($this->availableYears, $this->availableYears)],
+                'colors'    => ['label' => 'Color', 'options' => array_combine($this->availableColors, $this->availableColors)],
+                'sizes'     => ['label' => 'Size', 'options' => $this->availableSizes],
+                'ownership' => ['label' => 'Owned', 'options' => $this->availableOwnership],
+            ] : [],
+            'activeFilterCount'  => $this->activeFilterCount,
         ]);
     }
 }

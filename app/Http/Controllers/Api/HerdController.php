@@ -54,6 +54,7 @@ class HerdController extends Controller
                 'description' => $elephpant->description,
                 'sponsor'     => $elephpant->sponsor,
                 'year'        => $elephpant->year,
+                'color'       => $elephpant->color,
                 'image_url'   => $elephpant->image ? asset('storage/elephpants/'.$elephpant->image) : null,
                 'quantity'    => $elephpant->pivot->quantity,
             ])

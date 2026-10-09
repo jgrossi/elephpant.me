@@ -26,6 +26,9 @@
                     "year": {
                         "type": "integer"
                     },
+                    "color": {
+                        "type": "string"
+                    },
                     "image": {
                         "type": "string"
                     }
@@ -36,7 +39,8 @@
                     "format",
                     "description",
                     "sponsor",
-                    "year"
+                    "year",
+                    "color"
                 ]
             }
         }

@@ -18,6 +18,12 @@ class ElephpantImporter
     public function import(): void
     {
         foreach ($this->elephpants as $elephpant) {
+            foreach ($elephpant as $property => $value) {
+                if (empty($value)) {
+                    throw new \LogicException(sprintf('Property %s must not be empty', $property) . (isset($elephpant->id) ? ' on ' . $elephpant->id : ''));
+                }
+            }
+
             Elephpant::query()
                 ->updateOrCreate(
                     ['id' => (int) $elephpant->id],
@@ -27,6 +33,7 @@ class ElephpantImporter
                         'description' => $elephpant->description,
                         'sponsor'     => $elephpant->sponsor,
                         'year'        => (int) $elephpant->year,
+                        'color'       => $elephpant->color,
                         'image'       => $this->processImage($elephpant),
                     ]
                 );

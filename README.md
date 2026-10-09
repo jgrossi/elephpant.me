@@ -143,6 +143,12 @@ CI generates the spec with Scribe, then validates it with [Redocly](https://redo
 
 ---
 
+### Contributing
+
+Interested in contributing? See [CONTRIBUTING.md](CONTRIBUTING.md) for the development and testing workflow.
+
+---
+
 ### Maintainers
 Junior Grossi – [@junior_grossi](https://x.com/junior_grossi)  
 Igor Duarte – [@Igor Duarte](https://www.linkedin.com/in/igorduartedev/)  

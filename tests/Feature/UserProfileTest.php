@@ -124,3 +124,43 @@ test('compact and standard profiles both render configured social links', functi
         expect(socialProfileLinks($xpath)->length)->toBe(3);
     }
 });
+
+test('github account renders alongside the other social links', function (): void {
+    $user = User::factory()->make([
+        'x_handle' => 'kj_dev',
+        'mastodon' => '@kj@phpc.social',
+        'bluesky' => '@kj.bsky.social',
+        'github' => '@kj-dev',
+    ]);
+    $xpath = profileXPath(renderUserProfile($user));
+    $github = $xpath->query('//*[@data-social-links]//a[@aria-label="GitHub"]');
+
+    expect(socialProfileLinks($xpath)->length)->toBe(4)
+        ->and($github->length)->toBe(1)
+        ->and($github->item(0)->getAttribute('href'))->toBe('https://github.com/kj-dev')
+        ->and($github->item(0)->getAttribute('target'))->toBe('_blank')
+        ->and($github->item(0)->getAttribute('rel'))->toBe('noopener noreferrer')
+        ->and($xpath->query('//*[@data-social-links]//svg[@aria-hidden="true"]')->length)->toBe(4);
+});
+
+test('only github renders when it is the single configured link', function (): void {
+    $user = User::factory()->make([
+        'x_handle' => null,
+        'mastodon' => null,
+        'bluesky' => null,
+        'github' => 'octocat',
+    ]);
+    $xpath = profileXPath(renderUserProfile($user));
+    $links = socialProfileLinks($xpath);
+
+    expect($links->length)->toBe(1)
+        ->and($links->item(0)->getAttribute('aria-label'))->toBe('GitHub')
+        ->and($links->item(0)->getAttribute('href'))->toBe('https://github.com/octocat');
+});
+
+test('profile without a github username renders no github link', function (): void {
+    $user = User::factory()->make(['github' => null]);
+    $xpath = profileXPath(renderUserProfile($user));
+
+    expect($xpath->query('//a[@aria-label="GitHub"]')->length)->toBe(0);
+});

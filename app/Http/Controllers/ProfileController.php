@@ -29,7 +29,7 @@ class ProfileController extends Controller
         }
 
         if ($section === 'public_profile') {
-            $user->fill($request->only('x_handle', 'mastodon', 'bluesky'));
+            $user->fill($request->only('x_handle', 'mastodon', 'bluesky', 'github'));
         }
 
         $user->save();

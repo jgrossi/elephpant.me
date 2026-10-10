@@ -27,7 +27,7 @@ class User extends Authenticatable
 
     #[\Override]
     protected $fillable = [
-        'name', 'email', 'password', 'country_code', 'x_handle', 'username', 'mastodon', 'bluesky',
+        'name', 'email', 'password', 'country_code', 'x_handle', 'username', 'mastodon', 'bluesky', 'github',
     ];
 
     #[\Override]
@@ -213,6 +213,18 @@ class User extends Authenticatable
         }
 
         return 'https://bsky.app/profile/'.ltrim($this->bluesky, '@');
+    }
+
+    /**
+     * Build the profile URL for the user's GitHub username.
+     */
+    public function githubUrl(): ?string
+    {
+        if (! $this->github) {
+            return null;
+        }
+
+        return 'https://github.com/'.ltrim($this->github, '@');
     }
 
     public static function generateUsername(User $user): string

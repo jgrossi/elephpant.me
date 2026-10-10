@@ -17,6 +17,7 @@ use Livewire\Component;
  * @property-read array<int, array{type: string, count: int}> $tradePossibilities
  * @property-read int $speciesCount
  * @property-read int $collectedSpecies
+ * @property-read array{collected: int, total: int} $filteredHerdProgress
  * @property-read int $catalogTotal
  * @property-read bool $isCatalogPreview
  * @property-read array<int, string> $availableYears
@@ -327,6 +328,22 @@ class SpeciesSearch extends Component
         return $this->filteredElephpantsGrouped->flatten()->unique('id')->count();
     }
 
+    /**
+     * The herd species that match the search and filters, and how many of them the user owns.
+     *
+     * @return array{collected: int, total: int}
+     */
+    public function getFilteredHerdProgressProperty(): array
+    {
+        $matchingElephpants = $this->filteredElephpantsGrouped->flatten()->unique('id');
+        $quantities = $this->userElephpantQuantities();
+
+        return [
+            'collected' => $matchingElephpants->filter(fn (Elephpant $elephpant): bool => ($quantities[$elephpant->id] ?? 0) > 0)->count(),
+            'total'     => $matchingElephpants->count(),
+        ];
+    }
+
     public function getCollectedSpeciesProperty(): int
     {
         if ($this->mode !== 'herd') {
@@ -398,6 +415,7 @@ class SpeciesSearch extends Component
             'isCatalogPreview'   => $this->isCatalogPreview,
             'totalSpecies'       => $this->mode === 'herd' ? ($this->totalSpecies ?? Elephpant::count()) : 0,
             'collectedSpecies'   => $this->collectedSpecies,
+            'filteredHerdProgress' => $this->mode === 'herd' ? $this->filteredHerdProgress : ['collected' => 0, 'total' => 0],
             'facetCounts'        => $this->mode === 'herd' ? $this->facetCounts : [],
             'filterOptions'      => $this->mode === 'herd' ? [
                 'years'     => ['label' => 'Year', 'options' => array_combine($this->availableYears, $this->availableYears)],

@@ -89,3 +89,42 @@ test('public herd collection does not show a private notice for a public herd', 
         ->render())
         ->not->toContain('Your herd is private');
 });
+
+test('guests do not see a compare to mine button on a herd page', function (): void {
+    $user = User::factory()->create(['is_public' => true]);
+
+    $this->get(route('herds.show', $user->username))
+        ->assertOk()
+        ->assertDontSee('Compare to my herd');
+});
+
+test('authenticated users see a compare to mine button on someone else\'s herd page', function (): void {
+    $user = User::factory()->create(['is_public' => true]);
+    $viewer = User::factory()->create();
+
+    $html = $this->actingAs($viewer)
+        ->get(route('herds.show', $user->username))
+        ->assertOk()
+        ->getContent();
+
+    expect($html)->toContain('Compare to my herd')
+        ->toContain(route('herds.compare', [$user->username, $viewer->username]));
+});
+
+test('authenticated users do not see a compare to mine button on their own herd page', function (): void {
+    $user = User::factory()->create(['is_public' => true]);
+
+    $this->actingAs($user)
+        ->get(route('herds.show', $user->username))
+        ->assertOk()
+        ->assertDontSee('Compare to my herd');
+});
+
+test('clicking the compare to mine button leads to a working comparison page', function (): void {
+    $user = User::factory()->create(['is_public' => true]);
+    $viewer = User::factory()->create();
+
+    $this->actingAs($viewer)
+        ->get(route('herds.compare', [$user->username, $viewer->username]))
+        ->assertOk();
+});

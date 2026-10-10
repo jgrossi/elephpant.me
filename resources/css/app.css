@@ -102,6 +102,20 @@
     flex: 1 1 0% !important;
 }
 
+/* Flux's sortable column header is a native <button>, which browsers render with a default
+   (non-pointer) cursor unless told otherwise. Also keep the sort icon visible and oriented
+   for whichever column our client-side sort last applied, since there's no server-rendered
+   sort state on this page to drive Flux's own :sorted/:direction props. */
+[data-flux-table-sortable] {
+    cursor: pointer;
+}
+[data-flux-table-sortable][data-direction] > div:last-child {
+    opacity: 1;
+}
+[data-flux-table-sortable][data-direction="asc"] > div:last-child svg {
+    transform: rotate(180deg);
+}
+
 /* Ranking table: center Unique, Double, Total, Updated column headers */
 .ranking-table [data-flux-columns] th:nth-child(4),
 .ranking-table [data-flux-columns] th:nth-child(5),

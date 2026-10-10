@@ -336,3 +336,25 @@ test('species search disables filter options with no matches unless selected', f
         ->and($checkbox('2023'))->toContain('2023 (0)')->toContain('disabled="disabled"')
         ->and($checkbox('2024'))->toContain('2024 (0)')->toContain('disabled="disabled"');
 });
+
+test('herd species found counts follow the filters', function (): void {
+    $user = User::factory()->create();
+    $ownedIn2024 = Elephpant::factory()->create(['year' => 2024]);
+    Elephpant::factory()->create(['year' => 2024]);
+    $ownedIn2023 = Elephpant::factory()->create(['year' => 2023]);
+    $this->actingAs($user);
+
+    $component = Livewire::withoutLazyLoading()->test(SpeciesSearch::class, [
+        'mode'           => 'herd',
+        'userElephpants' => [$ownedIn2024->id => 1, $ownedIn2023->id => 1],
+        'totalSpecies'   => 3,
+    ]);
+    $html = fn (): string => $component->html();
+
+    expect($html())->toContain('Species Found: 2 of 3');
+
+    $component->set('years', ['2024']);
+
+    expect($html())->toContain('Species Found: 1 of 2')
+        ->and($html())->not->toContain('Species Found: 2 of 3');
+});

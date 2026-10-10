@@ -1,7 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-6xl mx-auto space-y-6">
+    <div
+        class="max-w-6xl mx-auto space-y-6"
+        x-data="{
+            lightboxImage: '',
+            lightboxCaption: '',
+            openLightbox(image, caption) {
+                this.lightboxImage = image;
+                this.lightboxCaption = caption;
+                $dispatch('modal-show', { name: 'elephpant-image' });
+            },
+        }"
+    >
         <div class="flex flex-col sm:flex-row items-stretch justify-center gap-4 py-6 md:py-8">
             <div class="flex-1 min-w-0 flex justify-center">
                 <x-user-profile :user="$user0" :countries="$countries" />
@@ -17,7 +28,7 @@
         </div>
 
         <flux:table>
-            <flux:table.columns sticky class="sticky top-0 bg-white dark:bg-zinc-900 z-10">
+            <flux:table.columns sticky class="sticky top-0 bg-zinc-50 dark:bg-zinc-900 z-10">
                 <flux:table.column sticky>Image</flux:table.column>
                 <flux:table.column sortable>Sponsor</flux:table.column>
                 <flux:table.column sortable>Name</flux:table.column>
@@ -34,7 +45,7 @@
                     $user1Quantity = (int) ($user1->elephpants->firstWhere('id', $elephpant->id)?->pivot->quantity ?? 0);
                 @endphp
                 <flux:table.row :key="$elephpant->id">
-                    <flux:table.cell sticky class="bg-white dark:bg-zinc-900">
+                    <flux:table.cell sticky class="bg-zinc-50 dark:bg-zinc-900">
                         <button
                             type="button"
                             class="block overflow-hidden rounded border border-zinc-200 dark:border-zinc-700 cursor-zoom-in transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
@@ -42,6 +53,7 @@
                             data-image="{{ asset('storage/elephpants/'.$elephpant->image) }}"
                             data-alt="{{ $elephpant->name.' – '.$elephpant->description }}"
                             aria-label="{{ __('View larger image of :name', ['name' => $elephpant->name]) }}"
+                            @click="openLightbox($el.dataset.image, $el.dataset.alt)"
                         >
                             <img
                                 src="{{ asset('storage/elephpants/'.$elephpant->image) }}"
@@ -65,14 +77,17 @@
             </tbody>
         </flux:table>
 
-        <flux:modal name="elephpant-image" variant="bare" :closable="true" class="w-full max-w-lg">
+        <flux:modal name="elephpant-image" class="w-full max-w-lg">
+            <flux:heading size="lg" class="sr-only">{{ __('Elephpant image') }}</flux:heading>
             <img
                 id="elephpant-lightbox-image"
                 src=""
                 alt=""
-                class="mx-auto h-auto max-h-[75vh] w-auto max-w-full rounded-lg object-contain shadow-xl"
+                class="mx-auto h-auto max-h-[75vh] w-auto max-w-full rounded-lg object-contain"
+                x-bind:src="lightboxImage"
+                x-bind:alt="lightboxCaption"
             >
-            <p id="elephpant-lightbox-caption" class="mt-3 text-center text-sm text-white/90"></p>
+            <flux:text class="mt-3 text-center text-sm text-zinc-600 dark:text-zinc-400" x-text="lightboxCaption"></flux:text>
         </flux:modal>
     </div>
 @endsection

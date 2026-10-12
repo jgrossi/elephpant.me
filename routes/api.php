@@ -21,7 +21,7 @@ use App\Http\Controllers\Api\TokenController;
 
 Route::post('/tokens', [TokenController::class, 'store'])->middleware('throttle:5,1')->name('api.tokens.store');
 
-Route::middleware('auth:sanctum')->group(function (): void {
+Route::middleware(['throttle:api', 'auth:sanctum'])->group(function (): void {
     Route::get('/me/herd', [HerdController::class, 'me'])->name('api.me.herd.show');
     Route::put('/me/herd/{elephpant}', [AdoptionController::class, 'update'])->name('api.me.herd.update');
     Route::get('/messages', [MessageController::class, 'index'])->name('api.messages.index');

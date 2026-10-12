@@ -136,3 +136,11 @@ test('message to an unknown username returns 404', function (): void {
     $this->postJson(route('api.messages.store', ['username' => 'nobody']), ['message' => 'Hi'])
         ->assertNotFound();
 });
+
+test('authenticated endpoints share the api rate limit', function (): void {
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->getJson(route('api.me.herd.show'))
+        ->assertOk()
+        ->assertHeader('X-RateLimit-Limit', (string) config('api.rate_limit'));
+});

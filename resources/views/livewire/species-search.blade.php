@@ -6,8 +6,8 @@
                 size="sm"
                 icon="magnifying-glass"
                 wire:model.live.debounce.300ms="q"
-                placeholder="Search species"
-                aria-label="Search species"
+                placeholder="Search for ElePHPants"
+                aria-label="Search for ElePHPants"
                 class="w-full sm:w-56 sm:flex-none"
             />
             @foreach($filterOptions as $property => $filter)
@@ -44,11 +44,11 @@
             @if($totalSpecies > 0)
                 <div class="flex w-full lg:w-auto lg:flex-1 items-center justify-end gap-3 mt-2 lg:mt-0">
                     <flux:progress
-                        :value="round(($collectedSpecies / $totalSpecies) * 100)"
+                        :value="$filteredHerdProgress['total'] > 0 ? round(($filteredHerdProgress['collected'] / $filteredHerdProgress['total']) * 100) : 0"
                         max="100"
                         class="h-2 flex-1 min-w-12 lg:max-w-40"
                     />
-                    <flux:text class="text-sm text-zinc-600 dark:text-zinc-400 tabular-nums shrink-0">Species Found: {{ $collectedSpecies }} of {{ $totalSpecies }}</flux:text>
+                    <flux:text class="text-sm text-zinc-600 dark:text-zinc-400 tabular-nums shrink-0">Species Found: {{ $filteredHerdProgress['collected'] }} of {{ $filteredHerdProgress['total'] }}</flux:text>
                 </div>
             @endif
         </div>
@@ -56,8 +56,9 @@
         <div class="flex flex-nowrap items-center gap-3 mb-6">
             <flux:input
                 type="text"
+                icon="magnifying-glass"
                 wire:model.live.debounce.300ms="q"
-                placeholder="Search for Elephpants"
+                placeholder="Search for ElePHPants"
                 class="min-w-[180px] flex-1 max-w-md"
             />
             <flux:text class="font-medium shrink-0 whitespace-nowrap ml-auto">

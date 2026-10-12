@@ -21,11 +21,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/herd/{username}', [HerdController::class, 'show'])->name('api.herds.show');
+Route::middleware('throttle:api')->group(function (): void {
+    Route::get('/herd/{username}', [HerdController::class, 'show'])->name('api.herds.show');
 
-Route::get('/elephpants', [ElephpantController::class, 'index'])->name('api.elephpants.index');
-Route::get('/elephpants/{elephpant}', [ElephpantController::class, 'show'])->name('api.elephpants.show');
+    Route::get('/elephpants', [ElephpantController::class, 'index'])->name('api.elephpants.index');
+    Route::get('/elephpants/{elephpant}', [ElephpantController::class, 'show'])->name('api.elephpants.show');
 
-Route::get('/ranking', [RankingController::class, 'index'])->name('api.ranking.index');
+    Route::get('/ranking', [RankingController::class, 'index'])->name('api.ranking.index');
 
-Route::get('/countries', [CountryController::class, 'index'])->name('api.countries.index');
+    Route::get('/countries', [CountryController::class, 'index'])->name('api.countries.index');
+});

@@ -8,10 +8,24 @@ use App\Mail\UserMessage;
 use App\Message;
 use App\User;
 use Illuminate\Support\Facades\Mail;
+use Knuckles\Scribe\Attributes\BodyParam;
+use Knuckles\Scribe\Attributes\Endpoint;
+use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\Response;
 use App\Queries\MessagesQuery;
 
 class MessageController extends Controller
 {
+    #[Group('Messages', 'Messages between collectors, such as trade requests.')]
+    #[Endpoint(
+        title: 'Send a message',
+        description: 'Sends a message, such as a trade request, to another collector. They also get it by email. Limited to 10 messages per minute.',
+        authenticated: true,
+    )]
+    #[BodyParam('receiver_id', 'integer', 'User ID of the collector to message.', example: 2)]
+    #[BodyParam('message', 'string', 'The message.', example: 'Hi! Want to trade spares?')]
+    #[Response(status: 204, description: 'Message sent.')]
+    #[Response(content: ['message' => 'Unauthenticated.'], status: 401, description: 'Missing or invalid token.')]
     public function store(MessageRequest $request)
     {
         $data = $request->only(['message', 'receiver_id']);

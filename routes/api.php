@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\ElephpantController;
 use App\Http\Controllers\Api\HerdController;
 use App\Http\Controllers\Api\RankingController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\TokenController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/tokens', [TokenController::class, 'store'])->middleware('throttle:5,1')->name('api.tokens.store');
+
+Route::middleware('auth:sanctum')->group(function (): void {
+    Route::get('/me/herd', [HerdController::class, 'me'])->name('api.me.herd.show');
+    Route::put('/me/herd/{elephpant}', [AdoptionController::class, 'update'])->name('api.me.herd.update');
+    Route::post('/messages', [MessageController::class, 'store'])->middleware('throttle:10,1')->name('api.messages.store');
 });
 
 Route::get('/herd/{username}', [HerdController::class, 'show'])->name('api.herds.show');

@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Elephpant;
+use App\Mail\UserMessage;
+use App\Message;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\Sanctum;
@@ -57,7 +59,9 @@ test('authenticated endpoints return 401 without a token', function (string $met
 })->with([
     'own herd'   => ['GET', 'api.me.herd.show', []],
     'set amount' => ['PUT', 'api.me.herd.update', ['elephpant' => 1]],
-    'message'    => ['POST', 'api.messages.store', []],
+    'messages'     => ['GET', 'api.messages.index', []],
+    'conversation' => ['GET', 'api.messages.show', ['username' => 'someone']],
+    'message'      => ['POST', 'api.messages.store', ['username' => 'someone']],
 ]);
 
 test('own herd is returned also when private', function (): void {
@@ -89,14 +93,46 @@ test('message can be sent', function (): void {
     $receiver = User::factory()->create();
     Sanctum::actingAs($sender);
 
-    $this->postJson(route('api.messages.store'), [
-        'receiver_id' => $receiver->id,
-        'message'     => 'Want to trade?',
+    $this->postJson(route('api.messages.store', ['username' => $receiver->username]), [
+        'message' => 'Want to trade?',
     ])->assertNoContent();
+
+    Mail::assertQueued(UserMessage::class);
 
     $this->assertDatabaseHas('messages', [
         'sender_id'   => $sender->id,
         'receiver_id' => $receiver->id,
         'message'     => 'Want to trade?',
     ]);
+});
+
+test('conversations and a conversation can be read', function (): void {
+    $me = User::factory()->create();
+    $other = User::factory()->create();
+    $stranger = User::factory()->create();
+    Message::query()->create(['sender_id' => $other->id, 'receiver_id' => $me->id, 'message' => 'Trade?']);
+    Message::query()->create(['sender_id' => $me->id, 'receiver_id' => $other->id, 'message' => 'Sure!']);
+    Message::query()->create(['sender_id' => $stranger->id, 'receiver_id' => $other->id, 'message' => 'Not for me']);
+    Sanctum::actingAs($me);
+
+    $this->getJson(route('api.messages.index'))
+        ->assertOk()
+        ->assertJsonCount(1, 'data')
+        ->assertJsonPath('data.0.user.username', $other->username)
+        ->assertJsonPath('data.0.message_count', 2)
+        ->assertJsonPath('data.0.latest_message.message', 'Sure!');
+
+    $this->getJson(route('api.messages.show', ['username' => $other->username]))
+        ->assertOk()
+        ->assertJsonPath('user.username', $other->username)
+        ->assertJsonCount(2, 'messages')
+        ->assertJsonPath('messages.0.from', $other->username)
+        ->assertJsonPath('messages.1.message', 'Sure!');
+});
+
+test('message to an unknown username returns 404', function (): void {
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->postJson(route('api.messages.store', ['username' => 'nobody']), ['message' => 'Hi'])
+        ->assertNotFound();
 });

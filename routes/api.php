@@ -4,9 +4,9 @@ use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\ElephpantController;
 use App\Http\Controllers\Api\HerdController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\RankingController;
 use App\Http\Controllers\Api\TokenController;
-use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,9 @@ Route::post('/tokens', [TokenController::class, 'store'])->middleware('throttle:
 Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/me/herd', [HerdController::class, 'me'])->name('api.me.herd.show');
     Route::put('/me/herd/{elephpant}', [AdoptionController::class, 'update'])->name('api.me.herd.update');
-    Route::post('/messages', [MessageController::class, 'store'])->middleware('throttle:10,1')->name('api.messages.store');
+    Route::get('/messages', [MessageController::class, 'index'])->name('api.messages.index');
+    Route::get('/messages/{username}', [MessageController::class, 'show'])->name('api.messages.show');
+    Route::post('/messages/{username}', [MessageController::class, 'store'])->middleware('throttle:10,1')->name('api.messages.store');
 });
 
 Route::get('/herd/{username}', [HerdController::class, 'show'])->name('api.herds.show');

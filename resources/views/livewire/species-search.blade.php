@@ -44,11 +44,11 @@
             @if($totalSpecies > 0)
                 <div class="flex w-full lg:w-auto lg:flex-1 items-center justify-end gap-3 mt-2 lg:mt-0">
                     <flux:progress
-                        :value="round(($collectedSpecies / $totalSpecies) * 100)"
+                        :value="$filteredHerdProgress['total'] > 0 ? round(($filteredHerdProgress['collected'] / $filteredHerdProgress['total']) * 100) : 0"
                         max="100"
                         class="h-2 flex-1 min-w-12 lg:max-w-40"
                     />
-                    <flux:text class="text-sm text-zinc-600 dark:text-zinc-400 tabular-nums shrink-0">Species Found: {{ $collectedSpecies }} of {{ $totalSpecies }}</flux:text>
+                    <flux:text class="text-sm text-zinc-600 dark:text-zinc-400 tabular-nums shrink-0">Species Found: {{ $filteredHerdProgress['collected'] }} of {{ $filteredHerdProgress['total'] }}</flux:text>
                 </div>
             @endif
         </div>

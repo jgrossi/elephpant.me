@@ -6,8 +6,8 @@
                 size="sm"
                 icon="magnifying-glass"
                 wire:model.live.debounce.300ms="q"
-                placeholder="Search species"
-                aria-label="Search species"
+                placeholder="Search for ElePHPants"
+                aria-label="Search for ElePHPants"
                 class="w-full sm:w-56 sm:flex-none"
             />
             @foreach($filterOptions as $property => $filter)
@@ -56,8 +56,9 @@
         <div class="flex flex-nowrap items-center gap-3 mb-6">
             <flux:input
                 type="text"
+                icon="magnifying-glass"
                 wire:model.live.debounce.300ms="q"
-                placeholder="Search for Elephpants"
+                placeholder="Search for ElePHPants"
                 class="min-w-[180px] flex-1 max-w-md"
             />
             <flux:text class="font-medium shrink-0 whitespace-nowrap ml-auto">

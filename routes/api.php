@@ -24,7 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // etag answers a repeated read with 304 and no body. Endpoints that also know when
 // their subject last changed set Last-Modified themselves, which the same middleware
 // honours, so a caller can use either header.
-Route::middleware('cache.headers:etag')->group(function (): void {
+Route::middleware(['throttle:api', 'cache.headers:etag'])->group(function (): void {
     Route::get('/herd/{username}', [HerdController::class, 'show'])->name('api.herds.show');
 
     Route::get('/elephpants', [ElephpantController::class, 'index'])->name('api.elephpants.index');

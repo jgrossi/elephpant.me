@@ -5,6 +5,14 @@ on:
     branches:
       - master
 
+# Deploys queue, they do not cancel. update.sh puts the site into maintenance mode
+# before it arms the trap that brings it back up, and runs migrations part way
+# through, so killing one can leave the site down or a migration half applied.
+# Serialising still stops two deploys writing the same directory at once.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     # Only deploy from the canonical repo — not forks (e.g. after syncing master).

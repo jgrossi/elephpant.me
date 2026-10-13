@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Elephpant;
+use App\Format;
 use App\User;
 
 test('guests are redirected to login before accessing a herd comparison', function (): void {
@@ -211,4 +212,57 @@ test('compare page renders small thumbnails with a lightbox to view the full ima
         ->assertSee('data-elephpant-lightbox', false)
         ->assertSee('data-modal="elephpant-image"', false)
         ->assertSee('id="elephpant-lightbox-image"', false);
+});
+
+test('compare page passes year, color, and size filter options and per-elephpant values to the view', function (): void {
+    $user0 = User::factory()->create();
+    $user1 = User::factory()->create();
+
+    $blueSmall = Elephpant::factory()->create(['year' => 2019, 'color' => 'Blue', 'format' => Format::Small, 'image' => '1-original-blue.jpg']);
+    $redLarge = Elephpant::factory()->create(['year' => 2021, 'color' => 'Red', 'format' => Format::Large, 'image' => '1-original-blue.jpg']);
+    Elephpant::factory()->create(['year' => 2021, 'color' => '', 'format' => Format::Small, 'image' => '1-original-blue.jpg']);
+
+    $this->actingAs($user0)
+        ->get(route('herds.compare', [$user0->username, $user1->username]))
+        ->assertOk()
+        ->assertViewHas('filterOptions', [
+            'years'  => ['label' => 'Year', 'options' => ['2021' => '2021', '2019' => '2019']],
+            'colors' => ['label' => 'Color', 'options' => ['Blue' => 'Blue', 'Red' => 'Red']],
+            'sizes'  => ['label' => 'Size', 'options' => ['large' => 'Large', 'small' => 'Small']],
+        ])
+        ->assertViewHas('filterValues', fn (array $filterValues): bool => $filterValues[$blueSmall->id] === ['years' => '2019', 'colors' => 'Blue', 'sizes' => 'small']
+            && $filterValues[$redLarge->id] === ['years' => '2021', 'colors' => 'Red', 'sizes' => 'large']);
+});
+
+test('compare page renders filter dropdowns with initial match counts for each option', function (): void {
+    $user0 = User::factory()->create();
+    $user1 = User::factory()->create();
+
+    Elephpant::factory()->count(2)->create(['year' => 2019, 'color' => 'Blue', 'format' => Format::Small, 'image' => '1-original-blue.jpg']);
+    Elephpant::factory()->create(['year' => 2021, 'color' => 'Red', 'format' => Format::Large, 'image' => '1-original-blue.jpg']);
+
+    $html = $this->actingAs($user0)
+        ->get(route('herds.compare', [$user0->username, $user1->username]))
+        ->assertOk()
+        ->getContent();
+
+    expect($html)->toContain('x-model="filters.years"')
+        ->toContain('x-model="filters.colors"')
+        ->toContain('x-model="filters.sizes"')
+        ->toMatch('/2019 \(<span x-text="facetCounts\.years\[\'2019\'\] \?\? 0">2<\/span>\)/')
+        ->toMatch('/Red \(<span x-text="facetCounts\.colors\[\'Red\'\] \?\? 0">1<\/span>\)/')
+        ->toMatch('/Small \(<span x-text="facetCounts\.sizes\[\'small\'\] \?\? 0">2<\/span>\)/')
+        ->toContain('Clear filters');
+});
+
+test('compare table rows are shown or hidden client-side by the filters', function (): void {
+    $user0 = User::factory()->create();
+    $user1 = User::factory()->create();
+    $elephpant = Elephpant::factory()->create(['image' => '1-original-blue.jpg']);
+
+    $this->actingAs($user0)
+        ->get(route('herds.compare', [$user0->username, $user1->username]))
+        ->assertOk()
+        ->assertSee('x-show="matches('.$elephpant->id.')"', false)
+        ->assertSee('No species match your filters.');
 });

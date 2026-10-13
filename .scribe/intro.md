@@ -14,3 +14,6 @@ ISO 3166-1 alpha-3 (`DNK`, `GBR`, `BRA`).
 
 Be kind to the herd: cache what you fetch rather than re-reading the whole catalogue.
 
+Requests are limited to 120 per minute per IP.  Every response contains the
+`X-RateLimit-Limit` and `X-RateLimit-Remaining`.
+

@@ -1,5 +1,6 @@
 <?php
 
+use App\Docs\RateLimitDocumentation;
 use Knuckles\Scribe\Config\AuthIn;
 use Knuckles\Scribe\Config\Defaults;
 use Knuckles\Scribe\Extracting\Strategies;
@@ -186,7 +187,9 @@ return [
 
         // Additional generators to use when generating the OpenAPI spec.
         // Should extend `Knuckles\Scribe\Writing\OpenApiSpecGenerators\OpenApiGenerator`.
-        'generators' => [],
+        'generators' => [
+            RateLimitDocumentation::class,
+        ],
     ],
 
     'groups' => [

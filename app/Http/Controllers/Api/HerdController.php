@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Carbon\CarbonInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
 use Knuckles\Scribe\Attributes\Endpoint;
@@ -42,8 +43,8 @@ class HerdController extends Controller
         $elephpantsWithQuantity = $user->elephpantsWithQuantity()->toArray();
         $unique = count($elephpantsWithQuantity);
         $total = array_sum($elephpantsWithQuantity);
-        $lastUpdate = $user->elephpants()->max('elephpant_user.updated_at');
-        $updatedAt = $lastUpdate ? Carbon::parse($lastUpdate)->toIso8601String() : null;
+        $herdChangedAt = $user->elephpants()->max('elephpant_user.updated_at');
+        $herdChangedAt = $herdChangedAt ? Carbon::parse($herdChangedAt) : null;
 
         $elephpants = $user->elephpants
             ->sortBy('year')
@@ -70,13 +71,26 @@ class HerdController extends Controller
             'bluesky'    => $user->bluesky,
             'github'     => $user->github,
             'herd_url'   => route('herds.show', $user->username),
-            'updated_at' => $updatedAt,
+            'updated_at' => $herdChangedAt?->toIso8601String(),
             'stats'      => [
                 'total'  => $total,
                 'unique' => $unique,
                 'spare'  => $total - $unique,
             ],
             'elephpants' => $elephpants,
-        ]);
+        ])->setLastModified($this->lastModified($user, $herdChangedAt));
+    }
+
+    /**
+     * The newest of the two things this response is made of: the herd itself, and the
+     * profile around it. Taking only the herd would serve a stale 304 after a rename.
+     */
+    private function lastModified(User $user, ?CarbonInterface $herdChangedAt): CarbonInterface
+    {
+        $profileChangedAt = $user->updated_at ?? $herdChangedAt ?? Carbon::now();
+
+        return $herdChangedAt?->greaterThan($profileChangedAt)
+            ? $herdChangedAt
+            : $profileChangedAt;
     }
 }

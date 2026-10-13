@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use App\Elephpant;
+use App\Format;
 use App\Queries\TradingUsersQuery;
 use App\User;
 
@@ -83,9 +84,34 @@ class HerdController extends Controller
 
         return view('herd.compare', [
             'countries'  => Country::forDropdown([$user0->country_code, $user1->country_code]),
-            'elephpants' => $elephpants,
-            'user0'      => $user0,
-            'user1'      => $user1,
+            'elephpants'    => $elephpants,
+            'user0'         => $user0,
+            'user1'         => $user1,
+            'filterOptions' => $this->compareFilterOptions($elephpants),
+            'filterValues'  => $elephpants->mapWithKeys(fn (Elephpant $elephpant): array => [$elephpant->id => [
+                'years'  => (string) $elephpant->year,
+                'colors' => (string) $elephpant->color,
+                'sizes'  => $elephpant->format->value,
+            ]])->all(),
         ]);
+    }
+
+    /**
+     * @param \Illuminate\Support\Collection<int, Elephpant> $elephpants
+     *
+     * @return array<'years'|'colors'|'sizes', array{label: string, options: array<string, string>}>
+     */
+    private function compareFilterOptions(\Illuminate\Support\Collection $elephpants): array
+    {
+        $years = $elephpants->pluck('year')->map(fn ($year): string => (string) $year)->unique()->sortDesc()->values()->all();
+        $colors = $elephpants->pluck('color')->filter()->unique()->sort()->values()->all();
+
+        return [
+            'years'  => ['label' => 'Year', 'options' => array_combine($years, $years)],
+            'colors' => ['label' => 'Color', 'options' => array_combine($colors, $colors)],
+            'sizes'  => ['label' => 'Size', 'options' => collect(Format::cases())
+                ->mapWithKeys(fn (Format $format): array => [$format->value => ucfirst($format->value)])
+                ->all()],
+        ];
     }
 }

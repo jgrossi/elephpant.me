@@ -6,8 +6,9 @@ A free, public JSON API for the PHP community.
     <strong>Base URL</strong>: <code>https://www.elephpant.me</code>
 </aside>
 
-Everything here is public, read-only and needs no API key. Herds marked private by their
-owner are excluded from every endpoint.
+Reading is public and needs no API key. Herds marked private by their owner are excluded
+from every public endpoint. Endpoints that change your own herd or send messages need a
+token, see Authenticating requests.
 
 The machine-readable spec lives at [/docs.openapi](/docs.openapi). Country codes are
 ISO 3166-1 alpha-3 (`DNK`, `GBR`, `BRA`).

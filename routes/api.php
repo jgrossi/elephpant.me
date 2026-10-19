@@ -6,7 +6,6 @@ use App\Http\Controllers\Api\ElephpantController;
 use App\Http\Controllers\Api\HerdController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\RankingController;
-use App\Http\Controllers\Api\TokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +17,6 @@ use App\Http\Controllers\Api\TokenController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::post('/tokens', [TokenController::class, 'store'])->middleware('throttle:5,1')->name('api.tokens.store');
 
 Route::middleware(['throttle:api', 'auth:sanctum'])->group(function (): void {
     Route::get('/me/herd', [HerdController::class, 'me'])->name('api.me.herd.show');

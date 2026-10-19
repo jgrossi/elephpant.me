@@ -14,44 +14,14 @@ beforeEach(function (): void {
     config(['cache.limiter' => 'array']);
 });
 
-test('token is created with valid credentials', function (): void {
-    $user = User::factory()->create(['password' => bcrypt('secret-password')]);
+test('a bearer token authenticates the api', function (): void {
+    $user = User::factory()->create();
+    $token = $user->createToken('test')->plainTextToken;
 
-    $response = $this->postJson(route('api.tokens.store'), [
-        'username'    => $user->username,
-        'password'    => 'secret-password',
-        'device_name' => 'test',
-    ]);
-
-    $response->assertCreated()->assertJsonStructure(['token']);
-
-    $this->withToken($response->json('token'))
+    $this->withToken($token)
         ->getJson(route('api.me.herd.show'))
         ->assertOk()
         ->assertJsonPath('username', $user->username);
-});
-
-test('token is refused with wrong password', function (): void {
-    $user = User::factory()->create(['password' => bcrypt('secret-password')]);
-
-    $this->postJson(route('api.tokens.store'), [
-        'username'    => $user->username,
-        'password'    => 'wrong',
-        'device_name' => 'test',
-    ])->assertUnprocessable()->assertJsonValidationErrors('username');
-
-    expect($user->tokens()->count())->toBe(0);
-});
-
-test('token endpoint is throttled', function (): void {
-    $user = User::factory()->create();
-    $payload = ['username' => $user->username, 'password' => 'wrong', 'device_name' => 'test'];
-
-    foreach (range(1, 5) as $ignored) {
-        $this->postJson(route('api.tokens.store'), $payload)->assertUnprocessable();
-    }
-
-    $this->postJson(route('api.tokens.store'), $payload)->assertTooManyRequests();
 });
 
 test('authenticated endpoints return 401 without a token', function (string $method, string $route, array $parameters): void {

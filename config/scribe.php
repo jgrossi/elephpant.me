@@ -20,7 +20,8 @@ return [
     'intro_text' => <<<'INTRO'
         Reading is public and needs no API key. Herds marked private by their owner are excluded
         from every public endpoint. Endpoints that change your own herd or send messages need a
-        token, see Authenticating requests.
+        token, which you create on your [API tokens](/api-tokens) page while signed in, see
+        Authenticating requests.
 
         The machine-readable spec lives at [/docs.openapi](/docs.openapi). Country codes are
         ISO 3166-1 alpha-3 (`DNK`, `GBR`, `BRA`).
@@ -134,7 +135,7 @@ return [
         'placeholder' => '{YOUR_API_TOKEN}',
 
         // Any extra authentication-related info for your users. Markdown and HTML are supported.
-        'extra_info' => 'Get a token by sending your username and password to <code>POST /api/tokens</code>, then send it as <code>Authorization: Bearer {token}</code>.',
+        'extra_info' => 'Create a token on your <a href="/api-tokens">API tokens</a> page while signed in, then send it as <code>Authorization: Bearer {token}</code>.',
     ],
 
     // Example requests for each endpoint will be shown in each of these languages.

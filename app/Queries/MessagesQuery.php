@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 final class MessagesQuery
 {
+    /** @return Collection<int, Message> */
     public function getMessagesWithLoggedInUserAndSomeoneElse(int $userId): Collection
     {
         $authUserId = auth()->id();
@@ -45,6 +46,7 @@ final class MessagesQuery
             ->join('users as receiver', 'm.receiver_id', '=', 'receiver.id');
     }
 
+    /** @return Collection<int, Message> */
     public function getConversations(): Collection
     {
         $authUserId = auth()->id();

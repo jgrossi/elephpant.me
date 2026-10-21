@@ -62,6 +62,7 @@
                         <flux:navmenu>
                             <flux:navmenu.item href="{{ route('profile.edit') }}" icon="user" wire:navigate>{{ __('Profile') }}</flux:navmenu.item>
                             <flux:navmenu.item href="{{ route('messages.conversations') }}" icon="envelope" wire:navigate>{{ __('Messages') }}</flux:navmenu.item>
+                            <flux:navmenu.item href="{{ route('api-tokens.index') }}" icon="key" wire:navigate>{{ __('API tokens') }}</flux:navmenu.item>
                             <flux:navmenu.separator />
                             <flux:navmenu.item href="#" icon="arrow-right-start-on-rectangle"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

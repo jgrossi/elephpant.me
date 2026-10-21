@@ -29,5 +29,6 @@ Route::namespace('App\Http\Controllers')->group(function (): void {
         Route::get('/conversations/{username}', 'MessageController@conversation')->name('messages.conversation');
         Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
         Route::put('/profile', 'ProfileController@update')->name('profile.update');
+        Route::view('/api-tokens', 'api-tokens.index')->name('api-tokens.index');
     });
 });

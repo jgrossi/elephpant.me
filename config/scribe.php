@@ -19,8 +19,10 @@ return [
 
     // Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
     'intro_text' => <<<'INTRO'
-        Everything here is public, read-only and needs no API key. Herds marked private by their
-        owner are excluded from every endpoint.
+        Reading is public and needs no API key. Herds marked private by their owner are excluded
+        from every public endpoint. Endpoints that change your own herd or send messages need a
+        token, which you create on your [API tokens](/api-tokens) page while signed in, see
+        Authenticating requests.
 
         The machine-readable spec lives at [/docs.openapi](/docs.openapi). Country codes are
         ISO 3166-1 alpha-3 (`DNK`, `GBR`, `BRA`).
@@ -60,8 +62,6 @@ return [
 
             // Exclude these routes even if they matched the rules above.
             'exclude' => [
-                // Requires Passport auth and isn't part of the public read-only JSON API.
-                'GET /api/user',
             ],
         ],
     ],
@@ -120,7 +120,7 @@ return [
     // How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
     'auth' => [
         // Set this to true if ANY endpoints in your API use authentication.
-        'enabled' => false,
+        'enabled' => true,
 
         // Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
         // You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
@@ -138,10 +138,10 @@ return [
 
         // Placeholder your users will see for the auth parameter in the example requests.
         // Set this to null if you want Scribe to use a random value as placeholder instead.
-        'placeholder' => '{YOUR_AUTH_KEY}',
+        'placeholder' => '{YOUR_API_TOKEN}',
 
         // Any extra authentication-related info for your users. Markdown and HTML are supported.
-        'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',
+        'extra_info' => 'Create a token on your <a href="/api-tokens">API tokens</a> page while signed in, then send it as <code>Authorization: Bearer {token}</code>.',
     ],
 
     // Example requests for each endpoint will be shown in each of these languages.

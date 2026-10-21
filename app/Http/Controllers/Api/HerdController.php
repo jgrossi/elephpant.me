@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\CarbonInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
@@ -40,6 +41,22 @@ class HerdController extends Controller
             abort(403, 'This herd is private.');
         }
 
+        return $this->herdResponse($user);
+    }
+
+    #[Endpoint(
+        title: 'Get your own herd',
+        description: "Returns the authenticated collector's herd in the same format as the public herd endpoint, also when the herd is private.",
+        authenticated: true,
+    )]
+    #[Response(content: ['message' => 'Unauthenticated.'], status: 401, description: 'Missing or invalid token.')]
+    public function me(Request $request): JsonResponse
+    {
+        return $this->herdResponse($request->user()->load('elephpants'));
+    }
+
+    private function herdResponse(User $user): JsonResponse
+    {
         $elephpantsWithQuantity = $user->elephpantsWithQuantity()->toArray();
         $unique = count($elephpantsWithQuantity);
         $total = array_sum($elephpantsWithQuantity);

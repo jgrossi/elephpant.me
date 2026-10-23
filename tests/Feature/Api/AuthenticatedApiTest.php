@@ -24,6 +24,17 @@ test('a bearer token authenticates the api', function (): void {
         ->assertJsonPath('username', $user->username);
 });
 
+test('own herd does not send Last-Modified', function (): void {
+    $user = User::factory()->create();
+    $elephpant = Elephpant::factory()->create();
+    $user->elephpants()->attach($elephpant->id, ['quantity' => 1]);
+    Sanctum::actingAs($user);
+
+    $this->getJson(route('api.me.herd.show'))
+        ->assertOk()
+        ->assertHeaderMissing('Last-Modified');
+});
+
 test('authenticated endpoints return 401 without a token', function (string $method, string $route, array $parameters): void {
     $this->json($method, route($route, $parameters))->assertUnauthorized();
 })->with([

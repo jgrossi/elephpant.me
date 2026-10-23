@@ -41,7 +41,10 @@ class HerdController extends Controller
             abort(403, 'This herd is private.');
         }
 
-        return $this->herdResponse($user);
+        $herdChangedAt = $this->herdChangedAt($user);
+
+        return $this->herdResponse($user, $herdChangedAt)
+            ->setLastModified($this->lastModified($user, $herdChangedAt));
     }
 
     #[Endpoint(
@@ -55,13 +58,20 @@ class HerdController extends Controller
         return $this->herdResponse($request->user()->load('elephpants'));
     }
 
-    private function herdResponse(User $user): JsonResponse
+    private function herdChangedAt(User $user): ?CarbonInterface
     {
+        $lastUpdate = $user->elephpants()->max('elephpant_user.updated_at');
+
+        return $lastUpdate ? Carbon::parse($lastUpdate) : null;
+    }
+
+    private function herdResponse(User $user, ?CarbonInterface $herdChangedAt = null): JsonResponse
+    {
+        $herdChangedAt ??= $this->herdChangedAt($user);
+
         $elephpantsWithQuantity = $user->elephpantsWithQuantity()->toArray();
         $unique = count($elephpantsWithQuantity);
         $total = array_sum($elephpantsWithQuantity);
-        $herdChangedAt = $user->elephpants()->max('elephpant_user.updated_at');
-        $herdChangedAt = $herdChangedAt ? Carbon::parse($herdChangedAt) : null;
 
         $elephpants = $user->elephpants
             ->sortBy('year')
@@ -95,7 +105,7 @@ class HerdController extends Controller
                 'spare'  => $total - $unique,
             ],
             'elephpants' => $elephpants,
-        ])->setLastModified($this->lastModified($user, $herdChangedAt));
+        ]);
     }
 
     /**

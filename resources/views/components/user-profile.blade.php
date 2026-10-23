@@ -4,6 +4,7 @@
     'nameAsLink' => false,
     'compact' => false,
     'lastUpdated' => null,
+    'showJoined' => false,
 ])
 
 @php
@@ -44,10 +45,16 @@
             <flux:heading size="xl" level="1" class="text-zinc-600 dark:text-zinc-300">{{ $user->name }}</flux:heading>
         @endif
         <x-country-with-flag :country="$country" />
-        @if($lastUpdated)
+        @php
+            $profileDates = array_filter([
+                $showJoined && $user->created_at ? 'Joined ' . $user->created_at->format('F Y') : null,
+                $lastUpdated ? 'Herd updated ' . \Carbon\Carbon::parse($lastUpdated)->diffForHumans() : null,
+            ]);
+        @endphp
+        @if($profileDates)
             <flux:text class="{{ $compact ? 'text-sm text-zinc-500 dark:text-zinc-400' : '' }} mt-1 flex items-center gap-1">
                 <flux:icon icon="calendar" variant="outline" class="size-4" />
-                Herd last updated {{ \Carbon\Carbon::parse($lastUpdated)->diffForHumans() }}
+                {{ implode(' • ', $profileDates) }}
             </flux:text>
         @endif
         @if($socialLinks)

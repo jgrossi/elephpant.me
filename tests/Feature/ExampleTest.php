@@ -38,7 +38,26 @@ test('herd show displays the last herd update', function () {
     $response = $this->get(route('herds.show', $user->username));
 
     $response->assertSuccessful();
-    $response->assertSee('Herd last updated');
+    $response->assertSee('Herd updated');
+});
+
+test('herd show displays when the user joined alongside the last herd update', function () {
+    $user = User::factory()->create(['created_at' => '2021-03-15 10:00:00']);
+    $elephpant = Elephpant::factory()->create();
+    $user->elephpants()->attach($elephpant->id, ['quantity' => 1]);
+
+    $this->get(route('herds.show', $user->username))
+        ->assertSuccessful()
+        ->assertSeeInOrder(['Joined March 2021', '•', 'Herd updated']);
+});
+
+test('herd show displays when the user joined even without any elephpants', function () {
+    $user = User::factory()->create(['created_at' => '2019-11-02 08:30:00']);
+
+    $this->get(route('herds.show', $user->username))
+        ->assertSuccessful()
+        ->assertSee('Joined November 2019')
+        ->assertDontSee('Herd updated');
 });
 
 test('herd show with authenticated user includes contact section', function () {

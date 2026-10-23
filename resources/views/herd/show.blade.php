@@ -3,7 +3,7 @@
 @section('content')
     <div class="space-y-6">
         <div class="flex flex-wrap items-start gap-4 py-6 md:py-8">
-            <x-user-profile :user="$user" :countries="$countries" :last-updated="$herdLastUpdated" />
+            <x-user-profile :user="$user" :countries="$countries" :last-updated="$herdLastUpdated" show-joined />
         </div>
 
         <div id="stats">
